@@ -71,7 +71,7 @@ hr {
 // No media query for `xs` since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up)
-@media (max-width: 576px) {  .middle { width: 100%; } h1{font-size: 20px;}
+@media (max-width: 576px) {  .middle { width: 100%; padding: 10px; } h1{font-size: 20px;}
  }
 
 // Medium devices (tablets, 768px and up)
