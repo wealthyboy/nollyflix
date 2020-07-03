@@ -11,7 +11,7 @@
         <meta name="generator" content="Social Likes: http://social-likes.js.org/">
 <style>
 body, html {
-    height: vh100;
+    height: 100vh;
     margin:0;
     padding:0;
 }
