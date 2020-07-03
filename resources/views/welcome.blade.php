@@ -38,8 +38,10 @@ body, html {
   position: absolute;
   top: 0;
   left: 16px;
-  max-width: 150px;
+   max-width: 150px;
 }
+.topleft p img { max-width: 100px;}
+
 
 /* Position text in the bottom-left corner */
 .bottomleft {
