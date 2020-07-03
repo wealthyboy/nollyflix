@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>WENDY'S HAIR</title>
+        <title>NollyFlix</title>
         <meta name="author" content="AchuWorld">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="">
@@ -38,6 +38,7 @@ body, html {
   position: absolute;
   top: 0;
   left: 16px;
+  max-width: 150px;
 }
 
 /* Position text in the bottom-left corner */
