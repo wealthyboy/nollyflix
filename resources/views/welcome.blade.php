@@ -10,8 +10,8 @@
         <meta name="keywords" content="" />
         <link rel='dns-prefetch' href='//fonts.googleapis.com' />
         <meta name="generator" content="Social Likes: http://social-likes.js.org/">
-        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,700&display=swap" rel="stylesheet"> 
-<style>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap" rel="stylesheet"> 
+        <style>
 body, html {
     height: 100vh;
     margin:0;
