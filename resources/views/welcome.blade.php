@@ -61,6 +61,7 @@ body, html {
   text-align: center;
   color:#ffffff; 
   background-color: #9e0028;
+  padding: 10px;
 }
 
 /* Style the <hr> element */
