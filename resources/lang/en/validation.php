@@ -130,8 +130,32 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'category_name' => [
+            'unique' => 'Category name already exists',
+        ],
+        'category_id' => [
+            'unique' => 'Category  already exists',
+        ],
+        'category_id' => [
+            'required' => 'Please add 1 or more categories ',
+        ],
+        'tn_poster' => [
+            'required'  => 'Add a small poster image'
+        ],
+        'casts_id' => [
+            'required' => 'Please add 1 or more casts ',
+        ], 
+        'filmer_id' => [
+            'required' => 'Please add 1 or more film producers ',
+        ], 
+        'genre_id' => [
+            'required' => 'Please add 1 or more genres ',
+        ],
+        'buy_price' => [
+            'required' => 'Please add buy price  ',
+        ],
+        'rent_price' => [
+            'required' => 'Please add rent price  ',
         ],
     ],
 
