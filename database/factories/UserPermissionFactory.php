@@ -9,7 +9,7 @@ use App\Permission;
 
 $factory->define(UserPermission::class, function (Faker $faker) {
     return [
-        'user_id' => factory(User::class)->create()->id,
-        'permission_id' => factory(Permission::class)->create()->id
+        'user_id' => 1,
+        'permission_id' => 1
     ];
 });
