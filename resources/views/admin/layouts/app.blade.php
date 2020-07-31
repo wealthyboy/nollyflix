@@ -45,7 +45,7 @@
         </a>
 
         <a href="{{ route('admin_home') }}" class="simple-text logo-normal">
-            <img src="http://nollyflix.test/images/logo/NF00.png" width="140" height="30" />
+            <img src="https://nollyflix.test/images/logo/NF00.png" width="140" height="30" />
         </a>
     </div>
 
@@ -92,17 +92,17 @@
             </li>
 
             <li class="{{ $helper->active_link(['videos','category','genres']) }} ">
-                <a data-toggle="collapse" href="dashboard.html#products">
+                <a data-toggle="collapse" href="dashboard.html#video-orders">
                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>   
                     <p> Video Orders
                        <b class="caret"></b>
                     </p>
                 </a>
 
-                <div class="collapse {{ $helper->active_link(['sections','category','genres','videos']) ? 'in' : ''}}" id="products">
+                <div class="collapse {{ $helper->active_link(['sections','category','genres','videos']) ? 'in' : ''}}" id="video-orders">
                     <ul class="nav">
                         <li class="{{ $helper->active_link(['videos']) }} ">
-                             <a  href="{{ route('videos.index') }}">
+                             <a  href="{{ route('admin.orders.index') }}">
                                 <span class="sidebar-mini"> R </span>
                                 <span class="sidebar-normal"> Rentals  </span>
                             </a>
