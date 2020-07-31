@@ -45,7 +45,7 @@
         </a>
 
         <a href="{{ route('admin_home') }}" class="simple-text logo-normal">
-            <img src="https://nollyflix.test/images/logo/NF00.png" width="140" height="30" />
+            <img src="https://nollyflix.tv/images/logo/NF00.png" width="140" height="30" />
         </a>
     </div>
 
@@ -99,7 +99,7 @@
                     </p>
                 </a>
 
-                <div class="collapse {{ $helper->active_link(['sections','category','genres','videos']) ? 'in' : ''}}" id="video-orders">
+                <div class="collapse {{ $helper->active_link(['orders']) ? 'in' : ''}}" id="video-orders">
                     <ul class="nav">
                         <li class="{{ $helper->active_link(['videos']) }} ">
                              <a  href="{{ route('admin.orders.index') }}">
