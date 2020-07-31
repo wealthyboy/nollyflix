@@ -11,6 +11,6 @@ class SystemSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\SystenSetting::class, 1)->create();
+        factory(App\SystemSetting::class, 1)->create();
     }
 }
