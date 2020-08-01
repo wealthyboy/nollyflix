@@ -5,10 +5,10 @@
 <head>
 
     <meta charset="utf-8" />
-    <link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-32x32.png" sizes="32x32" />
-	<link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-192x192.png" sizes="192x192" />
-	<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/images/favicons/cropped-nflix-180x180.png" />
-	<meta name="msapplication-TileImage" content="https://nollyflix.tv/images/favicons/cropped-nflix-270x270.png" />
+    <link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-32x32.png" sizes="32x32" />
+	<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-192x192.png" sizes="192x192" />
+	<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/favicons/cropped-nflix-180x180.png" />
+	<meta name="msapplication-TileImage" content="https://nollyflix.tv/favicons/cropped-nflix-270x270.png" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
