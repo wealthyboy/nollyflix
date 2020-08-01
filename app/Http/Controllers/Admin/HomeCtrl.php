@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Video;
+
 
 
 class HomeCtrl extends Controller
@@ -24,7 +26,12 @@ class HomeCtrl extends Controller
      }
 
 	public function index() { 
-        return view('admin.index'); 
+        
+        $casts = (new User())->castings()->latest()->count();
+        $users = (new User())->customers()->latest()->count();
+        $videos = Video::count();
+        $filmers = (new User())->filmers()->latest()->count();
+        return view('admin.index',\compact('casts','users','filmers','videos')); 
      }
      
 	

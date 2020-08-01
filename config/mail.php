@@ -84,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@nollyflix.tv'),
+        'address' => env('MAIL_FROM_ADDRESS', 'orders@hautesignatures.com'),
         'name' => env('MAIL_FROM_NAME', 'Nollyflix'),
     ],
 

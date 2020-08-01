@@ -9,11 +9,11 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Number of Subscribers</p>
-            <h3 class="card-title">{{ 0 }}{{  0}}</h3>
+            <h3 class="card-title">{{ $users }}</h3>
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
-					<i class="material-icons text-danger">warning</i> <a href="/">View</a>
+					<i class="material-icons text-danger">forward</i> <a href="{{ route('customers.index') }}">View</a>
 				</div>
 			</div>
       </div>
@@ -23,11 +23,11 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Number of Casts</p>
-            <h3 class="card-title">{{ 0 }}{{  0}}</h3>
+            <h3 class="card-title">{{ $casts }}</h3>
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
-					<i class="material-icons text-danger">forward</i> <a href="/">View</a>
+					<i class="material-icons text-danger">forward</i> <a href="{{ route('casts.index') }}">View</a>
 				</div>
 			</div>
       </div>
@@ -36,11 +36,11 @@
       <div class="card card-stats">
          <div class="card-content">
          <p class="category">Number of Filmer Makers</p>
-            <h3 class="card-title">{{  0 }}</h3>
+            <h3 class="card-title">{{ $filmers }}</h3>
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
-					<i class="material-icons text-danger">forward</i> <a href="/">View</a>
+					<i class="material-icons text-danger">forward</i> <a href="{{ route('filmers.index') }}">View</a>
 				</div>
 			</div>
       </div>
@@ -52,11 +52,11 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Videos Rented Today</p>
-            <h3 class="card-title">{{ 0 }}{{  0}}</h3>
+            <h3 class="card-title">{{ 0 }}</h3>
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
-					<i class="material-icons text-danger">forward</i> <a href="/">View</a>
+					<i class="material-icons text-danger">forward</i> <a href="#">View</a>
 				</div>
 			</div>
       </div>
@@ -65,7 +65,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Videos Sold Today</p>
-            <h3 class="card-title">{{  0 }}</h3>
+            <h3 class="card-title">{{ 0 }}</h3>
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
@@ -80,11 +80,11 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Number of Movies</p>
-            <h3 class="card-title">{{0 }}{{ 0 }}</h3>
+            <h3 class="card-title">{{ $videos }}</h3>
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
-					<i class="material-icons text-danger">forward</i> <a href="/">View</a>
+					<i class="material-icons text-danger">forward</i> <a href="{{ route('videos.index') }}">View</a>
 				</div>
 			</div>
       </div>
@@ -98,7 +98,7 @@
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
-					<i class="material-icons text-danger">forward</i> <a href="/">View</a>
+					<i class="material-icons text-danger">forward</i> <a href="#">View</a>
 				</div>
 			</div>
       </div>
@@ -107,11 +107,11 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Sales Total</p>
-            <h3 class="card-title">{{ 0 }}{{ 0}}</h3>
+            <h3 class="card-title">{{ 0 }}</h3>
          </div>
          <div class="card-footer text-right">
 				<div class="stats">
-					<i class="material-icons text-danger">forward</i> <a href="/">View</a>
+					<i class="material-icons text-danger">forward</i> <a href="#">View</a>
 				</div>
 			</div>
       </div>
