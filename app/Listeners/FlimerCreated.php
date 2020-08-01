@@ -27,7 +27,12 @@ class FlimerCreated
      */
     public function handle($event)
     {
-        \Notification::route('mail', $event->casts['email'])
-        ->notify(new FilmerEmailNotification($event));
+        try {
+            \Notification::route('mail', $event->casts['email'])
+            ->notify(new FilmerEmailNotification($event));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+       
     }
 }
