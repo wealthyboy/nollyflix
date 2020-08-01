@@ -2,6 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-32x32.png" sizes="32x32" />
+		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/favicons/cropped-nflix-180x180.png" />
+		<meta name="msapplication-TileImage" content="https://nollyflix.tv/favicons/cropped-nflix-270x270.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -11,10 +15,7 @@
 		<link rel="stylesheet" href="{{ asset('icons/faw/css/font_awesome.css') }}"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="/icons/Iconsmind__Ultimate_Pack/Line icons/styles.min.css"><!-- iconsmind.com Icons -->
 
-		<link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-32x32.png" sizes="32x32" />
-		<link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-192x192.png" sizes="192x192" />
-		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/images/favicons/cropped-nflix-180x180.png" />
-		<meta name="msapplication-TileImage" content="https://nollyflix.tv/images/favicons/cropped-nflix-270x270.png" />
+		
 		
 		<title>{{ config('app.name', 'NollyFlix') }}</title>
 	</head>
