@@ -91,7 +91,7 @@
                 </a>
             </li>
 
-            <li class="{{ $helper->active_link(['videos','category','genres']) }} ">
+            <li class="{{ $helper->active_link(['orders']) }} ">
                 <a data-toggle="collapse" href="dashboard.html#video-orders">
                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>   
                     <p> Video Orders
@@ -101,15 +101,10 @@
 
                 <div class="collapse {{ $helper->active_link(['orders']) ? 'in' : ''}}" id="video-orders">
                     <ul class="nav">
-                        <li class="{{ $helper->active_link(['videos']) }} ">
-                             <a  href="{{ route('admin.orders.index') }}">
-                                <span class="sidebar-mini"> R </span>
-                                <span class="sidebar-normal"> Rentals  </span>
-                            </a>
-                        </li>
+                       
 
-                        <li class="{{ $helper->active_link(['sections']) }} ">
-                            <a  href="{{ route('sections.index') }}">
+                        <li class="{{ $helper->active_link(['orders']) }} ">
+                            <a  href="{{ route('admin.orders.index') }}">
                                 <span class="sidebar-mini"> VS</span>
                                 <span class="sidebar-normal"> Video Sales </span>
                             </a>

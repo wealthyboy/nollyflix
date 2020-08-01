@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Live;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,17 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {    
-        return view('index');
+    {   
+        $site_status =Live::first();
+
+        if ( empty($site_status->make_live) ) {
+            return view('index');
+        } else {
+            //Show site if admin is logged in
+            if ( auth()->check()  && auth()->user()->isAdmin()){
+                return view('browse.index');
+            }
+            return view('welcome');
+        }
     }
 }
