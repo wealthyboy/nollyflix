@@ -27,7 +27,8 @@ class UsersController extends Controller
 	/* display all users in the database */
 	public function index(Request $request)
 	{
-	    $users = User::with('users_permission')->get();	 	  
+		$users = User::with('users_permission')->get();	
+		dd($users); 	  
 	    return view('admin.auth.index', compact('users'));  
     }
 	
