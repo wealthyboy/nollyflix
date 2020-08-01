@@ -91,7 +91,7 @@ class GenresController extends Controller
     {
         User::canTakeAction(4);
         $gen = Genre::find($id);
-        return view('admin.genres.edit',compact('gen','genres'));
+        return view('admin.genres.edit',compact('gen'));
     }
 
     /**

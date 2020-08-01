@@ -10,6 +10,11 @@
 		
 		<link rel="stylesheet" href="{{ asset('icons/faw/css/font_awesome.css') }}"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="/icons/Iconsmind__Ultimate_Pack/Line icons/styles.min.css"><!-- iconsmind.com Icons -->
+
+		<link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-32x32.png" sizes="32x32" />
+		<link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/images/favicons/cropped-nflix-180x180.png" />
+		<meta name="msapplication-TileImage" content="https://nollyflix.tv/images/favicons/cropped-nflix-270x270.png" />
 		
 		<title>{{ config('app.name', 'NollyFlix') }}</title>
 	</head>
