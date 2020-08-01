@@ -56,11 +56,7 @@ class User extends Authenticatable
 	{
 		return $this->hasOne("App\UserPermission");
 	}
-
-
-
 	
-		
 	public function scopeCustomers(Builder $builder)
 	{
 		return $builder->where('type','subscriber');
