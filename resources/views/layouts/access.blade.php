@@ -14,7 +14,11 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		 <!-- CSRF Token -->
-		 <meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-32x32.png" sizes="32x32" />
+		<link rel="icon" href="https://nollyflix.tv/images/favicons/cropped-nflix-192x192.png" sizes="192x192" />
+		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/images/favicons/cropped-nflix-180x180.png" />
+		<meta name="msapplication-TileImage" content="https://nollyflix.tv/images/favicons/cropped-nflix-270x270.png" />
 
 		 <!-- Fonts -->
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
