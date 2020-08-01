@@ -27,7 +27,7 @@ class BrowseController extends Controller
      */
     public function index()
     {    
-        $sections = Section::orderBy('sort_order','asc')->get();
+        $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured =  DefaultBanner::first();
         return view('browse.index',compact('sections','featured'));
     }
