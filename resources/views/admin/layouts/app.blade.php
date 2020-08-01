@@ -104,17 +104,12 @@
 
                 <div class="collapse {{ $helper->active_link(['orders']) ? 'in' : ''}}" id="video-orders">
                     <ul class="nav">
-                       
-
                         <li class="{{ $helper->active_link(['orders']) }} ">
                             <a  href="{{ route('admin.orders.index') }}">
                                 <span class="sidebar-mini"> VS</span>
                                 <span class="sidebar-normal"> Video Sales </span>
                             </a>
                         </li>
-                      
-                       
-                      
                     </ul>
                 </div>
             </li>

@@ -28,7 +28,7 @@ class UsersController extends Controller
 	public function index(Request $request)
 	{
 		$users = User::with('users_permission')->get();	
-		dd(true); 	  
+		dd($users); 	  
 	    return view('admin.auth.index', compact('users'));  
     }
 	

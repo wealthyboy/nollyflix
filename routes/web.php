@@ -47,7 +47,6 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::get('featured/{video_id}','Admin\Featured\FeaturedController@add')->name('featured');
     Route::post('page/banner','Admin\PageBanner\PageBannerController@store');
 
-    Route::post('products/delete','Admin\Product\ProductController@destroy')->name('delete_products');
     Route::post('logout',  'Auth\LoginController@logout')->name('admin_users_logout');
  
     Route::get('register','Admin\Users\UsersController@create')->name('create_admin_users');
