@@ -29,6 +29,6 @@ class BrowseController extends Controller
     {    
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured =  DefaultBanner::first();
-        return view('browse.index',compact('sections','featured'));
+        return view('browse.index',compact('sections','featured'));   
     }
 }
