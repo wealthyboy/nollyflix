@@ -45,9 +45,10 @@ class FilmerEmailNotification extends Notification
         ->line('We have added you to nollyflix. ') 
         ->line('Your username is: '.$this->casts->casts['email'])
         ->line('Your password is: '.$this->casts->casts['password']) 
-        ->line('Your can now login and check how your movies are doing through your dashboard') 
+        ->line('Your profile page is: https://nollyflix.tv/profile/'.str_slug($this->casts->casts['first_name'].' '.$this->casts->casts['last_name'])) 
+        ->line('Your can login and check how your movies are doing through your dashboard') 
         ->subject("Your profile have been created")
-        ->action('Click here to visit your dashboard', url('/'))
+        ->action('Click here to visit your dashboard', url('/profile'))
         ->line('Please note only you can update your info');
     }
 
