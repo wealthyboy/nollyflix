@@ -64,30 +64,13 @@
 
                     <div class="item">
                         <div class="progression-studios-video-index-container">
-                            <a href="/browse/video/">
-                                <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="Featured Image"></div>
-                        
+                            <a href="/browse/{{ $video->id }}">
+                                <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                                 <div class="progression-video-index-content">
                                     <div class="progression-video-index-table">
                                         <div class="progression-video-index-vertical-align">
-                                    
                                             <h2 class="progression-video-title"></h2>
-                                    
-                                            <div class="average-rating-video-post">
-                                                <div class="average-rating-video-empty">
-                                                    <span class="dashicons dashicons-star-empty"></span><span class="dashicons dashicons-star-empty"></span><span class="dashicons dashicons-star-empty"></span><span class="dashicons dashicons-star-empty"></span><span class="dashicons dashicons-star-empty"></span>
-                                                </div>
-                                                <div class="average-rating-overflow-width" style="width:100%;">
-                                                    <div class="average-rating-video-filled">
-                                                        <span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span>
-                                                    <div class="clearfix"></div>
-                                                    </div><!-- close .average-rating-video-filled -->
-                                                </div><!-- close .average-rating-overflow-width -->
-                                            </div><!-- close .average-rating-video-post -->
-                                            <div class="clearfix"></div>
-                                        
-                                            <div class="clearfix"></div>
-                                    
+                                            <div class="clearfix"></div>                                    
                                         </div><!-- close .progression-video-index-vertical-align -->
                                     </div><!-- close .progression-video-index-table -->
                                 </div><!-- close .progression-video-index-content -->

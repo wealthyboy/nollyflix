@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
-class AccountController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,6 +25,17 @@ class AccountController extends Controller
      */
     public function index()
     {    
-        return view('account.index');
+        return view('profile.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function ActorsAndFilMakers(User $user)
+    {
+        return view('profile.profile',compact('user'));
     }
 }

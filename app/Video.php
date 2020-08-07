@@ -42,8 +42,7 @@ class Video extends Model
         return $this->belongsToMany('App\User','filmer_video','video_id','user_id');
     }
 
-
-      /**
+    /**
      * The filmers that belong to the user.
     */
     public function default_banner()
@@ -59,14 +58,16 @@ class Video extends Model
         return $this->belongsToMany('App\Genre');
     }
 
-
     public function related_videos()
     {
         return $this->hasMany(RelatedVideo::class);
     }
     
-
     public function getFormatBack(){
         return Helper::getFormatBack($this->release_date); 
     }
+
+    // public function getRouteKeyName(){
+    //     return 'slug';
+    // }
 }

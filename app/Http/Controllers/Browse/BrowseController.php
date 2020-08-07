@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Section;
 use App\DefaultBanner;
+use App\Video;
 
 class BrowseController extends Controller
 {
@@ -31,4 +32,12 @@ class BrowseController extends Controller
         $featured =  DefaultBanner::first();
         return view('browse.index',compact('sections','featured'));   
     }
+
+
+    public function show($id)
+    {   
+        $video = Video::findOrFail($id);
+        return view('browse.show',compact('video'));   
+    }
+    
 }

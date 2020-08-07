@@ -69,9 +69,11 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('browse', 'Browse\BrowseController',['name'=>'browse']);
-Route::get('profile',    'Account\AccountController@index')->name('profile');
-Route::get('profile/videos',    'ProfileVideo\ProfileVideoController@index')->name('videos');
-Route::get('profile/watchlists',    'ProfileWatchList\ProfileWatchListController@index')->name('watchlists');
+Route::get('profile',    'Profile\ProfileController@index')->name('profile');
+Route::get('profile/videos',    'ProfileVideo\ProfileVideoController@index')->name('profile.videos');
+Route::get('profile/watchlists',    'ProfileWatchList\ProfileWatchListController@index')->name('profile.watchlists');
+Route::get('profile/{user}',        'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
+
 
 // Route::get('/', function () {
 //     return view('welcome');

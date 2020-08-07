@@ -78,7 +78,7 @@ class User extends Authenticatable
 		return $builder->where('type','casts');
 	}
 
-
+	
 	/**
      * Get the banner's image.
      */
@@ -139,4 +139,8 @@ class User extends Authenticatable
 		$this->token = null;
 		$this->save(); 
 	}
+
+	public function getRouteKeyName(){
+        return 'slug';
+    }
 }
