@@ -50,7 +50,7 @@
 					<div id="vayvo-progression-author-content-container">
 						<ul id="dashboard-sub-menu">
 							<li class="current"><a href="/">Account Settings</a></li>
-							<li><a href="{{ route('videos') }}">Videos(0)</a></li>
+							<li><a href="{{-- route('videos') --}}">Videos(0)</a></li>
 							<li><a href="{{ route('watchlists') }}">Watchlist(0)</a></li>
 						</ul>
 						<!-- close #dashboard-sub-menu -->
