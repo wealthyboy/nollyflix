@@ -18,7 +18,9 @@ class ProfileWatchListController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {    
-        return view('watchlists.index');
+    {   
+        $user = auth()->user();
+        $active = "watchlists";
+        return view('watchlists.index',compact('user','watchlists'));
     }
 }

@@ -9,10 +9,8 @@ class Video extends Model
 {
     
 
-  
 
-
-       /**
+    /**
      * The casts that belong to the user.
     */
     public function sections()
@@ -50,6 +48,15 @@ class Video extends Model
     public function genres()
     {
         return $this->belongsToMany('App\Genre');
+    }
+
+
+    /**
+     * The videos bought that belong to the video.
+    */
+    public function movies()
+    {
+        return $this->hasMany('App\OrderedMovie');
     }
 
     public function related_videos()

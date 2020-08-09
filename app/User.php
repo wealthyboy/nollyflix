@@ -80,6 +80,15 @@ class User extends Authenticatable
     {
         return $this->morphOne('App\Banner', 'banner');
 	}
+
+
+	/**
+     * Get all of the posts for the country.
+     */
+    public function movies()
+    {
+        return $this->hasManyThrough('App\OrderedMovie', 'App\Order');
+    }
 	
 
 	/**

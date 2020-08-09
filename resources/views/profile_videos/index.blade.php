@@ -2,51 +2,13 @@
 
 @section('content')
 <div id="content-pro">
-			
     <div class="container custom-gutters-pro">
-
         <div id="vayvo-progression-author-sidebar">
-            <div id="content-sidebar-info">
-                <div id="avatar-sidebar-large-profile" style="background-image:url('images/demo/profile-image.jpg')"></div>
-                <div id="profile-sidebar-gradient"></div>
-                <a href="profile.html#!" class="edit-profile-sidebar">Edit</a>
-            </div><!-- close .content-sidebar-info -->
-            
-            <div id="vayvo-profile-sidebar-name">
-                <h5>Jane Doe</h5>
-                <h6>United States</h6>
-              
-            </div><!-- close #vayvo-profile-sidebar-name -->
+            @include('partials.profile_aside',['user' => $user])
+        </div><!-- close #vayvo-progression-author-content-sidebar --> 
+        <div id="vayvo-progression-author-content-container">
+        @include('partials.profile_nav_link',['user' => $user,'current' => 'videos'])
 
-                <div class="content-sidebar-section">
-                    <h3 class="content-sidebar-sub-header">User Stats</h3>
-                    <ul id="profile-watched-stats">
-                        <li>
-                            <span>5</span>
-                                Watchlist
-                        </li>
-                        <li>
-                            <span>8</span>
-                                Reviews
-                        </li>
-                    </ul>
-                </div>
-                <!-- close .content-sidebar-section -->
-                <div class="content-sidebar-section">
-                    <h3 class="content-sidebar-sub-header">Biography</h3>
-                    <div class="content-sidebar-biography-text">
-                    Easily add-in a biography for your profile page...							</div>
-                </div>
-                <!-- close .content-sidebar-section -->
-
-            </div><!-- close #vayvo-progression-author-content-sidebar -->
-            
-            <div id="vayvo-progression-author-content-container">
-                <ul id="dashboard-sub-menu">
-                    <li class="current"><a href="/">Account Settings</a></li>
-                    <li><a href="/">Videos(0)</a></li>
-                    <li><a href="/">Watchlist(0)</a></li>
-                </ul>
                 <!-- close #dashboard-sub-menu -->
                 
                 <div class="row">
@@ -82,16 +44,8 @@
                         </div>
                     @endif
                 </div><!-- close .row -->
-
-            </div><!-- close #vayvo-progression-author-content-container -->
-            
-            
-            
-            
+            </div><!-- close #vayvo-progression-author-content-container -->  
         <div class="clearfix"></div>
     </div><!-- close .container -->
-    
-    
-    
 </div><!-- close #content-pro -->
 @endsection
