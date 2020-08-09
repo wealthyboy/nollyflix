@@ -60,7 +60,7 @@
                                         </td>
                                         <td><a href="{{ route('filmers.show',['filmer'=>$filmer->id]) }}">{{ $filmer->fullname() }}</a></td>
                                         <td class="text-left">{{ $filmer->email }}</td>
-                                        <td class="text-left">{{ $filmer->filmer_videos->count() }}</td>
+                                        <td class="text-left">{{ $filmer->videos->count() }}</td>
                                         <td class="text-right">
                                            {{ $filmer->created_at }}
                                         </td>
