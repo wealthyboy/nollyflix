@@ -299,7 +299,7 @@
                                                    <input 
                                                       name="cast_id[]" 
                                                       value="{{ $cast->id }}" 
-                                                      {{ $cast->checked($video->casts , $cast->id) ? 'checked' : '' }} 
+                                                      {{ $cast->checked($video->users , $cast->id) ? 'checked' : '' }} 
                                                       type="checkbox">
                                                    {{ $cast->fullname() }}
                                                 </label>
@@ -331,7 +331,7 @@
                                                       <input 
                                                          name="filmer_id[]" 
                                                          value="{{ $filmer->id }}" 
-                                                         {{ $filmer->checked($video->filmers , $filmer->id) ? 'checked' : '' }} 
+                                                         {{ $filmer->checked($video->users , $filmer->id) ? 'checked' : '' }} 
                                                          type="checkbox">
                                                       {{ $filmer->fullname() }}
                                                    </label>
