@@ -15,11 +15,13 @@
 		<meta property="og:title" content=" NollyFlix tv">
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="Watch nollywood movies online">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700%7CMontserrat:300,400,600,700">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
 		<link rel="stylesheet" href="{{ asset('icons/faw/css/font_awesome.css') }}"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="/icons/Iconsmind__Ultimate_Pack/Line icons/styles.min.css"><!-- iconsmind.com Icons -->
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/css/guest.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/overide.css">
+
 		
 		
 	</head>
@@ -27,12 +29,14 @@
 		<header id="masthead-pro">
 			<div class="container">
 				
-				<h1><a href="/"><img src="{{ $system_settings->logo_path() }}" class="" alt=" Store Logo" /></a></h1>
 				<nav class="navbar navbar-expand navbar-dark">
-					<div class="navbar-collapse collapse">
+				<a class="navbar-brand" href="/">
+					<img src="{{ $system_settings->logo_path() }}" width="180" height="150" class="d-inline-block align-top" alt="">
+					
+				</a>
+					<div class="navbar-collapse collapse justify-content-end">
 						<ul class="navbar-nav">
-						
-							<li class="nav-item">
+							<li class="nav-item ">
 								<a class="nav-link btn btn-primary text-danger" href="{{ route('login') }}">Login</a>
 							</li>
 						</ul>
@@ -44,7 +48,7 @@
 		</header>
 		
 	
-		<div id="content-pro">
+		<div id="">
   	 		@yield('content')
 		</div><!-- close #content-pro -->
 		
@@ -66,7 +70,7 @@
 			</div><!-- close .container -->
 		</footer>
 		
-		<a href="index.html#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
+		<a href="#" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
 		
 	
 

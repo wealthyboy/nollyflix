@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="">
-    <div class="background-image">
-        <div class="container-fluid">
-            <div class="signup--middle">                    
-                <h1 class="">BUY ,RENT AND WATCH ON MULTIPLE DEVICES  NOLLYWOOD MOVIES </h1>
-                <a class="btn btn-green-pro btn-slider-pro" href="{{  route('register') }}"><i class="fas fa-plus"></i> GET STARTED</a>
-            </div>
+<div class="background-image">
+    <div class="container-fluid">
+        <div class="signup--middle">                    
+            <h1 class="">BUY ,RENT AND WATCH ON MULTIPLE DEVICES  NOLLYWOOD MOVIES </h1>
+            <a class="btn btn-green-pro btn-slider-pro" href="{{  route('register') }}"><i class="fas fa-plus"></i> GET STARTED</a>
         </div>
     </div>
-</section>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md my-auto"><!-- .my-auto vertically centers contents -->

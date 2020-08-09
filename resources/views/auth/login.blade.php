@@ -2,19 +2,17 @@
 
 @section('content')
 
-<div id="content-pro">
+<div class="background-image">
 			
     <div class="container">
         <div class="centered-headings-pro pricing-plans-headings">
-            <h6>Sign In</h6>
-            <h1>Instantly watch TV shows &amp; Movies</h1>
         </div>
     </div><!-- close .container -->
     <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">Login</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -74,6 +72,10 @@
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <div class="card-footer">
+                    jdjdj
                 </div>
             </div>
         </div>

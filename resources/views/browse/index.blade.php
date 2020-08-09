@@ -21,6 +21,8 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                     <div class="progression-studios-slider-excerpt"><?php echo html_entity_decode($featured->video->description) ?></div>
+                                    <a class="btn btn-slider-pro afterglow" href="#"><i class="far fa-play-circle"></i>Play Trailer</a>
+
                                     <a class="btn btn-slider-pro afterglow" href="#"><i class="fas fa-play-circle"></i>Buy Now</a>
                                     <a class="btn btn-slider-pro afterglow" href="#"><i class="fas fa-play-circle"></i>Rent</a>
 
@@ -66,7 +68,7 @@
                         <div class="progression-studios-video-index-container">
                             <a href="/browse/{{ $video->id }}">
                                 <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
-                                <div class="progression-video-index-content">
+                                <div class="progression-video-index-content no-background">
                                     <div class="progression-video-index-table">
                                         <div class="progression-video-index-vertical-align">
                                             <h2 class="progression-video-title"></h2>

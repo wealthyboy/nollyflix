@@ -173,7 +173,7 @@ jQuery(document).ready(function($) {
 */	
 	$('#progression-video-carousel').owlCarousel({
 	    margin:4,
-	    items:4,
+	    items:5,
 		autoplay:false,
 		autoplayTimeout:5000,
 		nav: true,
@@ -189,11 +189,11 @@ jQuery(document).ready(function($) {
 		    },
 		    // breakpoint from 768 up
 		    768 : {
-		        items:2,
+		        items:4,
 		    },
 		    // breakpoint from 1025 up
 		    1025 : {
-		        items:3,
+		        items:5,
 		    }
 		}
 	});

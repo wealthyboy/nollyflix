@@ -14,13 +14,16 @@
 		<meta property="og:title" content=" NollyFlix tv">
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="Watch nollywood movies online">
-
-		<link rel="stylesheet" href="icons/fontawesome/css/all.min.css"><!-- FontAwesome Icons -->
-		<link rel="stylesheet" href="icons/dashicons/css/dashicons-min.css"><!-- DashIcons For Star Ratings -->		 <!-- Fonts -->
-		 <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script> 
+		<link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/overide.css">
+
+ 
+
 		 <!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	

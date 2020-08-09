@@ -1,7 +1,47 @@
-.progression-video-index-content.no-background{
+
+header#masthead-pro {
+    position: relative;
+    z-index: 50;
+    background: none;
+}
+.background-image{
+	/* Background image */
+	background-image: url('/images/banners/Bgnollyn01.jpg');
+	/* Full-screen */
+	height: 600px;
+	/* Center the background image */
+	background-position: center;
+	/* Scale and zoom in the image */
+	background-size: cover;
+	/* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+	position: relative;
+
+	z-index: 0;
+
+}
+
+/* Position text in the middle */
+.signup--middle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color:#ffffff; 
+	padding-left: 10px;
+	padding-right: 10px;
+	z-index: 1;
+
+  }
+
+
+  .progression-video-index-content.no-background{
 	position:absolute;
 	width:100%;
 	height:100%;
 	left:0;
-	bottom:-1px;	
+	bottom:-1px;
+	background:none;	
 }
+
+
