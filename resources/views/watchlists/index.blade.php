@@ -16,12 +16,12 @@
                 
                 <div class="row">
                     @if( $user->movies->count())
-                        @foreach($users->movies as $video)
+                        @foreach($user->movies as $video)
                             <div class="col col-12 col-md-6 col-lg-6">
                                 <div class="progression-studios-video-index-container">
                                     <a href="#">
                                 
-                                        <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
+                                        <div class="progression-studios-video-feaured-image"><img src="{{ $video->video->tn_poster }}" alt="{{ $video->video->title }}"></div>
                             
                                         <div class="progression-video-index-content">
                                             <div class="progression-video-index-table">

@@ -1,5 +1,5 @@
 <ul id="dashboard-sub-menu">
-    <li class="{{  $current  == 'profile' ? 'current' : '' }}"><a href="{{ route('profile.index') }}">Account Settings  	</a></li>
+    <li class="{{  $current  == 'profile' ? 'current' : '' }}"><a href="{{ route('profile.index') }}">Account Settings</a></li>
     @if (!$user->isSubscriber())
         <li class="{{ $current == 'videos' ? 'current' : '' }}" ><a href="{{ route('profiles.videos') }}">Videos({{ $user->videos->count() }})</a></li>
     @endif

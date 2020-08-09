@@ -11,6 +11,6 @@ class OrderedMovie extends Model
     */
     public function video()
     {
-        return $this->hasMany('App\Video');
+        return $this->belongsTo('App\Video');
     }
 }

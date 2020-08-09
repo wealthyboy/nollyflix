@@ -8,6 +8,13 @@
 		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/favicons/cropped-nflix-180x180.png" />
 		<meta name="msapplication-TileImage" content="https://nollyflix.tv/favicons/cropped-nflix-270x270.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="canonical" href="https://nollyflix.tv/">
+		<meta property="og:site_name" content="NollyFilx ">
+		<meta property="og:url" content="https://nollyflix.tv">
+		<meta property="og:title" content=" NollyFlix tv">
+		<meta property="og:type" content="website">
+		<meta property="og:description" content="Watch nollywood movies online">
+
 		<link rel="stylesheet" href="icons/fontawesome/css/all.min.css"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="icons/dashicons/css/dashicons-min.css"><!-- DashIcons For Star Ratings -->		 <!-- Fonts -->
 		 <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -49,8 +56,18 @@
 					<div id="header-user-profile-menu">
 						<ul>
 							<li><a href="{{ route('profile.index') }}"><i class="fa fa-user-circle"></i>My Profile</a></li>
-							<li><a href="{{ route('profile.index') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
-							<li><a href=""><i class="fa fa-power-off"></i>Log Out</a></li>
+							<li><a href="{{ route('profiles.watchlists') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
+							<li>
+							<a class="" href="/logout"
+                                                        onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                    <i class="fa fa-sign-out left" aria-hidden="true"></i> Logout
+                                                </a>
+                                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+							
+							</li>
 						</ul>
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->
