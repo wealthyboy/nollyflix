@@ -15,8 +15,8 @@
                 <!-- close #dashboard-sub-menu -->
                 
                 <div class="row">
-                    @if( $user->videos->count())
-                        @foreach($users->videos as $video)
+                    @if( $user->movies->count())
+                        @foreach($users->movies as $video)
                             <div class="col col-12 col-md-6 col-lg-6">
                                 <div class="progression-studios-video-index-container">
                                     <a href="#">

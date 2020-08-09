@@ -21,6 +21,6 @@ class ProfileWatchListController extends Controller
     {   
         $user = auth()->user();
         $active = "watchlists";
-        return view('watchlists.index',compact('user','watchlists'));
+        return view('watchlists.index',compact('user','active'));
     }
 }
