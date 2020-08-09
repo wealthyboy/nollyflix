@@ -1,36 +1,22 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
+	    <title>{{ config('app.name', 'NollyFlix') }}</title>
 		<meta charset="utf-8">
 		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-32x32.png" sizes="32x32" />
 		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-192x192.png" sizes="192x192" />
 		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/favicons/cropped-nflix-180x180.png" />
 		<meta name="msapplication-TileImage" content="https://nollyflix.tv/favicons/cropped-nflix-270x270.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-		
-		
 		<link rel="stylesheet" href="icons/fontawesome/css/all.min.css"><!-- FontAwesome Icons -->
-		<link rel="stylesheet" href="icons/dashicons/css/dashicons-min.css"><!-- DashIcons For Star Ratings -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+		<link rel="stylesheet" href="icons/dashicons/css/dashicons-min.css"><!-- DashIcons For Star Ratings -->		 <!-- Fonts -->
+		 <link rel="dns-prefetch" href="//fonts.gstatic.com">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		 <!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		
-
-		 <!-- Fonts -->
-		<link rel="dns-prefetch" href="//fonts.gstatic.com">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
-		
-		<link rel="stylesheet" href="/icons/fontawesome/css/all.min.css"><!-- FontAwesome Icons -->
-		<link rel="stylesheet" href="/icons/dashicons/css/dashicons-min.css"><!-- DashIcons For Star Ratings -->
-		
-		<title>{{ config('app.name', 'NollyFlix') }}</title>
-
-		
+	
 	</head>
 	<body>
 		<header id="masthead-pro" class="sticky-header"><!-- Remove sticky-header class to remove sticky header -->
@@ -62,8 +48,8 @@
 					</div><!-- close #header-user-profile-click -->
 					<div id="header-user-profile-menu">
 						<ul>
-							<li><a href="{{ route('profile') }}"><i class="fa fa-user-circle"></i>My Profile</a></li>
-							<li><a href="{{ route('profile') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
+							<li><a href="{{ route('profile.index') }}"><i class="fa fa-user-circle"></i>My Profile</a></li>
+							<li><a href="{{ route('profile.index') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
 							<li><a href=""><i class="fa fa-power-off"></i>Log Out</a></li>
 						</ul>
 					</div><!-- close #header-user-profile-menu -->

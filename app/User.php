@@ -64,13 +64,7 @@ class User extends Authenticatable
 
 	public function videos()
     {
-        return $this->belongsToMany('App\Video','cast_video');
-	}
-	
-
-	public function filmer_videos()
-    {
-        return $this->belongsToMany('App\Video','filmer_video');
+        return $this->belongsToMany('App\Video','user_video');
     }
 
 	public function scopeCastings(Builder $builder)
@@ -123,6 +117,13 @@ class User extends Authenticatable
 	{
 		return $this->users_permission  !== null ? true : false;
 	}
+
+
+	public function isSubscriber()
+	{
+		return $this->type == 'subscriber' ? true : false;
+	}
+
 	
 	public static function IsSuperUser()
 	{

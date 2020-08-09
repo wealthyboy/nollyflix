@@ -9,13 +9,7 @@ class Video extends Model
 {
     
 
-    /**
-     * The casts that belong to the user.
-    */
-    public function casts()
-    {
-        return $this->belongsToMany('App\User','cast_video','video_id','user_id');
-    }
+  
 
 
        /**
@@ -37,9 +31,9 @@ class Video extends Model
     /**
      * The filmers that belong to the user.
     */
-    public function filmers()
+    public function users()
     {
-        return $this->belongsToMany('App\User','filmer_video','video_id','user_id');
+        return $this->belongsToMany('App\User','user_video');
     }
 
     /**

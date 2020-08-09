@@ -19,6 +19,7 @@ class ProfileVideoController extends Controller
      */
     public function index()
     {    
-        return view('profile_videos.index');
+        $user = auth()->user();
+        return view('profile_videos.index',compact('user'));
     }
 }

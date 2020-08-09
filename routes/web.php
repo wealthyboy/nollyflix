@@ -68,11 +68,14 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 });
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('browse', 'Browse\BrowseController',['name'=>'browse']);
-Route::get('profile',    'Profile\ProfileController@index')->name('profile');
-Route::get('profile/videos',    'ProfileVideo\ProfileVideoController@index')->name('profile.videos');
-Route::get('profile/watchlists',    'ProfileWatchList\ProfileWatchListController@index')->name('profile.watchlists');
-Route::get('profile/{user}',        'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
+Route::resource('browse',      'Browse\BrowseController',['name'=>'browse']);
+Route::get('profile/videos',       'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
+Route::get('profile/watchlists',   'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
+Route::resource('profile',      'Profile\ProfileController',['name'=>'profile']);
+Route::post('change/password',  'Profile\ProfileController@changePassword');
+
+
+Route::get('profile/{user}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
 
 
 // Route::get('/', function () {
