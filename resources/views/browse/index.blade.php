@@ -21,14 +21,14 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                     <div class="progression-studios-slider-excerpt"><?php echo html_entity_decode($featured->video->description) ?></div>
-                                    <a class="btn btn-slider-pro afterglow" href="#"><i class="far fa-play-circle"></i>Play Trailer</a>
+                                    <a class="btn btn-slider-pro afterglow" data-fancybox data-width="940" data-height="660" href="{{ optional($featured->video)->preview_link }}"><i class="far fa-play-circle"></i>Play Trailer</a>
 
-                                    <a class="btn btn-slider-pro afterglow" href="#"><i class="fas fa-play-circle"></i>Buy Now</a>
+                                    <a class="btn btn-slider-pro afterglow" href="#"><i class="fas fa-money-bill"></i>Buy Now</a>
                                     <a class="btn btn-slider-pro afterglow" href="#"><i class="fas fa-play-circle"></i>Rent</a>
 
                                     
                                     <video id=""  class="d-none" poster="{{ optional($featured->video)->poster }}" width="960" height="540">
-                                        <source src="/images/video/sample.mp4" type="video/mp4">
+                                        <source src="{{ optional($featured->video)->preview_link }}"  type="video/mp4">
                                     </video>
                                     
                                 </div><!-- close .progression-studios-slider-caption-align -->
@@ -58,8 +58,7 @@
         @if($sections->count())
             @foreach($sections as $section)
             <h2 class="post-list-heading">{{ $section->name }}<span></span></h2>
-            
-
+        
             <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
                 <div id="progression-video-carousel" class="owl-carousel progression-carousel-theme">
                     @foreach($section->videos as $video)
@@ -77,7 +76,6 @@
                                     </div><!-- close .progression-video-index-table -->
                                 </div><!-- close .progression-video-index-content -->
                                 <div class="video-index-border-hover"></div>
-                            
                             </a>
                         </div><!-- close .progression-studios-video-index-container  -->
                     </div><!-- close .item -->
@@ -89,14 +87,7 @@
             @endforeach
 
         @else
-        @endif
-
-
-        <div class="clearfix"></div>
-        
-
-        <div style="height:85px;"></div>
-        
+        @endif            
     
         <div class="clearfix"></div>
     </div><!-- close .container -->
