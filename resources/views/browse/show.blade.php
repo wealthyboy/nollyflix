@@ -69,13 +69,9 @@
                                         <div class="progression-video-index-vertical-align">
                                 
                                             <h2 class="progression-video-title">Planet Earth</h2>
-                                
-                                        
                                             <div class="clearfix"></div>
-                                    
                                             <ul class="video-index-meta-taxonomy"><li>Drama</li></ul>												
                                             <div class="clearfix"></div>
-                                
                                         </div><!-- close .progression-video-index-vertical-align -->
                                     </div><!-- close .progression-video-index-table -->
                                 </div><!-- close .progression-video-index-content -->

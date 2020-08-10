@@ -178,8 +178,7 @@ jQuery(document).ready(function($) {
 		autoplayTimeout:5000,
 		nav: true,
 		slideBy:1,
-	    loop:true,//match with rewind
-		rewind: true,
+	   
 		dots: false,
 		autoplayHoverPause:true,
 		responsive : {

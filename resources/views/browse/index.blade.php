@@ -14,22 +14,17 @@
                                 <div class="progression-studios-slider-caption-align">
                                     <h2><a href="/">{{ optional($featured->video)->title }}</a></h2>
                                     <ul class="slider-video-post-meta-list">
-                                        <li class="slider-video-post-meta-cat"><ul><li><a href="#">{{ 'Drama'}}</a></li></ul></li>																				
+                                        <li class="slider-video-post-meta-cat"><ul><li><a href="#">{{ 'Drama' }}</a></li></ul></li>																				
                                        
                                         <li class="slider-video-post-meta-year">{{ $featured->created_at->format('Y') }}</li>
                                         <li class="slider-video-post-meta-rating"><span>PG-{{ optional($featured->video)->film_rating }}</span></li>
                                     </ul>
                                     <div class="clearfix"></div>
                                     <div class="progression-studios-slider-excerpt"><?php echo html_entity_decode($featured->video->description) ?></div>
-                                    <a class="btn btn-slider-pro afterglow" data-fancybox data-width="940" data-height="660" href="{{ optional($featured->video)->preview_link }}"><i class="far fa-play-circle"></i>Play Trailer</a>
+                                    <a class="btn btn-slider-pro afterglow" data-fancybox  href="{{ optional($featured->video)->preview_link }}"><i class="far fa-play-circle"></i>Play Trailer</a>
 
                                     <a class="btn btn-slider-pro afterglow" href="#"><i class="fas fa-money-bill"></i>Buy Now</a>
                                     <a class="btn btn-slider-pro afterglow" href="#"><i class="fas fa-play-circle"></i>Rent</a>
-
-                                    
-                                    <video id=""  class="d-none" poster="{{ optional($featured->video)->poster }}" width="960" height="540">
-                                        <source src="{{ optional($featured->video)->preview_link }}"  type="video/mp4">
-                                    </video>
                                     
                                 </div><!-- close .progression-studios-slider-caption-align -->
                             </div><!-- close .progression-studios-slider-caption-width -->
