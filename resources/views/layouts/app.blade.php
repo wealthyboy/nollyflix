@@ -32,7 +32,6 @@
 				<nav class="navbar navbar-expand navbar-dark">
 				<a class="navbar-brand" href="/">
 					<img src="{{ $system_settings->logo_path() }}" width="180" height="150" class="d-inline-block align-top" alt="">
-					
 				</a>
 					<div class="navbar-collapse collapse justify-content-end">
 						<ul class="navbar-nav">

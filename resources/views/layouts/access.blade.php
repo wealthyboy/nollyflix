@@ -36,7 +36,7 @@
 					<ul class="sf-menu">
 					   @foreach( $global_categories   as  $category)
 							<li class="normal-item-pro ">
-						    	<a href="/browse/{{ $category->slug }}"><i class="fas fa-home"></i>{{ $category->name }}</a>
+						    	<a href="/browse/{{ $category->slug }}">{{ $category->name }}</a>
 						    </li>
 						@endforeach
 					</ul>
@@ -62,7 +62,7 @@
 							<a class="" href="/logout"
                                                         onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">
-                                                    <i class="fa fa-sign-out left" aria-hidden="true"></i> Logout
+                                                    <i class="fas fa-sign-out left" aria-hidden="true"></i> Logout
                                                 </a>
                                                 <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                                     @csrf
@@ -73,8 +73,8 @@
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->
 				
-				<div id="progression-studios-header-search-icon" class="noselect">
-					<div class="progression-icon-search"></div>
+				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
+					<div class="fas fa-search mt-4"></div>
 				</div>
 				
 
@@ -84,8 +84,6 @@
 					</div><!-- close .container -->
 				</div><!-- close .video-search-header -->
 				
-				
-				
 				<div class="clearfix"></div>
 			</div><!-- close .header-container -->
 			
@@ -93,7 +91,7 @@
 				<ul id="mobile-menu-pro">
 				    @foreach( $global_categories   as  $category)
 						<li class="normal-item-pro">
-							<a href="/browse/{{ $category->slug }}"><i class="fas fa-home"></i>{{ $category->name }}</a>
+							<a href="/browse/{{ $category->slug }}">{{ $category->name }}</a>
 						</li>
 					@endforeach
 				</ul>
@@ -140,6 +138,7 @@
 		<script src="/js/libs/popper.min.js" defer></script><!-- Bootstrap Popper/Extras JS -->
 		<script src="/js/libs/bootstrap.min.js" defer></script><!-- Bootstrap Main JS -->
 		<!-- All JavaScript in Footer -->
+
 		
 		<!-- Additional Plugins and JavaScript -->
 		<script src="/js/navigation.js" defer></script><!-- Header Navigation JS Plugin -->

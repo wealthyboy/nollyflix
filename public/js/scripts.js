@@ -1,13 +1,4 @@
-/*  Table of Contents 
-01. MENU ACTIVATION
-02. MOBILE NAVIGATION ACTIVATION
-03. FLEXSLIDER
-04. SCROLL TO TOP BUTTON
-05. User Profile & Search On/Off
-06. Range Slider in Header Search
-07. Carousel JS
 
-*/
 
 jQuery(document).ready(function($) {
 	 'use strict';

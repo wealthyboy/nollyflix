@@ -47,7 +47,7 @@
 
 <div id="content-pro">
     
-    <div class="container custom-gutters-pro">
+    <div class="container-fluid custom-gutters-pro">
         
         <div style="height:15px;"></div>
         @if($sections->count())

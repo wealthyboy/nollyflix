@@ -135,10 +135,7 @@
 
                         </div><!-- close .progression-studios-sidebar-review-container -->
                     </li>
-                    
-
-                    </ul>
-                
+                </ul>
             </div><!-- close #video-post-recent-reviews-sidebar -->
     
             <div class="clearfix"></div>
