@@ -15,7 +15,9 @@ class Video extends Model
     public $appends = [
 		'link',
 		'currency',
-		'converted_price'
+        'converted_buy_price',
+        'converted_rent_price',
+        'iso_code'
 	];
 
 

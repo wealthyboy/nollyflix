@@ -192,22 +192,34 @@ jQuery(document).ready(function($) {
 		e.preventDefault()
 		var $self =  $(this)
 		var property = $self.data('prop');
+		console.log(property)
+		var type = $self.data('type');
+		var price = null
+		if (type !== undefined || type !== ''){
+            
+            return false;
+		} else{
+			if (type == 'buy'){
+			   var price = null
+			}
+		}
+
 		var payLoad = {
 			type: $self.data('type'),
-			id: property.id
+			id: property.id,
+			price: price,
 		}
-		console.log(property)
 	
 		var x = getpaidSetup({
 			PBFPubKey: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",
 			customer_email: 're@g.ail.com',
-			amount: 1000,
-			currency: 'NGN',
+			amount: price,
+			currency: property.iso_code,
 			country: "NG",
 			payment_method: "both",
 			txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
 			meta: [{
-				metaname: 'username',
+				metatitle: property.title,
 			}],
 			onclose: function() {
 				

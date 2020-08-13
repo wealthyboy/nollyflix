@@ -31,7 +31,7 @@ trait FormatPrice
         
       $rate = Helper::rate();
       if ($rate){
-         return $rate->symbol;
+        return Helper::getIsoCode();
       }
 		  return $this->setting->currency->iso_code3;
     }
@@ -47,8 +47,12 @@ trait FormatPrice
 		  return $this->setting->currency->symbol;
     }
 
-    public function getConvertedPriceAttribute(){
-      $this->ConvertCurrencyRate($this->price);   
+    public function getConvertedBuyPriceAttribute(){
+      $this->ConvertCurrencyRate($this->buy_price);   
+    }
+
+    public function getConvertedRentPriceAttribute(){
+      $this->ConvertCurrencyRate($this->rent_price);   
     }
     
     public function ConvertCurrencyRate($price){

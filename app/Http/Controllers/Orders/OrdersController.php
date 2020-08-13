@@ -32,7 +32,6 @@ class OrdersController extends Controller
 
         $order->save();
 
-        
     }
 
     /**
