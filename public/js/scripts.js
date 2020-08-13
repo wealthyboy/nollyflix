@@ -1,4 +1,12 @@
 
+$().ready(function(){
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
+
 
 jQuery(document).ready(function($) {
 	 'use strict';
@@ -149,15 +157,6 @@ jQuery(document).ready(function($) {
 	
 	
 	
-/*
-=============================================== 06. Range Slider in Header Search  ===============================================
-*/	
-    $(".range-example-rating-input").asRange({
-		range: true,
-		limit: false,
-		tip: true,
-    });	
-	
 
 /*
 =============================================== 07. Carousel JS  ===============================================
@@ -187,6 +186,55 @@ jQuery(document).ready(function($) {
 		    }
 		}
 	});
+
+
+	$('.buy-video, .rent-video').on('click',function(e){
+		e.preventDefault()
+		var $self =  $(this)
+		var property = $self.data('prop');
+		var payLoad = {
+			type: $self.data('type'),
+			id: property.id
+		}
+		console.log(property)
+	
+		var x = getpaidSetup({
+			PBFPubKey: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",
+			customer_email: 're@g.ail.com',
+			amount: 1000,
+			currency: 'NGN',
+			country: "NG",
+			payment_method: "both",
+			txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
+			meta: [{
+				metaname: 'username',
+			}],
+			onclose: function() {
+				
+			},
+			callback: function(response) {
+				console.log(response)
+				if (
+					response.respcode == "00" ||
+					response.success == true
+				) {
+					$.ajax({
+					   url: "/orders",
+					   type:"POST",
+					   data: payLoad,
+					}).done(function(res) {
+					   console.log(res)
+					});
+				} else {
+					console.log(false)
+				}
+			 
+				x.close(); // use this to close the modal immediately after payment.
+			}
+		});
+	
+	})
+
 	
 		 	 
 });

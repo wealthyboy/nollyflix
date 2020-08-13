@@ -21,6 +21,8 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+		<script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script><!-- Custom Document Ready JS -->
+
 		<link rel="stylesheet" href="/css/overide.css">
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -135,19 +137,17 @@
 
 		<!-- Required Framework JavaScript -->
 		<script src="/js/libs/jquery-3.5.1.min.js"></script><!-- jQuery -->
-		<script src="/js/libs/popper.min.js" defer></script><!-- Bootstrap Popper/Extras JS -->
-		<script src="/js/libs/bootstrap.min.js" defer></script><!-- Bootstrap Main JS -->
+		<script src="/js/libs/popper.min.js"></script><!-- Bootstrap Popper/Extras JS -->
+		<script src="/js/libs/bootstrap.min.js"></script><!-- Bootstrap Main JS -->
 		<!-- All JavaScript in Footer -->
 
 		
 		<!-- Additional Plugins and JavaScript -->
-		<script src="/js/navigation.js" defer></script><!-- Header Navigation JS Plugin -->
-		<script src="/js/jquery.flexslider-min.js" defer></script><!-- FlexSlider JS Plugin -->	
-		<script src="/js/jquery-asRange.min.js" defer></script><!-- Range Slider JS Plugin -->
-		<script src="/js/afterglow.min.js" defer></script><!-- Video Player JS Plugin -->
-		<script src="/js/owl.carousel.min.js" defer></script><!-- Carousel JS Plugin -->
+		<script src="/js/navigation.js"></script><!-- Header Navigation JS Plugin -->
+		<script src="/js/jquery.flexslider-min.js"></script><!-- FlexSlider JS Plugin -->	
+		<script src="/js/owl.carousel.min.js"></script><!-- Carousel JS Plugin -->
 		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-		<script src="/js/scripts.js" defer></script><!-- Custom Document Ready JS -->
+		<script src="/js/scripts.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 		
 		
 	</body>

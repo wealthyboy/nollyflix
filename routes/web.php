@@ -76,7 +76,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('profile/videos',       'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',   'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{id}',     'Watch\WatchController@index')->name('watch');
-
+    Route::resource('orders',     'Orders\OrdersController',['name'=>'orders']);
     Route::resource('profile',         'Profile\ProfileController',['name'=>'profile']);
     Route::post('change/password',     'Profile\ProfileController@changePassword');
     Route::get('profile/{user}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');

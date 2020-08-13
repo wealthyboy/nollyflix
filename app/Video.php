@@ -4,10 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Helper;
+use App\Traits\FormatPrice;
+
 
 class Video extends Model
 {
     
+    use FormatPrice;//,SoftDeletes,CascadeSoftDeletes;
+
+    public $appends = [
+		'link',
+		'currency',
+		'converted_price'
+	];
 
 
     /**
@@ -49,6 +58,13 @@ class Video extends Model
     {
         return $this->belongsToMany('App\Genre');
     }
+
+    public function getLinkAttribute()
+	{
+		$link  = '/watch/';
+		$link .= $this->slug;
+		return $link;
+	}
 
 
     /**
