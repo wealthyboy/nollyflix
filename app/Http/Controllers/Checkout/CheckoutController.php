@@ -34,7 +34,6 @@ class CheckoutController extends Controller
 
 		
 	public function  index()  { 
-		dd(Helper::getTableColumns('ordered_movies'));
 		$carts =  Cart::all_items_in_cart();
 		$csrf = json_encode(['csrf' => csrf_token()]);
 		$currency =  Helper::getCurrency();
@@ -66,7 +65,7 @@ class CheckoutController extends Controller
 				'order_id'=>$order->id,
 				'video_id'=>$cart->video_id,
 				'quantity'=>1,
-				//'status'=>"Paid",
+				'status'=>"Paid",
 				'purchase_type'=>$cart->purchase_type,
 				'price'=>$cart->ConvertCurrencyRate($cart->price),
 				'total'=>$cart->ConvertCurrencyRate(1 * $cart->price),
