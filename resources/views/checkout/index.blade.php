@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <article>
-                        <form action="/checkout" method="" id="checkout" class="cart-form">
+                        <form action="/checkout" method="POST" id="checkout" class="cart-form">
                         @csrf
                             @foreach($carts as $cart)
                             <div class="cart-product-table-wrap ">
