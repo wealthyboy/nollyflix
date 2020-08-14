@@ -219,6 +219,7 @@ jQuery(document).ready(function($) {
 			type:"POST",
 			data: payLoad,
 		 }).done(function(res) {
+			 console.log(res.count.original.count)
 			notify('success','top','right',"" +property.title + "  has been added")
 			$self.find('.spinner-border').remove();
 			$('#cart-count').text('('+res.count.original.count+')');
