@@ -72,8 +72,9 @@ class CartController  extends Controller {
             $cart->purchase_type = $request->purchase_type;
 			$cart->remember_token =$cookie->getValue();
             $cart->save();
-            return $cart;
-			$count = Cart::cart_number();
+            $count = Cart::cart_number();
+            return $count;
+
 			return response()->json([
 				'count' => 1
 			])->withCookie($cookie);
