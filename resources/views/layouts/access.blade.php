@@ -173,7 +173,6 @@
 		<!-- Additional Plugins and JavaScript -->
 		<script src="/js/navigation.js"></script><!-- Header Navigation JS Plugin -->
 		<script src="/js/bootstrap-notify.js"></script><!-- Header Navigation JS Plugin -->
-
 		<script src="/js/jquery.flexslider-min.js"></script><!-- FlexSlider JS Plugin -->	
 		<script src="/js/owl.carousel.min.js"></script><!-- Carousel JS Plugin -->
 		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
