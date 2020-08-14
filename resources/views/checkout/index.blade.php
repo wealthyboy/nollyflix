@@ -19,7 +19,6 @@
                     <article>
                         <form action="/checkout" method="" id="checkout" class="cart-form">
                         @csrf
-                            <input type="hidden" value="" name="_token"> 
                             @foreach($carts as $cart)
                             <div class="cart-product-table-wrap ">
                                 <div class="row cart-rows raised mb-3 pt-4 pb-4 border border-gray">
