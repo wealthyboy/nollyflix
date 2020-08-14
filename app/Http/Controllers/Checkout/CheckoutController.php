@@ -36,8 +36,12 @@ class CheckoutController extends Controller
 	public function  index()  { 
 		$carts =  Cart::all_items_in_cart();
 		$csrf = json_encode(['csrf' => csrf_token()]);
-		return $carts;
-		return view('checkout.index',['csrf' => $csrf,'carts' => $carts]);
+		$currency =  Helper::getCurrency();
+		return view('checkout.index',[
+				'csrf' => $csrf,
+				'carts' => $carts,
+				'currency' => $currency
+			]);
 	}
 
 	
@@ -52,8 +56,6 @@ class CheckoutController extends Controller
 		$order->address_id     =  $user->active_address->id;
 		$order->coupon         =  session('coupon');
 		$order->status         = 'Processing';
-		$order->shipping_id    =  $request->ship_id;
-		$order->shipping_price =  optional(Shipping::find($request->ship_id))->converted_price;
 		$order->currency       =  Helper::getCurrency();
 		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
 		$order->payment_type   = $request->payment_method;
@@ -65,18 +67,14 @@ class CheckoutController extends Controller
 		foreach ( $carts   as $cart){
 			$insert = [
 				'order_id'=>$order->id,
-				'product_variation_id'=>$cart->product_variation_id,
+				'video_id'=>$cart->video_id,
 				'quantity'=>$cart->quantity,
-				'status'=>"Processing",
+				'status'=>"Paid",
 				'price'=>$cart->ConvertCurrencyRate($cart->price),
 				'total'=>$cart->ConvertCurrencyRate($cart->quantity * $cart->price),
 				'created_at'=>\Carbon\Carbon::now()
 			];
-			OrderedProduct::Insert($insert);
-			$product_variation = ProductVariation::find($cart->product_variation_id);
-			$qty  = $product_variation->quantity - $cart->quantity;
-			$product_variation->quantity =  $qty < 1 ? 0 : $qty;
-			$product_variation->save();
+			OrderedMovie::Insert($insert);
 		}
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
@@ -89,8 +87,7 @@ class CheckoutController extends Controller
 			//throw $th;
 		}
 
-		
-		
+	
 		return redirect('/thankyou');
 	}
 
