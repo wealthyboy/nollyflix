@@ -56,9 +56,9 @@
                 <div class="cart-collateralse  border pb-3 pt-3 pl-3 pt-3 pr-3 raised">
                     <div class="cart_totalse">
                         <h3> Summary </h3>
-                        <p><span class="bold">Subtotal</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">₦{{ $cart::sum_items_in_cart() }}</span></span></p>
+                        <p><span class="bold">Subtotal</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
                         <hr>
-                        <p><span class="bold">Total</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $cart::sum_items_in_cart() }}</span></span></p>
+                        <p><span class="bold">Total</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
                         <div class="proceed-to-checkout"><a href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
                     </div>
                 </div>
