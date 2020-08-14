@@ -196,11 +196,14 @@ jQuery(document).ready(function($) {
 		var type = $self.data('type');
 		var price = null
 		if (type == 'undefined' || type == ''){
-			notify('success','top','right',"We could not process your request")
+			notify('danger','top','right',"We could not process your request")
             return false;
 		} else{
 			if (type == 'buy'){
-			   var price = property.buy_price
+			   var price = property.converted_buy_price
+			}
+			if (type == 'rent'){
+				var price = property.converted_rent_price
 			}
 		}
 		//$(".spinner-border").remove()
