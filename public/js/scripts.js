@@ -219,10 +219,10 @@ jQuery(document).ready(function($) {
 			type:"POST",
 			data: payLoad,
 		 }).done(function(res) {
-			 console.log(res.count.original.count)
+			var count = res.count.original !== 'undefined' ? res.count.original.count : res.count;
 			notify('success','top','right',"" +property.title + "  has been added")
 			$self.find('.spinner-border').remove();
-			$('#cart-count').text('('+res.count.original.count+')');
+			$('#cart-count').text('('+count+')');
 		 }).fail(function(){
 			notify('danger','top','right',"We could not add your item to cart.")
 		 });
