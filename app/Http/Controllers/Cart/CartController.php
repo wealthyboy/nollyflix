@@ -73,7 +73,7 @@ class CartController  extends Controller {
 			$cart->remember_token =$cookie->getValue();
             $cart->save();
             $count = Cart::cart_number();
-            return $count;
+            return $this->loadCart();
 
 			return response()->json([
 				'count' => 1
