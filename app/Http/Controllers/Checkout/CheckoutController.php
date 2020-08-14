@@ -56,7 +56,6 @@ class CheckoutController extends Controller
 		$order->currency       =  $user->currency;
 		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
 		$order->payment_type   = 'online';
-		$order->order_type     = null;
 		$order->total          = $user->cart_total;
 		$order->ip             = $request->ip();
 		$order->user_agent     = $request->server('HTTP_USER_AGENT');
