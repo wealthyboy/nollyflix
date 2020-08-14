@@ -36,8 +36,7 @@ trait FormatPrice
 		  return $this->setting->currency->iso_code3;
     }
   
-   
-
+  
     public function getCurrencyAttribute(){
         
       $rate = Helper::rate();
@@ -48,11 +47,11 @@ trait FormatPrice
     }
 
     public function getConvertedBuyPriceAttribute(){
-      $this->ConvertCurrencyRate($this->buy_price);   
+      return $this->ConvertCurrencyRate($this->buy_price);   
     }
 
     public function getConvertedRentPriceAttribute(){
-      $this->ConvertCurrencyRate($this->rent_price);   
+      return $this->ConvertCurrencyRate($this->rent_price);   
     }
     
     public function ConvertCurrencyRate($price){
