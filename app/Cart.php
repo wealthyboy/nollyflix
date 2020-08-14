@@ -22,9 +22,7 @@ class Cart extends Model
 
 
     public $appends = [
-		'sub_total',
 		'converted_price',
-		'customer_price',
 		'cart_total'
 	];
 	
@@ -82,10 +80,6 @@ class Cart extends Model
 		return $delete_cart;
 	}
 
-	public function getCustomerPriceAttribute(){
-		return $this->converted_price;
-	}
-
 	public function getConvertedPriceAttribute(){
 	    return static::ConvertCurrencyRate($this->price);   
 	}
@@ -94,7 +88,7 @@ class Cart extends Model
 		return  static::ConvertCurrencyRate($this->total);
 	}
 
-	public function getSubTotalAttribute(){
+	public function SubTotal(){
 		return  static::ConvertCurrencyRate(static::sum_items_in_cart());
 	}
 
