@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use App\Traits\Check;
+use App\Http\Helper;
+use App\Cart;
 
 
 class User extends Authenticatable
@@ -22,6 +24,12 @@ class User extends Authenticatable
      */
 	protected $fillable = [
 		'name','last_name', 'email','phone_number','password','permission','type'
+	];
+
+	public $appends = [
+		'currency',
+		'cart_total',
+		'iso_code'
 	];
 
 	/**
@@ -72,7 +80,6 @@ class User extends Authenticatable
 		return $builder->where('type','casts');
 	}
 
-	
 	/**
      * Get the banner's image.
      */
@@ -80,7 +87,6 @@ class User extends Authenticatable
     {
         return $this->morphOne('App\Banner', 'banner');
 	}
-
 
 	/**
      * Get all of the posts for the country.
@@ -90,7 +96,6 @@ class User extends Authenticatable
         return $this->hasManyThrough('App\OrderedMovie', 'App\Order');
     }
 	
-
 	/**
      * Get the banner's image.
      */
@@ -107,6 +112,24 @@ class User extends Authenticatable
 	public function scopeAdmin(Builder $builder)
 	{
 		return $builder->where('type','admin');
+	}
+
+
+	public function getCartTotalAttribute()
+	{   
+		$total = Cart::sum_items_in_cart();
+	    return Helper::ConvertCurrencyRate($total);   
+	}
+
+	public function getCurrencyAttribute()
+	{
+	    return Helper::getCurrency();   
+	}
+
+
+	public function getIsoCodeAttribute()
+	{
+	    return Helper::getIsoCode();   
 	}
 
 	public static function userHasPermission($num)
@@ -133,7 +156,6 @@ class User extends Authenticatable
 		return $this->type == 'subscriber' ? true : false;
 	}
 
-	
 	public static function IsSuperUser()
 	{
 		$model = \Auth::user();

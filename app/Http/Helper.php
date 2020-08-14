@@ -77,6 +77,14 @@ class Helper{
         return $rate;
     }
 
+    public static function ConvertCurrencyRate($price){
+		$rate = static::rate();
+		if ($rate){
+		  return round(($price * $rate->rate),0);  
+		}
+		return round($price,0);  
+	}
+
     public static function getCurrency()
     {
         return Helper::rate()->symbol ?? optional(optional(SystemSetting::first())->currency)->symbol;
