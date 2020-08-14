@@ -34,7 +34,7 @@ class CheckoutController extends Controller
 
 		
 	public function  index()  { 
-		dd(\Helper::getTableColumns('ordered_movies'));
+		dd(Helper::getTableColumns('ordered_movies'));
 		$carts =  Cart::all_items_in_cart();
 		$csrf = json_encode(['csrf' => csrf_token()]);
 		$currency =  Helper::getCurrency();
