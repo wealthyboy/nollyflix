@@ -71,17 +71,20 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'currencyByIp'], function(){
-
     Route::resource('browse',          'Browse\BrowseController',['name'=>'browse']);
     Route::get('profile/videos',       'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',   'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
-    Route::get('watch/{id}',     'Watch\WatchController@index')->name('watch');
-    Route::resource('orders',     'Orders\OrdersController',['name'=>'orders']);
-    Route::resource('carts',           'Cart\CartController',['name'=>'carts']);
+    Route::get('watch/{id}',           'Watch\WatchController@index')->name('watch');
+    Route::resource('orders',          'Orders\OrdersController',['name'=>'orders']);
+    Route::post('carts',               'Cart\CartController@store');
+    Route::get('carts',                'Cart\CartController@index');
+    Route::get('cart/delete/{id}',     'Cart\CartController@destroy');
+
+
+    Route::resource('checkout',        'Checkout\CheckoutController',['name' => 'checkout']);
     Route::resource('profile',         'Profile\ProfileController',['name'=>'profile']);
     Route::post('change/password',     'Profile\ProfileController@changePassword');
     Route::get('profile/{user}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
-
 });
 
 

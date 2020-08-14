@@ -28,24 +28,13 @@
 	<body>
 		<header id="masthead-pro">
 			<div class="container">
-				
 				<nav class="navbar navbar-expand navbar-dark">
-				<a class="navbar-brand" href="/">
-					<img src="{{ $system_settings->logo_path() }}" width="180" height="150" class="d-inline-block align-top" alt="">
-				</a>
-					<div class="navbar-collapse collapse justify-content-end">
-						<ul class="navbar-nav">
-							<li class="nav-item ">
-								<a class="nav-link btn btn-primary text-danger" href="{{ route('login') }}">Login</a>
-							</li>
-						</ul>
-					</div>
+                    <a class="navbar-brand" href="/">
+                        <img src="{{ $system_settings->logo_path() }}" width="180" height="150" class="d-inline-block align-top" alt="">
+                    </a>
 				</nav>
 			</div><!-- close .container -->
-			
-		
 		</header>
-		
 	
 		<div id="">
   	 		@yield('content')
@@ -71,17 +60,13 @@
 		
 		<a href="#" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
 		
-	
-
 		<!-- Required Framework JavaScript -->
 		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
 		<script src="/js/libs/popper.min.js" defer></script><!-- Bootstrap Popper/Extras JS -->
 		<script src="/js/libs/bootstrap.min.js" defer></script><!-- Bootstrap Main JS -->
 		<!-- All JavaScript in Footer -->
-		
 		<!-- Additional Plugins and JavaScript -->
 		<script src="/js/navigation.js" defer></script><!-- Header Navigation JS Plugin -->
 		<script src="/js/guest.js" defer></script><!-- Custom Document Ready JS -->
-		
 	</body>
 </html>

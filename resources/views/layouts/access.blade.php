@@ -80,7 +80,7 @@
 				<div id="header-user-profile">
 					<div id="header-user-profile-click" class="noselect">
 					   <i class="fas fa-shopping-cart"></i>
-						<div id="header-username"><a href="/cart">Cart <span id="cart-count">(0)</span></a></div>
+						<div id="header-username"><a href="/checkout">Cart <span id="cart-count">(0)</span></a></div>
 					</div><!-- close #header-user-profile-click -->
 					<div class="header-user-profile-menu" id="header-user-profile-menu">
 						<ul>

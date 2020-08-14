@@ -269,7 +269,8 @@ jQuery(document).ready(function($) {
 			url: "/carts?number=true",
 			type:"GET",
 		 }).done(function(res) {
-			$('#cart-count').text('('+res.count+')');
+			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
+			$('#cart-count').text('('+count+')');
 		 }).fail(function(){
 			notify('danger','top','right',"We could not get your cart.")
 		 });

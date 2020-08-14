@@ -86,12 +86,13 @@ class CartController  extends Controller {
         ]);
 	}
 	
-	public function destroy(Request $request,$cart_id) { 
-		if($request->ajax()){
-			$cart =  Cart::find($cart_id);
-			$cart->delete();
-		    return $this->loadCart();
-		}
+	public function destroy(Request $request,$id) { 
+        $cart =  Cart::find($id);
+        if ( $cart->delete() ){
+            return back()->with('success','Item removed');
+        }
+
+        return back()->with('error','We could not delete the item from your cart');
     }
 	    
 	
