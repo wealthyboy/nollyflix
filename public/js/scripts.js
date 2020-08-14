@@ -206,7 +206,6 @@ jQuery(document).ready(function($) {
 		//$(".spinner-border").remove()
 		$self.find('.spinner-border').remove();
 		$self.append('<span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span>')
-
 		var payLoad = {
 			purchase_type: $self.data('type'),
 			id: property.id,
@@ -222,7 +221,7 @@ jQuery(document).ready(function($) {
 		 }).done(function(res) {
 			notify('success','top','right',"" +property.title + "  has been added")
 			$self.find('.spinner-border').remove();
-			$('#cart-count').text('('+res+')');
+			$('#cart-count').text('('+res.count.original.count+')');
 		 }).fail(function(){
 			notify('danger','top','right',"We could not add your item to cart.")
 		 });
@@ -269,7 +268,7 @@ jQuery(document).ready(function($) {
 			url: "/carts?number=true",
 			type:"GET",
 		 }).done(function(res) {
-			$('#cart-count').text('('+res+')');
+			$('#cart-count').text('('+res.count+')');
 		 }).fail(function(){
 			notify('danger','top','right',"We could not get your cart.")
 		 });

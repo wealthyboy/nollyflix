@@ -25,7 +25,7 @@ class CartController  extends Controller {
 
     public function index(Request $request) {
         if ( $request->number ){
-           return $this->loadCart($request);
+           return $this->loadCart();
         }
 
 		$page_title = "Your Cart  ";
@@ -58,7 +58,9 @@ class CartController  extends Controller {
 				]
 			);
 
-			return $this->loadCart($request);
+            return response()->json([
+				'count' => $this->loadCart()
+			]);
 		}  else  {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart',$value);
@@ -70,26 +72,26 @@ class CartController  extends Controller {
             $cart->purchase_type = $request->purchase_type;
 			$cart->remember_token =$cookie->getValue();
 			$cart->save();
-			$carts = Cart::cart_number();
+			$count = Cart::cart_number();
 			return response()->json([
-				'data' => [
-					'count' => $carts
-				],
-				
+				'count' => $count
 			])->withCookie($cookie);
 		}
     }
 
 
-	public function loadCart(Request $request){
-		return $carts = Cart::cart_number();
+	public function loadCart(){
+        $cart =  Cart::cart_number();
+        return response()->json([
+            'count' => $cart
+        ]);
 	}
 	
 	public function destroy(Request $request,$cart_id) { 
 		if($request->ajax()){
 			$cart =  Cart::find($cart_id);
 			$cart->delete();
-		    return $this->loadCart($request);
+		    return $this->loadCart();
 		}
     }
 	    
