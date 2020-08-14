@@ -19,6 +19,10 @@
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link
+				rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+		/>
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 		<script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script><!-- Custom Document Ready JS -->
@@ -50,13 +54,35 @@
 					
 				<div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
 				
-					
-				<div id="header-user-profile">
-					<div id="header-user-profile-click" class="noselect">
+				<div class="header-user-profile" id="header-user-profile">
+					<div id="header-user-profile-click" class="noselect header-user-profile-click">
 						<img src="/images/demo/user-profile.jpg" alt="Suzie">
 						<div id="header-username">Jane Doe</div><i class="fas fa-angle-down"></i>
 					</div><!-- close #header-user-profile-click -->
-					<div id="header-user-profile-menu">
+					<div class="header-user-profile-menu" id="header-user-profile-menu">
+						<ul>
+							<li><a href="{{ route('profile.index') }}"><i class="fa fa-user-circle"></i>My Profile</a></li>
+							<li><a href="{{ route('profiles.watchlists') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
+							<li>
+							<a class="" href="/logout"
+                                                        onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                    <i class="fas fa-sign-out left" aria-hidden="true"></i> Logout
+                                                </a>
+                                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+							
+							</li>
+						</ul>
+					</div><!-- close #header-user-profile-menu -->
+				</div><!-- close #header-user-profile -->	
+				<div id="header-user-profile">
+					<div id="header-user-profile-click" class="noselect">
+					   <i class="fas fa-shopping-cart"></i>
+						<div id="header-username"><a href="/cart">Cart <span id="cart-count">(0)</span></a></div>
+					</div><!-- close #header-user-profile-click -->
+					<div class="header-user-profile-menu" id="header-user-profile-menu">
 						<ul>
 							<li><a href="{{ route('profile.index') }}"><i class="fa fa-user-circle"></i>My Profile</a></li>
 							<li><a href="{{ route('profiles.watchlists') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
@@ -74,6 +100,8 @@
 						</ul>
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->
+
+		
 				
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
 					<div class="fas fa-search mt-4"></div>
@@ -144,6 +172,8 @@
 		
 		<!-- Additional Plugins and JavaScript -->
 		<script src="/js/navigation.js"></script><!-- Header Navigation JS Plugin -->
+		<script src="/js/bootstrap-notify.js"></script><!-- Header Navigation JS Plugin -->
+
 		<script src="/js/jquery.flexslider-min.js"></script><!-- FlexSlider JS Plugin -->	
 		<script src="/js/owl.carousel.min.js"></script><!-- Carousel JS Plugin -->
 		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>

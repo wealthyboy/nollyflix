@@ -11,6 +11,8 @@ $().ready(function(){
 jQuery(document).ready(function($) {
 	 'use strict';
 
+	 loadCart()
+
 /*
 =============================================== 01. MENU ACTIVATION  ===============================================
 */
@@ -114,15 +116,16 @@ jQuery(document).ready(function($) {
 /*
 =============================================== 05. User Profile & Search On/Off  ===============================================
 */
-	$("#header-user-profile-click").click(function() {
-		var $this = $("#header-user-profile");
-	    if ($this.hasClass('active')) {
-	        $this.removeClass('active').addClass('hide');
-	    } else {
-	        $this.addClass('active');
-	    }		
-	});
+	
 
+    $(".header-user-profile-click").hover(function(){
+		var $this = $("#header-user-profile");
+		    $this.addClass('active');
+		}, function(){
+		   if ($("#header-user-profile").hasClass('active')) {
+			$("#header-user-profile").removeClass('active').addClass('hide');
+		   }
+	});
 
 	
 	$("#progression-studios-header-search-icon").on('click', function(e){
@@ -155,9 +158,6 @@ jQuery(document).ready(function($) {
 	});
 	
 	
-	
-	
-
 /*
 =============================================== 07. Carousel JS  ===============================================
 */	
@@ -195,57 +195,99 @@ jQuery(document).ready(function($) {
 		console.log(property)
 		var type = $self.data('type');
 		var price = null
-		if (type !== undefined || type !== ''){
-            
+		if (type == 'undefined' || type == ''){
+			notify('success','top','right',"We could not process your request")
             return false;
 		} else{
 			if (type == 'buy'){
-			   var price = null
+			   var price = property.buy_price
 			}
 		}
+		//$(".spinner-border").remove()
+		$self.find('.spinner-border').remove();
+		$self.append('<span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span>')
 
 		var payLoad = {
-			type: $self.data('type'),
+			purchase_type: $self.data('type'),
 			id: property.id,
 			price: price,
+			type: type,
+			currency: property.currency,
 		}
+
+		$.ajax({
+			url: "/carts",
+			type:"POST",
+			data: payLoad,
+		 }).done(function(res) {
+			notify('success','top','right',"" +property.title + "  has been added")
+			$self.find('.spinner-border').remove();
+			$('#cart-count').text('('+res+')');
+		 }).fail(function(){
+			notify('danger','top','right',"We could not add your item to cart.")
+		 });
 	
-		var x = getpaidSetup({
-			PBFPubKey: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",
-			customer_email: 're@g.ail.com',
-			amount: price,
-			currency: property.iso_code,
-			country: "NG",
-			payment_method: "both",
-			txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
-			meta: [{
-				metatitle: property.title,
-			}],
-			onclose: function() {
+		// var x = getpaidSetup({
+		// 	PBFPubKey: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
+		// 	customer_email: 're@g.ail.com',
+		// 	amount: price,
+		// 	currency: property.iso_code,
+		// 	country: "NG",
+		// 	payment_method: "both",
+		// 	txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
+		// 	meta: [{
+		// 		metatitle: property.title,
+		// 	}],
+		// 	onclose: function() {
 				
-			},
-			callback: function(response) {
-				console.log(response)
-				if (
-					response.respcode == "00" ||
-					response.success == true
-				) {
-					$.ajax({
-					   url: "/orders",
-					   type:"POST",
-					   data: payLoad,
-					}).done(function(res) {
-					   console.log(res)
-					});
-				} else {
-					console.log(false)
-				}
+		// 	},
+		// 	callback: function(response) {
+		// 		if (
+		// 			response.respcode == "00" ||
+		// 			response.success == true
+		// 		) {
+		// 			$.ajax({
+		// 			   url: "/cart",
+		// 			   type:"POST",
+		// 			   data: payLoad,
+		// 			}).done(function(res) {
+		// 			  // location.href="/watch/"+property.id
+		// 			  console.log(res)
+		// 			});
+		// 		} else {
+		// 			console.log(false)
+		// 		}
 			 
-				x.close(); // use this to close the modal immediately after payment.
-			}
-		});
+		// 		x.close(); // use this to close the modal immediately after payment.
+		// 	}
+		// });
 	
 	})
+
+	function loadCart(){
+		$.ajax({
+			url: "/carts?number=true",
+			type:"GET",
+		 }).done(function(res) {
+			$('#cart-count').text('('+res+')');
+		 }).fail(function(){
+			notify('danger','top','right',"We could not get your cart.")
+		 });
+	}
+
+	function notify(color,from,align,msg){
+		$.notify({
+			icon: "<i class='fas fa-bell'></i>",
+			message: msg
+		},{
+			type: color,
+			timer: 3000,
+			placement: {
+				from: from,
+				align: align
+			}
+		});
+	}
 
 	
 		 	 

@@ -25,14 +25,24 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $order = new Order;
         $order->user_id  =  auth()->user()->id;
-        $order->total  =  auth()->user()->id;
-
+        $order->total    =  $request->price;
+        $order->total    =  $request->price;
+        $order->currency    =  $request->price;
+        $order->total    =  $request->price;
+        $order->payment_type    =  $request->price;
         $order->save();
 
+        $order->ordered_movie()->create([
+           'video_id'=> $request->id,
+        ]);
+
+        
     }
+
+
 
     /**
      * Display the specified resource.

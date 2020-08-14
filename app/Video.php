@@ -13,7 +13,7 @@ class Video extends Model
     use FormatPrice;//,SoftDeletes,CascadeSoftDeletes;
 
     public $appends = [
-		'link',
+		'url',
 		'currency',
         'converted_buy_price',
         'converted_rent_price',
@@ -61,7 +61,7 @@ class Video extends Model
         return $this->belongsToMany('App\Genre');
     }
 
-    public function getLinkAttribute()
+    public function getUrlAttribute()
 	{
 		$link  = '/watch/';
 		$link .= $this->slug;

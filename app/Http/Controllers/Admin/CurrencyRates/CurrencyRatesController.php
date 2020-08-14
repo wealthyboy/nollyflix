@@ -18,10 +18,6 @@ class CurrencyRatesController extends Controller
     public function index()
     {
         $rates = CurrencyRate::all();
-        $c = Currency::where('iso_code3','NGR')->first();
-        $c->iso_code3 = 'NGN';
-        $c->save();
-
         $default = SystemSetting::first();
         return view('admin.rates.index',compact('rates','default'));
     }
