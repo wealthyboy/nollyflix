@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <article>
-                        <form action="/update/cart" method="" class="cart-form">
+                        <form action="/checkout" method="" id="checkout" class="cart-form">
                             <input type="hidden" value="" name="_token"> 
                             @foreach($carts as $cart)
                             <div class="cart-product-table-wrap ">

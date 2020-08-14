@@ -68,8 +68,7 @@ jQuery(document).ready(function($) {
 					response.respcode == "00" ||
 					response.success == true
 				) {
-					
-					location.href="/checkout/store"
+					$('#checkout').submit()
 					
 				} else {
                     notify('danger','top','right',"We could not complete your payment")
