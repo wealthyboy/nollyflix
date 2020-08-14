@@ -14,7 +14,7 @@ class AlterOrderedMoviesTableAddStatus extends Migration
     public function up()
     {
         Schema::table('ordered_movies', function (Blueprint $table) {
-            //
+            $table->string('status')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AlterOrderedMoviesTableAddStatus extends Migration
     public function down()
     {
         Schema::table('ordered_movies', function (Blueprint $table) {
-            //
+            $table->dropColumn(['status']);       
         });
     }
 }
