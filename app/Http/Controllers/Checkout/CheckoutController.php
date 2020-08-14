@@ -45,15 +45,12 @@ class CheckoutController extends Controller
 	}
 
 	
-	public function store(Request $request,OrderedProduct $ordered_product,Order $order) { 
+	public function store(Request $request,OrderedMovie $ordered_movie,Order $order) { 
 		
 		$rate = Helper::rate();
 		$user  =  auth()->user();
 		$carts =  Cart::all_items_in_cart();
 		$cart = new Cart();
-
-
-
 		$order->user_id = $user->id;
 		$order->status         = 'Paid';
 		$order->currency       =  $user->currency;
