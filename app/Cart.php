@@ -80,7 +80,8 @@ class Cart extends Model
 		return $delete_cart;
 	}
 
-	public function getPriceAttribute(){
+
+	public function getConvertedPriceAttribute(){
 	    return static::ConvertCurrencyRate($this->price);   
 	}
 
