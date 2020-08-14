@@ -25,7 +25,6 @@
 		/>
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-		<script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script><!-- Custom Document Ready JS -->
 
 		<link rel="stylesheet" href="/css/overide.css">
 		<!-- CSRF Token -->

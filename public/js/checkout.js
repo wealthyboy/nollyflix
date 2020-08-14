@@ -68,16 +68,11 @@ jQuery(document).ready(function($) {
 					response.respcode == "00" ||
 					response.success == true
 				) {
-					$.ajax({
-					   url: "/cart",
-					   type:"POST",
-					   data: payLoad,
-					}).done(function(res) {
-					  // location.href="/watch/"+property.id
-					  console.log(res)
-					});
+					
+					location.href="/checkout/store"
+					
 				} else {
-					console.log(false)
+                    notify('danger','top','right',"We could not complete your payment")
 				}
 			 
 				x.close(); // use this to close the modal immediately after payment.

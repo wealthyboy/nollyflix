@@ -48,19 +48,19 @@ class CheckoutController extends Controller
 	public function store(Request $request,OrderedProduct $ordered_product,Order $order) { 
 		
 		$rate = Helper::rate();
-		$user  =  \Auth::user();
+		$user  =  auth()->user();
 		$carts =  Cart::all_items_in_cart();
 		$cart = new Cart();
 
+
+
 		$order->user_id = $user->id;
-		$order->address_id     =  $user->active_address->id;
-		$order->coupon         =  session('coupon');
-		$order->status         = 'Processing';
-		$order->currency       =  Helper::getCurrency();
+		$order->status         = 'Paid';
+		$order->currency       =  $user->currency;
 		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-		$order->payment_type   = $request->payment_method;
-		$order->order_type     = $request->admin;
-		$order->total          = Cart::sum_items_in_cart();
+		$order->payment_type   = 'online';
+		$order->order_type     = null;
+		$order->total          = $user->cart_total;
 		$order->ip             = $request->ip();
 		$order->user_agent     = $request->server('HTTP_USER_AGENT');
 		$order->save();
@@ -68,10 +68,11 @@ class CheckoutController extends Controller
 			$insert = [
 				'order_id'=>$order->id,
 				'video_id'=>$cart->video_id,
-				'quantity'=>$cart->quantity,
+				'quantity'=>1,
 				'status'=>"Paid",
+				'purchase_type'=>$cart->purchase_type,
 				'price'=>$cart->ConvertCurrencyRate($cart->price),
-				'total'=>$cart->ConvertCurrencyRate($cart->quantity * $cart->price),
+				'total'=>$cart->ConvertCurrencyRate(1 * $cart->price),
 				'created_at'=>\Carbon\Carbon::now()
 			];
 			OrderedMovie::Insert($insert);
@@ -80,9 +81,9 @@ class CheckoutController extends Controller
 		$symbol = Helper::getCurrency();
 		try {
 			$when = now()->addMinutes(5);
-			\Mail::to($user->email)
-			   ->bcc($admin_emails[0])
-			   ->send(new OrderReceipt($order,$this->settings,$symbol));
+			// \Mail::to($user->email)
+			//    ->bcc($admin_emails[0])
+			//    ->send(new OrderReceipt($order,$this->settings,$symbol));
 		} catch (\Throwable $th) {
 			//throw $th;
 		}
