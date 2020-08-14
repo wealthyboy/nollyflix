@@ -48,19 +48,17 @@ jQuery(document).ready(function($) {
 	$('.checkout-button').on('click',function(e){
 		e.preventDefault()
 		var $self =  $(this)
-		var user  =  $self.data('user')
-        console.log(user)
-        return false;
+        var user  =  $self.data('user')
         var x = getpaidSetup({
 			PBFPubKey: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
-			customer_email: 're@g.ail.com',
-			amount: price,
-			currency: property.iso_code,
+			customer_email: user.email,
+			amount: user.cart_total,
+			currency: user.iso_code,
 			country: "NG",
 			payment_method: "both",
 			txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
 			meta: [{
-				metatitle: property.title,
+				metatitle: '',
 			}],
 			onclose: function() {
 				
