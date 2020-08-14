@@ -84,8 +84,11 @@ class CurrencyByIp
                 }
             }
         } else {
+            
             $request->session()->forget(['switch', 'rate']);            
         }
+
+        dd(session('rate'));
 
         
       
