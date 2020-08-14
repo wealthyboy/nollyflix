@@ -187,6 +187,14 @@ jQuery(document).ready(function($) {
 		}
 	});
 
+	$('.checkout-button').on('click',function(e){
+		e.preventDefault()
+		var $self =  $(this)
+		var user  =  $self.data('user')
+		console.log(user)
+
+	})
+
 
 	$('.buy-video, .rent-video').on('click',function(e){
 		e.preventDefault()

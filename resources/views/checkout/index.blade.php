@@ -37,7 +37,7 @@
                                 <div class="col-md-2">
                                     <div class="pt-2 pb-4">
                                         <label class="bold">Qty</label> 
-                                        <div id="quantity_1234" class="product-quantity">
+                                        <div id="quantity_1234" class="video-quantity">
                                             1
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@
                         <p><span class="bold">Subtotal</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
                         <hr>
                         <p><span class="bold">Total</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
-                        <div class="proceed-to-checkout"><a href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
+                        <div class="proceed-to-checkout"><a  data-user="{{ auth()->user() }}" data-currency="" data-total="" href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
                     </div>
                 </div>
                 </div>
