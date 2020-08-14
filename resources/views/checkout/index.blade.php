@@ -30,7 +30,7 @@
                                     <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ $cart->purchase_type }}
                                     </div>
                                     <div class="product-item-price">
-                                        <div class="product-price-amount"><span class="retail-title text-gold">PRICE: </span> <span class="product--price text-gold">{{ $cart->currency }}{{ $cart->price }}</span></div>
+                                        <div class="product-price-amount"><span class="retail-title text-gold">PRICE: </span> <span class="product--price text-gold">{{ $currency }}{{ $cart->converted_price }}</span></div>
                                     </div>
                                     <!---->
                                 </div>
