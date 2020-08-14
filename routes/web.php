@@ -79,6 +79,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('carts',               'Cart\CartController@store');
     Route::get('carts',                'Cart\CartController@index');
     Route::get('cart/delete/{id}',     'Cart\CartController@destroy');
+    Route::get('thankyou',             'Thankyou\ThankYouCtrl@index');
+
 
 
     Route::get('checkout',              'Checkout\CheckoutController@index');
