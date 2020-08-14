@@ -8,7 +8,9 @@
       <div class="row cart-header mt-4 mb-1 pb-1">
        
         <div class="col-lg-12 col-md-12 col-12">
-            <h3> Your Cart</h3>
+            @if ($carts->count())
+                <h3> Your Cart</h3>
+            @endif
          </div>
       </div>
       <div>
