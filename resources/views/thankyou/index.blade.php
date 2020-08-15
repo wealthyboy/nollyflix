@@ -3,7 +3,7 @@
 @section('content')
 
 
-
+<section class="vh-100">
 <div class="background-image">
     <div class="container-fluid">
         <div class="signup--middle">                    
@@ -13,4 +13,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection
