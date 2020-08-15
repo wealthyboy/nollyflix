@@ -1,33 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.checkout')
  
 @section('content')
 
 
-<div class="page-container min-vh-100">
-            <!--Content-->
-            <section class="sec-padding--lg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 offset-md-2">
-                            <div class="error-page text-center">
-                                <h1>Thank you for buying from  us</h1>
-                                <p class="large">Your order has been received .</p>
-                                <p class="large"></p>
-                                <!--<div class="widget">
-                                    <form class="search-form">
-                                        <input class="search-field input--lg" placeholder="Search.." value="" name="s" type="search">
-                                        <button type="submit" class="search-button btn btn--primary btn--lg">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </form>
-                                </div>-->
-                                <a href="/" class="btn btn--gray space-t--2">Go to watch lists</a>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </section>
-            <!--End Content-->
+<div class="background-image">
+    <div class="container-fluid">
+        <div class="signup--middle">                    
+            <h1 class="">hank you for buying from  us </h1>
+            <p class="large">Your order has been received .</p>
+
+            <a href="{{ route('profiles.watchlists') }}" class="btn btn--gray space-t--2">Go to watch lists</a>
         </div>
+    </div>
+</div>
 @endsection
