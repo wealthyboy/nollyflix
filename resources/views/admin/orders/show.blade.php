@@ -96,6 +96,8 @@
                         <th class="text-center"></th>
                         <th>Video</th>
                         <th class="th-description">Title</th>
+                        <th class="text-right">Purchase Type</th>
+
                         <th class="text-right">Price</th>
                         <th class="text-right">Qty</th>
                         <th class="text-right">Amount</th>
@@ -108,17 +110,15 @@
                            <div class="img-container">
                               <img src="{{ optional($order_movie->video)->tn_poster  }} " alt="...">
                            </div>
-                           <div class="form-group label-floating">
-                             <input type="hidden" class="p-v-id" value="{{ $order_movie->id }}" />
-                             
-                           </div>
+                          
                         </td>
                         <td class="td-name">
                            <a href="">{{  optional(optional($order_movie)->video)->title }}</a>
                            <br><small></small>
                         </td>
                         <td>
-                          
+                           <a href="">{{  $order_movie->purchase_type }}</a>
+
 
                         </td>
                       
