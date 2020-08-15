@@ -27,9 +27,11 @@
                                             <div class="progression-video-index-table">
                                                 <div class="progression-video-index-vertical-align">
                                         
-                                                    <h2 class="progression-video-title">Polar Express</h2>
+                                                    <h2 class="progression-video-title">{{ $video->video->title}}</h2>
                                                     <div class="clearfix"></div>
-                                                    <ul class="video-index-meta-taxonomy"><li>Sci-fi</li></ul>												
+                                                    <ul class="video-index-meta-taxonomy">
+                                                        <li></li>
+                                                    </ul>												
                                                     <div class="clearfix"></div>
                                         
                                                 </div><!-- close .progression-video-index-vertical-align -->
