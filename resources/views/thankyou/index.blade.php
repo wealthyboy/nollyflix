@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="page-contaiter">
+<div class="page-container min-vh-100">
             <!--Content-->
             <section class="sec-padding--lg">
                 <div class="container">
