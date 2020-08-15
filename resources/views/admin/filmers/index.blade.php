@@ -82,8 +82,6 @@
 @section('page-scripts')
 <script src="/assets/js/jquery.datatables.js"></script>
 @stop
-
-
 @section('inline-scripts')
 $(document).ready(function() {
     $('#datatables').DataTable({

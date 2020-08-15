@@ -62,8 +62,8 @@
                         <form  action="{{ route('videos.destroy',['video' => 1]) }}" method="post" enctype="multipart/form-data" id="form-videos">
                             @method('DELETE')
                             @csrf
-                    
-                            <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+
                                 <thead>
 
                                     <tr>
@@ -133,9 +133,24 @@
             </div><!--  end card  -->
         </div> <!-- end col-md-12 -->
     </div> <!-- end row -->
+
 @endsection
+@section('page-scripts')
+  <script src="/assets/js/jquery.datatables.js"></script>
+@stop
 @section('inline-scripts')
 $(document).ready(function() {
+    $('#datatables').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        responsive: true,
+        language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search records",
+        }
+
+    });
+    $('.card .material-datatables label').addClass('form-group');
 });
 @stop
 
