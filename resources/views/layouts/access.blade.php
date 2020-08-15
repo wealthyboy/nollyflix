@@ -58,8 +58,8 @@
 				
 				<div class="header-user-profile" id="header-user-profile">
 					<div id="header-user-profile-click" class="noselect header-user-profile-click">
-						<img src="/images/demo/user-profile.jpg" alt="Suzie">
-						<div id="header-username">Jane Doe</div><i class="fas fa-angle-down"></i>
+						<img src="/images/profile_icon.png" alt="Suzie">
+						<div id="header-username">{{ auth->user()->fullname() }}</div><i class="fas fa-angle-down"></i>
 					</div><!-- close #header-user-profile-click -->
 					<div class="header-user-profile-menu" id="header-user-profile-menu">
 						<ul>
