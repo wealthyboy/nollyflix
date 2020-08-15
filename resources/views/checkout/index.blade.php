@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-md-7 col-6">
                                     <h5><a href="#">{{ $cart->video->title }}</a></h5>
-                                    <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ $cart->purchase_type }}  {{ $cart->purchase_type == 'rent'  ? "<i> Expires after 48hours</i>" : ""}}
+                                    <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ $cart->purchase_type }}  <i>{{ $cart->purchase_type == 'rent'  ? " Expires after 48hours" : ""}}</i>
                                     </div>
                                     <div class="product-item-price">
                                         <div class="product-price-amount"><span class="retail-title text-gold">PRICE: </span> <span class="product--price text-gold">{{ $currency }}{{ $cart->converted_price }}</span></div>
