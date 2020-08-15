@@ -50,7 +50,7 @@
                            </td>
                             <td class="text-left">{{ $order->invoice }}</td>
                             <td>{{ $order->user->fullname() }}</td>
-                            <td>{{ $order->order_type }}</td>
+                            <td>{{ $order->p_type }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td class="text-left">{{ $order->currency  ?? '₦'}}{{ $order->get_total() }}</td>
                             <td class="td-actions text-center">
