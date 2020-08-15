@@ -69,6 +69,8 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 
 Route::get('/', 'HomeController@index')->name('home');
+Auth::routes();
+
 
 Route::group(['middleware' => 'currencyByIp'], function(){
     Route::resource('browse',          'Browse\BrowseController',['name'=>'browse']);
@@ -95,5 +97,4 @@ Route::group(['middleware' => 'currencyByIp'], function(){
 //     return view('welcome');
 // });
 
-Auth::routes();
 
