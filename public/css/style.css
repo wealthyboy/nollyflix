@@ -85,15 +85,15 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 	padding:12px 30px;
 	font-size:13px;
-	border:2px solid #22b2ee;
-	background:#22b2ee;
+	border:2px solid #E50914;
+	background:#E50914;
 	color:#ffffff;
 	border-radius:100px;
 }
 .btn:hover {
 	color:#ffffff;
-	background:#0b78a2;
-	border-color:#0b78a2;
+	background:#E50914;
+	border-color:#E50914;
 }
 
 .btn.btn-lg {
