@@ -46,7 +46,7 @@
                                                    <table class="centerize" data-border-bottom-color="LogoDivider-OnMobile" style="border-bottom-color:#67bffd; margin-left:0;" cellspacing="0" cellpadding="0" border="0">
                                                       <tr>
                                                          <td class="esFrMb" width="30"></td>
-                                                         <td style="line-height:1px;" align="center"><a href="/" target="_blank" style="text-decoration: none;"><img src="https://nollyflix.tv/" style=" max-width:100px; height: 30px; margin-top: 37px;display: block;text-decoration: none;border: none;" alt="Logo Image" vspace="0" hspace="0" border="0" align="top"></a></td>
+                                                         <td style="line-height:1px;" align="center"><a href="/" target="_blank" style="text-decoration: none;"><img src="https://nollyflix.tv/images/logo/1596222282NF00.png" style=" max-width:100px; height: 30px; margin-top: 37px;display: block;text-decoration: none;border: none;" alt="Logo Image" vspace="0" hspace="0" border="0" align="top"></a></td>
                                                          <td class="esFrMb" width="30"></td>
                                                       </tr>
                                                    </table>
@@ -338,7 +338,7 @@
                                                       <tr>
                                                          <td class="wz2" width="30"></td>
                                                          <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;">
-                                                          <div style="width: 120px;max-height: 160px;overflow: hidden;display: block;" class="">
+                                                          <div style="width: 100px; max-height: 130px;overflow: hidden;display: block;" class="">
                                                              <img style="outline: 0 none;max-width: 100%;" src="{{ $ordered_movie->video->tn_poster }}" /> 
                                                          </div> 
                                                          
