@@ -88,29 +88,14 @@
             <i class="material-icons">assignment</i>
          </div>
          <div class="card-content">
-            <h4 class="card-title">Address</h4>
-            <div class="table-responsive">
-               <table class="table table-bordered">
-                  <thead>
-                     <tr>
-                        <td style="width: 50%;" class="text-left">Shipping Address</td>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                     <td  class="text-left" data-link-style="text-decoration:none; color:#67bffd;"> {{ optional(optional($order)->address)->first_name }} {{ optional(optional($order)->address)->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;</td>
-
-                     </tr>
-                  </tbody>
-               </table>
-               <div>
+            
                <h2>Items</h2>
                <table class="table table-shopping">
                   <thead>
                      <tr>
                         <th class="text-center"></th>
-                        <th>Product</th>
-                        <th class="th-description">Variations</th>
+                        <th>Video</th>
+                        <th class="th-description">Title</th>
                         <th class="text-right">Price</th>
                         <th class="text-right">Qty</th>
                         <th class="text-right">Amount</th>
