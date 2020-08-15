@@ -75,6 +75,18 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Video','user_video');
     }
 
+
+	public function cast_videos()
+    {
+        return $this->belongsToMany('App\Video','cast_video');
+    }
+
+	public function filmer_videos()
+    {
+        return $this->belongsToMany('App\Video','filmer_video');
+    }
+
+
 	public function scopeCastings(Builder $builder)
 	{
 		return $builder->where('type','casts');
