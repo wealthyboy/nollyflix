@@ -43,17 +43,21 @@ class CartController  extends Controller {
 		]);
 
 		$cart = new Cart;
+
+		if (auth()->check()){
+            $user_id = auth()->user()->id;
+		}
 		
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
 			$result = $cart->updateOrCreate(
 				['video_id' => $request->id,'remember_token' => $remember_token],
 				[
-					'video_id' => $request->id,
+					'video_id'   => $request->id,
 					'quantity'   => 1,
 					'price'      => $request->price,
                     'total'      => $request->price * 1,
-                    'user_id' => auth()->user()->id,
+                    'user_id'    => $user_id,
                     'purchase_type' => $request->purchase_type,
 				]
 			);
@@ -71,6 +75,7 @@ class CartController  extends Controller {
             $cart->total      = $request->price * 1;
             $cart->purchase_type = $request->purchase_type;
 			$cart->remember_token =$cookie->getValue();
+			$cart->user_id    = $user_id;
             $cart->save();
 			return response()->json([
 				'count' => 1

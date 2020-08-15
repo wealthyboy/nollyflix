@@ -48,6 +48,10 @@ class Cart extends Model
 				$cart->delete();
             }
 		}
+
+		$cart->update([
+			'user_id' => optional(auth()->user())->id	
+		]);
 	}
 
 	public function video(){
