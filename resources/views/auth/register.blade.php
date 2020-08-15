@@ -17,9 +17,7 @@
         <div class="col-md-8">
             <div id="membership-plan-background">
 	  	 		<div class="membership-width-container">
-		  	 		<div class="container">
-                    @include('includes.errors')
-				
+		  	 		<div class="container">				
 						
    					 <div class="membership-required-container">
       					 <div class="registration-login-container">
