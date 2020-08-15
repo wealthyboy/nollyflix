@@ -118,13 +118,13 @@ jQuery(document).ready(function($) {
 */
 	
 
-    $(".header-user-profile-click").hover(function(){
+	$("#header-user-profile-click").click(function() {
 		var $this = $("#header-user-profile");
-		    $this.addClass('active');
-		}, function(){
-		   if ($("#header-user-profile").hasClass('active')) {
-			$("#header-user-profile").removeClass('active').addClass('hide');
-		   }
+		if ($this.hasClass('active')) {
+			$this.removeClass('active').addClass('hide');
+		} else {
+			$this.addClass('active');
+		}		
 	});
 
 	
