@@ -38,8 +38,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ActorsAndFilMakers(User $user)
-    {
+    public function ActorsAndFilMakers($username)
+    {   
+        $user = User::where('username',$username)->firstOrFail();
+        
         return view('profile.profile',compact('user'));
     }
 
