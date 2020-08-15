@@ -18,6 +18,7 @@
             <div id="membership-plan-background">
 	  	 		<div class="membership-width-container">
 		  	 		<div class="container">
+                    @include('includes.errors')
 				
 						
    					 <div class="membership-required-container">
