@@ -338,7 +338,7 @@
                                                       <tr>
                                                          <td class="wz2" width="30"></td>
                                                          <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;">
-                                                          <div style="width: 100px; max-height: 130px;overflow: hidden;display: block;" class="">
+                                                          <div style="width: 70px; max-height: 90px;overflow: hidden;display: block;" class="">
                                                              <img style="outline: 0 none;max-width: 100%;" src="{{ $ordered_movie->video->tn_poster }}" /> 
                                                          </div> 
                                                          
