@@ -49,6 +49,7 @@ class CastsController extends Controller
         request()->validate([
             'email'    => 'required|email|max:255|unique:users',
             'first_name'   => 'required|min:1|max:100',
+            'username'    => 'required|string|max:255|unique:users',
             'description'  => 'required|min:1|max:1000',
         ]);
 
@@ -59,6 +60,7 @@ class CastsController extends Controller
         $user->last_name=$request->last_name;
         $user->slug=str_slug($request->first_name.' '.$request->last_name);
         $user->email  =$request->email;
+        $user->username  =$request->username;
         $user->description  =$request->description;
         $user->image  =$request->image;
         $user->type   ='casts';

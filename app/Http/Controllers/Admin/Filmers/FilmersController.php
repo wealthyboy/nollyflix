@@ -50,6 +50,7 @@ class FilmersController extends Controller
         Validator::make($request->all(), [
             'first_name'   => 'required|min:1|max:100',
             'email'        => 'required|email|max:255|unique:users',
+            'username'    => 'required|string|max:255|unique:users',
             'last_name'    => 'required|min:1|max:200',
             'description'  => 'required|min:1|max:1000',
         ]);
@@ -62,6 +63,7 @@ class FilmersController extends Controller
         $user->email        =  $request->email;
         $user->slug=str_slug($request->first_name.' '.$request->last_name);
         $user->description  =  $request->description;
+        $user->username  =     $request->username;
         $user->image        =  $request->image;
         $user->type         =  'filmers';
         $user->password= bcrypt($password); 

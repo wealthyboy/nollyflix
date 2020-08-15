@@ -39,6 +39,19 @@
 
                         <div class="form-group label-floating">
                             <label class="control-label">
+                              Username
+                                <small>*</small>
+                            </label>
+                            <input class="form-control"
+                                   name="username"
+                                   type="text"
+                                   value="{{ old('username') }}"
+                                   required="true"
+                             />
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">
                               Email
                                 <small>*</small>
                             </label>

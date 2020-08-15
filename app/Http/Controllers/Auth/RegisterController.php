@@ -98,20 +98,19 @@ class RegisterController extends Controller
         $request = new Request();
         			
 		if ( isset($data['admin'] )){
-		    return Validator::make($data, [
-               'name' => 'required|min:1|max:50',
-               'last_name' => 'required|min:1|max:50',
-			   'email'      => 'required|email|max:255|unique:users',
-			   'password'   => 'required|max:90',
-            ]);
+			return Validator::make($data, [
+				'name' => ['required', 'string', 'max:255'],
+				'last_name' => ['required', 'string', 'max:255'],
+				'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+				'password' => ['required', 'string', 'min:8', 'confirmed'],
+			]);
 		}  
-		  
+
 		return Validator::make($data, [
-				'name' => 'required|min:1|max:50',
-				'last_name'    =>'required|min:1|max:50',
-				'email'        => 'required|email|max:75|unique:users',
-				'password'     => 'required|confirmed|max:90',
-				'password_confirmation' => 'required|min:3',
+			'name' => ['required', 'string', 'max:255'],
+			'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 		  
     }

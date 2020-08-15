@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterOrderedMoviesAddPrice extends Migration
+class AlterUsersTableAddUsername extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterOrderedMoviesAddPrice extends Migration
      */
     public function up()
     {
-        Schema::table('ordered_movies', function (Blueprint $table) {
-            $table->decimal('price',8,2)->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('username')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AlterOrderedMoviesAddPrice extends Migration
      */
     public function down()
     {
-        Schema::table('ordered_movies', function (Blueprint $table) {
-            $table->dropColumn(['price']);       
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['username']);       
         });
     }
 }
