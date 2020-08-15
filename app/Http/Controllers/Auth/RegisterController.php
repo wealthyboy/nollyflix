@@ -198,14 +198,13 @@ class RegisterController extends Controller
 			return $user;
 		}
 
-		Newsletter::create([
-			'email'=> $request->email
-		]);
+		// Newsletter::create([
+		// 	'email'=> $request->email
+		// ]);
 
 		$user->name=$data['first_name'];
 		$user->last_name=$data['last_name'];
 		$user->email=$data['email'];
-		$user->phone_number = $data['phone_number'];
 		$user->type  = 'subscriber';
 		$user->password=bcrypt($data['password']);
 		$user->save();
