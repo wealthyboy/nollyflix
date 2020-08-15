@@ -49,9 +49,18 @@ class Video extends Model
      /**
      * The filmers that belong to the user.
     */
+    public function filmers()
+    {
+        return $this->belongsToMany('App\User','filmer_video','video_id','user_id');
+    }
+
+
+    /**
+     * The filmers that belong to the user.
+    */
     public function casts()
     {
-        return $this->belongsToMany('App\User','user_video');
+        return $this->belongsToMany('App\User','cast_video','video_id','user_id');
     }
 
     /**

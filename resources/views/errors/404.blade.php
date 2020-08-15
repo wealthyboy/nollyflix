@@ -14,7 +14,6 @@
                 <a href="/" class="btn btn--gray space-t--2">Back to Home</a>
             </div>
         </div>
-
     </section>
     <!--End Content-->
 </div>

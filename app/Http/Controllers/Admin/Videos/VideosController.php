@@ -120,7 +120,7 @@ class VideosController extends Controller
         }
 
         if(!empty($request->cast_id)){
-            $video->users()->sync($request->cast_id);
+            $video->casts()->sync($request->cast_id);
         }
 
         if(!empty($request->section_id)){
@@ -132,7 +132,7 @@ class VideosController extends Controller
         }
 
         if(!empty($request->filmer_id)){
-            $video->users()->sync($request->filmer_id);
+            $video->filmers()->sync($request->filmer_id);
         }
 
         if(!empty($request->related_videos)){
@@ -272,7 +272,7 @@ class VideosController extends Controller
         }
 
         if(!empty($request->cast_id)){
-            $video->users()->sync($request->cast_id);
+            $video->casts()->sync($request->cast_id);
         }
 
         if(!empty($request->section_id)){
@@ -284,7 +284,7 @@ class VideosController extends Controller
         }
 
         if(!empty($request->filmer_id)){
-            $video->users()->sync($request->filmer_id);
+            $video->filmers()->sync($request->filmer_id);
         }
 
     

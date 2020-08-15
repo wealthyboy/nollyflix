@@ -41,7 +41,6 @@ class ProfileController extends Controller
     public function ActorsAndFilMakers($username)
     {   
         $user = User::where('username',$username)->firstOrFail();
-        
         return view('profile.profile',compact('user'));
     }
 
