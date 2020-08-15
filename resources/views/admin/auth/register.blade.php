@@ -22,7 +22,7 @@
 
                                 <div class="form-group label-floating">
                                     <label class="control-label">First Name</label>
-                                    <input id="name" required="true" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('name') }}" autofocus>
+                                    <input id="name" required="true" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" autofocus>
                                 </div>
                             </div>
 

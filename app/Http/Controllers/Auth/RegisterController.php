@@ -99,7 +99,7 @@ class RegisterController extends Controller
         			
 		if ( isset($data['admin'] )){
 		    return Validator::make($data, [
-               'first_name' => 'required|min:1|max:50',
+               'name' => 'required|min:1|max:50',
                'last_name' => 'required|min:1|max:50',
 			   'email'      => 'required|email|max:255|unique:users',
 			   'password'   => 'required|max:90',
