@@ -70,7 +70,7 @@
 								 
        						
       							<div class="form-group aligncenter">
-      								 <button type="submit" class="btn">Login</button>
+      								 <button type="submit" class="btn">Submit</button>
       							</div>
       							 
 							
