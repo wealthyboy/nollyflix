@@ -8,8 +8,8 @@
         <div class="centered-headings-pro pricing-plans-headings">
         </div>
     </div><!-- close .container -->
-    <div class="container">
-    <div class="row justify-content-center">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
         <div class="col-md-8">
         <div id="membership-plan-background">
 	  	 		<div class="membership-width-container">
@@ -66,7 +66,6 @@
 					</div><!-- close .container -->
 	  	 		</div><!-- close .membership-width-container -->
 			</div><!-- close #membership-plan-background -->
-            
         </div>
     </div>
 </div>

@@ -60,7 +60,7 @@
                                         </td>
                                         <td><a href="{{ route('casts.show',['cast'=>$cast->id]) }}">{{ $cast->fullname() }}</a></td>
                                         <td class="text-left">{{ $cast->email }}</td>
-                                        <td class="text-left">{{ $cast->videos->count() }}</td>
+                                        <td class="text-left">{{ $cast->cast_videos->count() }}</td>
                                         </td>
                                         <td class="text-right">
                                            {{ $cast->created_at }}

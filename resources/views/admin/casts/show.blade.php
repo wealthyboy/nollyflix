@@ -68,8 +68,8 @@
                 <div class="tab-pane" id="videos">
                     <div class="row">
                         
-                        @if($cast->videos->count())
-                            @foreach($cast->videos as $video)
+                        @if($cast->cast_videos->count())
+                            @foreach($cast->cast_videos as $video)
                             <div class="col-md-4">
                                 <div class="card card-product" data-count="4">
                                     <div class="card-image" data-header-animation="false">
