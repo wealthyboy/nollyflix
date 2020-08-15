@@ -93,11 +93,9 @@
                <table class="table table-shopping">
                   <thead>
                      <tr>
-                        <th class="text-center"></th>
-                        <th>Video</th>
+                        <th>Poster</th>
                         <th class="th-description">Title</th>
                         <th class="text-right">Purchase Type</th>
-
                         <th class="text-right">Price</th>
                         <th class="text-right">Qty</th>
                         <th class="text-right">Amount</th>
