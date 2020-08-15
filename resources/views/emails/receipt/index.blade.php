@@ -100,7 +100,7 @@
                                                       </tr>
                                                       <tr>
                                                          <td class="wz" width="30"></td>
-                                                         <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>Your order have been received and is now been processed. Your order details are below.</td>
+                                                         <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>Your order have been received. Your order details are below.</td>
                                                          <td class="wz" width="30"></td>
                                                       </tr>
                                                       <tr>
@@ -124,62 +124,7 @@
       </table>
       
       
-         <!--= MAILING BODY =-->  
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceCredentialsModule-2COL" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
-         <tr>
-            <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
-                  <tr>
-                     <td class="table600st" style="min-width:668px;" align="center">
-                        <table class="table600Min" style="min-width:628px;" width="629" cellspacing="0" cellpadding="0" border="0" align="center">
-                           <tr>
-                              <td class="table600st" style="min-width:628px;">
-                                 <table data-bgcolor="cbc" class="table600" width="629" cellspacing="0" cellpadding="0" border="0" bgcolor="#fdfdfd" align="left">
-                                    <tr>
-                                       <td>
-                                          <table data-bgcolor="cbc" cellspacing="0" cellpadding="0" border="0" bgcolor="#fdfdfd" align="center">
-                                             <tr>
-                                               
-                                                <th class="stack" data-border-left-color="borderColor" data-border-bottom-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); border-bottom: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top;" width="628" valign="top">
-                                                   <table class="table600" width="628" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                      <tr>
-                                                         <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td class="wz" width="30"></td>
-                                                         <td valign="top" align="center">
-                                                            <table class="tableTxt" width="252" cellspacing="0" cellpadding="0" border="0" align="left">
-                                                               
-                                                               <tr>
-                                                                  <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="SectionInfoLink" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;font-weight: bold;text-align: left;line-height: 23px;" width="179" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="SectionInfoLink"></a>Shipping Address</td>
-                                                               </tr>
-                                                              
-                                                               <tr>
-                                                                  <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;"> {{ optional(optional($order)->address)->first_name }} {{ $order->last_name }}  <br />{{ optional($order->address)->address }}<br /> {{ optional($order->address)->city }} &nbsp;<br /> {{ optional(optional($order->address)->address_state)->name }},{{ optional(optional($order->address)->address_country)->name }}&nbsp;<br/> <br/>  Shipping Name: {{ optional($order->shipping)->parent->name }}</td>
-                                                               </tr>
-                                                               <tr>
-                                                                  <td colspan="3" style="font-size:0;line-height:0;" height="25"></td>
-                                                               </tr>
-                                                            </table>
-                                                         </td>
-                                                         <td class="wz" width="30"></td>
-                                                      </tr>
-                                                   </table>
-                                                </th>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </table>
-                              </td>
-                           </tr>
-                        </table>
-                     </td>
-                  </tr>
-               </table>
-            </td>
-         </tr>
-      </table>
+     
       <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceCredentialsModule-3COL"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
@@ -365,7 +310,7 @@
          </tr>
       </table>
       <div class="pofbg"></div>
-       <?php foreach($order->ordered_products as $ordered_product )  { ?>
+       <?php foreach($order->ordered_movies as $ordered_movie )  { ?>
       <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceItemDetailsModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
@@ -394,16 +339,10 @@
                                                          <td class="wz2" width="30"></td>
                                                          <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;">
                                                           <div style="width: 120px;max-height: 160px;overflow: hidden;display: block;" class="">
-                                                             <img style="outline: 0 none;max-width: 100%;" src="{{ $ordered_product->product_variation->image_to_show }}" /> 
+                                                             <img style="outline: 0 none;max-width: 100%;" src="{{ $ordered_movie->video->tn_poster }}" /> 
                                                          </div> 
                                                          
-                                                         <br/>{{ $ordered_product->product_variation->product->product_name }} <br /><br/> @if (null !== $ordered_product->product_variation)
-                                                                    @foreach( $ordered_product->product_variation->product_variation_values  as $v)
-                                                                        {{ $v->attribute->name .',' }}
-                                                                    @endforeach
-                                                                @else
-                                                                    
-                                                                @endif </td>
+                                                         <br/>{{ $ordered_movie->video->title }}  </td>
                                                          <td class="wz2" width="30"></td>
                                                       </tr>
                                                       
@@ -421,7 +360,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{   $ordered_product->order_price }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{   $ordered_movie->price }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -437,7 +376,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $ordered_product->quantity }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $ordered_movie->quantity }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -453,7 +392,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $ordered_product->total }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $ordered_movie->total }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -491,82 +430,8 @@
                            <tr>
                               <td class="table600st" style="min-width:629px;">
                                  <table data-bgcolor="CalculationsBGColor" class="table600" width="629" cellspacing="0" cellpadding="0" border="0" bgcolor="#eff3f7" align="left">
-                                    <tr>
-                                       <td align="left">
-                                          <table cellspacing="0" cellpadding="0" border="0" align="center">
-                                             <tr>
-                                                <th rowspan="4" class="stack4" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" style="margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="349" height="100" bgcolor="#eff3f7">
-                                                   <table class="table60034" width="349" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                      
-                                                      <tr>
-                                                         <td style="line-height:1px;" class="TDtable60034" width="347" align="center"></td>
-                                                      </tr>
-                                                      
-                                                   </table>
-                                                </th>
-                                                <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#eff3f7">
-                                                   <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                      <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065; font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Shipping</td>
-                                                         <td class="wz2" width="30"></td>
-                                                      </tr>
-                                                      <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                      </tr>
-                                                   </table>
-                                                </th>
-                                                <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#eff3f7">
-                                                   <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                       <tr>
-                                                        <td class="wz2" height="10" width="30"></td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ optional($order->shipping)->converted_price }}</td>
-                                                         <td class="wz2" width="30"><br></td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td class="wz2" height="10" width="30"></td>
-                                                      </tr>
-                                                   </table>
-                                                </th>
-                                             </tr>
-                                             <tr>
-                                                <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#eff3f7">
-                                                   <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                      <tr>
-                                                        <td class="wz2" height="10" width="30"></td>
-                                                      </tr> 
-                                                      <tr>
-                                                         <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Coupon </td>
-                                                         <td class="wz2" width="30"><br></td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td class="wz2" height="10" width="30"></td>
-                                                      </tr> 
-                                                   </table>
-                                                </th>
-                                                <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#eff3f7">
-                                                   <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                      <tr>
-                                                        <td class="wz2" height="10" width="30"></td>
-                                                      </tr> 
-                                                      <tr>
-                                                         <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>  {{  $order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount .' off' : '---' }}</td>
-                                                         <td class="wz2" width="30"><br></td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td class="wz2" height="10" width="30"></td>
-                                                      </tr> 
-                                                   </table>
-                                                </th>
-                                             </tr>
+                            
+                                      
                                              <tr>
                                                 <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#eff3f7">
                                                    <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -661,14 +526,11 @@
                                        <td class="catd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="FooterCaptionLink" data-color="FooterCaptionTXT" style="color: rgb(12, 13, 13); font-family: sans-serif; font-size: 13px; text-align: center; font-weight: bold; line-height: 190%;"> <a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="FooterCaptionLink"></a>Thanks for shopping with us</td>
                                     </tr>
 
-                                    <tr>
-                                                                                 			
-                                       <td class="moptd" data-link-style="text-decoration:none; color:#333;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: #333; font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;"><a href="{{ Config('app.url') }}/pages/delivery">Delivery & Returns Policy</a></td>
-                                    </tr>
+                                    
                                    
                                     <tr>
                                                                                  			
-                                       <td class="moptd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: rgb(13, 14, 12); font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;">All rights Reserved Haute Signatures</td>
+                                       <td class="moptd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: rgb(13, 14, 12); font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;">All rights Reserved NollyFlix</td>
                                     </tr>
                                     
                                  </table>
