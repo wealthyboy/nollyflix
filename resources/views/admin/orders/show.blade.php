@@ -120,38 +120,23 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach ( $order->ordered_products as $order_product )
+                     @foreach ( $order->ordered_movies as $order_movie )
                      <tr>
                         <td>
                            <div class="img-container">
-                              <img src="{{ optional($order_product->product_variation)->image  }} " alt="...">
+                              <img src="{{ optional($order_movie->video)->tn_poster  }} " alt="...">
                            </div>
                            <div class="form-group label-floating">
-                             <input type="hidden" class="p-v-id" value="{{ $order_product->id }}" />
-                              <select  class="form-control mt-3 update_status" name="order_status[{{ $order_product->id }}]" id="">
-                                 <option value="" >Choose Status</option>
-                                 @foreach($statuses as $status)
-                                   @if ($status == $order_product->status)
-                                       <option value="{{ $status }}" selected>{{ $status }}</option>
-                                    @else
-                                      <option value="{{ $status }}">{{ $status }}</option>
-                                    @endif
-                                 @endforeach
-                              </select>
+                             <input type="hidden" class="p-v-id" value="{{ $order_movie->id }}" />
+                             
                            </div>
                         </td>
                         <td class="td-name">
-                           <a href="">{{  optional(optional($order_product->product_variation)->product)->product_name }}</a>
+                           <a href="">{{  optional(optional($order_movie->video)->title }}</a>
                            <br><small></small>
                         </td>
                         <td>
-                           @if (null !== $order_product->product_variation)
-                              @foreach( $order_product->product_variation->product_variation_values  as $v)
-                                 {{ $v->attribute->name .','}}
-                              @endforeach
-                           @else
-                              -----
-                           @endif
+                          
 
                         </td>
                       
