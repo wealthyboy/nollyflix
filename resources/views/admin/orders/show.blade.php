@@ -27,10 +27,7 @@
                         <td><button data-toggle="tooltip" title="Payment Method" class="btn btn-info btn-xs"><i class="fa fa-credit-card fa-fw"></i></button></td>
                         <td>{{ $order->payment_type }}</td>
                      </tr>
-                     <tr>
-                        <td><button data-toggle="tooltip" title="Shipping Method" class="btn btn-info btn-xs"><i class="fa fa-truck fa-fw"></i></button></td>
-                        <td>Shipping : {{ optional($order->shipping)->parent->name }}</td>
-                     </tr>
+                    
                   </tbody>
                </table>
             </div>
