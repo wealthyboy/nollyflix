@@ -87,7 +87,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('checkout',             'Checkout\CheckoutController@store');
     Route::resource('profile',         'Profile\ProfileController',['name'=>'profile']);
     Route::post('change/password',     'Profile\ProfileController@changePassword');
-    Route::get('{user}',                'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
+    Route::get('{username}',                'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
 });
 
 
