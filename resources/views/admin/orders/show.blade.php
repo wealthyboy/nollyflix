@@ -138,13 +138,13 @@
                         </td>
                       
                         <td class="td-number text-right">
-                           {{  $order->currency }}{{  $order_product->order_price   }}
+                           {{  $order->currency }}{{  $order_movie->order_price   }}
                         </td>
                         <td class="td-number">
-                           {{ $order_product->quantity }}
+                           {{ $order_movie->quantity }}
                         </td>
                         <td class="td-number">
-                           <small>{{  $order->currency }}</small>{{ $order_product->total   }}
+                           <small>{{  $order->currency }}</small>{{ $order_movie->total   }}
                         </td>
                         
                      </tr>
