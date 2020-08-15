@@ -272,7 +272,7 @@ class VideosController extends Controller
         }
 
         if(!empty($request->cast_id)){
-            $video->users()->sync($request->cast_id);
+            $video->users()->syncWithoutDetaching($request->cast_id);
         }
 
         if(!empty($request->section_id)){
@@ -284,7 +284,7 @@ class VideosController extends Controller
         }
 
         if(!empty($request->filmer_id)){
-            $video->users()->sync($request->filmer_id);
+            $video->users()->syncWithoutDetaching($request->filmer_id);
         }
 
     
