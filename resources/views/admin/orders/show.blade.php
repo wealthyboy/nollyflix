@@ -118,8 +118,6 @@
                         </td>
                         <td>
                            <a href="">{{  $order_movie->purchase_type }}</a>
-
-
                         </td>
                       
                         <td class="td-number text-right">
