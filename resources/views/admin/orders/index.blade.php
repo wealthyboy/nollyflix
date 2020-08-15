@@ -32,7 +32,6 @@
                            </th>
                            <th>Invoice</th>
                            <th>Customer</th>
-                           <th>Type</th>
                            <th>Date Added</th>
                            <th>Total</th>
                            <th class="text-right">Action</th>
@@ -50,7 +49,6 @@
                            </td>
                             <td class="text-left">{{ $order->invoice }}</td>
                             <td>{{ $order->user->fullname() }}</td>
-                            <td>{{ $order->purchase_type }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td class="text-left">{{ $order->currency  ?? '₦'}}{{ $order->get_total() }}</td>
                             <td class="td-actions text-center">
