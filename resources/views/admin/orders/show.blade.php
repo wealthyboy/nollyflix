@@ -132,7 +132,7 @@
                            </div>
                         </td>
                         <td class="td-name">
-                           <a href="">{{  optional(optional($order_movie->video)->title }}</a>
+                           <a href="">{{  optional(optional($order_movie)->video)->title }}</a>
                            <br><small></small>
                         </td>
                         <td>
