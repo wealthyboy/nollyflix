@@ -51,10 +51,7 @@
                 </div><!-- close .row -->
 
             </div><!-- close #vayvo-progression-author-content-container -->
-            
-            
-            
-            
+              
         <div class="clearfix"></div>
     </div><!-- close .container -->
     
