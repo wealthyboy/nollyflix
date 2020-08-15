@@ -7,7 +7,7 @@
         @include('admin.errors.errors')
         <div class="card">
             <form   id="register"  method="POST" action="{{ route('create_admin_users') }}" >
-                {{ csrf_field() }}
+                @csrf
                     <div class="card card-login card-hidden">
                         <div class="card-header text-center" data-background-color="rose">
                             <h4 class="card-title">Register</h4>  
