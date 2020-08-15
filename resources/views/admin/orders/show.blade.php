@@ -160,14 +160,8 @@
                         <td colspan="6" class="text-right">Sub-Total</td>
                         <td class="text-right"><small>{{ $order->currency }}</small>{{ number_format($sub_total)  }}</td>
                      </tr>
-                     <tr>
-                        <td colspan="6" class="text-right">Coupon</td>
-                        <td class="text-right"> {{ $order->isCouponForAmb() }}  &nbsp; {{  $order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount . 'off'  : '---' }}</td>
-                     </tr>
-                     <tr>
-                        <td colspan="6" class="text-right">Shipping</td>
-                        <td class="text-right"><small>{{ $order->currency }}</small>{{ optional($order->shipping)->price }}</td>
-                     </tr>
+                   
+                     
                      <tr>
                         <td colspan="6" class="text-right">Total</td>
                         <td class="text-right">{{ $order->currency }}{{  $order->get_total() }}</td>
@@ -183,19 +177,6 @@
 @endsection
 @section('inline-scripts')
 
-$(".update_status").on('change',function(e){
-      let self = $(this)
-      if(self.val() == '') return;
 
-      let value = self.parent().find(".p-v-id").val()
-      var payLoad = { ordered_product_id: value,status: self.val()}
-      $.ajax({
-         type: "POST",
-         url: "/admin/update/ordered_product/status",
-         data: payLoad,
-      }).done(function(response){
-         console.log(response)
-      })
-})
 @stop
 
