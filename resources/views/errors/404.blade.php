@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="page-contaiter">
+<div class="page-contaiter vh-100">
             <!--Content-->
             <section class="sec-padding--lg">
                 <div class="container">
@@ -21,7 +21,7 @@
                                         </button>
                                     </form>
                                 </div>-->
-                                <a href="error_page.html#" class="btn btn--gray space-t--2">Back to Home</a>
+                                <a href="/" class="btn btn--gray space-t--2">Back to Home</a>
                             </div>
                         </div>
 
