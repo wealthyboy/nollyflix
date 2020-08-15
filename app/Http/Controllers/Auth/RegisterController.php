@@ -186,7 +186,7 @@ class RegisterController extends Controller
         
         if ( isset($data['admin'] ))
         {
-			$user->name = $data['first_name'];
+			$user->name = $data['name'];
 			$user->last_name=$data['last_name'];
             $user->email=$data['email'];
             $user->type = 'admin';
@@ -202,7 +202,7 @@ class RegisterController extends Controller
 		// 	'email'=> $request->email
 		// ]);
 
-		$user->name=$data['first_name'];
+		$user->name=$data['name'];
 		$user->last_name=$data['last_name'];
 		$user->email=$data['email'];
 		$user->type  = 'subscriber';
