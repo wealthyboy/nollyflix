@@ -50,7 +50,7 @@ class OrdersController extends Controller{
 
 	public function show($id) { 
        $order       =  Order::find($id);
-       $sub_total   =  $order->ordered_products[0]->sum_items($order->id)->items_total;
+       $sub_total   =  $order->ordered_movies[0]->sum_items($order->id)->items_total;
 	   $statuses    =  static::order_status();
 	   return view('admin.orders.show',compact('statuses','order','sub_total'));
 	}
