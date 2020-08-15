@@ -75,14 +75,12 @@ class CheckoutController extends Controller
 		}
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
-		try {
+		
 			$when = now()->addMinutes(5);
 			\Mail::to($user->email)
 			   ->bcc($admin_emails[0])
 			   ->send(new OrderReceipt($order,$this->settings,$symbol));
-		} catch (\Throwable $th) {
-			//throw $th;
-		}
+		
 
 	
 		return redirect('/thankyou');
