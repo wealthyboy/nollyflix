@@ -14,7 +14,7 @@
     <ul id="profile-watched-stats">
         @if (!$user->isSubscriber())
             <li>
-                <span>{{ $user->videos->count() }}</span>
+                <span>{{ $user->profile_videos->count() }}</span>
                     Videos
             </li>
         @endif
