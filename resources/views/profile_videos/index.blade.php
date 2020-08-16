@@ -14,7 +14,7 @@
                 <div class="row">
                     @if( $user->profile_videos->count())
                         @foreach($user->profile_videos as $video)
-                            <div class="col col-12 col-md-6 col-lg-6">
+                            <div class="col col-6 col-md-3 col-lg-3">
                                 <div class="progression-studios-video-index-container">
                                     <a href="#">
                                 
