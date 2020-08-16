@@ -18,12 +18,12 @@
 				
         <div class="row">
             @if($user->videos->count())
-            @foreach($user->videos as $video)
+            @foreach($user->profile_videos as $video)
 
-            <div class="col col-12 col-md-6 col-lg-4">
+            <div class="col col-12 col-md-6 col-lg-3">
                 <div class="progression-studios-video-index-container">
                     <a href="video-post.html">
-                        <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="Featured Image"></div>
+                        <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                     
                         <div class="progression-video-index-content">
                             <div class="progression-video-index-table">
