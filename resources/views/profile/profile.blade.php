@@ -28,7 +28,9 @@
                             <div class="progression-video-index-table">
                                 <div class="progression-video-index-vertical-align">
                                 
-                                    <h2 class="progression-video-title">5000</h2>
+                                    <h2 class="progression-video-title">Buy -5000</h2>
+                                    <h2 class="progression-video-title">Rent -5000</h2>
+
     
                                     <div class="clearfix"></div>
                                     
