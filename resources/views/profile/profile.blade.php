@@ -17,7 +17,7 @@
         <h2 class="post-list-heading"><span></span></h2>
 				
         <div class="row">
-            @if($user->videos->count())
+            @if($user->profile_videos->count())
             @foreach($user->profile_videos as $video)
 
             <div class="col col-12 col-md-6 col-lg-3">
