@@ -10,19 +10,18 @@
             </div><!-- close .container -->
     </div><!-- close #progression-studios-page-title-container -->
     <div class="clearfix"></div>
-    <div id="page-title-overlay-image" style="background-image:url('images/demo/matt-botsford-197870-unsplash.jpg');"></div>
+    <div id="page-title-overlay-image" style="background-image:url('images/banners/Bgnollyn01.jpg');"></div>
 </div>
 <div id="content-pro">	
     <div class="container custom-gutters-pro">
         <h2 class="post-list-heading"><span></span></h2>
-				
         <div class="row">
             @if($user->profile_videos->count())
             @foreach($user->profile_videos as $video)
 
             <div class="col col-12 col-md-6 col-lg-3">
                 <div class="progression-studios-video-index-container">
-                    <a href="video-post.html">
+                    <a href="/browse/{{ $video->id }}">
                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                     
                         <div class="progression-video-index-content">
