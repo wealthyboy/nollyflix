@@ -35,7 +35,7 @@
             <div class="clearfix"></div>
 
             <div id="video-post-buttons-container">
-                <a href="#" class="buy-video"  data-prop="{{ $video }}" data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy</a>
+                <a href="#" class="buy-video"  data-prop="{{ $video }}" data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy 5000</a>
                 <a href="#" class="rent-video"  data-prop="{{ $video }}" data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent</a>
                 <div class="clearfix"></div>
             </div><!-- close #video-post-buttons-container -->
