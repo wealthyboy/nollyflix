@@ -70,10 +70,16 @@ class User extends Authenticatable
 		return $builder->where('type','subscriber');
 	}
 
-	public function videos()
-    {
-        return $this->belongsToMany('App\Video','user_video');
-    }
+	public function profile_videos()
+    {   
+		if ($this->type == 'casts'){
+			return $this->belongsToMany('App\Video','cast_video');
+		} 
+        return $this->belongsToMany('App\Video','filmer_video');
+	}
+	
+
+	
 
 
 	public function cast_videos()

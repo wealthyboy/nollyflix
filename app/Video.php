@@ -37,6 +37,8 @@ class Video extends Model
         return $this->belongsToMany('App\Category');
     }
 
+   
+
     /**
      * The filmers that belong to the user.
     */
