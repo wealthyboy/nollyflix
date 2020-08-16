@@ -34,7 +34,6 @@
                 
                 <div class="progression-studios-slider-overlay-gradient"></div>
                 
-                <div class="progression-studios-skrn-slider-upside-down" style="background-image:url('images/demo/shutterstock_117660574.jpg');"></div>
                 
                 
             </div><!-- close .progression-studios-slider-image-background -->
