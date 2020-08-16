@@ -24,7 +24,7 @@
                     <a href="/browse/{{ $video->id }}">
                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                     
-                        <div class="progression-video-index-content">
+                        <div class="progression-video-index-content no-background">
                             <div class="progression-video-index-table">
                                 <div class="progression-video-index-vertical-align">
                                     <div class="clearfix"></div>
