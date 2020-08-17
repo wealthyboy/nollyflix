@@ -310,7 +310,7 @@
          </tr>
       </table>
       <div class="pofbg"></div>
-       <?php foreach($user->casts as $cast )  { ?>
+       <?php foreach($user->carts as $cart )  { ?>
       <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceItemDetailsModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
