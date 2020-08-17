@@ -71,9 +71,12 @@
             <section class="vh-100">
                 <div class="row ">
                     <div class="col-md-4 offset-md-4">
-                        <div class="error-page text-center">
-                            <h1>YOUR CART IS EMPTY</h1>
-                            <a href="/" class="btn btn--gray space-t--2">Back to home</a>
+                        <div class="signup--middle">                    
+
+                            <div class="error-page text-center">
+                                <h1>YOUR CART IS EMPTY</h1>
+                                <a href="/" class="btn btn--gray space-t--2">Back to home</a>
+                            </div>
                         </div>
                     </div>
 
