@@ -88,7 +88,6 @@ class Video extends Model
 		return $link;
 	}
 
-
     /**
      * The videos bought that belong to the video.
     */

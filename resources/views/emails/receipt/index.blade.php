@@ -310,7 +310,7 @@
          </tr>
       </table>
       <div class="pofbg"></div>
-       <?php foreach($order->ordered_movies as $ordered_movie )  { ?>
+       <?php foreach($user->casts as $cast )  { ?>
       <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceItemDetailsModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
@@ -325,10 +325,6 @@
                                        <td align="left">
                                           <table cellspacing="0" cellpadding="0" border="0" align="center">
                                              <tr>
-
-                                            
-                                             
-                                            
                                                  <th class="stack2" style="margin: 0px; padding: 0px; border-bottom: 1px solid rgb(200, 198, 198);" data-border-bottom-color="borderColor" width="209">
                                                    <table class="table60032" width="209" cellspacing="0" cellpadding="0" border="0" align="center">
                                                        <tr>
@@ -339,10 +335,10 @@
                                                          <td class="wz2" width="30"></td>
                                                          <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;">
                                                           <div style="width: 70px; max-height: 90px;overflow: hidden;display: block;" class="">
-                                                             <img style="outline: 0 none;max-width: 100%;" src="{{ $ordered_movie->video->tn_poster }}" /> 
+                                                             <img style="outline: 0 none;max-width: 100%;" src="{{ optional($cast->video)->tn_poster }}" /> 
                                                          </div> 
                                                          
-                                                         <br/>{{ $ordered_movie->video->title }}  </td>
+                                                         <br/>{{ optional($cast->video)->title }}  </td>
                                                          <td class="wz2" width="30"></td>
                                                       </tr>
                                                       
@@ -360,7 +356,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{   $ordered_movie->price }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{   $cart->price }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -376,7 +372,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $ordered_movie->quantity }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $cart->quantity }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -392,7 +388,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $ordered_movie->total }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{ $cart->total }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -455,7 +451,7 @@
                                                       </tr> 
                                                       <tr>
                                                          <td class="wz2" width="30"><br></td>
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{  $order->get_total()   }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{  $user->cart_total   }}</td>
                                                          <td class="wz2" width="30"><br></td>
                                                       </tr>
                                                      <tr>
@@ -510,7 +506,7 @@
             </td>
          </tr>
       </table>
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FooterModule" data-thumb="http://www.emailtemplatebuilders.com/INVOICE-Generator/03_TBThumbnails/module-10.jpg" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FooterModule" data-thumb="" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
                <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">

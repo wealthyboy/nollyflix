@@ -35,7 +35,6 @@ class CheckoutController extends Controller
 		
 	public function  index()  { 
 		$carts =  Cart::all_items_in_cart();
-		dd($carts[0]->orders);
 		$csrf = json_encode(['csrf' => csrf_token()]);
 		$currency =  Helper::getCurrency();
 		return view('checkout.index',[
@@ -69,12 +68,10 @@ class CheckoutController extends Controller
 		]);
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
-		
-		
 		$when = now()->addMinutes(5);
-		// \Mail::to($user->email)
-		// 	->bcc($admin_emails[0])
-		// 	->send(new OrderReceipt($order,$this->settings,$symbol));
+		\Mail::to($user->email)
+			->bcc($admin_emails[0])
+			->send(new OrderReceipt($user, $order, $this->settings,$symbol));
 
 		//\Cookie::queue(\Cookie::forget('cart'));
 		return redirect('/thankyou');
