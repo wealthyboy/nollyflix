@@ -13,6 +13,8 @@ jQuery(document).ready(function($) {
 
 	 loadCart()
 
+	 console.log(content_owner)
+
 /*
 =============================================== 01. MENU ACTIVATION  ===============================================
 */
