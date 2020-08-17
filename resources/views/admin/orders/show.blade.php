@@ -170,7 +170,7 @@ $(".update_status").on('change',function(e){
       if(self.val() == '') return;
 
       let value = self.parent().find(".p-v-id").val()
-      var payLoad = { cart_id: value,status: self.val()}
+      var payLoad = { cart_id: value,status: self.val() }
       $.ajax({
          type: "POST",
          url: "/admin/update/order/status",
