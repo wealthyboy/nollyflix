@@ -79,9 +79,6 @@ class User extends Authenticatable
 	}
 	
 
-	
-
-
 	public function cast_videos()
     {
         return $this->belongsToMany('App\Video','cast_video');
@@ -106,8 +103,19 @@ class User extends Authenticatable
         return $this->morphOne('App\Banner', 'banner');
 	}
 
+
 	/**
-     * Get all of the posts for the country.
+     * Get all of the carts for the user.
+    */
+    public function carts()
+    {    
+		$cookie=\Cookie::get('cart'); 
+        return $this->hasMany('App\Cart')->where('remember_token',$cookie);
+	}
+	
+
+	/**
+     * Get all of the movies for the country.
      */
     public function movies()
     {

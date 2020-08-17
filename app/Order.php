@@ -21,6 +21,12 @@ class order extends Model
 	}
 
 
+	public function carts()
+    {   
+        return $this->belongsToMany('App\Cart');
+	}
+
+
 	public  function voucher(){
 		$voucher = Voucher::where('code',$this->coupon)->first();
 		if(null !== $voucher ){

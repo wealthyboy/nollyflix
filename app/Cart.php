@@ -42,6 +42,13 @@ class Cart extends Model
 	    return $carts;
 	}
 
+
+	public function orders()
+    {   
+        return $this->belongsToMany('App\Order');
+	}
+
+
 	public  static function sync($carts){
         if ( null == $carts ) return null;
 		foreach ($carts as $cart) {

@@ -45,13 +45,15 @@ class CheckoutController extends Controller
 	}
 
 	
-	public function store(Request $request,OrderedMovie $ordered_movie,Order $order) { 
+	public function store(Request $request,Order $order) { 
 		
-		$rate = Helper::rate();
+		$rate  = Helper::rate();
 		$user  =  auth()->user();
 		$carts =  Cart::all_items_in_cart();
+		$cart_ids =  $carts->pluck('id')->toArray();
+
 		$cart = new Cart();
-		$order->user_id = $user->id;
+		$order->user_id        = $user->id;
 		$order->status         = 'Paid';
 		$order->currency       =  $user->currency;
 		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
@@ -60,19 +62,7 @@ class CheckoutController extends Controller
 		$order->ip             = $request->ip();
 		$order->user_agent     = $request->server('HTTP_USER_AGENT');
 		$order->save();
-		foreach ( $carts   as $cart){
-			$insert = [
-				'order_id'=>$order->id,
-				'video_id'=>$cart->video_id,
-				'quantity'=>1,
-				'status'=>"Paid",
-				'purchase_type'=>$cart->purchase_type,
-				'price'=>$cart->ConvertCurrencyRate($cart->price),
-				'total'=>$cart->ConvertCurrencyRate(1 * $cart->price),
-				'created_at'=>\Carbon\Carbon::now()
-			];
-			OrderedMovie::Insert($insert);
-		}
+		$order->carts()->sync($cart_ids);
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
 		
@@ -82,8 +72,6 @@ class CheckoutController extends Controller
 			->send(new OrderReceipt($order,$this->settings,$symbol));
 
 		\Cookie::queue(\Cookie::forget('cart'));
-
-	
 		return redirect('/thankyou');
 	}
 

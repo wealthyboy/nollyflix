@@ -48,22 +48,22 @@ jQuery(document).ready(function($) {
 	$('.checkout-button').on('click',function(e){
 		e.preventDefault()
 		var $self =  $(this)
-        var user  =  $self.data('user')
-        var x = getpaidSetup({
-			PBFPubKey: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
-			customer_email: user.email,
+		var user  =  $self.data('user')
+		var x = FlutterwaveCheckout({
+			public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
+			tx_ref: "hooli-tx-1920bbtyt",
 			amount: user.cart_total,
 			currency: user.iso_code,
-			country: "NG",
-			payment_method: "both",
-			txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
-			meta: [{
-				metatitle: '',
-			}],
-			onclose: function() {
-				
+			redirect_url: // specified redirect URL
+			  "",
+			meta: {
+			  consumer_id: user.id,
 			},
-			callback: function(response) {
+			customer: {
+			  email: "user.email",
+			  name: user.name + " " + user.last_name,
+			},
+			callback: function (data) {
 				if (
 					response.respcode == "00" ||
 					response.success == true
@@ -75,9 +75,13 @@ jQuery(document).ready(function($) {
 				}
 			 
 				x.close(); // use this to close the modal immediately after payment.
-			}
+			},
+			onclose: function() {
+			  // close modal
+			},
+		
 		});
-
+       
 	})
 
 	function notify(color,from,align,msg){
