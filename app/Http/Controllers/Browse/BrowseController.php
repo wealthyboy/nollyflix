@@ -36,7 +36,7 @@ class BrowseController extends Controller
 
     public function show(Video $video,User $user = null)
     {   
-        return view('browse.show',compact('video'));   
+        return view('browse.show',compact('video','user'));   
     }
     
 }
