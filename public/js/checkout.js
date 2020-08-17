@@ -62,11 +62,13 @@ jQuery(document).ready(function($) {
 			  name: user.name + " " + user.last_name,
 			},
 			callback: function (response) {
+				console.log(response)
+				$('#checkout').submit()
+
 				if (
 					response.respcode == "00" ||
 					response.success == true
 				) {
-					$('#checkout').submit()
 					
 				} else {
                     notify('danger','top','right',"We could not complete your payment")
