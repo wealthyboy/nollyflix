@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Section;
 use App\DefaultBanner;
 use App\Video;
+use App\User;
 
 class BrowseController extends Controller
 {
