@@ -93,7 +93,7 @@
                <table class="table table-shopping">
                   <thead>
                      <tr>
-                        <th>Poster</th>
+                        <th >Poster</th>
                         <th class="th-description">Title</th>
                         <th class="text-right">Purchase Type</th>
                         <th class="text-right">Price</th>
@@ -108,7 +108,19 @@
                            <div class="img-container">
                               <img src="{{ optional($cart->video)->tn_poster  }} " alt="...">
                            </div>
-                          
+                           <div class="form-group label-floating">
+                             <input type="hidden" class="p-v-id" value="{{ $order_product->id }}" />
+                              <select  class="form-control mt-3 update_status" name="order_status[{{ $order_product->id }}]" id="">
+                                 <option value="" >Choose Status</option>
+                                 @foreach($statuses as $status)
+                                   @if ($status == $cart->status)
+                                       <option value="{{ $status }}" selected>{{ $status }}</option>
+                                    @else
+                                      <option value="{{ $status }}">{{ $status }}</option>
+                                    @endif
+                                 @endforeach
+                              </select>
+                           </div>
                         </td>
                         <td class="td-name">
                            <a href="">{{  optional(optional($cart)->video)->title }}</a>
@@ -119,7 +131,7 @@
                         </td>
                       
                         <td class="td-number text-right">
-                           {{  $order->currency }}{{  $cart->price   }}
+                           {{ $order->currency }}{{ $cart->price }}
                         </td>
                         <td class="td-number">
                            {{ $cart->quantity }}
@@ -153,5 +165,19 @@
 <!-- end row -->
 @endsection
 @section('inline-scripts')
+$(".update_status").on('change',function(e){
+      let self = $(this)
+      if(self.val() == '') return;
+
+      let value = self.parent().find(".p-v-id").val()
+      var payLoad = { cart_id: value,status: self.val()}
+      $.ajax({
+         type: "POST",
+         url: "/admin/update/order/status",
+         data: payLoad,
+      }).done(function(response){
+         console.log(response)
+      })
+})
 @stop
 

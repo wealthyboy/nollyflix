@@ -64,7 +64,7 @@ class CheckoutController extends Controller
 		$order->save();
 		$order->carts()->sync($cart_ids);
 		$user->carts()->update([
-           'status' => 'complete'
+           'status' => 'Complete'
 		]);
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();

@@ -41,16 +41,14 @@ class OrdersController extends Controller{
 
     public static function order_status() { 
 		return [
-			"Processing",
+			"Complete",
 			"Refunded",
-			"Shipped",
-			"Delivered"
 		];
 	}
 
 	public function show($id) { 
        $order       =  Order::find($id);
-       $sub_total   =  $order->ordered_movies[0]->sum_items($order->id)->items_total;
+       $sub_total   =  $order->carts;
 	   $statuses    =  static::order_status();
 	   return view('admin.orders.show',compact('statuses','order','sub_total'));
 	}
