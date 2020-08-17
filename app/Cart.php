@@ -16,7 +16,8 @@ class Cart extends Model
         'quantity',
         'total',
         'price',
-        'video_id'
+		'video_id',
+		'content_owner_id'
     ];
 
 
@@ -47,13 +48,11 @@ class Cart extends Model
 			$cart->update([
 				'user_id' => optional(auth()->user())->id	
 			]);
-			
+
 			if (null == $cart->video){
 				$cart->delete();
 			}
 		}
-
-		
 	}
 
 	public function video(){

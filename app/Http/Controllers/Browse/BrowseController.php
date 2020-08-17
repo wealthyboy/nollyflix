@@ -9,6 +9,7 @@ use App\Section;
 use App\DefaultBanner;
 use App\Video;
 use App\User;
+use App\Http\Helper;
 
 class BrowseController extends Controller
 {
@@ -19,7 +20,7 @@ class BrowseController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('auth');
+
     }
 
     /**
@@ -29,6 +30,7 @@ class BrowseController extends Controller
      */
     public function index()
     {    
+        dd(Helper::getTableColumns('carts'));
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured =  DefaultBanner::first();
         return view('browse.index',compact('sections','featured'));   

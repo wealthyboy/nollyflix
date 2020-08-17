@@ -57,7 +57,8 @@ class CartController  extends Controller {
 					'quantity'   => 1,
 					'price'      => $request->price,
                     'total'      => $request->price * 1,
-                    'user_id'    => $user_id,
+					'user_id'    => $user_id,
+					'content_owner_id'  => $request->content_owner_id,
                     'purchase_type' => $request->purchase_type,
 				]
 			);
@@ -73,7 +74,8 @@ class CartController  extends Controller {
 			$cart->quantity   = 1;
 			$cart->price      = $request->price;
             $cart->total      = $request->price * 1;
-            $cart->purchase_type = $request->purchase_type;
+			$cart->purchase_type = $request->purchase_type;
+			$cart->content_owner_id  = $request->content_owner_id;
 			$cart->remember_token =$cookie->getValue();
 			$cart->user_id    = $user_id;
             $cart->save();
