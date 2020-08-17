@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
 
 	 loadCart()
 
-	 console.log(content_owner)
+	 console.log(Window.content_owner)
 
 /*
 =============================================== 01. MENU ACTIVATION  ===============================================
