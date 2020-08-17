@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 			  consumer_id: user.id,
 			},
 			customer: {
-			  email: "user.email",
+			  email: user.email,
 			  name: user.name + " " + user.last_name,
 			},
 			callback: function (data) {
