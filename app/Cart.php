@@ -44,13 +44,13 @@ class Cart extends Model
 	public  static function sync($carts){
         if ( null == $carts ) return null;
 		foreach ($carts as $cart) {
-			if (null == $cart->video){
-				$cart->delete();
-			}
-			
 			$cart->update([
 				'user_id' => optional(auth()->user())->id	
 			]);
+			
+			if (null == $cart->video){
+				$cart->delete();
+			}
 		}
 
 		
