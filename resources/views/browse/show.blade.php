@@ -5,7 +5,7 @@
 
 
 <div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
-    <a class="video-page-title-play-button "  data-fancybox  href="{{ optional($video)->preview_link }}"><i class="fas fa-play"></i></a>
+    <a class="video-page-title-play-button"  data-fancybox  href="{{ optional($video)->preview_link }}"><i class="fas fa-play"></i></a>
     <div id="video-page-title-gradient-base"></div>
 </div><!-- close #video-page-title-pro -->
 

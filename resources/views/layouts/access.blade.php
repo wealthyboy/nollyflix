@@ -27,6 +27,12 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	
 	</head>
+
+	<script>
+		Window.content_owner = {
+			user: {{ isset($user) ? $user : null }}
+		}
+	</script>
 	<body>
 		<header id="masthead-pro" class="sticky-header"><!-- Remove sticky-header class to remove sticky header -->
 			<div class="header-container">
