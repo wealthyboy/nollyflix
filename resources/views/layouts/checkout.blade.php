@@ -19,7 +19,6 @@
         <script src="https://checkout.flutterwave.com/v3.js"></script><!-- Custom Document Ready JS -->
 
 		<link rel="stylesheet" href="{{ asset('icons/faw/css/font_awesome.css') }}"><!-- FontAwesome Icons -->
-		<link rel="stylesheet" href="/icons/Iconsmind__Ultimate_Pack/Line icons/styles.min.css"><!-- iconsmind.com Icons -->
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/css/overide.css">
