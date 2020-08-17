@@ -30,8 +30,6 @@ class OrderReceipt extends Mailable
         $this->currency = $symbol;
 
         $this->user = $user;
-
-
     }
 
     

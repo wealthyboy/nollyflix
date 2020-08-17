@@ -102,30 +102,30 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach ( $order->ordered_movies as $order_movie )
+                     @foreach ( $order->carts as $cart )
                      <tr>
                         <td>
                            <div class="img-container">
-                              <img src="{{ optional($order_movie->video)->tn_poster  }} " alt="...">
+                              <img src="{{ optional($cart->video)->tn_poster  }} " alt="...">
                            </div>
                           
                         </td>
                         <td class="td-name">
-                           <a href="">{{  optional(optional($order_movie)->video)->title }}</a>
+                           <a href="">{{  optional(optional($cart)->video)->title }}</a>
                            <br><small></small>
                         </td>
                         <td>
-                           <a href="">{{  $order_movie->purchase_type }}</a>
+                           <a href="">{{  $cart->purchase_type }}</a>
                         </td>
                       
                         <td class="td-number text-right">
-                           {{  $order->currency }}{{  $order_movie->order_price   }}
+                           {{  $order->currency }}{{  $cart->price   }}
                         </td>
                         <td class="td-number">
-                           {{ $order_movie->quantity }}
+                           {{ $cart->quantity }}
                         </td>
                         <td class="td-number">
-                           <small>{{  $order->currency }}</small>{{ $order_movie->total   }}
+                           <small>{{  $order->currency }}</small>{{ $cart->total   }}
                         </td>
                         
                      </tr>
@@ -136,10 +136,9 @@
                   <tfoot>
                      <tr>
                         <td colspan="6" class="text-right">Sub-Total</td>
-                        <td class="text-right"><small>{{ $order->currency }}</small>{{ number_format($sub_total)  }}</td>
+                        <td class="text-right"><small>{{ $order->currency }}</small>{{ '' }}</td>
                      </tr>
                    
-                     
                      <tr>
                         <td colspan="6" class="text-right">Total</td>
                         <td class="text-right">{{ $order->currency }}{{  $order->get_total() }}</td>
@@ -154,7 +153,5 @@
 <!-- end row -->
 @endsection
 @section('inline-scripts')
-
-
 @stop
 

@@ -337,7 +337,7 @@
                                                           <div style="width: 70px; max-height: 90px;overflow: hidden;display: block;" class="">
                                                              <img style="outline: 0 none;max-width: 100%;" src="{{ optional($cart->video)->tn_poster }}" /> 
                                                          </div> 
-                                                         
+                        
                                                          <br/>{{ optional($cart->video)->title }}  </td>
                                                          <td class="wz2" width="30"></td>
                                                       </tr>
