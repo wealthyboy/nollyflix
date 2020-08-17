@@ -73,7 +73,9 @@ Auth::routes();
 
 
 Route::group(['middleware' => 'currencyByIp'], function(){
-    Route::resource('browse',          'Browse\BrowseController',['name'=>'browse']);
+    Route::get('browse',          'Browse\BrowseController@index')->name('browse');
+    Route::get('browse/{video}',          'Browse\BrowseController@show')->name('browse.show');
+    Route::get('browse/{video}/user/{user}',          'Browse\BrowseController@show')->name('browse.show');
     Route::get('profile/videos',       'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',   'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{id}',           'Watch\WatchController@index')->name('watch');

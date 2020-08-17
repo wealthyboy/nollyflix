@@ -106,7 +106,7 @@ class Video extends Model
         return Helper::getFormatBack($this->release_date); 
     }
 
-    // public function getRouteKeyName(){
-    //     return 'slug';
-    // }
+    public function getRouteKeyName(){
+        return 'slug';
+    }
 }

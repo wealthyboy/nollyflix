@@ -34,9 +34,8 @@ class BrowseController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Video $video,User $user = null)
     {   
-        $video = Video::findOrFail($id);
         return view('browse.show',compact('video'));   
     }
     

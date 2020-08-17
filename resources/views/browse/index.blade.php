@@ -57,7 +57,7 @@
 
                     <div class="item">
                         <div class="progression-studios-video-index-container">
-                            <a href="/browse/{{ $video->id }}">
+                            <a href="/browse/{{ $video->slug }}">
                                 <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                                 <div class="progression-video-index-content no-background">
                                     <div class="progression-video-index-table">

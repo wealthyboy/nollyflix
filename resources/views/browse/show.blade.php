@@ -6,29 +6,18 @@
 
 <div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
     <a class="video-page-title-play-button "  data-fancybox  href="{{ optional($video)->preview_link }}"><i class="fas fa-play"></i></a>
-    
-    <div style="display:none;">
-        <video id="Video-Vayvo-Single" poster="/images/video/poster.jpg" width="960" height="540" class="afterglow-lightboxplayer" data-autoresize="fit">
-            <source src="images/video/sample.mp4" type="video/mp4">
-        </video>
-    </div>
-    
     <div id="video-page-title-gradient-base"></div>
 </div><!-- close #video-page-title-pro -->
 
 <div id="content-pro">
 			
     <div class="container custom-gutters-pro">
-        
-        
         <div id="video-post-container">
             <h1 class="video-post-heading-title">{{ optional($video)->title }}</h1>
             <div class="clearfix"></div>
             
             <ul id="video-post-meta-list">
-                  <li><a href="/">{{ $video->genres[0]->name }}</a></li>
-               
-                
+                <li><a href="/">{{ $video->genres[0]->name }}</a></li>
                 <li id="video-post-meta-year">{{ $video->created_at->format('Y') }}</li>
                 <li id="video-post-meta-rating"><span>{{ $video->film_rating }}</span></li>
             </ul>
@@ -47,7 +36,7 @@
             
             <div id="video-more-like-this-details-section">
                 
-                @if($video->related_videos !== null)
+                @if($video->related_videos->count())
                 <h3 id="more-videos-heading">More Like This</h3>
             
                 <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
@@ -56,7 +45,7 @@
 
                         <div class="item">
                             <div class="progression-studios-video-index-container">
-                                <a href="/browse/{{ $video->id }}">
+                                <a href="/browse/{{ $video->slug }}">
                                     <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                                     <div class="progression-video-index-content no-background">
                                         <div class="progression-video-index-table">
@@ -73,7 +62,7 @@
                         
                         @endforeach
 
-                    </div><!-- close #progression-video-carousel - See /js/script.js file for options -->
+                    </div><!-- close #progression-video-carousel -->
                 </div><!-- close .progression-studios-elementor-carousel-container  -->
 
             @else
@@ -98,7 +87,7 @@
 
             <div class="content-sidebar-section video-sidebar-section-length">
                 <h4 class="content-sidebar-sub-header">Starring</h4>
-                <div class="content-sidebar-short-description">{{ $video->duration }}</div>
+               
             </div><!-- close .content-sidebar-section -->
             
          
