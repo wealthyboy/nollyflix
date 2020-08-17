@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterCartsTableAddOwnerId extends Migration
+class AlterCartsTableAddContentOwnerId extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AlterCartsTableAddOwnerId extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->integer('owner_id')->unsigned()->nullable();
+            $table->integer('content_owner_id')->unsigned()->nullable();
             $table->string('status')->nullable();
         });
     }
@@ -27,7 +27,7 @@ class AlterCartsTableAddOwnerId extends Migration
     public function down()
     {
         Schema::table('carts', function (Blueprint $table) {
-            //
+            $table->dropColumn(['content_owner_id','status']);      
         });
     }
 }
