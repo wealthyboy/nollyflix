@@ -23,17 +23,17 @@
             </ul>
             <div class="clearfix"></div>
 
+            <div id="vayvo-video-post-content">
+                <p>{!! optional($video)->description !!}</p>
+            </div><!-- #vayvo-video-post-content -->
+
             <div id="video-post-buttons-container">
                 <a href="#" class="buy-video"   data-prop="{{ $video }}" data-user="{{ $user }}" data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->buy_price) }} </a>
                 <a href="#" class="rent-video"  data-prop="{{ $video }}" data-user="{{ $user }}" data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->rent_price) }}</a>
                 <div class="clearfix"></div>
             </div><!-- close #video-post-buttons-container -->
 
-            <div id="vayvo-video-post-content">
-                <p>{!! optional($video)->description !!}</p>
-            </div><!-- #vayvo-video-post-content -->
-            
-            
+    
             <div id="video-more-like-this-details-section">
                 
                 @if($video->related_videos->count())
