@@ -115,11 +115,11 @@ class User extends Authenticatable
 	
 
 	/**
-     * Get all of the movies for the country.
+     * Get all of the movies.
      */
     public function movies()
     {
-        return $this->hasManyThrough('App\OrderedMovie', 'App\Order');
+        return $this->hasManyThrough('App\', 'App\Order');
     }
 	
 	/**
