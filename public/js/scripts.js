@@ -236,6 +236,8 @@ jQuery(document).ready(function($) {
 			$('#cart-count').text('('+count+')');
 		 }).fail(function(){
 			notify('danger','top','right',"We could not add your item to cart.")
+			$self.find('.spinner-border').remove();
+
 		 });
 	
 		// var x = getpaidSetup({
