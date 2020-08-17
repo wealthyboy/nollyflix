@@ -109,8 +109,8 @@
                               <img src="{{ optional($cart->video)->tn_poster  }} " alt="...">
                            </div>
                            <div class="form-group label-floating">
-                             <input type="hidden" class="p-v-id" value="{{ $order_product->id }}" />
-                              <select  class="form-control mt-3 update_status" name="order_status[{{ $order_product->id }}]" id="">
+                             <input type="hidden" class="p-v-id" value="{{ $cart->id }}" />
+                              <select  class="form-control mt-3 update_status" name="order_status[{{ $cart->id }}]" id="">
                                  <option value="" >Choose Status</option>
                                  @foreach($statuses as $status)
                                    @if ($status == $cart->status)
