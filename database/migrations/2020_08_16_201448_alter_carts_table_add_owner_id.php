@@ -14,7 +14,8 @@ class AlterCartsTableAddOwnerId extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            //
+            $table->integer('owner_id')->unsigned()->nullable();
+            $table->string('status')->nullable();
         });
     }
 
