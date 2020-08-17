@@ -61,7 +61,7 @@ jQuery(document).ready(function($) {
 			  email: user.email,
 			  name: user.name + " " + user.last_name,
 			},
-			callback: function (data) {
+			callback: function (response) {
 				if (
 					response.respcode == "00" ||
 					response.success == true
