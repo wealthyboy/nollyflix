@@ -35,6 +35,7 @@ class CheckoutController extends Controller
 		
 	public function  index()  { 
 		$carts =  Cart::all_items_in_cart();
+		dd($carts);
 		$csrf = json_encode(['csrf' => csrf_token()]);
 		$currency =  Helper::getCurrency();
 		return view('checkout.index',[
