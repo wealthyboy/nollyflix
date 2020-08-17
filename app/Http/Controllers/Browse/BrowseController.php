@@ -37,7 +37,6 @@ class BrowseController extends Controller
 
     public function show(Video $video,User $user)
     {   
-        dd($user);
         return view('browse.show',compact('video','user'));   
     }
     
