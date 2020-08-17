@@ -222,7 +222,7 @@ jQuery(document).ready(function($) {
 			price: price,
 			type: type,
 			currency: property.currency,
-			content_owner_id: content_owner
+			content_owner_id: content_owner.user_id
 		}
 
 		$.ajax({
