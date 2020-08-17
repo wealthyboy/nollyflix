@@ -63,15 +63,19 @@ class CheckoutController extends Controller
 		$order->user_agent     = $request->server('HTTP_USER_AGENT');
 		$order->save();
 		$order->carts()->sync($cart_ids);
+		$user->carts()->update([
+           'status' => 'complete'
+		]);
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
 		
+		
 		$when = now()->addMinutes(5);
-		\Mail::to($user->email)
-			->bcc($admin_emails[0])
-			->send(new OrderReceipt($order,$this->settings,$symbol));
+		// \Mail::to($user->email)
+		// 	->bcc($admin_emails[0])
+		// 	->send(new OrderReceipt($order,$this->settings,$symbol));
 
-		\Cookie::queue(\Cookie::forget('cart'));
+		//\Cookie::queue(\Cookie::forget('cart'));
 		return redirect('/thankyou');
 	}
 

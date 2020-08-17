@@ -89,7 +89,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Video','filmer_video');
     }
 
-
 	public function scopeCastings(Builder $builder)
 	{
 		return $builder->where('type','casts');
@@ -151,7 +150,6 @@ class User extends Authenticatable
 	{
 	    return Helper::getCurrency();   
 	}
-
 
 	public function getIsoCodeAttribute()
 	{

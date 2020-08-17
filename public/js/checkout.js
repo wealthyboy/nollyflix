@@ -54,8 +54,6 @@ jQuery(document).ready(function($) {
 			tx_ref: "hooli-tx-1920bbtyt",
 			amount: user.cart_total,
 			currency: user.iso_code,
-			redirect_url: // specified redirect URL
-			  "",
 			meta: {
 			  consumer_id: user.id,
 			},
