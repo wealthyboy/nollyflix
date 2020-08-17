@@ -46,12 +46,14 @@ class Cart extends Model
 		foreach ($carts as $cart) {
 			if (null == $cart->video){
 				$cart->delete();
-            }
+			}
+			
+			$cart->update([
+				'user_id' => optional(auth()->user())->id	
+			]);
 		}
 
-		$cart->update([
-			'user_id' => optional(auth()->user())->id	
-		]);
+		
 	}
 
 	public function video(){
