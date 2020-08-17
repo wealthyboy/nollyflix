@@ -16,7 +16,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="Watch nollywood movies online">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
-        <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script><!-- Custom Document Ready JS -->
+        <script src="https://checkout.flutterwave.com/v3.js"></script><!-- Custom Document Ready JS -->
 
 		<link rel="stylesheet" href="{{ asset('icons/faw/css/font_awesome.css') }}"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="/icons/Iconsmind__Ultimate_Pack/Line icons/styles.min.css"><!-- iconsmind.com Icons -->
