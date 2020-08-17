@@ -119,7 +119,7 @@ class User extends Authenticatable
      */
     public function movies()
     {
-        return $this->hasManyThrough('App\', 'App\Order');
+        return $this->hasMany('App\Cart')->where('status','Paid');
     }
 	
 	/**

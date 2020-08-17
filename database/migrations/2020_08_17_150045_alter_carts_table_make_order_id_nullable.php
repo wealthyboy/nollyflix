@@ -14,8 +14,7 @@ class AlterCartsTableMakeOrderIdNullable extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->dropColumn('order_id');
-            $table->unsignedBigInteger('order_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('order_id')->unsigned()->nullable()->change();
         });
     }
 
