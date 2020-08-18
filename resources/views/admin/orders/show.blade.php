@@ -109,7 +109,7 @@
                               <img src="{{ optional($cart->video)->tn_poster  }} " alt="...">
                            </div>
                            <div class="form-group label-floating">
-                             <input type="hidden" class="p-v-id" value="{{ $cart->id }}" />
+                             <input type="hidden" class="cart_id" value="{{ $cart->id }}" />
                               <select  class="form-control mt-3 update_status" name="order_status[{{ $cart->id }}]" id="">
                                  <option value="" >Choose Status</option>
                                  @foreach($statuses as $status)
@@ -167,12 +167,11 @@
 $(".update_status").on('change',function(e){
       let self = $(this)
       if(self.val() == '') return;
-
       let value = self.parent().find(".cart_id").val()
       var payLoad = { cart_id: value,status: self.val() }
       $.ajax({
          type: "PATCH",
-         url: "/admin/orders/"+ ,
+         url: "/admin/orders/"+value ,
          data: payLoad,
       }).done(function(response){
          console.log(response)
