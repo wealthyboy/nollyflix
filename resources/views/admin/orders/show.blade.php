@@ -127,9 +127,8 @@
                            <br><small></small>
                         </td>
                         <td>
-                           <a href="">{{  $cart->purchase_type }}</a>
+                           {{ $cart->purchase_type }}
                         </td>
-                      
                         <td class="td-number text-right">
                            {{ $order->currency }}{{ $cart->price }}
                         </td>
@@ -137,7 +136,7 @@
                            {{ $cart->quantity }}
                         </td>
                         <td class="td-number">
-                           <small>{{  $order->currency }}</small>{{ $cart->total   }}
+                           <small>{{ $order->currency }}</small>{{ $cart->total }}
                         </td>
                         
                      </tr>
