@@ -53,7 +53,7 @@ class OrdersController extends Controller{
 	   return view('admin.orders.show',compact('statuses','order','sub_total'));
 	}
 	
-	public function updateStatus(Request $request)
+	public function update(Request $request)
 	{
 		$cart         = Cart::findOrFail($request->cart_id);
 		$cart->status = $request->status;
