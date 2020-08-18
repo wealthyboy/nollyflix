@@ -22,7 +22,6 @@ class ProfileVideoController extends Controller
     {    
         $user = auth()->user();
         $active = "videos";
-         dd( $user );
         return view('profile_videos.index',compact('active','user'));
     }
 }
