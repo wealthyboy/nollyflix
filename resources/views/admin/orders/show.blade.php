@@ -168,9 +168,10 @@ $(".update_status").on('change',function(e){
       let self = $(this)
       if(self.val() == '') return;
       let value = self.parent().find(".cart_id").val()
+      console.log(value)
       var payLoad = { cart_id: value,status: self.val() }
       $.ajax({
-         type: "PUT",
+         type: "PATCH",
          url: "/admin/orders/"+value ,
          data: payLoad,
       }).done(function(response){
