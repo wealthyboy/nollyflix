@@ -20,13 +20,12 @@ class OrdersController extends Controller{
   
     public function __construct()
     {
-
        $this->middleware('admin'); 
 	   $this->settings =  \DB::table('system_settings')->first();
     }
 
-    public function index ( ) { 
-	
+	public function index ( ) 
+	{ 
 		$orders = Order::orderBy('created_at','desc')->get();
         return view('admin.orders.index',compact('orders'));
     }
@@ -46,24 +45,26 @@ class OrdersController extends Controller{
 		];
 	}
 
-	public function show($id) { 
+	public function show($id) 
+	{ 
        $order       =  Order::find($id);
        $sub_total   =  $order->carts;
 	   $statuses    =  static::order_status();
 	   return view('admin.orders.show',compact('statuses','order','sub_total'));
 	}
 	
-	public function updateStatus(Request $request){
-		$ordered_product = OrderedProduct::findOrFail($request->ordered_product_id);
-		$ordered_product->status = $request->status;
-		$ordered_product->save();        
-		return $ordered_product;
+	public function updateStatus(Request $request)
+	{
+		$cart         = Cart::findOrFail($request->cart_id);
+		$cart->status = $request->status;
+		$cart->save();        
+		return $cart;
 	}
     
-
-    public function dispatchNote(Request $request,$id){
+	public function dispatchNote(Request $request,$id)
+	{
 	    $page_title = 'Dispatch Note';
-		$order =  Order::find($id);	 
+		$order      =  Order::find($id);	 
 		return view('admin.dispatch.index',compact('order','page_title'));
 	}
 

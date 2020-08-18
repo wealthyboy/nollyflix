@@ -148,7 +148,7 @@
                   <tfoot>
                      <tr>
                         <td colspan="6" class="text-right">Sub-Total</td>
-                        <td class="text-right"><small>{{ $order->currency }}</small>{{ '' }}</td>
+                        <td class="text-right"><small>{{ $order->currency }}</small>{{ $cart->sum('total') }}</td>
                      </tr>
                    
                      <tr>
@@ -169,11 +169,11 @@ $(".update_status").on('change',function(e){
       let self = $(this)
       if(self.val() == '') return;
 
-      let value = self.parent().find(".p-v-id").val()
+      let value = self.parent().find(".cart_id").val()
       var payLoad = { cart_id: value,status: self.val() }
       $.ajax({
-         type: "POST",
-         url: "/admin/update/order/status",
+         type: "PATCH",
+         url: "/admin/orders/"+ ,
          data: payLoad,
       }).done(function(response){
          console.log(response)

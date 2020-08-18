@@ -87,11 +87,11 @@ Route::group(['middleware' => 'currencyByIp'], function(){
 
 
 
-    Route::get('checkout',              'Checkout\CheckoutController@index');
-    Route::post('checkout',             'Checkout\CheckoutController@store');
-    Route::resource('profile',         'Profile\ProfileController',['name'=>'profile']);
-    Route::post('change/password',     'Profile\ProfileController@changePassword');
-    Route::get('{username}',                'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
+    Route::get('checkout',         'Checkout\CheckoutController@index');
+    Route::post('checkout',        'Checkout\CheckoutController@store');
+    Route::resource('profile',     'Profile\ProfileController',['name'=>'profile']);
+    Route::post('change/password', 'Profile\ProfileController@changePassword');
+    Route::get('{username}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
 });
 
 
