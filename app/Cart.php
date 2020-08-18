@@ -54,7 +54,7 @@ class Cart extends Model
 	public function videoExpires()
 	{
 		$daysToAdd = 2;
-		return $this->created_at->addDays($daysToAdd);
+		return $this->created_at->addDays($daysToAdd)->format('d/m/y');
 
     }
 
