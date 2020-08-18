@@ -118,7 +118,7 @@ class User extends Authenticatable
      */
     public function movies()
     {
-        return $this->hasMany('App\Cart')->where('status','Paid');
+        return $this->hasMany('App\Cart')->where('status','Complete');
     }
 	
 	/**
