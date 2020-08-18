@@ -144,7 +144,7 @@ class User extends Authenticatable
     */
     public function sales()
     {
-        return $this->hasMAny('App\Cart')->where([
+        return $this->hasMAny('App\Cart','content_owner_id')->where([
             'carts.purchase_type' => 'buy',
             'carts.status' => 'Complete'
         ]);
@@ -156,7 +156,7 @@ class User extends Authenticatable
     */
     public function rents()
     {
-        return $this->hasMAny('App\Cart')->where([
+        return $this->hasMAny('App\Cart','content_owner_id')->where([
             'carts.purchase_type' => 'rent',
             'carts.status' => 'Complete'
         ]);
