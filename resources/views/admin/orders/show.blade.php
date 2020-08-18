@@ -51,10 +51,7 @@
                         <td><button data-toggle="tooltip" title="E-Mail" class="btn btn-info btn-xs"><i class="fa fa-envelope-o fa-fw"></i></button></td>
                         <td><a href="">{{ $order->user->email }}</a></td>
                      </tr>
-                     <tr>
-                        <td><button data-toggle="tooltip" title="Telephone" class="btn btn-info btn-xs"><i class="fa fa-phone fa-fw"></i></button></td>
-                        <td>{{ $order->user->phone_number }}</td>
-                     </tr>
+                     
                   </tbody>
                </table>
             </div>
