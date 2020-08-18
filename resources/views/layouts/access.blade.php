@@ -30,7 +30,7 @@
 
 	<script>
 		Window.content_owner = {
-			user_id: {!! isset($user) ? $user->id : null !!}
+			user: {!! isset($user) ? $user : null !!}
 		}
 	</script>
 	<body>
