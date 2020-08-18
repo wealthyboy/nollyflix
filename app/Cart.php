@@ -63,7 +63,7 @@ class Cart extends Model
     public function isVideoRentExpired()
     {   
         return $this->purchase_type == 'rent' && 
-        $this->videoExpires() < Carbon::now() ? true : false;
+        now() > $this->videoExpires()  ? true : false;
     }
 
 
