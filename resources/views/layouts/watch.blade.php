@@ -15,13 +15,15 @@
 		<meta property="og:title" content=" NollyFlix tv">
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="Watch nollywood movies online">
-		<script src='https://kit.fontawesome.com/a076d05399.js'></script> 
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
+		<link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 		<link rel="stylesheet" href="/css/overide.css">
+		  <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	
@@ -36,22 +38,7 @@
 		
 		<!-- Required Framework JavaScript -->
 		<script src="/js/libs/jquery-3.5.1.min.js"></script><!-- jQuery -->
-		<script src="/js/libs/popper.min.js" defer></script><!-- Bootstrap Popper/Extras JS -->
-		<script src="/js/libs/bootstrap.min.js" defer></script><!-- Bootstrap Main JS -->
-		<!-- All JavaScript in Footer -->
-        		<!-- Additional Plugins and JavaScript -->
-		<script src="/js/bideo.js" defer></script><!-- Video Background JS Plugin -->
-		<script src="/js/video-background.js" defer></script><!-- Video Background JS -->
-		
-		<!-- Additional Plugins and JavaScript -->
-		<script src="/js/navigation.js" defer></script><!-- Header Navigation JS Plugin -->
-		<script src="/js/jquery.flexslider-min.js" defer></script><!-- FlexSlider JS Plugin -->	
-		<script src="/js/jquery-asRange.min.js" defer></script><!-- Range Slider JS Plugin -->
-		<script src="/js/afterglow.min.js" defer></script><!-- Video Player JS Plugin -->
-		<script src="/js/owl.carousel.min.js" defer></script><!-- Carousel JS Plugin -->
-		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+		<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
 		<script src="/js/scripts.js" defer></script><!-- Custom Document Ready JS -->
-		
-		
 	</body>
 </html>

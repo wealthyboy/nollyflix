@@ -19,7 +19,7 @@
                         @foreach($user->movies as $video)
                             <div class="col col-6 col-md-4 col-lg-4">
                                 <div class="progression-studios-video-index-container">
-                                    <a href="/watch/{{  $video->video->id }}">
+                                    <a href="{{ !$video->isVideoRentExpired() ? '/watch/'{{  $video->video->id }} : '#' ">
                                 
                                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->video->tn_poster }}" alt="{{ $video->video->title }}"></div>
                             
@@ -27,7 +27,7 @@
                                             <div class="progression-video-index-table">
                                                 <div class="progression-video-index-vertical-align">
                                         
-                                                    <h2 class="progression-video-title">{{ $video->video->title}}</h2>
+                                                    <h2 class="progression-video-title"></h2>
                                                     <div class="clearfix"></div>
                                                     <ul class="video-index-meta-taxonomy">
                                                         <li></li>
@@ -38,6 +38,10 @@
                                             </div><!-- close .progression-video-index-table -->
                                         </div><!-- close .progression-video-index-content -->
                                         <div class="video-index-border-hover"></div>
+                                        <div class="mr-2">
+                                            <h2 class="progression-video-title"> </h2>
+                                            <h2 class="progression-video-title">Rent - {{ $video->currency }}{{ number_format($video->rent_price) }}</h2>
+                                        </div>
                                         <div class="progress mt-2">
                                             <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>

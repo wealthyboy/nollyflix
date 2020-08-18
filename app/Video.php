@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Helper;
 use App\Traits\FormatPrice;
+use Carbon\Carbon;
 
 
 class Video extends Model
@@ -19,7 +20,6 @@ class Video extends Model
         'converted_rent_price',
         'iso_code'
 	];
-
 
     /**
      * The casts that belong to the user.
@@ -37,13 +37,29 @@ class Video extends Model
         return $this->belongsToMany('App\Category');
     }
 
+    /**
+     * The video in Cart.
+    */
+    public function cart()
+    {   
+        return $this->hasOne(Cart::class);
+    }
 
-     /**
+    /**
+     * The video in Cart.
+    */
+    public function isVideoRentExpired()
+    {   
+        return optional($this->cart)->purchase_type == 'rent' && 
+        optional($this->cart)->created_at <= Carbon::now()->addDays(2) ? true : false;
+    }
+
+
+    /**
      * The sold that belong to the user.
     */
     public function solds()
     {   
-        
         return $this->hasMAny('App\Cart')->where([
             'purchase_type' => 'buy',
             'status' => 'Complete',

@@ -139,8 +139,6 @@ class User extends Authenticatable
 		return $builder->where('type','admin');
 	}
 
-	
-
 
 	public function getCartTotalAttribute()
 	{   
