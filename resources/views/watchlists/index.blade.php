@@ -17,13 +17,13 @@
                 <div class="row">
                     @if( $user->movies->count())
                         @foreach($user->movies as $video)
-                            <div class="col col-12 col-md-6 col-lg-6">
+                            <div class="col col-6 col-md-4 col-lg-4">
                                 <div class="progression-studios-video-index-container">
                                     <a href="/watch/{{  $video->video->id }}">
                                 
                                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->video->tn_poster }}" alt="{{ $video->video->title }}"></div>
                             
-                                        <div class="progression-video-index-content">
+                                        <div class="progression-video-index-content no-background">
                                             <div class="progression-video-index-table">
                                                 <div class="progression-video-index-vertical-align">
                                         
@@ -38,6 +38,9 @@
                                             </div><!-- close .progression-video-index-table -->
                                         </div><!-- close .progression-video-index-content -->
                                         <div class="video-index-border-hover"></div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                 
                                     </a>
                                 </div><!-- close .progression-studios-video-index-container -->
