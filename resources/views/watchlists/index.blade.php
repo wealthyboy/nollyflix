@@ -38,13 +38,14 @@
                                             </div><!-- close .progression-video-index-table -->
                                         </div><!-- close .progression-video-index-content -->
                                         <div class="video-index-border-hover"></div>
+                                        <div class="progress mt-2">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                         <div class="mr-2">
                                             <h2 class="progression-video-title">Type: {{ $video->purchase_type == 'rent' ? 'Rented' : 'Bought'}}</h2>
                                             <h2 class="progression-video-title">Expires:  </h2>
                                         </div>
-                                        <div class="progress mt-2">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                       
                                 
                                     </a>
                                 </div><!-- close .progression-studios-video-index-container -->
