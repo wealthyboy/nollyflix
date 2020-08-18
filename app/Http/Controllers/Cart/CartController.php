@@ -47,6 +47,10 @@ class CartController  extends Controller {
 		if (auth()->check()){
             $user_id = auth()->user()->id;
 		}
+
+		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
+
+		return $content_owner_id;
 		
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
@@ -58,7 +62,7 @@ class CartController  extends Controller {
 					'price'      => $request->price,
                     'total'      => $request->price * 1,
 					'user_id'    => $user_id,
-					'content_owner_id'  => $request->content_owner_id,
+					'content_owner_id'  => $content_owner_id,
                     'purchase_type' => $request->purchase_type,
 				]
 			);
@@ -75,7 +79,7 @@ class CartController  extends Controller {
 			$cart->price      = $request->price;
             $cart->total      = $request->price * 1;
 			$cart->purchase_type = $request->purchase_type;
-			$cart->content_owner_id  = $request->content_owner_id;
+			$cart->content_owner_id  = $content_owner_id;
 			$cart->remember_token =$cookie->getValue();
 			$cart->user_id    = $user_id;
             $cart->save();

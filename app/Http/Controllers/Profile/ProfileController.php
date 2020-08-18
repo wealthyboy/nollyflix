@@ -44,7 +44,6 @@ class ProfileController extends Controller
         if ($user){
             session(['content_owner_id' => $user->id]);
         }
-        dd(session('content_owner_id'));
         return view('profile.profile',compact('user'));
     }
 
