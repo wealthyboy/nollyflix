@@ -37,7 +37,6 @@ class Video extends Model
         return $this->belongsToMany('App\Category');
     }
 
-   
 
     /**
      * The filmers that belong to the user.
@@ -58,12 +57,15 @@ class Video extends Model
 
 
     /**
-     * The filmers that belong to the user.
+     * The casts that belong to the user.
     */
     public function casts()
     {
         return $this->belongsToMany('App\User','cast_video','video_id','user_id');
     }
+
+
+    
 
     /**
      * The filmers that belong to the user.

@@ -14,15 +14,14 @@
                                 <div class="progression-studios-slider-caption-align">
                                     <h2><a href="/">{{ optional($featured->video)->title }}</a></h2>
                                     <ul class="slider-video-post-meta-list">
-                                        <li class="slider-video-post-meta-cat"><ul><li><a href="#">{{ 'Drama' }}</a></li></ul></li>																				
-                                       
+                                        <li class="slider-video-post-meta-cat"><ul><li><a href="#">{{ 'Drama' }}</a></li></ul></li>
                                         <li class="slider-video-post-meta-year">{{ $featured->created_at->format('Y') }}</li>
                                         <li class="slider-video-post-meta-rating"><span>PG-{{ optional($featured->video)->film_rating }}</span></li>
                                     </ul>
                                     <div class="clearfix"></div>
                                     <div class="progression-studios-slider-excerpt"><?php echo html_entity_decode($featured->video->description) ?></div>
                                     <a class="btn btn-slider-pro" data-fancybox  href="{{ optional($featured->video)->preview_link }}"><i class="far fa-play-circle"></i>Play Trailer</a>
-                                    <a class="btn btn-slider-pro buy-video"  data-prop="{{ $featured->video }}" data-type="buy" href="#"><i class="fas fa-shopping-cart"></i>Buy {{ $featured->video->currency }}{{ number_format($featured->video->buy_price) }} </a>
+                                    <a class="btn btn-slider-pro buy-video"   data-prop="{{ $featured->video }}" data-type="buy" href="#"><i class="fas fa-shopping-cart"></i>Buy {{ $featured->video->currency }}{{ number_format($featured->video->buy_price) }} </a>
                                     <a class="btn btn-slider-pro rent-video"  data-prop="{{ $featured->video }}" data-type="rent"  href="#"><i class="fas fa-shopping-cart"></i>Rent {{ $featured->video->currency }}{{ number_format($featured->video->rent_price) }} </a>
                                 </div><!-- close .progression-studios-slider-caption-align -->
                             </div><!-- close .progression-studios-slider-caption-width -->
