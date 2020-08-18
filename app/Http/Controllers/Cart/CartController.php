@@ -49,8 +49,6 @@ class CartController  extends Controller {
 		}
 
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
-
-		return $content_owner_id;
 		
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
