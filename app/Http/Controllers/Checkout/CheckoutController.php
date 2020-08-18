@@ -73,7 +73,7 @@ class CheckoutController extends Controller
 			->bcc($admin_emails[0])
 			->send(new OrderReceipt($user, $order, $this->settings,$symbol));
 
-		//\Cookie::queue(\Cookie::forget('cart'));
+		\Cookie::queue(\Cookie::forget('cart'));
 		return redirect('/thankyou');
 	}
 
