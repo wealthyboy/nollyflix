@@ -41,6 +41,9 @@ class ProfileController extends Controller
     public function ActorsAndFilMakers($username)
     {   
         $user = User::where('username',$username)->firstOrFail();
+        if ($user){
+            session(['content_owner_id' => $user->id]);
+        }
         return view('profile.profile',compact('user'));
     }
 

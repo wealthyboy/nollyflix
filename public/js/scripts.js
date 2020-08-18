@@ -199,8 +199,6 @@ jQuery(document).ready(function($) {
 		e.preventDefault()
 		var $self =  $(this)
 		var property = $self.data('prop');
-		var content_owner =  Window.content_owner;
-		console.log( content_owner.user_id, Window.content_owner)
 		var type = $self.data('type');
 		var price = null
 		if (type == 'undefined' || type == ''){
@@ -223,7 +221,6 @@ jQuery(document).ready(function($) {
 			price: price,
 			type: type,
 			currency: property.currency,
-			content_owner_id: content_owner.user_id
 		}
 
 		$.ajax({
