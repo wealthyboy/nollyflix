@@ -10,6 +10,7 @@ use App\SystemSetting;
 use App\OrderedProduct;
 use App\Http\Controllers\Controller;
 use App\Http\Helper;
+use App\Cart;
 
 
 
@@ -55,7 +56,7 @@ class OrdersController extends Controller{
 	
 	public function update(Request $request,$cart_id)
 	{
-		$cart         = Cart::findOrFail($request->cart_id);
+		$cart         = Cart::findOrFail($cart_id);
 		$cart->status = $request->status;
 		$cart->save();        
 		return $cart;
