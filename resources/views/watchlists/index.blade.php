@@ -38,8 +38,8 @@
                                             </div><!-- close .progression-video-index-table -->
                                         </div><!-- close .progression-video-index-content -->
                                         <div class="video-index-border-hover"></div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress mt-2">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                 
                                     </a>
