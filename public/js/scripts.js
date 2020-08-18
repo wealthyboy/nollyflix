@@ -200,6 +200,7 @@ jQuery(document).ready(function($) {
 		var $self =  $(this)
 		var property = $self.data('prop');
 		var content_owner =  Window.content_owner;
+		console.log( content_owner.user_id, Window.content_owner)
 		var type = $self.data('type');
 		var price = null
 		if (type == 'undefined' || type == ''){
