@@ -43,7 +43,11 @@
                                         </div>
                                         <div class="mr-2">
                                             <h2 class="progression-video-title">Type: {{ $video->purchase_type == 'rent' ? 'Rented' : 'Bought'}}</h2>
-                                            <h2 class="progression-video-title">Expires:  </h2>
+                                            <h2 class="progression-video-title">Price: {{ $video->price }}</h2>
+
+                                            @if ($video->purchase_type == 'rent')
+                                            <h2 class="progression-video-title">Expires:  {{ $video->videoExpires() }}</h2>
+                                            @endif
                                         </div>
                                        
                                 

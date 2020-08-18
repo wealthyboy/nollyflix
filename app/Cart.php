@@ -51,6 +51,13 @@ class Cart extends Model
         return $this->belongsToMany('App\Order');
 	}
 
+	public function videoExpires()
+	{
+		$date = Carbon::createFromFormat('Y.m.d', $this->created_at);
+		$daysToAdd = 2;
+		return $date->addDays($daysToAdd);
+
+    }
 
 	/**
      * The video in Cart.
