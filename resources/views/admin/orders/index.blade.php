@@ -47,7 +47,7 @@
                                  </label>
                               </div>
                            </td>
-                            <td class="text-left">{{ $order->invoice }}</td>
+                            <td class="text-right">{{ $order->invoice }}</td>
                             <td>{{ $order->user->fullname() }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td class="text-left">{{ $order->currency  ?? '₦'}}{{ $order->get_total() }}</td>

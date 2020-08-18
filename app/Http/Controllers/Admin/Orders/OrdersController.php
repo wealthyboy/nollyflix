@@ -32,10 +32,11 @@ class OrdersController extends Controller{
     }
     
 
-    public function invoice($id){
-        $order     =  Order::find($id);
+	public function invoice($id)
+	{
+		$order     =  Order::find($id);
+		$sub_total   =  $order->carts->sum('total');
         $system_settings = SystemSetting::first();
-		$sub_total = $order->ordered_products[0]->sum_items($order->id)->items_total;
         return view('admin.orders.invoice',compact('sub_total','order','system_settings'));
     }
 
