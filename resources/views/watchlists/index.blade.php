@@ -46,7 +46,7 @@
                                             <h3 class="progression-video-title">Price: {{ $video->price }}</h3>
 
                                             @if ($video->purchase_type == 'rent')
-                                               <h3 class="progression-video-title">Expires:  {{  !$video->isVideoRentExpired() ? $video->videoExpires() : 'Video Expired '}}</h3>
+                                               <h3 class="progression-video-title">Expires:  {{   $video->videoExpires() }} {{ $video->created_at }}</h3>
                                             @endif
                                         </div>
                                        
