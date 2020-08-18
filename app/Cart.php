@@ -53,9 +53,8 @@ class Cart extends Model
 
 	public function videoExpires()
 	{
-		$date = Carbon::createFromFormat('Y.m.d', $this->created_at);
 		$daysToAdd = 2;
-		return $date->addDays($daysToAdd);
+		return $this->created_at->addDays($daysToAdd);
 
     }
 
