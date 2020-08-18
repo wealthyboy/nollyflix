@@ -21,11 +21,11 @@ class Cart extends Model
     ];
 
 
-
     public $appends = [
 		'converted_price',
 		'cart_total'
 	];
+	
 	
 	public static function items_in_cart() {  
 	    //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
@@ -33,6 +33,7 @@ class Cart extends Model
 	    $cart = \DB::table('carts')->select('carts.*')->where(['remember_token'=>$cookie])->get();
 	    return null !== $cart ? $cart : null;
 	}
+
 
 	public static function all_items_in_cart() {  
 	    //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
@@ -56,11 +57,12 @@ class Cart extends Model
 				'user_id' => optional(auth()->user())->id	
 			]);
 
-			if (null == $cart->video){
+			if ( null == $cart->video ){
 				$cart->delete();
 			}
 		}
 	}
+
 
 	public function video(){
 	  	return $this->belongsTo('App\Video');

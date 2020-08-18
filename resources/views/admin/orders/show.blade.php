@@ -148,7 +148,7 @@
                   <tfoot>
                      <tr>
                         <td colspan="6" class="text-right">Sub-Total</td>
-                        <td class="text-right"><small>{{ $order->currency }}</small>{{ $cart->sum('total') }}</td>
+                        <td class="text-right"><small>{{ $order->currency }}</small>{{ '' }}</td>
                      </tr>
                    
                      <tr>
