@@ -74,6 +74,8 @@ class CheckoutController extends Controller
 			->send(new OrderReceipt($user, $order, $this->settings,$symbol));
 
 		\Cookie::queue(\Cookie::forget('cart'));
+		$request->session()->forget('content_owner_id');
+
 		return redirect('/thankyou');
 	}
 
