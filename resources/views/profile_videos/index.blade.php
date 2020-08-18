@@ -28,7 +28,7 @@
                                             </div><!-- close .progression-video-index-table -->
                                         </div><!-- close .progression-video-index-content -->
                                         <div class="video-index-border-hover"></div>
-                                        <div class="mt-3">
+                                        <div class="ml-3">
                                             <small class="progression-video-title"><span>{{ $user->sales->count() }}</span> - Sold</small><br/>
                                             <small class="progression-video-title"><span>{{ $user->rents->count() }}</span> - Rented</small><br/>
                                             <small class="progression-video-title"><span>3</span> - Views</small>
