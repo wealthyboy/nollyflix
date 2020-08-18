@@ -49,7 +49,6 @@ class OrdersController extends Controller{
 	{ 
        $order       =  Order::find($id);
 	   $sub_total   =  $order->carts->sum('total');
-	   dd($sub_total);
 	   $statuses    =  static::order_status();
 	   return view('admin.orders.show',compact('statuses','order','sub_total'));
 	}
