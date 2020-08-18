@@ -29,8 +29,8 @@
                                         </div><!-- close .progression-video-index-content -->
                                         <div class="video-index-border-hover"></div>
                                         <div class="mt-3">
-                                            <small class="progression-video-title">Sold - <span>3 times</span></small>
-                                            <small class="progression-video-title">Rented -<span>3 times</span></small>
+                                            <small class="progression-video-title">Sold - <span>3 times</span></small><br/>
+                                            <small class="progression-video-title">Rented -<span>3 times</span></small><br/>
                                             <small class="progression-video-title">Views - <span>3 times</span></small>
 
                                         </div>
