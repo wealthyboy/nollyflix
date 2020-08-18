@@ -171,7 +171,7 @@ $(".update_status").on('change',function(e){
       console.log(value)
       var payLoad = { cart_id: value,status: self.val() }
       $.ajax({
-         type: "POST",
+         type: "PATCH",
          url: "/admin/orders/"+value,
          data: payLoad,
       }).done(function(response){
