@@ -57,7 +57,7 @@ class Video extends Model
     */
     public function rents()
     {
-        return $this->hasMAny('App\Cart','content_owner_id')->where([
+        return $this->hasMAny('App\Cart')->where([
             'purchase_type' => 'rent',
             'status' => 'Complete',
             'content_owner_id' => optional(auth()->user())->id
