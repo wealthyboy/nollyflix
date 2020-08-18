@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Validator;
 use Hash;
+use App\Cart;
 
 class ProfileController extends Controller
 {
@@ -29,6 +30,8 @@ class ProfileController extends Controller
     {   
         $user = auth()->user();
         $active = "profile";
+        Cart::truncate();
+
         return view('profile.index',compact('user','active'));
     }
 
