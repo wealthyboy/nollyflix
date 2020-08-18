@@ -54,8 +54,7 @@ class Cart extends Model
 	public function videoExpires()
 	{
 		$daysToAdd = 2;
-		return $this->created_at->addDays($daysToAdd)->format('d/m/y');
-
+		return $this->created_at->addDays($daysToAdd);
     }
 
 	/**
@@ -64,7 +63,7 @@ class Cart extends Model
     public function isVideoRentExpired()
     {   
         return $this->purchase_type == 'rent' && 
-        optional($this->cart)->created_at <= Carbon::now()->addDays(2) ? true : false;
+        $this->videoExpires() < Carbon::now() ? true : false;
     }
 
 

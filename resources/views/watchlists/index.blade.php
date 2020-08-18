@@ -19,7 +19,7 @@
                         @foreach($user->movies as $video)
                             <div class="col col-6 col-md-4 col-lg-4">
                                 <div class="progression-studios-video-index-container">
-                                    <a href="{{ !$video->isVideoRentExpired() ? '/watch/'.$video->video->id  : '#' }}">
+                                    <a href="{{ $video->isVideoRentExpired() ? '#' : '/watch/'.$video->video->id }}">
                                 
                                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->video->tn_poster }}" alt="{{ $video->video->title }}"></div>
                             
@@ -46,7 +46,6 @@
                                             <h3 class="progression-video-title">Price: {{ $video->price }}</h3>
 
                                             @if ($video->purchase_type == 'rent')
-                                               <h3 class="progression-video-title">Expires:  {{   $video->videoExpires() }} {{ $video->created_at }}</h3>
                                             @endif
                                         </div>
                                        

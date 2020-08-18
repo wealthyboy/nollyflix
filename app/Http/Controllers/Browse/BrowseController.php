@@ -33,6 +33,7 @@ class BrowseController extends Controller
     {    
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured =  DefaultBanner::first();
+        dd(now());
         return view('browse.index',compact('sections','featured'));   
     }
 
