@@ -139,28 +139,7 @@ class User extends Authenticatable
 		return $builder->where('type','admin');
 	}
 
-	 /**
-     * The sold that belong to the user.
-    */
-    public function sales()
-    {
-        return $this->hasMAny('App\Cart','content_owner_id')->where([
-            'purchase_type' => 'buy',
-            'status' => 'Complete'
-        ]);
-    }
-
-
-     /**
-     * The sold that belong to the user.
-    */
-    public function rents()
-    {
-        return $this->hasMAny('App\Cart','content_owner_id')->where([
-            'purchase_type' => 'rent',
-            'status' => 'Complete'
-        ]);
-    }
+	
 
 
 	public function getCartTotalAttribute()

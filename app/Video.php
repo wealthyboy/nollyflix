@@ -38,6 +38,33 @@ class Video extends Model
     }
 
 
+     /**
+     * The sold that belong to the user.
+    */
+    public function solds()
+    {   
+        
+        return $this->hasMAny('App\Cart')->where([
+            'purchase_type' => 'buy',
+            'status' => 'Complete',
+            'content_owner_id' => optional(auth()->user())->id
+        ]);
+    }
+
+
+     /**
+     * The sold that belong to the user.
+    */
+    public function rents()
+    {
+        return $this->hasMAny('App\Cart','content_owner_id')->where([
+            'purchase_type' => 'rent',
+            'status' => 'Complete',
+            'content_owner_id' => optional(auth()->user())->id
+        ]);
+    }
+
+
     /**
      * The filmers that belong to the user.
     */
