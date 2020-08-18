@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Helper;
 use App\Video;
+use Carbon\Carbon;
+
 
 
 class Cart extends Model
@@ -48,6 +50,16 @@ class Cart extends Model
     {   
         return $this->belongsToMany('App\Order');
 	}
+
+
+	/**
+     * The video in Cart.
+    */
+    public function isVideoRentExpired()
+    {   
+        return $this->purchase_type == 'rent' && 
+        optional($this->cart)->created_at <= Carbon::now()->addDays(2) ? true : false;
+    }
 
 
 	public  static function sync($carts){
