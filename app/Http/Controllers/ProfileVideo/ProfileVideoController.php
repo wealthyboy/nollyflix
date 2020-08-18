@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ProfileVideo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Cart;
 
 class ProfileVideoController extends Controller
 {
@@ -21,6 +22,7 @@ class ProfileVideoController extends Controller
     {    
         $user = auth()->user();
         $active = "videos";
+         dd(Cart::all());
         return view('profile_videos.index',compact('active','user'));
     }
 }
