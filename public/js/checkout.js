@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
 			tx_ref: "hooli-tx-1920bbtyt",
 			amount: user.cart_total,
 			currency: user.iso_code,
-			redirect_url: "https://nollyflix.tv/checkout",
+			//redirect_url: "https://nollyflix.tv/checkout",
 			meta: {
 			  consumer_id: user.id,
 			},

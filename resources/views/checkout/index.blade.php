@@ -67,13 +67,7 @@
                 </div>
             </div>
             <!---->
-            <div class="background-image">
-                <div class="container-fluid">
-                    <div class="signup--middle">                    
-                        <h1 class=""><span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span>We rounding things up .Please wait </h1>
-                    </div>
-                </div>
-            </div>
+           
         @else
             <section class="vh-100">
 
