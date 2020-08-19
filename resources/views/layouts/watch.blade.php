@@ -36,9 +36,7 @@
 		</section>
 		
 		
-		<!-- Required Framework JavaScript -->
-		<script src="/js/libs/jquery-3.5.1.min.js"></script><!-- jQuery -->
 		<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
-		<script src="/js/scripts.js" defer></script><!-- Custom Document Ready JS -->
+		<script src="/js/watch.js" defer></script><!-- Custom Document Ready JS -->
 	</body>
 </html>
