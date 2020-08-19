@@ -144,7 +144,7 @@
                   <tfoot>
                      <tr>
                         <td colspan="6" class="text-right">Sub-Total</td>
-                        <td class="text-right"><small>{{ $order->currency }}</small>{{ number_format($sub_total) }}</td>
+                        <td class="text-right"><small>{{ $order->currency }}</small>{{ $order->get_total() }}</td>
                      </tr>
                    
                      <tr>
