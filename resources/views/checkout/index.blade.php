@@ -70,9 +70,7 @@
             <div class="background-image">
                 <div class="container-fluid">
                     <div class="signup--middle">                    
-                        <h1 class="">Thank you for buying from  us </h1>
-                        <p class="large">Your order has been received .</p>
-                        <a href="{{ route('profiles.watchlists') }}" class="btn btn--gray space-t--2">Go to your watch lists</a>
+                        <h1 class=""><span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span>We rounding things up .Please wait </h1>
                     </div>
                 </div>
             </div>
