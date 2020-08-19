@@ -17,18 +17,27 @@ class CanWatchVideo
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {   
-        $video = Video::findOrFail($request->id);
+        if (!auth()->check()){
+           return redirect('/404');
+        }
 
         $user  = auth()->user();
 
-        dd($user->movies);
+        $video = Cart::where([
+            'video_id'=> $request->id,
+            'user_id' => $user->id,
+            'status'  => 'Complete',
+        ])->firstOrFail();
+
+        if ( $video->isVideoRentExpired() ){
+            return redirect('/404');
+        }
+
 
         
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
-        }
+       
 
         return $next($request);
     }
