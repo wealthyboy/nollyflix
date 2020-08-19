@@ -23,7 +23,7 @@ class CanWatchVideo
 
         $user  = auth()->user();
 
-        dd($user->movies()->pluck('id')->toArray());
+        dd($user->movies);
 
         
         if (Auth::guard($guard)->check()) {
