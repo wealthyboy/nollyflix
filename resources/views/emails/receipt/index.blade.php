@@ -356,7 +356,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{   $cart->price }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{   $cart->customer_price }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -388,7 +388,7 @@
                                                       </tr>
                                                       <tr>
                                                         
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{ $cart->total }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{ $cart->customer_total }}</td>
                                                          
                                                       </tr>
                                                       <tr>
@@ -416,7 +416,7 @@
       </table>
       
       <?php  } ?>
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FinalCalculationsModule-4ROWS" data-thumb="http://www.emailtemplatebuilders.com/INVOICE-Generator/03_TBThumbnails/module-8.jpg" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FinalCalculationsModule-4ROWS" data-thumb="" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
                <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">

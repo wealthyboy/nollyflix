@@ -26,7 +26,8 @@ class Cart extends Model
 
     public $appends = [
 		'converted_price',
-		'cart_total'
+		'cart_total',
+		'customer_price'
 	];
 	
 	
@@ -81,10 +82,11 @@ class Cart extends Model
 		}
 	}
 
-
-	public function video(){
+	public function video()
+	{
 	  	return $this->belongsTo('App\Video');
 	}
+
 
 	public static function sum_items_in_cart() {   
 	   $cookie=\Cookie::get('cart'); 
@@ -110,6 +112,15 @@ class Cart extends Model
 		$cookie=\Cookie::get('cart');
 		$delete_cart = \DB::table('carts')->select('carts.*')->where('remember_token',$cookie)->delete();
 		return $delete_cart;
+	}
+
+	public function getCustomerPriceAttribute(){
+	    return $this->rate ? $this->rate * $this->price :  1 * $this->price;   
+	}
+
+
+	public function getCustomerTotalAttribute(){
+	    return $this->rate ? $this->rate * $this->total :  1 * $this->total;   
 	}
 
 

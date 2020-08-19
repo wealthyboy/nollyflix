@@ -105,7 +105,8 @@ class Helper{
     public static function Countries()
     {
 
-        return  $countries = array("Afghanistan", 
+        return  $countries = array(
+                "Afghanistan", 
                 "Albania",
                 "Algeria", 
                 "American Samoa", 
@@ -114,7 +115,8 @@ class Helper{
                 "Anguilla", 
                 "Antarctica",
                 "Antigua and Barbuda", 
-                "Argentina", "Armenia", 
+                "Argentina", 
+                "Armenia", 
                 "Aruba", "Australia", 
                 "Austria", "Azerbaijan", 
                 "Bahamas", "Bahrain",
@@ -122,7 +124,8 @@ class Helper{
                 "Barbados", 
                 "Belarus", "Belgium",
                 "Belize", 
-                "Benin", "Bermuda", 
+                "Benin",
+                 "Bermuda", 
                 "Bhutan", "Bolivia", 
                 "Bosnia and Herzegowina", 
                 "Botswana", "Bouvet Island", 
