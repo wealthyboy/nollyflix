@@ -19,7 +19,8 @@ class Cart extends Model
         'total',
         'price',
 		'video_id',
-		'content_owner_id'
+		'content_owner_id',
+		'rate'
     ];
 
 

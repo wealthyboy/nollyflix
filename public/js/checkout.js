@@ -49,6 +49,7 @@ jQuery(document).ready(function($) {
 		e.preventDefault()
 		var $self =  $(this)
 		var user  =  $self.data('user')
+		console.log(user)
 		var x = FlutterwaveCheckout({
 			public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
 			tx_ref: "hooli-tx-1920bbtyt",
@@ -62,7 +63,6 @@ jQuery(document).ready(function($) {
 			  name: user.name + " " + user.last_name,
 			},
 			callback: function (response) {
-				console.log(response)
 				$('#checkout').submit()
 
 				if (

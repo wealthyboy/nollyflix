@@ -206,10 +206,10 @@ jQuery(document).ready(function($) {
             return false;
 		} else{
 			if (type == 'buy'){
-			   var price = property.converted_buy_price
+			   var price = property.buy_price
 			}
 			if (type == 'rent'){
-				var price = property.converted_rent_price
+				var price = property.rent_price
 			}
 		}
 		//$(".spinner-border").remove()

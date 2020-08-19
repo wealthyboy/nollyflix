@@ -29,8 +29,7 @@
                                 </div>
                                 <div class="col-md-7 col-6">
                                     <h5><a href="#">{{ $cart->video->title }}</a></h5>
-                                    <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ $cart->purchase_type }}    <em class"border"">{{ $cart->purchase_type == 'rent'  ? " Expires after 48hours" : ""}}</em>
-                                    </div>
+                                    <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ $cart->purchase_type }}    <span class="mr-2 border"">{{ $cart->purchase_type == 'rent'  ? " Expires after 48hours" : ""}}</span></div>
                                     <div class="product-item-price">
                                         <div class="product-price-amount"><span class="retail-title text-gold">PRICE: </span> <span class="product--price text-gold">{{ $currency }}{{ $cart->converted_price }}</span></div>
                                     </div>
@@ -61,7 +60,8 @@
                         <p><span class="bold">Subtotal</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
                         <hr>
                         <p><span class="bold">Total</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
-                        <div class="proceed-to-checkout"><a  data-user="{{ auth()->user() }}" data-currency="" data-total="" href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
+                        <div class="proceed-to-checkout">
+                           <a  data-user="{{ auth()->user() }}" data-currency="" data-total="" href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
                     </div>
                 </div>
                 </div>

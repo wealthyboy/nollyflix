@@ -48,6 +48,8 @@ class CartController  extends Controller {
             $user_id = auth()->user()->id;
 		}
 
+		$rate = Helper::rate();
+
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
 		
 		if (\Cookie::get('cart') !== null) {
@@ -61,7 +63,8 @@ class CartController  extends Controller {
                     'total'      => $request->price * 1,
 					'user_id'    => $user_id,
 					'content_owner_id'  => $content_owner_id,
-                    'purchase_type' => $request->purchase_type,
+					'purchase_type' => $request->purchase_type,
+					'rate' => $rate->rate
 				]
 			);
 
@@ -80,6 +83,7 @@ class CartController  extends Controller {
 			$cart->content_owner_id  = $content_owner_id;
 			$cart->remember_token =$cookie->getValue();
 			$cart->user_id    = $user_id;
+			$cart->rate = $rate->rate;
             $cart->save();
 			return response()->json([
 				'count' => 1
@@ -87,15 +91,16 @@ class CartController  extends Controller {
 		}
     }
 
-
-	public function loadCart(){
+	public function loadCart()
+	{
         $cart =  Cart::cart_number();
         return response()->json([
             'count' => $cart
         ]);
 	}
 	
-	public function destroy(Request $request,$id) { 
+	public function destroy(Request $request,$id) 
+	{ 
         $cart =  Cart::find($id);
         if ( $cart->delete() ){
             return back()->with('success','Item removed');
