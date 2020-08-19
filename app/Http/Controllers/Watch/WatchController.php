@@ -8,6 +8,18 @@ use App\Video;
 
 class WatchController extends Controller
 {
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('CanWatchVideo');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +28,7 @@ class WatchController extends Controller
     public function index($id)
     {
         $video = Video::find($id);
+
         return view('watch.index',compact('video'));
     }
 
