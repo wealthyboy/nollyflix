@@ -6,6 +6,7 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\Video;
+use App\Cart;
 
 class CanWatchVideo
 {
