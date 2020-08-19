@@ -91,7 +91,7 @@ class Helper{
     } 
 
     public  static function getIsoCode(){
-        return Helper::rate()->iso_code3 ?? optional(optional(SystemSetting::first())->currency)->iso_code3;
+        return Helper::rate()->iso_code3;
     }
 
     public static function getPercentageDiscount($percentage_value,$fee)
