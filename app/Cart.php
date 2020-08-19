@@ -115,12 +115,12 @@ class Cart extends Model
 	}
 
 	public function getCustomerPriceAttribute(){
-	    return $this->rate ? $this->rate * $this->price :  1 * $this->price;   
+	    return $this->rate ? round($this->rate * $this->price) :  round(1 * $this->price);   
 	}
 
 
 	public function getCustomerTotalAttribute(){
-	    return $this->rate ? $this->rate * $this->total :  1 * $this->total;   
+	    return $this->rate ? round($this->rate * $this->total) :  round(1 * $this->total);   
 	}
 
 
