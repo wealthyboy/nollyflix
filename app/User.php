@@ -142,8 +142,7 @@ class User extends Authenticatable
 
 	public function getCartTotalAttribute()
 	{   
-		$total = Cart::sum_items_in_cart();
-	    return Helper::ConvertCurrencyRate($total);   
+		return Cart::sum_items_in_cart();
 	}
 
 	public function getCurrencyAttribute()
