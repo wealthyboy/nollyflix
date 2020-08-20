@@ -69,15 +69,16 @@ jQuery(document).ready(function($) {
 			  name: user.name + " " + user.last_name,
 			},
 			callback: function (response) {
-				console.log(response)
-				//$('#checkout').submit()
 
 				if (
-					response.respcode == "00" ||
-					response.success == true
+					response.status == "successful" 
 				) {
-					
+					$('#checkout').submit()
+
 				} else {
+					carts_count.removeClass('d-none')
+					carts.removeClass('d-none')
+					carts_processing.addClass('d-none')
                     notify('danger','top','right',"We could not complete your payment")
 				}
 			 
