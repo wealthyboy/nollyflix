@@ -16,7 +16,7 @@
       <div>
         @if ($carts->count())
             <!----> 
-            <div class="row">
+            <div class="row d-none">
                 <div class="col-md-8">
                     <article>
                         <form action="/checkout" method="POST" id="checkout" class="cart-form">
@@ -70,7 +70,7 @@
             <div class="background-image">
                 <div class="container-fluid">
                     <div class="signup--middle">                    
-                        <a class="btn btn-green-pro btn-slider-pro" href=""><i class="fas fa-plus"></i> Please Wait <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
+                        <a class="btn btn-green-pro btn-slider-pro" href=""> Please Wait <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
                     </div>
                 </div>
             </div>
