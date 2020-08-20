@@ -30,7 +30,7 @@
 
 	<script>
 		Window.content_owner = {
-			user: {!! isset($user) ? $user : null !!}
+			user: {!! auth()->check() ? auth()->user() : null !!}
 		}
 	</script>
 	<body>
