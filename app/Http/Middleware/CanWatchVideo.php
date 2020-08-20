@@ -33,7 +33,7 @@ class CanWatchVideo
         ])->firstOrFail();
 
         if ( $video->isVideoRentExpired() ){
-            return redirect('/watch/90');
+            return redirect('/watch/expired/2');
         }
 
 
