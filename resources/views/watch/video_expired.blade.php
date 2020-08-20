@@ -52,7 +52,7 @@
                     </div><!-- #vayvo-video-post-content -->
 
                     <div id="vayvo-video-post-content">
-                        <div class="content-sidebar-short-description">{{ $video->duration }}</div>
+                        <div class="content-sidebar-short-description"> Starring: {{ implode(',',$video->casts()->pluck('name')->toArray() )}}</div>
                     </div><!-- #vayvo-video-post-content -->
 
                     <div id="vayvo-video-post-content">
