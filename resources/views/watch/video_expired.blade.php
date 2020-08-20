@@ -48,8 +48,20 @@
                     <div class="clearfix"></div>
 
                     <div id="vayvo-video-post-content">
+                        <div class="content-sidebar-short-description">{{ $video->duration }}</div>
+                    </div><!-- #vayvo-video-post-content -->
+
+                    <div id="vayvo-video-post-content">
+                        <div class="content-sidebar-short-description">{{ $video->duration }}</div>
+                    </div><!-- #vayvo-video-post-content -->
+
+                    <div id="vayvo-video-post-content">
                         <p>{!! optional($video)->description !!}</p>
                     </div><!-- #vayvo-video-post-content -->
+
+
+
+
 
                     <div id="video-post-buttons-container">
                         <a href="{{ optional($video)->preview_link }}" class=""  data-fancybox id="video-post-play-text-btn"><i class="far fa-play-circle"></i>Play Trailer </a>
