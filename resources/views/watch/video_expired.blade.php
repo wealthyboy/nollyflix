@@ -37,12 +37,27 @@
             </div><!-- close .col -->
 
             <div class="col col-12 col-md-5 col-lg-5">
-               <div class=""><h2 class="">{{ $video->title }}</h2></div>
-               <div id="video-post-buttons-container">
-                    <a href="#" class="buy-video"   data-prop="{{ $video }}"  data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->buy_price) }} </a>
-                    <a href="#" class="rent-video"  data-prop="{{ $video }}"  data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->rent_price) }}</a>
+                <div id="video-post-container">
+                    <h1 class="video-post-heading-title">{{ optional($video)->title }}</h1>
                     <div class="clearfix"></div>
-                </div><!-- close #video-post-buttons-container -->
+                
+                    <ul id="video-post-meta-list">
+                        <li><a href="/">{{ $video->genres[0]->name }}</a></li>
+                        <li id="video-post-meta-year">{{ $video->created_at->format('Y') }}</li>
+                        <li id="video-post-meta-rating"><span>{{ $video->film_rating }}</span></li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <div id="vayvo-video-post-content">
+                        <p>{!! optional($video)->description !!}</p>
+                    </div><!-- #vayvo-video-post-content -->
+
+                    <div id="video-post-buttons-container">
+                        <a href="#" class="buy-video"   data-prop="{{ $video }}" data-user="{{ $user }}" data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->buy_price) }} </a>
+                        <a href="#" class="rent-video"  data-prop="{{ $video }}" data-user="{{ $user }}" data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->rent_price) }}</a>
+                        <div class="clearfix"></div>
+                    </div><!-- close #video-post-buttons-container -->
+                </div>
             </div>
         </div><!-- close .row --> 
         
