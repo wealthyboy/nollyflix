@@ -70,7 +70,7 @@
             <div class="background-image">
                 <div class="container-fluid">
                     <div class="signup--middle">                    
-                        <a class="btn btn-green-pro btn-slider-pro" href=""> Please Wait <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
+                        <a class="btn btn-green-pro btn-slider-pro" href=""> Please Wait.. While we finish up. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
                     </div>
                 </div>
             </div>
