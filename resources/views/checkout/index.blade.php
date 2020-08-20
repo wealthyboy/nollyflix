@@ -13,7 +13,7 @@
                 </div>
             </div> 
         <div>
-        <div id="cart-processing" class="d-none">
+        <div id="cart-processing" class="">
             <div class="container-fluid">
                 <div class="signup--middle">                    
                     <a class="btn btn-green-pro btn-slider-pro" href="">Your order is still processing.  Please Wait.. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
