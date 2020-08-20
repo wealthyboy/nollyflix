@@ -55,6 +55,7 @@ jQuery(document).ready(function($) {
 		carts_count.addClass('d-none')
 		carts.addClass('d-none')
 		carts_processing.removeClass('d-none')
+		return;
 
 
 		var x = FlutterwaveCheckout({
