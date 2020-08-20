@@ -73,6 +73,7 @@ jQuery(document).ready(function($) {
 				if (
 					response.status == "successful" 
 				) {
+					x.close();
 					$('#checkout').submit()
 					return;
 
