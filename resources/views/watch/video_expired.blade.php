@@ -36,7 +36,7 @@
             </div><!-- close .col -->
 
             <div class="col col-12 col-md-5 col-lg-5">
-                <div id="video-post-container" class="video-title-container">
+                <div class="video-title-container">
                     <h1 class="video-post-heading-title">{{ optional($video)->title }}</h1>
                     <div class="clearfix"></div>
                 
