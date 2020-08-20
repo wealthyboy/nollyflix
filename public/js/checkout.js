@@ -55,8 +55,6 @@ jQuery(document).ready(function($) {
 		carts_count.addClass('d-none')
 		carts.addClass('d-none')
 		carts_processing.removeClass('d-none')
-		return;
-
 
 		var x = FlutterwaveCheckout({
 			public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
@@ -71,7 +69,8 @@ jQuery(document).ready(function($) {
 			  name: user.name + " " + user.last_name,
 			},
 			callback: function (response) {
-				$('#checkout').submit()
+				console.log(response)
+				//$('#checkout').submit()
 
 				if (
 					response.respcode == "00" ||
