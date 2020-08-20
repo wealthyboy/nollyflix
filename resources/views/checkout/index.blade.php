@@ -70,8 +70,7 @@
             <div class="background-image">
                 <div class="container-fluid">
                     <div class="signup--middle">                    
-                        <h1 class="">BUY ,RENT AND WATCH ON MULTIPLE DEVICES  NOLLYWOOD MOVIES </h1>
-                        <a class="btn btn-green-pro btn-slider-pro" href="{{  route('register') }}"><i class="fas fa-plus"></i> GET STARTED</a>
+                        <a class="btn btn-green-pro btn-slider-pro" href=""><i class="fas fa-plus"></i> Please Wait <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
                     </div>
                 </div>
             </div>

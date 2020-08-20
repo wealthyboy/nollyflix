@@ -190,8 +190,6 @@ jQuery(document).ready(function($) {
 		e.preventDefault()
 		var $self =  $(this)
 		var user  =  $self.data('user')
-		console.log(user)
-
 	})
 
 
