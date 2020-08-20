@@ -74,6 +74,9 @@ jQuery(document).ready(function($) {
 					response.status == "successful" 
 				) {
 					x.close();
+					carts_count.addClass('d-none')
+					carts.addClass('d-none')
+					carts_processing.removeClass('d-none')
 					$('#checkout').submit()
 					return;
 
@@ -87,10 +90,9 @@ jQuery(document).ready(function($) {
 				//x.close(); // use this to close the modal immediately after payment.
 			},
 			onclose: function() {
-				location.reload()
-			    // carts_count.removeClass('d-none')
-				// carts.removeClass('d-none')
-				// carts_processing.addClass('d-none')
+			    carts_count.removeClass('d-none')
+				carts.removeClass('d-none')
+				carts_processing.addClass('d-none')
 			},
 		
 		});
