@@ -4,7 +4,7 @@
 
 <div id="content-pro">
 <section class="pb-4 mt-1">
-    <div class="container">
+    <div  id="carts-count" class="container">
         <div class="row cart-header mt-4 mb-1 pb-1">
             <div class="col-lg-12 col-md-12 col-12">
                 @if ($carts->count())
@@ -15,7 +15,7 @@
     <div>
         @if ($carts->count())
             <!----> 
-            <div class="row d-none">
+            <div  id="carts" class="row">
                 <div class="col-md-8">
                     <article>
                         <form action="/checkout" method="POST" id="checkout" class="cart-form">
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <!---->
-            <div class="">
+            <div id="cart-processing" class="d-none">
                 <div class="container-fluid">
                     <div class="signup--middle">                    
                         <a class="btn btn-green-pro btn-slider-pro" href="">Your order is still processing.  Please Wait.. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>

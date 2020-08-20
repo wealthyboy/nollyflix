@@ -49,12 +49,19 @@ jQuery(document).ready(function($) {
 		e.preventDefault()
 		var $self =  $(this)
 		var user  =  $self.data('user')
+		var carts_count  =  $('#carts-count');
+		var carts  =  $('#carts');
+		var carts_processing  =  $('#cart-processing');
+		carts_count.addClass('d-none')
+		carts.addClass('d-none')
+		carts_processing.removeClass('d-none')
+
+
 		var x = FlutterwaveCheckout({
 			public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
 			tx_ref: "hooli-tx-1920bbtyt",
 			amount: user.cart_total,
 			currency: user.iso_code,
-			//redirect_url: "https://nollyflix.tv/checkout",
 			meta: {
 			  consumer_id: user.id,
 			},
@@ -77,7 +84,9 @@ jQuery(document).ready(function($) {
 				x.close(); // use this to close the modal immediately after payment.
 			},
 			onclose: function() {
-			  // close modal
+			    carts_count.removeClass('d-none')
+				carts.removeClass('d-none')
+				carts_processing.addClass('d-none')
 			},
 		
 		});
