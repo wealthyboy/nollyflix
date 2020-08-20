@@ -32,6 +32,19 @@ class WatchController extends Controller
         return view('watch.index',compact('video'));
     }
 
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $video = Video::find($id);
+
+        return view('watch.video_expired',compact('video'));
+    }
+
    
 
 
