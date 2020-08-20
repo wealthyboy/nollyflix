@@ -3,16 +3,23 @@
 @section('content')
 
 <div id="content-pro">
-<section class="pb-4 mt-1">
-    <div  id="carts-count" class="container">
-        <div class="row cart-header mt-4 mb-1 pb-1">
-            <div class="col-lg-12 col-md-12 col-12">
-                @if ($carts->count())
-                    <h3> Your Cart</h3>
-                @endif
+    <section class="pb-4 mt-1">
+        <div  id="carts-count" class="container">
+            <div class="row cart-header mt-4 mb-1 pb-1">
+                <div class="col-lg-12 col-md-12 col-12">
+                    @if ($carts->count())
+                        <h3> Your Cart</h3>
+                    @endif
+                </div>
+            </div> 
+        <div>
+        <div id="cart-processing" class="d-none">
+            <div class="container-fluid">
+                <div class="signup--middle">                    
+                    <a class="btn btn-green-pro btn-slider-pro" href="">Your order is still processing.  Please Wait.. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
+                </div>
             </div>
-        </div> 
-    <div>
+        </div>
         @if ($carts->count())
             <!----> 
             <div  id="carts" class="row">
@@ -66,13 +73,7 @@
                 </div>
             </div>
             <!---->
-            <div id="cart-processing" class="d-none">
-                <div class="container-fluid">
-                    <div class="signup--middle">                    
-                        <a class="btn btn-green-pro btn-slider-pro" href="">Your order is still processing.  Please Wait.. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
-                    </div>
-                </div>
-            </div>
+           
            
         @else
             <section class="vh-100">
