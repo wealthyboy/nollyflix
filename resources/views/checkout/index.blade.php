@@ -67,6 +67,14 @@
                 </div>
             </div>
             <!---->
+            <div class="background-image">
+                <div class="container-fluid">
+                    <div class="signup--middle">                    
+                        <h1 class="">BUY ,RENT AND WATCH ON MULTIPLE DEVICES  NOLLYWOOD MOVIES </h1>
+                        <a class="btn btn-green-pro btn-slider-pro" href="{{  route('register') }}"><i class="fas fa-plus"></i> GET STARTED</a>
+                    </div>
+                </div>
+            </div>
            
         @else
             <section class="vh-100">
@@ -78,7 +86,6 @@
                         <a href="/" class="btn btn--gray space-t--2">Back to home</a>
                     </div>
                 </div>
-
             </div>
            </section>
         @endif

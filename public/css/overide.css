@@ -15,9 +15,7 @@ header#masthead-pro {
 	background-size: cover;
 	/* Add position: relative to enable absolutely positioned elements inside the image (place text) */
 	position: relative;
-
 	z-index: 0;
-
 }
 
 /* Position text in the middle */
@@ -30,6 +28,7 @@ header#masthead-pro {
 	color:#ffffff; 
 	padding-left: 10px;
 	padding-right: 10px;
+	width: auto;
 	z-index: 1;
 
 }
