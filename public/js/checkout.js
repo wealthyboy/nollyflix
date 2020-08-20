@@ -74,6 +74,7 @@ jQuery(document).ready(function($) {
 					response.status == "successful" 
 				) {
 					$('#checkout').submit()
+					return;
 
 				} else {
 					carts_count.removeClass('d-none')
