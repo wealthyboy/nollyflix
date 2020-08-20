@@ -37,7 +37,7 @@
             </div><!-- close .col -->
 
             <div class="col col-12 col-md-5 col-lg-5">
-               <div class=""><h2 class="progression-video-title"></h2></div>
+               <div class=""><h2 class="progression-video-title">{{ $video->title }}</h2></div>
             </div>
         </div><!-- close .row --> 
         
