@@ -84,12 +84,12 @@ jQuery(document).ready(function($) {
                     notify('danger','top','right',"We could not complete your payment")
 				}
 			 
-				x.close(); // use this to close the modal immediately after payment.
+				//x.close(); // use this to close the modal immediately after payment.
 			},
 			onclose: function() {
-			    carts_count.removeClass('d-none')
-				carts.removeClass('d-none')
-				carts_processing.addClass('d-none')
+			    // carts_count.removeClass('d-none')
+				// carts.removeClass('d-none')
+				// carts_processing.addClass('d-none')
 			},
 		
 		});
