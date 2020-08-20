@@ -52,7 +52,7 @@
                     </div><!-- #vayvo-video-post-content -->
 
                     <div id="video-post-buttons-container">
-                        <a href="{{ optional($video)->preview_link }}" class=""  data-fancybox  data-prop="{{ $video }}"  data-type="buy" id="video-post-play-text-btn"><i class="far fa-play-circle"></i>Play Trailer </a>
+                        <a href="{{ optional($video)->preview_link }}" class=""  data-fancybox id="video-post-play-text-btn"><i class="far fa-play-circle"></i>Play Trailer </a>
                         <a href="#" class="buy-video"   data-prop="{{ $video }}"  data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->buy_price) }} </a>
                         <a href="#" class="rent-video"  data-prop="{{ $video }}"  data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->rent_price) }}</a>
                         <div class="clearfix"></div>
