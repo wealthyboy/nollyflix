@@ -9,7 +9,7 @@
                 <div class="progression-studios-video-index-container">
                 
                     <div class="progression-studios-video-feaured-image"><img src="{{ $video->poster }}" alt="{{ $video->title }}"></div>
-        
+
                     <div class="progression-video-index-content no-background">
                         <div class="progression-video-index-table">
                             <div class="progression-video-index-vertical-align">
