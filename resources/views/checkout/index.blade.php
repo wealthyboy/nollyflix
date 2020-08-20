@@ -4,16 +4,7 @@
 
 <div id="content-pro">
 <section class="pb-4 mt-1">
-    <div class="container">
-      <div class="row cart-header mt-4 mb-1 pb-1">
-       
-        <div class="col-lg-12 col-md-12 col-12">
-            @if ($carts->count())
-                <h3> Your Cart</h3>
-            @endif
-         </div>
-      </div>
-      <div>
+      
         @if ($carts->count())
             <!----> 
             <div class="row d-none">
@@ -77,19 +68,16 @@
            
         @else
             <section class="vh-100">
-
-            <div class="row ">
-                <div class="col-md-4 offset-md-4">
-                    <div class="error-page text-center">
-                        <h1>YOUR CART IS EMPTY</h1>
-                        <a href="/" class="btn btn--gray space-t--2">Back to home</a>
+                <div class="row ">
+                    <div class="col-md-4 offset-md-4">
+                        <div class="error-page text-center">
+                            <h1>YOUR CART IS EMPTY</h1>
+                            <a href="/" class="btn btn--gray space-t--2">Back to home</a>
+                        </div>
                     </div>
                 </div>
-            </div>
            </section>
         @endif
-
-
       </div>
     </div>
 </section>
