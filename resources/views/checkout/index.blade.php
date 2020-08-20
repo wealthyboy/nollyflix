@@ -4,6 +4,13 @@
 
 <div id="content-pro">
     <section class="pb-4 mt-1">
+        <div id="cart-proc" class="">
+            <div class="container-fluid">
+                <div class="signup--middle">                    
+                    <a class="btn btn-green-pro btn-slider-pro" href="">Your order is still processing.  Please Wait.. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
+                </div>
+            </div>
+        </div>
         <div  id="carts-count" class="container">
             <div class="row cart-header mt-4 mb-1 pb-1">
                 <div class="col-lg-12 col-md-12 col-12">
@@ -13,13 +20,7 @@
                 </div>
             </div> 
         <div>
-        <div id="cart-processing" class="">
-            <div class="container-fluid">
-                <div class="signup--middle">                    
-                    <a class="btn btn-green-pro btn-slider-pro" href="">Your order is still processing.  Please Wait.. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
-                </div>
-            </div>
-        </div>
+        
         @if ($carts->count())
             <!----> 
             <div  id="carts" class="row">
