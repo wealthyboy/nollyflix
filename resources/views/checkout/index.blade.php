@@ -4,7 +4,7 @@
 
 <div id="content-pro">
     <section class="pb-4 mt-1">
-        <div id="cart-proc" class="">
+        <div id="cart-proc" class="d-none">
             <div class="container-fluid">
                 <div class="signup--middle">                    
                     <a class="btn btn-green-pro btn-slider-pro" href="">Your order is still processing.  Please Wait.. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>

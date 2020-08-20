@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
 		var user  =  $self.data('user')
 		var carts_count  =  $('#carts-count');
 		var carts  =  $('#carts');
-		var carts_processing  =  $('#cart-processing');
+		var carts_processing  =  $('#cart-proc');
 		carts_count.addClass('d-none')
 		carts.addClass('d-none')
 		carts_processing.removeClass('d-none')
