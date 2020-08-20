@@ -87,6 +87,7 @@ jQuery(document).ready(function($) {
 				//x.close(); // use this to close the modal immediately after payment.
 			},
 			onclose: function() {
+				location.reload()
 			    // carts_count.removeClass('d-none')
 				// carts.removeClass('d-none')
 				// carts_processing.addClass('d-none')
