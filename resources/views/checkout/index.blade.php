@@ -4,7 +4,15 @@
 
 <div id="content-pro">
 <section class="pb-4 mt-1">
-      
+    <div class="container">
+        <div class="row cart-header mt-4 mb-1 pb-1">
+            <div class="col-lg-12 col-md-12 col-12">
+                @if ($carts->count())
+                    <h3> Your Cart</h3>
+                @endif
+            </div>
+        </div> 
+    <div>
         @if ($carts->count())
             <!----> 
             <div class="row d-none">
@@ -52,13 +60,13 @@
                         <hr>
                         <p><span class="bold">Total</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
                         <div class="proceed-to-checkout">
-                           <a  data-user="{{ auth()->user() }}" data-currency="" data-total="" href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
+                            <a  data-user="{{ auth()->user() }}" data-currency="" data-total="" href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
                     </div>
                 </div>
                 </div>
             </div>
             <!---->
-            <div class="background-image">
+            <div class="position-relative">
                 <div class="container-fluid">
                     <div class="signup--middle">                    
                         <a class="btn btn-green-pro btn-slider-pro" href=""> Please Wait.. While we finish up. <span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span></a>
@@ -68,7 +76,7 @@
            
         @else
             <section class="vh-100">
-                <div class="row ">
+                <div class="row">
                     <div class="col-md-4 offset-md-4">
                         <div class="error-page text-center">
                             <h1>YOUR CART IS EMPTY</h1>
