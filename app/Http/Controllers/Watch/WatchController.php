@@ -17,7 +17,9 @@ class WatchController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('CanWatchVideo');
+        $this->middleware('CanWatchVideo',['except' => [
+            ''
+        ]);
     }
 
     /**
@@ -38,7 +40,7 @@ class WatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function expired($id)
     {
         $video = Video::find($id);
 
