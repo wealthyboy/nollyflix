@@ -14,7 +14,7 @@ class AlterVideosTableAddRatingTeaser extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
-            //
+            $table->string("teaser")->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AlterVideosTableAddRatingTeaser extends Migration
     public function down()
     {
         Schema::table('videos', function (Blueprint $table) {
-            //
+            $table->dropColumn('teaser');
         });
     }
 }
