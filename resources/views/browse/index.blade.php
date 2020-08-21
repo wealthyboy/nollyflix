@@ -1,6 +1,7 @@
 @extends('layouts.access')
 
 @section('content')
+<section class="section-content">
 <div class="flexslider progression-studios-slider">
     <ul class="slides">
         <li class="progression_studios_animate_left">
@@ -90,4 +91,6 @@
     
     
 </div><!-- close #content-pro -->
+</section>
+@include('includes.search')
 @endsection

@@ -193,15 +193,26 @@ jQuery(document).ready(function($) {
 	})
 
 	$(".search-input").on('input',function(e){
-
+        
 		$.ajax({
 			url: "/search",
 			type:"GET",
 			data: { q: $(this).val() }
 		}).done(function(res) {
+			if ( $(this).val() == '' ) {
+				$('.section-content').removeClass('d-none')
+				return
+			}
+			if($.trim(res) == 'No videos'){
+				$("#searched-videos-content").html('') 
+				return
+			} else{
+                $('.section-content').addClass('d-none')
+			    $("#searched-videos-content").html(res) 
+			}
 			
 		}).fail(function(){
-		
+		     
 		});
 	})
 
