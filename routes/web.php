@@ -76,7 +76,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('browse',          'Browse\BrowseController@index')->name('browse');
     Route::get('browse/{video}',          'Browse\BrowseController@show')->name('browse.show');
     Route::get('browse/{video}/user/{user}',  'Browse\BrowseController@show')->name('browse.show');
-    Route::get('browse/category/{slug}',     'Category\CategoryController@index');
+    Route::get('browse/category/{category}',     'Category\CategoryController@index');
 
     Route::get('profile/videos',       'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',   'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
