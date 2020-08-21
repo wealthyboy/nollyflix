@@ -112,7 +112,7 @@
 
 				<div id="video-search-header">
 					<div class="container">
-						<input type="text" placeholder="Search for Movies or TV Series" aria-label="Search" id="main-text-field">
+						<input type="text" class="search-input" placeholder="Search for Movies or TV Series" aria-label="Search" id="main-text-field">
 					</div><!-- close .container -->
 				</div><!-- close .video-search-header -->
 				

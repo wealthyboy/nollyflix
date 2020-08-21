@@ -91,6 +91,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('checkout',             'Checkout\CheckoutController@index');
     Route::post('checkout',            'Checkout\CheckoutController@store');
     Route::post('payment/successful',  'Checkout\CheckoutController@paymentSuccessful');
+    Route::get('search',              'Search\SearchController@index');
+
 
     Route::resource('profile',     'Profile\ProfileController',['name'=>'profile']);
     Route::post('change/password', 'Profile\ProfileController@changePassword');

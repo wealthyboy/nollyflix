@@ -192,6 +192,19 @@ jQuery(document).ready(function($) {
 		var user  =  $self.data('user')
 	})
 
+	$(".search-input").on('input',function(e){
+
+		$.ajax({
+			url: "/search",
+			type:"GET",
+			data: { q: $(this).val() }
+		}).done(function(res) {
+			
+		}).fail(function(){
+		
+		});
+	})
+
 
 	$('.buy-video, .rent-video').on('click',function(e){
 		e.preventDefault()
@@ -235,6 +248,9 @@ jQuery(document).ready(function($) {
 			$self.find('.spinner-border').remove();
 
 		 });
+
+
+		
 	
 		// var x = getpaidSetup({
 		// 	PBFPubKey: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
