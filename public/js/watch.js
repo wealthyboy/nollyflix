@@ -1,36 +1,46 @@
 
 
 
+//       var video = document.querySelector('video');
 
-const NUM_CHUNKS = 5;
 
-var video = document.querySelector('video');
-video.src = video.webkitMediaSourceURL;
-console.log(video.webkitMediaSourceURL)
+// var assetURL = 'nollyflix.test/laravel-youtube-clone_17-video-upload-and-progress-bar.mp4';
+// // Need to be specific for Blink regarding codecs
+// // ./mp4info frag_bunny.mp4 | grep Codec
+// var mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
 
-video.addEventListener('webkitsourceopen', function(e) {
-  var chunkSize = Math.ceil(file.size / NUM_CHUNKS);
+// if ('MediaSource' in window && MediaSource.isTypeSupported(mimeCodec)) {
+//   var mediaSource = new MediaSource;
+//   //console.log(mediaSource.readyState); // closed
+//   video.src = URL.createObjectURL(mediaSource);
+//   mediaSource.addEventListener('sourceopen', sourceOpen);
+// } else {
+//   console.error('Unsupported MIME type or codec: ', mimeCodec);
+// }
 
-  // Slice the video into NUM_CHUNKS and append each to the media element.
-  for (var i = 0; i < NUM_CHUNKS; ++i) {
-    var startByte = chunkSize * i;
+// function sourceOpen (_) {
+//   //console.log(this.readyState); // open
+//   var mediaSource = this;
+//   var sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
+//   fetchAB(assetURL, function (buf) {
+//     sourceBuffer.addEventListener('updateend', function (_) {
+//       mediaSource.endOfStream();
+//       video.play();
+//       //console.log(mediaSource.readyState); // ended
+//     });
+//     sourceBuffer.appendBuffer(buf);
+//   });
+// };
 
-    // file is a video file.
-    var chunk = file.slice(startByte, startByte + chunkSize);
-
-    var reader = new FileReader();
-    reader.onload = (function(idx) {
-      return function(e) {
-        video.webkitSourceAppend(new Uint8Array(e.target.result));
-        logger.log('appending chunk:' + idx);
-        if (idx == NUM_CHUNKS - 1) {
-          video.webkitSourceEndOfStream(HTMLMediaElement.EOS_NO_ERROR);
-        }
-      };
-    })(i);
-
-    reader.readAsArrayBuffer(chunk);
-  }
-}, false);
+// function fetchAB (url, cb) {
+//   console.log(url);
+//   var xhr = new XMLHttpRequest;
+//   xhr.open('get', url);
+//   xhr.responseType = 'arraybuffer';
+//   xhr.onload = function () {
+//     cb(xhr.response);
+//   };
+//   xhr.send();
+// };
 
 

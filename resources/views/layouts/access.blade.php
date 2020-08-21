@@ -42,7 +42,7 @@
 					<ul class="sf-menu">
 					   @foreach( $global_categories   as  $category)
 							<li class="normal-item-pro ">
-						    	<a href="/browse/{{ $category->slug }}">{{ $category->name }}</a>
+						    	<a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
 						    </li>
 						@endforeach
 					</ul>
@@ -123,7 +123,7 @@
 				<ul id="mobile-menu-pro">
 				    @foreach( $global_categories   as  $category)
 						<li class="normal-item-pro">
-							<a href="/browse/{{ $category->slug }}">{{ $category->name }}</a>
+							<a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
 						</li>
 					@endforeach
 				</ul>

@@ -75,7 +75,9 @@ Auth::routes();
 Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('browse',          'Browse\BrowseController@index')->name('browse');
     Route::get('browse/{video}',          'Browse\BrowseController@show')->name('browse.show');
-    Route::get('browse/{video}/user/{user}',          'Browse\BrowseController@show')->name('browse.show');
+    Route::get('browse/{video}/user/{user}',  'Browse\BrowseController@show')->name('browse.show');
+    Route::get('browse/category/{slug}',     'Category\CategoryController@index');
+
     Route::get('profile/videos',       'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',   'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{id}',           'Watch\WatchController@index')->name('watch');
@@ -86,11 +88,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('carts',                'Cart\CartController@index');
     Route::get('cart/delete/{id}',     'Cart\CartController@destroy');
     Route::get('thankyou',             'Thankyou\ThankYouCtrl@index');
-
-
-
-    Route::get('checkout',         'Checkout\CheckoutController@index');
-    Route::post('checkout',        'Checkout\CheckoutController@store');
+    Route::get('checkout',             'Checkout\CheckoutController@index');
+    Route::post('checkout',            'Checkout\CheckoutController@store');
     Route::post('payment/successful',  'Checkout\CheckoutController@paymentSuccessful');
 
     Route::resource('profile',     'Profile\ProfileController',['name'=>'profile']);
