@@ -1,7 +1,7 @@
 
 
 
-var video  = document.getElementById("background_video");
+      var video = document.querySelector('video');
 
 
 var assetURL = 'https://player.vimeo.com/external/169107226.hd.mp4?s=4bb07bfbaf9212c9f3162b4d08ce146a3c9e8dc8&profile_id=119';
