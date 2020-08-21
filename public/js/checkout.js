@@ -81,6 +81,7 @@ jQuery(document).ready(function($) {
 					return;
 
 				} else {
+					x.close();
 					carts_count.removeClass('d-none')
 					carts.removeClass('d-none')
 					carts_processing.addClass('d-none')

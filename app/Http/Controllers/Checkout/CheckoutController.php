@@ -47,9 +47,9 @@ class CheckoutController extends Controller
 	
 	public function store(Request $request,Order $order) { 
 		
-		$rate  = Helper::rate();
-		$user  =  auth()->user();
-		$carts =  Cart::all_items_in_cart();
+		$rate     =  Helper::rate();
+		$user     =  auth()->user();
+		$carts    =  Cart::all_items_in_cart();
 		$cart_ids =  $carts->pluck('id')->toArray();
 
 		$cart = new Cart();
@@ -78,6 +78,12 @@ class CheckoutController extends Controller
 		$request->session()->forget('content_owner_id');
 
 		return redirect('/thankyou');
+	}
+
+
+
+	public function paymentSuccessful(Request $request){
+		
 	}
 
 	
