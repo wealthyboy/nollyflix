@@ -36,7 +36,6 @@ class CanWatchVideo
             return redirect()->route('watch.expired',['id' => $request->id]);
         }
 
-
         return $next($request);
     }
 }

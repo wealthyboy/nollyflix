@@ -59,13 +59,14 @@ class CheckoutController extends Controller
 		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
 		$order->payment_type   = 'online';
 		$order->total          = $user->cart_total;
-		$order->rate           = $rate->rate;
+		$order->rate           = optional($rate)->rate;
 		$order->ip             = $request->ip();
 		$order->user_agent     = $request->server('HTTP_USER_AGENT');
 		$order->save();
 		$order->carts()->sync($cart_ids);
 		$user->carts()->update([
-           'status' => 'Complete'
+		   'status' => 'Complete',
+		   'created_at' => now()
 		]);
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();

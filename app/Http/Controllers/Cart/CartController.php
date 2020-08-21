@@ -64,7 +64,7 @@ class CartController  extends Controller {
 					'user_id'    => $user_id,
 					'content_owner_id'  => $content_owner_id,
 					'purchase_type' => $request->purchase_type,
-					'rate' => $rate->rate
+					'rate' => optional($rate)->rate
 				]
 			);
 
@@ -83,7 +83,7 @@ class CartController  extends Controller {
 			$cart->content_owner_id  = $content_owner_id;
 			$cart->remember_token =$cookie->getValue();
 			$cart->user_id    = $user_id;
-			$cart->rate = $rate->rate;
+			$cart->rate = optional($rate)->rate;
             $cart->save();
 			return response()->json([
 				'count' => 1

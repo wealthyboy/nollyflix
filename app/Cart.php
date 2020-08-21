@@ -20,7 +20,8 @@ class Cart extends Model
         'price',
 		'video_id',
 		'content_owner_id',
-		'rate'
+		'rate',
+		'created_at'
     ];
 
 
