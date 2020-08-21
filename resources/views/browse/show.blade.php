@@ -23,15 +23,11 @@
                             </div><!-- close .progression-video-index-vertical-align -->
                         </div><!-- close .progression-video-index-table -->
                     </div><!-- close .progression-video-index-content -->
-                    <div class="video-index-border-hover"></div>
                     
                     <div class="mr-2">
 
                         
                     </div>
-                        
-                
-                
                 </div><!-- close .progression-studios-video-index-container -->
             </div><!-- close .col -->
 

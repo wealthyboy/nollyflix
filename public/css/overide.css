@@ -2,8 +2,14 @@
 header#masthead-pro {
     position: relative;
     z-index: 50;
-    background: none;
+    background:#222;
 }
+
+header#masthead-pro h1 img {
+    width: 150px;
+    margin: 18px 0px 25px 0px;
+}
+
 .background-image{
 	/* Background image */
 	background-image: url('/images/banners/Bgnollyn01.jpg');
@@ -43,10 +49,67 @@ header#masthead-pro {
 	background:none;	
 }
 
+
+.disable-click{
+    pointer-events:none;
+}
+
 .video-title-container {
     width: calc(100% - 3px);
     position: relative;
     z-index: 3;
 }
+
+/*
+  Buttons
+*/
+
+.btn-slider-pro{
+	padding:20px 36px;
+}
+
+.btn:focus {
+	box-shadow: none;
+}
+
+.anchor-btn {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-weight: 500;
+    padding: 5px !important;
+    font-size: 13px;
+    border: 2px solid #E50914;
+    background: #E50914;
+    color: #ffffff;
+    border-radius: 100px;
+    margin-top: 5px;
+	width: 150px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+
+
+/*Slide*/
+.progression-studios-slider-caption-width {
+    max-width: 590px;
+}
+  
+
+
+@media only screen and (max-width: 575px) {
+	header#masthead-pro h1 img {
+		width: 100px;
+		margin: 19px 0px 25px 10px;
+	}
+	.btn-slider-pro{
+		padding:15px 15px;
+	}
+
+}
+
+
+
 
 

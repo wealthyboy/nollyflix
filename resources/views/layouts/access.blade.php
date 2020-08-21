@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-		<link rel="stylesheet" href="/css/overide.css">
+		<link rel="stylesheet" href="/css/overide.css?version={{ str_random(6) }}">
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	
@@ -35,9 +35,8 @@
 	<body>
 		<header id="masthead-pro" class="sticky-header"><!-- Remove sticky-header class to remove sticky header -->
 			<div class="header-container">
-				
 				<h1><a href="/"><img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a></h1>
-				
+
 				<nav id="site-navigation-pro">
 					<ul class="sf-menu">
 					   @foreach( $global_categories   as  $category)

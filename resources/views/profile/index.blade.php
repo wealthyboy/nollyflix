@@ -20,7 +20,7 @@
 						<form action="{{ route('profile.update',['profile' => $user->id ]) }}" method="POST" class="account-settings-form">
 					     	@csrf
                             @method('PATCH')
-							<h5>General Information</h5>
+							<h5 class="ml-4">General Information</h5>
 							<p class="small-paragraph-spacing"></p>
 							<div class="row">
 								<div class="col-md-6">
@@ -43,7 +43,7 @@
 								</div><!-- close .col -->
 
 								<div class="col-md-12">
-							     	<div class="form-group pull-right">
+							     	<div class="form-group float-right">
 								     	<button type="submit" class="btn btn-green-pro">Save Changes</button>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
 						<form action="/change/password" method="POST" class="account-settings-form">
 						    @csrf
 							<hr>
-							<h5>Change Password</h5>
+							<h5 class="ml-4">Change Password</h5>
 							<p class="small-paragraph-spacing"></p>
 							<div class="row">
 								<div class="col-sm">
@@ -76,7 +76,7 @@
 									</div>
 								</div><!-- close .col -->
 								<div class="col-md-12">
-							     	<div class="form-group pull-right">
+							     	<div class="form-group float-right">
 								     	<button type="submit" class="btn btn-green-pro">Save Changes</button>
                                     </div>
                                 </div>
