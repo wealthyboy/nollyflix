@@ -220,7 +220,8 @@ jQuery(document).ready(function($) {
 	$('.buy-video, .rent-video').on('click',function(e){
 		e.preventDefault()
 		var $self =  $(this)
-		//$('.buy-video').addClass('disable-click') 
+		 
+		.addClass('disable-click') 
 		//$('.rent-video').addClass('disable-click') 
 			        
 		var property = $self.data('prop');
@@ -258,7 +259,7 @@ jQuery(document).ready(function($) {
 			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
 			notify('success','top','right',"" +property.title + "  has been added")
 			$self.find('.spinner-border').remove();
-			$('#cart-count').text('('+count+')');
+			$('.cart-count').text(count);
 		 }).fail(function(){
 			//$('.buy-video').removeClass('disable-click') 
 			//$('.rent-video').removeClass('disable-click') 
@@ -313,7 +314,7 @@ jQuery(document).ready(function($) {
 			type:"GET",
 		 }).done(function(res) {
 			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
-			$('#cart-count').text('('+count+')');
+			$('.cart-count').text(count)
 		 }).fail(function(){
 			notify('danger','top','right',"We could not get your cart.")
 		 });
