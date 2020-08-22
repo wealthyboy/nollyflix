@@ -36,7 +36,11 @@
                                 </div>
                                 <div class="col-md-7 col-6">
                                     <h5><a href="#">{{ $cart->video->title }}</a></h5>
-                                    <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ $cart->purchase_type }}    <span class="mr-2 border"">{{ $cart->purchase_type == 'rent'  ? " Expires after 48hours" : ""}}</span></div>
+                                    <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ $cart->purchase_type }}   
+                                      @if( $cart->purchase_type == 'rent' )
+                                         <span class="ml-2 border"">{{ $cart->purchase_type == 'rent'  ? " Expires after 48hours" : ""}}</span>
+                                      @endif
+                                    </div>
                                     <div class="product-item-price">
                                         <div class="product-price-amount"><span class="retail-title text-gold">PRICE: </span> <span class="product--price text-gold">{{ $currency }}{{ $cart->converted_price }}</span></div>
                                     </div>
