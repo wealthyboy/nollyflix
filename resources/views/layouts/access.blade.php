@@ -52,7 +52,7 @@
 				</div-->
 					
 				<div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
-				
+				@if (auth()->check()) 
 				<div class="header-user-profile" id="header-user-profile">
 					<div id="header-user-profile-click" class="noselect header-user-profile-click">
 						<img src="/images/profile_icon.png" alt="Suzie">
@@ -78,6 +78,12 @@
 						</ul>
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->
+				@else
+				<div class="header-user-profile" id="header-user-profile">
+
+				  <a href="/login" class="btn"     data-type="buy" id=""><i class=""></i>Login </a>
+	            </div>
+				@endif
 				
 				<div id="cart-section" class="noselect cursor-pointer">
 					<div class="">
@@ -88,7 +94,7 @@
 					</div>
 				</div>
 				
-				
+
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
 					<a href=""><i class="fas fa-search mt-4"></i> </a>
 				</div>
