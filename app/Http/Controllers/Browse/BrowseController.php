@@ -10,7 +10,8 @@ use App\DefaultBanner;
 use App\Video;
 use App\User;
 use App\Http\Helper;
-use Carbon\Carbon;
+use App\Live;
+
 
 class BrowseController extends Controller
 {
@@ -30,10 +31,21 @@ class BrowseController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {    
+    {   
+        $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured =  DefaultBanner::first();
-        return view('browse.index',compact('sections','featured'));   
+
+        if ( empty($site_status->make_live) ) {
+            return view('browse.index',compact('sections','featured')); 
+        } else {
+            //Show site if admin is logged in
+            if ( auth()->check()  && auth()->user()->isAdmin()){
+                return view('browse.index',compact('sections','featured')); 
+            }
+            return view('welcome');
+        }
+         
     }
 
 
