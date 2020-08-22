@@ -38,13 +38,7 @@
 				<h1><a href="/"><img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a></h1>
 
 				<nav id="site-navigation-pro">
-					<ul class="sf-menu">
-					   @foreach( $global_categories   as  $category)
-							<li class="normal-item-pro ">
-						    	<a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
-						    </li>
-						@endforeach
-					</ul>
+					<ul class="sf-menu"></ul>
 				</nav>
 				
 				<!--div id="header-btn-right">
