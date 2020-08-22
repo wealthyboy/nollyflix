@@ -81,7 +81,7 @@
 				
 				<div id="cart-section" class="noselect cursor-pointer">
 					<div class="">
-					   <a href="">
+					   <a href="/checkout">
 							<i class="fas fa-shopping-cart fa-2x"></i>
 							<span class="badge cart-count">0</span>
 					    </a>
