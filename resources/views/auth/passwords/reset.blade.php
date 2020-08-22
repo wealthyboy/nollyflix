@@ -43,12 +43,7 @@
                                  </span>
                                  @enderror
                               </div>
-                              <div class="container-fluid">
-                                 <div class="row no-gutters">
-                                    <div class="col checkbox-remember-pro"><input type="checkbox" id="checkbox-remember"><label for="checkbox-remember" class="col-form-label">Remember me</label></div>
-                                    <div class="col forgot-your-password"><a href="{{ route('password.request') }}">Forgot your password?</a></div>
-                                 </div>
-                              </div>
+                             
                               <!-- close .container-fluid -->
                               <div class="form-group aligncenter">
                                  <button type="submit" class="btn">{{ __('Reset Password') }}</button>
