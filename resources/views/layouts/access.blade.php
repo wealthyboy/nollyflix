@@ -81,7 +81,7 @@
 				@else
 				<div class="header-user-profile" id="header-user-profile">
 
-				  <a href="/login" class="btn mr-3 ml-4 p-2 rounded-0"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
+				  <a href="/login" class="btn p-2 rounded-0"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
 	            </div>
 				@endif
 				
