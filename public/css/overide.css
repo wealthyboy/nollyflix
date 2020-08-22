@@ -119,9 +119,8 @@ a#video-post-play-text-btn:focus {
 	box-shadow: none;
 }
 
-
 a#video-post-play-text-btn:hover {
-    background: #382a2b;
+    background: #E50914;
     border-color: #E50914;
 }
 
