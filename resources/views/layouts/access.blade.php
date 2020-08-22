@@ -139,6 +139,22 @@
 		<section>
 			@yield('content')
 		</section>
+
+		<footer id="footer-pro">
+		    <div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-12">
+					    <ul class="footer-links">
+						   @foreach($footer_info as $info)
+							   <li class=""><a href="{{ $info->link }}" >{{ title_case($info->name) }}</a></li>
+							@endforeach
+							
+						</ul>
+					</div>
+				</div>
+	        </div>
+		</footer>
+
 		
 		<footer id="footer-pro">
 			<div class="container">

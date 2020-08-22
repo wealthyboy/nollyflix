@@ -9,6 +9,7 @@ use Auth;
 use App\Category;
 use App\SystemSetting;
 use App\Currency;
+use App\Information;
 
 class   NavComposer { 
    
@@ -17,11 +18,14 @@ class   NavComposer {
 		$global_categories = Category::parents()->orderBy('id', 'asc')->get();
 		$system_settings = SystemSetting::first();
 		$currencies = Currency::all();
+		$footer_info = Information::parents()->get(); 
+
 
 	    $view->with([
 		   	'global_categories'=> $global_categories,
 			'system_settings'=>$system_settings,
-			'currencies' =>$currencies
+			'currencies' =>$currencies,
+			'footer_info' =>$footer_info
 	    ]);
     
 
