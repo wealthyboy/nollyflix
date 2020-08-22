@@ -22,7 +22,7 @@
    					 <div class="membership-required-container">
       					 <div class="registration-login-container">
                            <form method="POST" action="{{ route('register') }}">
-                                <div class="aligncenter"><a class="not-a-member-pro" href=""> <span>Sign Up</span></a></div>
+                                <div class="aligncenter"><h1>Sign Up</h1></div>
 
                                 @csrf
       							<div class="form-group">

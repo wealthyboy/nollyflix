@@ -16,8 +16,11 @@
                   <div class="container">
                      <div class="membership-required-container">
                         <div class="registration-login-container">
-                           <h1>LOGIN</h1>
                            <form method="POST" action="{{ route('login') }}">
+						   <div class="aligncenter"><h1>LOGIN</h1></div>
+
+					
+
                               @csrf
                               <div class="form-group">
                                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"  placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -38,7 +41,7 @@
                               <div class="container-fluid">
                                  <div class="row no-gutters">
                                     <div class="col checkbox-remember-pro"><input type="checkbox" id="checkbox-remember"><label for="checkbox-remember" class="col-form-label">Remember me</label></div>
-                                    <div class="col forgot-your-password"><a href="restricted-content.html#!">Forgot your password?</a></div>
+                                    <div class="col forgot-your-password"><a href="{{ route('password.request') }}">Forgot your password?</a></div>
                                  </div>
                               </div>
                               <!-- close .container-fluid -->
