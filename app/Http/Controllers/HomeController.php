@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('guest');
     }
 
     /**
@@ -27,7 +26,7 @@ class HomeController extends Controller
         $site_status =Live::first();
 
         if ( empty($site_status->make_live) ) {
-            return view('index');
+            return view('browse.index');
         } else {
             //Show site if admin is logged in
             if ( auth()->check()  && auth()->user()->isAdmin()){
