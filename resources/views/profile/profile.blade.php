@@ -4,10 +4,10 @@
 
 <div id="page-title-pro">
     <div id="progression-studios-page-title-container">
-                <div class="container">
-                <h1 class="page-title">{{ $user->fullname() }}</h1>
-                <h4 class="progression-sub-title"></h4>				
-            </div><!-- close .container -->
+        <div class="container">
+            <h1 class="page-title">{{ $user->fullname() }}</h1>
+            <h4 class="progression-sub-title"></h4>				
+        </div><!-- close .container -->
     </div><!-- close #progression-studios-page-title-container -->
     <div class="clearfix"></div>
     <div id="page-title-overlay-image" style="background-image:url('images/banners/Bgnollyn01.jpg');"></div>
