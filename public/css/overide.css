@@ -78,7 +78,7 @@ header#masthead-pro h1 img {
     padding: 5px !important;
     font-size: 13px;
     border: 2px solid #E50914;
-    background: #E50914;
+    background: none !important;
     color: #ffffff;
     border-radius: 100px;
     margin-top: 5px;

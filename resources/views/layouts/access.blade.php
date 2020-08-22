@@ -78,28 +78,12 @@
 						</ul>
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->	
-				<div id="header-user-profile">
-					<div id="header-user-profile-click" class="noselect">
+				<div id="">
+					<div id="" class="noselect">
 					   <i class="fas fa-shopping-cart"></i>
 						<div id="header-username"><a href="/checkout">Cart <span id="cart-count">(0)</span></a></div>
 					</div><!-- close #header-user-profile-click -->
-					<div class="header-user-profile-menu" id="header-user-profile-menu">
-						<ul>
-							<li><a href="{{ route('profile.index') }}"><i class="fa fa-user-circle"></i>My Profile</a></li>
-							<li><a href="{{ route('profiles.watchlists') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
-							<li>
-							<a class="" href="/logout"
-                                                        onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
-                                                    <i class="fas fa-sign-out left" aria-hidden="true"></i> Logout
-                                                </a>
-                                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-							
-							</li>
-						</ul>
-					</div><!-- close #header-user-profile-menu -->
+
 				</div><!-- close #header-user-profile -->
 
 		
