@@ -9,6 +9,18 @@ header#masthead-pro {
     background:#222;
 }
 
+header#masthead-pro h1 {
+    border-right: none;
+}
+
+#mobile-bars-icon-pro{
+	border-left: none;
+}
+
+#header-user-profile-click{
+	border-left: none;
+}
+
 header#masthead-pro h1 img {
     width: 150px;
     margin: 18px 0px 25px 0px;
