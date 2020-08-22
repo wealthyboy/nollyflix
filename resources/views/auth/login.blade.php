@@ -18,9 +18,6 @@
                         <div class="registration-login-container">
                            <form method="POST" action="{{ route('login') }}">
 						   <div class="aligncenter"><h1>LOGIN</h1></div>
-
-					
-
                               @csrf
                               <div class="form-group">
                                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"  placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

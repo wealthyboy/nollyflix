@@ -47,3 +47,76 @@
     </div>
 </div>
 @endsection
+
+
+
+
+@extends('layouts.app')
+@section('content')
+<div class="background-image">
+   <div class="container">
+      <div class="centered-headings-pro pricing-plans-headings">
+      </div>
+   </div>
+   <!-- close .container -->
+   <div class="container-fluid">
+      <div class="row justify-content-center">
+         <div class="col-md-8">
+            <div id="membership-plan-background">
+               <div class="membership-width-container">
+                  <div class="container">
+                     <div class="membership-required-container">
+                        <div class="registration-login-container">
+                        <form method="POST" action="{{ route('password.confirm') }}">
+                         @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                           <div class="aligncenter"><h1>{{ __('Confirm Password') }}</h1></div>
+                           
+                           <div class="aligncenter">{{ __('Please confirm your password before continuing.') }}</div>
+
+                                @csrf
+                                <div class="form-group">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                             
+                        
+                              <!-- close .container-fluid -->
+                              <div class="form-group aligncenter">
+                                <button type="submit" class="btn"> 
+                                 {{ __('Confirm Password') }}
+                                </button>
+                              </div>
+                              <div class="aligncenter">
+                                  @if (Route::has('password.request'))
+                                    <a class="not-a-member-pro" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+
+                                
+                               </div>
+                           </form>
+                        </div>
+                        <!-- close .registration-login-container -->
+                     </div>
+                     <div class="clearfix"></div>
+                  </div>
+                  <!-- close .container -->
+               </div>
+               <!-- close .membership-width-container -->
+            </div>
+            <!-- close #membership-plan-background -->
+         </div>
+      </div>
+   </div>
+</div>
+<!-- close #content-pro -->
+@endsection
