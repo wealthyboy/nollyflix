@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
 		<meta charset="utf-8">
-		<title>{{ config('app.name', 'NollyFlix') }}</title>
+		<title>Login | NollyFlix</title>
 
 		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-32x32.png" sizes="32x32" />
 		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-192x192.png" sizes="192x192" />
@@ -15,35 +15,28 @@
 		<meta property="og:title" content=" NollyFlix tv">
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="Watch nollywood movies online">
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script> 
+		<link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
-		<link rel="stylesheet" href="{{ asset('icons/faw/css/font_awesome.css') }}"><!-- FontAwesome Icons -->
-		<link rel="stylesheet" href="/icons/Iconsmind__Ultimate_Pack/Line icons/styles.min.css"><!-- iconsmind.com Icons -->
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/overide.css">
-
-		
-		
+		<link rel="stylesheet" href="/css/overide.css?version={{ str_random(6) }}">
+		<!-- CSRF Token -->
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+	
 	</head>
+
+	<script>
+		Window.content_owner = {
+			user: {!! auth()->check() ? auth()->user() : null !!}
+		}
+	</script>
 	<body>
-		<header id="masthead-pro">
-			<div class="container">
-				
-				<nav class="navbar navbar-expand navbar-dark">
-				<a class="navbar-brand" href="/">
-					<img src="{{ $system_settings->logo_path() }}" width="180" height="150" class="d-inline-block align-top" alt="">
-				</a>
-					<div class="navbar-collapse collapse justify-content-end">
-						<ul class="navbar-nav">
-							<li class="nav-item ">
-								<a class="nav-link btn btn-primary text-danger" href="{{ route('login') }}">Login</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</div><!-- close .container -->
-			
-		
+		<header id="masthead-pro" class="sticky-header"><!-- Remove sticky-header class to remove sticky header -->
+			<div class="header-container">
+				<h1><a href="/"><img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a></h1>
+				<div class="clearfix"></div>
+			</div><!-- close .header-container -->
 		</header>
 		
 	
