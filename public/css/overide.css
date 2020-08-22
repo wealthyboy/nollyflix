@@ -2,6 +2,10 @@ a {
     color: #fff;
 }
 
+.mt-4, .my-4 {
+    margin-top: 1.9rem !important;
+}
+
 
 header#masthead-pro {
     position: relative;
