@@ -77,12 +77,21 @@
 							</li>
 						</ul>
 					</div><!-- close #header-user-profile-menu -->
-				</div><!-- close #header-user-profile -->	
+				</div><!-- close #header-user-profile -->
+				
+				<div id="cart-section" class="noselect cursor-pointer">
+					<div class="">
+					   <a href="">
+							<i class="fas fa-shopping-cart fa-2x"></i>
+							<span class="badge cart-count">0</span>
+					    </a>
+					</div>
+				</div>
 				
 
 		
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
-					<div class="fas fa-search mt-4"></div>
+					<a href=""><i class="fas fa-search mt-4"></i> </a>
 				</div>
 				
 

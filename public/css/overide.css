@@ -30,6 +30,22 @@ header#masthead-pro h1 img {
     margin: 18px 0px 25px 0px;
 }
 
+#cart-section {
+    position: relative;
+    float: right;
+    margin-top: 1.4rem;
+    margin-left: 17px;
+}
+
+.badge.cart-count {
+    position: absolute;
+    font-size: 13px;
+    bottom: 29px;
+    background-color: red;
+    left: 28px;
+    border-radius: 20px;
+}
+
 .background-image{
 	/* Background image */
 	background-image: url('/images/banners/Bgnollyn01.jpg');
@@ -123,8 +139,19 @@ header#masthead-pro h1 img {
 		width: 100px;
 		margin: 26px 0px 25px 0px;
 	}
+	
 	.btn-slider-pro{
 		padding:15px 15px;
+	}
+
+	header#masthead-pro h1 img {
+		width: 120px;
+		margin: 19px 0px 25px 10px;
+		height: 40px;
+	}
+
+	#cart-section {
+		margin-right: 25px;
 	}
 
 }
