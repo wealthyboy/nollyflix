@@ -35,12 +35,15 @@
 										<input type="text" name="last_name" class="form-control" id="last-name" value="{{ $user->last_name }}">
 									</div>
 								</div><!-- close .col -->
+
+								@if (!$user->isSubscriber()  && !$user->isAdmin())
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="description">Bio</label>
 										<textarea class="form-control" name="description" id="description" rows="3">{{ $user->description }}</textarea>
 									</div>
 								</div><!-- close .col -->
+								@endif
 
 								<div class="col-md-12">
 							     	<div class="form-group float-right">

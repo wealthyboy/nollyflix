@@ -25,7 +25,7 @@
     </ul>
 </div>
 
-@if (!$user->isSubscriber())
+@if (!$user->isSubscriber()  && !$user->isAdmin())
     <!-- close .content-sidebar-section -->
     <div class="content-sidebar-section">
         <h3 class="content-sidebar-sub-header">Biography</h3>
