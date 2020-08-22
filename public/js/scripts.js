@@ -260,6 +260,8 @@ jQuery(document).ready(function($) {
 			$self.find('.spinner-border').remove();
 			$('#cart-count').text('('+count+')');
 		 }).fail(function(){
+			$('.buy-video').removeClass('disable-click') 
+			$('.rent-video').removeClass('disable-click') 
 			notify('danger','top','right',"We could not add your item to cart.")
 			$self.find('.spinner-border').remove();
 

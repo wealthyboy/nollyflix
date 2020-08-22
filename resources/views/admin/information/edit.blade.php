@@ -14,54 +14,14 @@
                    @method('PATCH')
                     <div class="card-content">
                         <h4 class="card-title">Information</h4>
-                           <div class="row" >
-                              <div class="col-md-6">
-                                 <div class="card">
-                                       <div class="card-header text-center">
-                                          <h4 class="card-title">Images Only</h4>
-                                       </div>
-                                       <div class="card-content">
-                                          <div id="m_image"  class="uploadloaded_image text-center mb-3">
-                                                <div class="upload-text {{ $information->image !== null  ?  'hide' : '' }}"> 
-                                                   <a class="activate-file" href="#">
-                                                      <img src="{{ asset('store/img/upload_icon.png') }}">
-                                                      <b>Add Image </b> 
-                                                   </a>
-                                                </div>
-                                                <div id="remove_image" class="remove_image {{ $information->image !== null  ?  '' : 'hide' }}">
-                                                   <a class="delete_image" href="#">Remove</a>
-                                                </div>
-                                                @if ( $information->image )
-                                                   <img id="stored_image" class="img-thumnail" src="{{ $information->image }}" alt="">
-                                                @endif
-                                                <input type="hidden"  class="file_upload_input  stored_image" value="{{ $information->image }}" name="image">
-                                                <input accept="image/*"  class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input" name="product_image"  />
-                                             </div>    
-                                       </div><!-- end content-->
-                                    
-                                 </div><!--  end card  -->
-                              </div> <!-- end col-md-4 -->
-                           </div>
+                          
                        
                            <div class="row">
-                              <div class="col-md-6">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label">X pos</label>
-                                    <input  required="true" name="x_pos" data-msg="" class="form-control"  value="{{ $information->x_pos }}" type="text">
-                                    <span class="material-input"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Y pos</label>
-                                    <input  required="true" name="y_pos" data-msg="" class="form-control"  value="{{ $information->y_pos }}" type="text">
-                                    <span class="material-input"></span>
-                                </div>
-                            </div>
+                           
                               <div class="col-md-12">
                                  <div class="form-group label-floating is-empty">
                                     <label class="control-label">Title</label>
-                                    <input  required="true" name="title" data-msg="" value="{{ $information->title }}" class="form-control" type="text">
+                                    <input  required="true" name="name" data-msg="" value="{{ $information->name }}" class="form-control" type="text">
                                     <span class="material-input"></span>
                                  </div>
                               </div>

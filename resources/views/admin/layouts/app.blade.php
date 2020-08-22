@@ -190,6 +190,13 @@
                     </ul>
                 </div>
             </li>
+            <li class="{{ $helper->active_link(['pages']) }} ">
+                <a href="{{ route('pages.index') }}">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>  
+                    <p> Pages
+                    </p>
+                </a>
+            </li>
             <li class="{{ $helper->active_link(['permissions','rates','system']) }} ">
                 <a data-toggle="collapse" href="dashboard.html#Local">
                     <i class="material-icons">image</i>

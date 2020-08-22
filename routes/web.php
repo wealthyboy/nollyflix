@@ -52,6 +52,9 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::get('register','Admin\Users\UsersController@create')->name('create_admin_users');
     Route::post('register','Auth\RegisterController@register');
 
+    Route::resource('pages','Information\InformationController',['name' => 'pages']);
+
+
     Route::resource('users',                    'Admin\Users\UsersController',['names'=>'admin.users']);
     Route::resource('customers',                'Admin\Customers\CustomersController',['name'=>'customers']);
     Route::resource('casts',                    'Admin\Casts\CastsController',['name'=>'casts']);
