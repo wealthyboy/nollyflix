@@ -68,7 +68,7 @@
                         <hr>
                         <p><span class="bold">Total</span> <span class="price-amount amount bold pull-right"><span class="currencySymbol">{{ $currency }}{{ $cart::sum_items_in_cart() }}</span></span></p>
                         <div class="proceed-to-checkout">
-                            <a  data-user="{{ auth()->user() }}" data-currency="" data-total="" href="#" class="checkout-button btn btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
+                            <a  data-user="{{ auth()->user() }}" data-currency="" data-total="" href="#" class="checkout-button btn  w-100 btn--lg btn--primary bold full-width display-2">Make Payment</a></div>
                     </div>
                 </div>
                 </div>
