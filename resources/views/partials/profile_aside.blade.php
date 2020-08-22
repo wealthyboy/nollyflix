@@ -15,12 +15,12 @@
         @if (!$user->isSubscriber())
             <li>
                 <span>{{ $user->profile_videos->count() }}</span>
-                    Videos
+                Videos
             </li>
         @endif
             <li>
                 <span>{{ $user->movies->count() }}</span>
-                    Watchlist
+                Watchlist
             </li>
     </ul>
 </div>
