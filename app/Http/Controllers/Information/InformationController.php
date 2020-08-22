@@ -45,7 +45,7 @@ class InformationController extends Controller
 		$info->custom_link=$request->custom_link;
 		$info->image=$request->image;
 		$info->parent_id=$request->parent_id;
-		$info->slug= str_slug($request->title);
+		$info->slug= str_slug($request->name);
 		$info->save();
 		return redirect()->route('pages.index')->with('status','created');
 		
@@ -74,7 +74,7 @@ class InformationController extends Controller
 		]);
 		$page->name=$request->name;
 		$page->description=$request->description;
-		$page->slug= str_slug($request->title);
+		$page->slug= str_slug($request->name);
 		$page->sort_order=$request->sort_order;
 		$page->custom_link=$request->custom_link;
 		$page->parent_id=$request->parent_id;
