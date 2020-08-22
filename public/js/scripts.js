@@ -256,7 +256,7 @@ jQuery(document).ready(function($) {
 			//$('.buy-video').removeClass('disable-click') 
 			 $self.removeClass('disable-click') 
 			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
-			notify('success','top','right',"" +property.title + "  has been added")
+			notify('success','top','right',"" +property.title + "  has been added to your cart")
 			$self.find('.spinner-border').remove();
 			$('.cart-count').text(count);
 		 }).fail(function(){

@@ -115,6 +115,21 @@ header#masthead-pro h1 img {
 	box-shadow: none;
 }
 
+a#video-post-play-text-btn:focus {
+	box-shadow: none;
+}
+
+
+a#video-post-play-text-btn:hover {
+    background: #382a2b;
+    border-color: #E50914;
+}
+
+a#video-post-play-text-btn {
+    background: #E50914;
+    border-color: #E50914;
+}
+
 .anchor-btn {
     font-family: 'Fira Sans Condensed', sans-serif;
     font-weight: 500;
