@@ -68,9 +68,6 @@
                                     </div><!-- close .progression-video-index-table -->
                                 </div><!-- close .progression-video-index-content -->
                                 <div class="video-index-border-hover"></div>
-                                
-                                
-                               
                             </a>
                         </div><!-- close .progression-studios-video-index-container  -->
                         <div class="d-flex  flex-column justify-content-center ">
@@ -92,7 +89,11 @@
         @endif            
     
         <div class="clearfix"></div>
+        
+        </div>
     </div><!-- close .container -->
+
+
     
     
     

@@ -220,8 +220,8 @@ jQuery(document).ready(function($) {
 	$('.buy-video, .rent-video').on('click',function(e){
 		e.preventDefault()
 		var $self =  $(this)
-		$('.buy-video').addClass('disable-click') 
-		$('.rent-video').addClass('disable-click') 
+		//$('.buy-video').addClass('disable-click') 
+		//$('.rent-video').addClass('disable-click') 
 			        
 		var property = $self.data('prop');
 		var type = $self.data('type');
@@ -253,15 +253,15 @@ jQuery(document).ready(function($) {
 			type:"POST",
 			data: payLoad,
 		 }).done(function(res) {
-			$('.buy-video').removeClass('disable-click') 
-			$('.rent-video').removeClass('disable-click')  
+			//$('.buy-video').removeClass('disable-click') 
+			//$('.rent-video').removeClass('disable-click')  
 			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
 			notify('success','top','right',"" +property.title + "  has been added")
 			$self.find('.spinner-border').remove();
 			$('#cart-count').text('('+count+')');
 		 }).fail(function(){
-			$('.buy-video').removeClass('disable-click') 
-			$('.rent-video').removeClass('disable-click') 
+			//$('.buy-video').removeClass('disable-click') 
+			//$('.rent-video').removeClass('disable-click') 
 			notify('danger','top','right',"We could not add your item to cart.")
 			$self.find('.spinner-border').remove();
 
