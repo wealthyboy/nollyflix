@@ -78,16 +78,9 @@
 						</ul>
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->	
-				<div id="">
-					<div id="" class="noselect">
-					   <i class="fas fa-shopping-cart"></i>
-						<div id="header-username"><a href="/checkout">Cart <span id="cart-count">(0)</span></a></div>
-					</div><!-- close #header-user-profile-click -->
-
-				</div><!-- close #header-user-profile -->
+				
 
 		
-				
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
 					<div class="fas fa-search mt-4"></div>
 				</div>
