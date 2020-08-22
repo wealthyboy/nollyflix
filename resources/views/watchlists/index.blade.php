@@ -42,11 +42,10 @@
                                             <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                         <div class="mr-2">
-                                            <h3 class="progression-video-title">Type: {{ $video->purchase_type == 'rent' ? 'Rented' : 'Bought'}}</h3>
-                                            <h3 class="progression-video-title">Price: {{ $video->price }}</h3>
-
+                                            <h5 class="progression-video-title">Type: {{ $video->purchase_type == 'rent' ? 'Rented' : 'Bought'}}</h5>
+                                            <h5 class="progression-video-title">Price: {{ $video->price }}</h5>
                                             @if ($video->purchase_type == 'rent')
-                                               <h3 class="progression-video-title">Expires:  {{  $video->isVideoRentExpired() ? 'Video Expired' : $video->videoExpires()->format('d/m/y')  }}</h3>
+                                               <h5 class="progression-video-title">Expires:  {{  $video->isVideoRentExpired() ? 'Video Expired' : $video->videoExpires()->format('d/m/y')  }}</h5>
                                             @endif
                                         </div>
                                        
