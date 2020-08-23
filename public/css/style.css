@@ -137,11 +137,11 @@ ul.page-numbers li .current,
 .copyright-text-pro a:hover,
 a,
 #mobile-navigation-pro li.current-menu-item a {
-	color:#22b2ee;
+	color:#E50914
 }
 
 a:hover {
-	color:#74d6ff;
+	color:#E50914;
 	text-decoration:none;
 }
 
@@ -160,7 +160,7 @@ select.custom-select:focus,
 .form-group input:focus, 
 .form-group textarea:focus,
 .btn-header-pro:hover {
-	border-color:#22b2ee;
+	border-color:#E50914
 }
 
 .progression-carousel-theme .owl-dots .owl-dot.active span,
@@ -168,7 +168,7 @@ body .asRange .asRange-pointer:before,
 body .asRange .asRange-selected,
 .checkbox-pro-container .checkmark-pro:after,
 #pro-scroll-top:hover {
-	background:#22b2ee;
+	background:#E50914
 }
 
 /* Button Colors */
@@ -176,8 +176,8 @@ body .asRange .asRange-selected,
 a.edit-profile-sidebar,
 .flex-control-paging li a.flex-active {
 	color:#ffffff;
-	border-color:#22b2ee;
-	background:#22b2ee;	
+	border-color:#E50914
+	background:#E50914	
 }
 
 /* Secondary Button Colors */
@@ -198,16 +198,16 @@ select.custom-select option {
 /* Mouse Selection Color */
 ::-moz-selection {
 	color:#ffffff;
-	background:#22b2ee;
+	background:#E50914
 }
 ::selection {
 	color:#ffffff;
-	background:#22b2ee;
+	background:#E50914
 }
 
 ::selection h2 {
 	color:#ffffff;
-	background:#22b2ee;
+	background:#E50914
 }
 
 
