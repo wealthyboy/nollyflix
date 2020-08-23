@@ -33,13 +33,17 @@
                             </div><!-- close .progression-video-index-table -->
                         </div><!-- close .progression-video-index-content -->
                         <div class="video-index-border-hover"></div>
-                        <div class="mt-3 mx-auto">
-                            <h2 class="progression-video-title">Buy - {{ $video->currency }}{{ number_format($video->buy_price) }}</h2>
-                            <h2 class="progression-video-title">Rent - {{ $video->currency }}{{ number_format($video->rent_price) }}</h2>
-                        </div>
+                      
                         
                     </a>
                 </div><!-- close .progression-studios-video-index-container -->
+                <div class="d-flex  flex-column justify-content-center ">
+                    <div class="mx-auto buy-rent-links">
+                        <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>
+                        <a href="#" class="buy-video btn anchor-btn"   data-prop="{{ $video }}"  data-type="buy" id=""><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
+                        <a href="#" class="rent-video btn anchor-btn"  data-prop="{{ $video }}"  data-type="rent"id=""><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
+                    </div>
+                </div><!-- close #video-post-buttons-container -->
             </div><!-- close .col -->
             @endforeach
              
