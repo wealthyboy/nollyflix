@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <div class="" id=""><<< Back</div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/UrZbTeY8cBU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     
-    <iframe id="background_video" src="https://player.vimeo.com/video/295694148"  frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 </div><!-- close #content-pro -->
 @endsection
