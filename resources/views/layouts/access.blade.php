@@ -96,7 +96,7 @@
 				
 
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
-					<a href=""><i class="fas fa-search mt-4"></i> </a>
+					<a href="#"><i class="fas fa-search mt-4"></i> </a>
 				</div>
 				
 
