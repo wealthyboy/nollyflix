@@ -7,12 +7,7 @@
            
             <div class="col col-12 col-md-7 col-lg-7">
                 <div class="progression-studios-video-index-container">
-                
                     <div class="progression-studios-video-feaured-image"><img src="{{ $video->poster }}" alt="{{ $video->title }}"></div>
-
-                    
-                    
-    
                 </div><!-- close .progression-studios-video-index-container -->
             </div><!-- close .col -->
 
