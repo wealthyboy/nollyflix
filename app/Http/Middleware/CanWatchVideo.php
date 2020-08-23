@@ -52,7 +52,7 @@ class CanWatchVideo
             $view->save();
         }
 
-        dd($video->videoExpires()->format('d/m/y'));
+        dd(now() > $video->videoExpires()->format('d/m/y'));
 
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);
