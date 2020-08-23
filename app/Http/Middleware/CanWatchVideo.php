@@ -28,11 +28,7 @@ class CanWatchVideo
 
         $user  = auth()->user();
 
-        $video = Cart::find([
-            'id'=> $request->id,
-            'user_id' => $user->id,
-            'status'  => 'Complete',
-        ])->firstOrFail();
+        $video = Cart::findOrFail($request->id);
 
         dd($video);
 
