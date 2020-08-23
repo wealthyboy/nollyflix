@@ -1,7 +1,7 @@
 @extends('layouts.watch')
 
 @section('content')
-<div >
+<div>
     <div class="" id=""><<< Back</div>
     <video 
     class="video-js"
