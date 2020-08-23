@@ -1,5 +1,5 @@
 
-document.addEventListener('contextmenu', event => event.preventDefault());
+//document.addEventListener('contextmenu', event => event.preventDefault());
 
 // var video = document.querySelector('video');
 
@@ -10,7 +10,7 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 // var mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
 
 // if ('MediaSource' in window && MediaSource.isTypeSupported(mimeCodec)) {
-//   var mediaSource = new MediaSource;
+//   var mediaSource = new //;
 //   //console.log(mediaSource.readyState); // closed
 //   video.src = URL.createObjectURL(mediaSource);
 //   mediaSource.addEventListener('sourceopen', sourceOpen);
