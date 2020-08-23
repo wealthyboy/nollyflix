@@ -28,11 +28,18 @@ class CanWatchVideo
 
         $user  = auth()->user();
 
-        $video = Cart::where([
-            'video_id'=> $request->id,
+        $video = Cart::find([
+            'id'=> $request->id,
             'user_id' => $user->id,
             'status'  => 'Complete',
         ])->firstOrFail();
+
+        dd($video);
+
+        if ( $video->isVideoRentExpired() ){
+            return redirect()->route('watch.expired',['id' => $request->id]);
+        }
+
 
         /**
          * Check if user has already viewed the video
@@ -52,12 +59,7 @@ class CanWatchVideo
             $view->save();
         }
 
-        dd($video);
-
-        if ( $video->isVideoRentExpired() ){
-            return redirect()->route('watch.expired',['id' => $request->id]);
-        }
-
+       
         return $next($request);
     }
 }
