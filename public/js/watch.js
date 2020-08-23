@@ -1,5 +1,5 @@
 
-
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 // var video = document.querySelector('video');
 
