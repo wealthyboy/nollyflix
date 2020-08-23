@@ -5,7 +5,7 @@
     <div class="" id=""><<< Back</div>
     <video 
     class="video-js"
-    data-setup="{}"
+    data-setup='{ "controls": true, "autoplay": true, "preload": "auto" }'
     id="background_video" controls>
         <source src="{{ $video->link }}" type="video/mp4">
     </video>
