@@ -52,7 +52,8 @@ class CanWatchVideo
             $view->save();
         }
 
-        dd($this->purchase_type == 'rent');
+        dd($this->purchase_type == 'rent' && 
+        now() > $this->videoExpires());
 
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);
