@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
 		<meta charset="utf-8">
-		<title>{{ config('app.name', 'NollyFlix') }}</title>
+		<title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') : 'NollyFlix' }}</title>
 
 		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-32x32.png" sizes="32x32" />
 		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-192x192.png" sizes="192x192" />
@@ -155,11 +155,10 @@
 					</div><!-- close .col -->
 					<div class="col-md">
 						<ul class="social-icons-pro">
-							<li class="facebook-color"><a href="http://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="twitter-color"><a href="http://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li class="instagram-color"><a href="http://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li class="youtube-color"><a href="http://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a></li>
-							<li class="vimeo-color"><a href="http://vimeo.com/" target="_blank"><i class="fab fa-vimeo-v"></i></a></li>
+							<li class="facebook-color"><a href="{{ $system_settings->facebook_link }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="twitter-color"><a href="{{  $system_settings->twitter_link }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li class="instagram-color"><a href="{{  $system_settings->instagram_link }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li class="youtube-color"><a href="{{  $system_settings->youtube_link }}" target="_blank"><i class="fab fa-youtube"></i></a></li>
 						</ul>
 					</div><!-- close .col -->
 				</div><!-- close .row -->
