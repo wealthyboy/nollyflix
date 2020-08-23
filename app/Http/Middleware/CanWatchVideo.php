@@ -28,7 +28,7 @@ class CanWatchVideo
 
         $user  = auth()->user();
 
-        $video = Cart::find([
+        $video = Cart::where([
             'video_id'=> $request->id,
             'user_id' => $user->id,
             'status'  => 'Complete',
