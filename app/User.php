@@ -140,6 +140,26 @@ class User extends Authenticatable
 	}
 
 
+	 /**
+     * The user's views that belong to the video.
+    */
+    public function views()
+    {
+        return $this->hasMany('App\View');
+	}
+	
+
+
+    /**
+     * The user's views that belong to the video.
+    */
+    public function view()
+    {
+        return $this->hasOne('App\View');
+    }
+
+
+
 	public function getCartTotalAttribute()
 	{   
 		return Cart::sum_items_in_cart();
@@ -172,6 +192,15 @@ class User extends Authenticatable
 	{
 		return $this->users_permission  !== null ? true : false;
 	}
+
+
+	 /**
+     * The user's views that belong to the video.
+    */
+    public function hasWatchedVideo()
+    {
+        //return null !== $this->view ? 
+    }
 
 
 	public function isSubscriber()

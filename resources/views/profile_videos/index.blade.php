@@ -31,7 +31,7 @@
                                         <div class="ml-3">
                                             <small class="progression-video-title"><span>{{ $video->solds->count() }}</span> - Sold</small><br/>
                                             <small class="progression-video-title"><span>{{ $video->rents->count() }}</span> - Rented</small><br/>
-                                            <small class="progression-video-title"><span>0</span> - Views</small>
+                                            <small class="progression-video-title"><span>{{ $video->views->count() }}</span> - Views</small>
                                         </div>
                                  
                                     </a>

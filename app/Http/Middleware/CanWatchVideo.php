@@ -7,6 +7,8 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\Video;
 use App\Cart;
+use App\View;
+
 
 class CanWatchVideo
 {
@@ -31,6 +33,24 @@ class CanWatchVideo
             'user_id' => $user->id,
             'status'  => 'Complete',
         ])->firstOrFail();
+
+        /**
+         * Check if user has already viewed the video
+         */
+        $view = View::where([
+            'user_id' => $user->id,
+            'video_id' => $video->id
+        ])->first();
+
+        /**
+         * Create view if user has not viewed the video 
+         */
+        if (!$view){
+            $view = new View;
+            $view->user_id = $user->id;
+            $view->video_id = $user->id;
+            $view->save();
+        }
 
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);

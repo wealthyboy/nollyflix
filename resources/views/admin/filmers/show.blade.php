@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="price">
-                                            <h4>6k views</h4>
+                                        <h4>{{ $video->views->count() }} views</h4>
                                         </div>
                                         
                                     </div>

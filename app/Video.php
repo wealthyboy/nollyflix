@@ -141,6 +141,25 @@ class Video extends Model
         return $this->hasMany('App\OrderedMovie');
     }
 
+
+    /**
+     * The video's views that belong to the video.
+    */
+    public function views()
+    {
+        return $this->hasMany('App\View');
+    }
+
+
+    /**
+     * The video's views that belong to the video.
+    */
+    public function view()
+    {
+        return $this->hasOne('App\View');
+    }
+
+
     public function related_videos()
     {
         return $this->hasMany(RelatedVideo::class);
