@@ -4,9 +4,9 @@
 <div>
     <div class="" id=""><<< Back</div>
     <video 
-    class="video-js"
-    data-setup='{ "controls": true, "autoplay": true, "preload": "auto" }'
-    id="background_video" controls>
+    class=""
+     
+    id="background_video" controls autoplay>
         <source src="{{ $video->link }}" type="video/mp4">
     </video>
 </div><!-- close #content-pro -->
