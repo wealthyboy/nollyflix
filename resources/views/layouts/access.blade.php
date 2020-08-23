@@ -116,7 +116,7 @@
 						   @foreach($footer_info as $info)
 							   <li class=""><a href="{{ $info->link }}" >{{ title_case($info->name) }}</a></li>
 							@endforeach
-							@if ( auth()->user()->isAdmin() )
+							@if ( auth()->check() && auth()->user()->isAdmin() )
 							    <li class=""><a target="_blank" href="/admin" >Go to Admin</a></li>
 							@endif
 							
