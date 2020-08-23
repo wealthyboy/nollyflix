@@ -1,31 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
-		<meta charset="utf-8">
-		<title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') : 'NollyFlix' }}</title>
-		<meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
-        <meta name="keywords" content="{{ isset($system_settings->meta_tag_keywords) ? $system_settings->meta_tag_keywords : 'Watch nollywood movies,hollywood movies,buy movies.rent movies,' }}" />  
-
-		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-32x32.png" sizes="32x32" />
-		<link rel="icon" href="https://nollyflix.tv/favicons/cropped-nflix-192x192.png" sizes="192x192" />
-		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/favicons/cropped-nflix-180x180.png" />
-		<meta name="msapplication-TileImage" content="https://nollyflix.tv/favicons/cropped-nflix-270x270.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="canonical" href="https://nollyflix.tv/">
-		<meta property="og:site_name" content="NollyFilx">
-		<meta property="og:url" content="https://nollyflix.tv">
-		<meta property="og:title" content=" NollyFlix tv">
-		<meta property="og:type" content="website">
-		<meta property="og:description" content="Watch nollywood movies online">
-		<script src='https://kit.fontawesome.com/a076d05399.js'></script> 
-		<link rel="dns-prefetch" href="//fonts.gstatic.com">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/overide.css?version={{ str_random(6) }}">
-		<!-- CSRF Token -->
-		<meta name="csrf-token" content="{{ csrf_token() }}">
-	
+     	@include('partials.styles')
 	</head>
 
 	<script>
@@ -54,11 +30,11 @@
 						<div class="copyright-text-pro">&copy; {{ Config('app.name') }}  {{ date('Y') }}. All rights reserved.</div>
 					</div><!-- close .col -->
 					<div class="col-md">
-						<ul class="social-icons-pro">
-							<li class="facebook-color"><a href="http://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="twitter-color"><a href="http://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li class="youtube-color"><a href="http://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a></li>
-							<li class="vimeo-color"><a href="http://vimeo.com" target="_blank"><i class="fab fa-vimeo-v"></i></a></li>
+					    <ul class="social-icons-pro">
+							<li class="facebook-color"><a href="{{ $system_settings->facebook_link }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="twitter-color"><a href="{{  $system_settings->twitter_link }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li class="instagram-color"><a href="{{  $system_settings->instagram_link }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li class="youtube-color"><a href="{{  $system_settings->youtube_link }}" target="_blank"><i class="fab fa-youtube"></i></a></li>
 						</ul>
 					</div><!-- close .col -->
 				</div><!-- close .row -->

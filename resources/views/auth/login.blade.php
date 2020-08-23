@@ -44,7 +44,7 @@
                               <div class="form-group aligncenter">
                                  <button type="submit" class="btn">Login</button>
                               </div>
-                              <div class="aligncenter"><a class="not-a-member-pro" href="{{ route('register') }}">Don't have account? <span>Signup</span></a></div>
+                              <div class="aligncenter"><a class="not-a-member-pro" href="{{ route('register') }}">Don't have an  account yet? <span>Signup</span></a></div>
                            </form>
                         </div>
                         <!-- close .registration-login-container -->
