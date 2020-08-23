@@ -19,7 +19,7 @@
                         @foreach($user->movies as $video)
                             <div class="col col-6 col-md-4 col-lg-4">
                                 <div class="progression-studios-video-index-container">
-                                    <a href="/watch/{{ optional($video->video)->id }}">
+                                    <a href="/watch/{{ optional($video)->id }}">
                                 
                                         <div class="progression-studios-video-feaured-image"><img src="{{ optional($video->video)->tn_poster }}" alt="{{ $video->video->title }}"></div>
                             
@@ -42,7 +42,7 @@
                                             <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                         <div class="ml-2">
-                                            <div class="progression-video-title">{{ $video->purchase_type == 'rent' ? 'Rented' : 'Purchased'}} {{ $video->purchase_type  }}</div>
+                                            <div class="progression-video-title">{{ $video->purchase_type == 'rent' ? 'Rented' : 'Purchased'}}</div>
                                             <div class="progression-video-title">Price:  {{ $video->orders->first()->currency }}{{ number_format($video->customer_price) }}</div>
                                             @if ($video->purchase_type == 'rent')
                                                <div class="progression-video-title">Expires:  {{  $video->isVideoRentExpired() ? 'Video Expired' : $video->videoExpires()->format('d/m/y')  }}</div>
