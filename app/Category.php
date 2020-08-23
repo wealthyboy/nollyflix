@@ -25,7 +25,7 @@ class Category extends Model
 
     public function videos()
     {
-        return $this->belongsToMany('App\Video')->where('allow',1);
+        return $this->belongsToMany('App\Video')->where('allow',1)->orderBy('id','DESC');
     }
 
     public function getRouteKeyName(){
