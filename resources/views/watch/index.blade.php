@@ -3,11 +3,7 @@
 @section('content')
 <div>
     <div class="" id=""><<< Back</div>
-    <video 
-    class=""
-     
-    id="background_video" controls autoplay>
-        <source src="" type="video/mp4">
-    </video>
+    
+    <iframe id="background_video" src="https://player.vimeo.com/video/295694148" width="640" height="396" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 </div><!-- close #content-pro -->
 @endsection
