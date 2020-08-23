@@ -183,6 +183,9 @@ a#video-post-play-text-btn {
 
 }
 
+.progress {
+    height: 0.2rem;
+}
 
 .footer-links {
     list-style: none;
