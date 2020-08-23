@@ -259,12 +259,12 @@ jQuery(document).ready(function($) {
 			notify('success','top','right',"" +property.title + "  has been added to your cart")
 			$self.find('.spinner-border').remove();
 			$('.cart-count').text(count);
-		 }).fail(function(){
+		 }).fail(function(e){
 			$self.removeClass('disable-click') 
-
+			console.log(e)
 			//$('.buy-video').removeClass('disable-click') 
 			//$('.rent-video').removeClass('disable-click') 
-			notify('danger','top','right',"We could not add your item to cart.")
+			//notify('danger','top','right',"We could not add your item to cart.")
 			$self.find('.spinner-border').remove();
 
 		 });
