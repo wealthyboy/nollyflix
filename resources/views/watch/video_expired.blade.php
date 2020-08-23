@@ -10,28 +10,9 @@
                 
                     <div class="progression-studios-video-feaured-image"><img src="{{ $video->poster }}" alt="{{ $video->title }}"></div>
 
-                    <div class="progression-video-index-content no-background">
-                        <div class="progression-video-index-table">
-                            <div class="progression-video-index-vertical-align">
                     
-                                <div class="clearfix"></div>
-                                <ul class="video-index-meta-taxonomy">
-                                    <li></li>
-                                </ul>												
-                                <div class="clearfix"></div>
                     
-                            </div><!-- close .progression-video-index-vertical-align -->
-                        </div><!-- close .progression-video-index-table -->
-                    </div><!-- close .progression-video-index-content -->
-                    <div class="video-index-border-hover"></div>
-                    
-                    <div class="mr-2">
-
-                        
-                    </div>
-                        
-                
-                
+    
                 </div><!-- close .progression-studios-video-index-container -->
             </div><!-- close .col -->
 

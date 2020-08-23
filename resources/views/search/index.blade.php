@@ -9,7 +9,7 @@
                         @foreach($videos as $video)
                             <div class="col col-6 col-md-3 col-lg-3">
                                 <div class="progression-studios-video-index-container">
-                                    <a href="/watch/{{ $video->id }}">
+                                    <a href="/browse/{{ $video->slug }}">
                                 
                                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                             
