@@ -58,8 +58,8 @@
 
                     <div id="video-post-buttons-container">
                         <a href="{{ optional($video)->preview_link }}" class="w-100"  data-fancybox id="video-post-play-text-btn"><i class="far fa-play-circle"></i>Play Trailer </a>
-                        <a href="#" class="buy-video w-100"   data-prop="{{ $video }}"  data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->buy_price) }} </a>
-                        <a href="#" class="rent-video w-100"  data-prop="{{ $video }}"  data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->rent_price) }}</a>
+                        <a href="#" class="buy-video w-100"   data-prop="{{ $video }}"  data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
+                        <a href="#" class="rent-video w-100"  data-prop="{{ $video }}"  data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
                         <div class="clearfix"></div>
                     </div><!-- close #video-post-buttons-container -->
                 </div>
