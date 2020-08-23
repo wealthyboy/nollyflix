@@ -32,8 +32,6 @@ class WatchController extends Controller
     {
         $video = Video::find($id);
 
-        dd($id);
-
         return view('watch.index',compact('video'));
     }
 
