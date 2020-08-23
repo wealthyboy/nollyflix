@@ -4,6 +4,6 @@
 <div>
     <div class="" id=""><<< Back</div>
     
-    <iframe id="background_video" src="https://player.vimeo.com/video/295694148" width="640" height="396" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <iframe id="background_video" src="https://player.vimeo.com/video/295694148"  frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 </div><!-- close #content-pro -->
 @endsection
