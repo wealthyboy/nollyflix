@@ -34,6 +34,8 @@ class CanWatchVideo
             'status'  => 'Complete',
         ])->firstOrFail();
 
+        View::truncate();
+
         /**
          * Check if user has already viewed the video
          */
@@ -48,7 +50,7 @@ class CanWatchVideo
         if (!$view){
             $view = new View;
             $view->user_id = $user->id;
-            $view->video_id = $user->id;
+            $view->video_id = $request->id;
             $view->save();
         }
 
