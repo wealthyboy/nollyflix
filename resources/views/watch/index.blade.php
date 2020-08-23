@@ -7,7 +7,7 @@
     class=""
      
     id="background_video" controls autoplay>
-        <source src="{{ $video->link }}" type="video/mp4">
+        <source src="" type="video/mp4">
     </video>
 </div><!-- close #content-pro -->
 @endsection
