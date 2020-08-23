@@ -53,7 +53,7 @@
         
             <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
                 <div id="progression-video-carousel" class="owl-carousel progression-carousel-theme">
-                    @foreach($section->videos as $video)
+                    @foreach($section->videos()->latest()->get() as $video)
 
                     <div class="item">
                         <div class="progression-studios-video-index-container">
