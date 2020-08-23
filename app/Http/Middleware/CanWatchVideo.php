@@ -42,6 +42,8 @@ class CanWatchVideo
             'video_id' => $video->id
         ])->first();
 
+        dd($view);
+
         /**
          * Create view if user has not viewed the video 
          */
