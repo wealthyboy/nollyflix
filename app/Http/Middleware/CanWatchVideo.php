@@ -34,8 +34,6 @@ class CanWatchVideo
             'status'  => 'Complete',
         ])->firstOrFail();
 
-        View::truncate();
-
         /**
          * Check if user has already viewed the video
          */
