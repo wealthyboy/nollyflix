@@ -56,7 +56,7 @@
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->
 				@else
-				<div class="header-user-profile" id="header-user-profile"
+				<div class="header-user-profile" id="header-user-profile">
 				  <a href="/login" class="btn p-2 rounded-0"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
 	            </div>
 				@endif
