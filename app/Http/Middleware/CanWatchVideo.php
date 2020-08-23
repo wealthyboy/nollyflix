@@ -28,11 +28,17 @@ class CanWatchVideo
 
         $user  = auth()->user();
 
-        $video = Cart::findOrFail($request->id);
+        $video = Cart::find([
+            'video_id'=> $request->id,
+            'user_id' => $user->id,
+            'status'  => 'Complete',
+        ])->firstOrFail();
+
 
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);
         }
+
 
         /**
          * Check if user has already viewed the video
