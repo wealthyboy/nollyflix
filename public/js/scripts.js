@@ -264,7 +264,7 @@ jQuery(document).ready(function($) {
 			console.log(e)
 			//$('.buy-video').removeClass('disable-click') 
 			//$('.rent-video').removeClass('disable-click') 
-			//notify('danger','top','right',"We could not add your item to cart.")
+			notify('danger','top','right',"We could not add your item to cart.")
 			$self.find('.spinner-border').remove();
 
 		 });
@@ -317,7 +317,7 @@ jQuery(document).ready(function($) {
 			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
 			$('.cart-count').text(count)
 		 }).fail(function(){
-			notify('danger','top','right',"We could not get your cart.")
+			notify('danger','top','right',"We could not add your item to cart.")
 		 });
 	}
 
