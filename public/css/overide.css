@@ -178,6 +178,11 @@ a#video-post-play-text-btn {
 		margin-right: 35px;
 	}
 
+	.membership-required-container {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
 }
 
 .progress {

@@ -13,7 +13,6 @@
          <div class="col-md-8">
             <div id="membership-plan-background">
                <div class="membership-width-container">
-                  <div class="container">
                      <div class="membership-required-container">
                         <div class="registration-login-container">
                            <form method="POST" action="{{ route('login') }}">
@@ -51,8 +50,6 @@
                         <!-- close .registration-login-container -->
                      </div>
                      <div class="clearfix"></div>
-                  </div>
-                  <!-- close .container -->
                </div>
                <!-- close .membership-width-container -->
             </div>
