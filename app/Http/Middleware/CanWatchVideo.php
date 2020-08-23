@@ -39,10 +39,8 @@ class CanWatchVideo
          */
         $view = View::where([
             'user_id' => $user->id,
-            'video_id' => $video->id
+            'video_id' => $video->video_id
         ])->first();
-
-        dd($view);
 
         /**
          * Create view if user has not viewed the video 
@@ -53,8 +51,6 @@ class CanWatchVideo
             $view->video_id = $user->id;
             $view->save();
         }
-
-        dd(View::all());
 
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);
