@@ -58,7 +58,7 @@ class SearchController extends Controller
                                 ->orWhere('videos.title', 'like', '%' .$filtered_array['q'] . '%')
                                 ->orWhere('users.name', 'like', '%' .$filtered_array['q'] . '%')
                                 ->orWhere('users.last_name', 'like', '%' .$filtered_array['q'] . '%')
-                                ->orWhere('genres.name', 'like', '%' .$filtered_array['q'] . '%')
+                                ->orWhere('genres.name', 'like', '%' .$filtered_array['q'] . '%');
                         });
         }
 			
