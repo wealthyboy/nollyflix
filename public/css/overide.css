@@ -37,6 +37,10 @@ header#masthead-pro h1 img {
     margin-left: 17px;
 }
 
+#cart-section a:hover {
+    color: #fff;
+}
+
 .badge.cart-count {
     position: absolute;
     font-size: 13px;
