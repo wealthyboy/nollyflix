@@ -52,7 +52,7 @@ class CanWatchVideo
             $view->save();
         }
 
-        dd($video->purchase_type == 'rent' && 
+        dd( 
         now() > $video->videoExpires());
 
         if ( $video->isVideoRentExpired() ){
