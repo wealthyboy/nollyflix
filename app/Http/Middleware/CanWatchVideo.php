@@ -34,7 +34,7 @@ class CanWatchVideo
             'status'  => 'Complete',
         ])->firstOrFail();
 
-
+         dd($video);
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);
         }
