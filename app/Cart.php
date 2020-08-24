@@ -66,7 +66,7 @@ class Cart extends Model
     public function isVideoRentExpired()
     {   
         return $this->purchase_type == 'rent' && 
-        now() > $this->videoExpires();
+        now() > $this->videoExpires() ? true : false;
     }
 
 
