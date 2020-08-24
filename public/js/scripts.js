@@ -221,12 +221,10 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		}).done(function(res) {
 			$spinner.addClass('d-none')
 			$searching.addClass('d-none')
-
 			if ( $q == '' ) {
 				$('.section-content').removeClass('d-none')
 				return
 			}
-
 			if($.trim(res) == 'No videos'){
 				$("#searched-videos-content").html('') 
 				return
