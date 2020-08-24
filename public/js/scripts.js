@@ -136,6 +136,12 @@ jQuery(document).ready(function($) {
 	    }		
 	});
 
+	$(".close-icon").on('click', function(e){
+		if ($(".header-container").hasClass('active-search-icon-pro')) {
+			$(".header-container").removeClass('active-search-icon-pro').addClass('hide-search-icon-pro');
+		}
+    })
+
 	/* If clicking outside of boxes, automatically hide */
 	$(document).on('click', function(e){
 
@@ -170,7 +176,6 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		autoplayTimeout:5000,
 		nav: true,
 		slideBy:1,
-		loop:true,//match with rewind
 		dots: false,
 		autoplayHoverPause:true,
 		responsive : {
@@ -196,16 +201,32 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 	})
 
 	$(".search-input").on('input',function(e){
-        var $search = $(this).val()
+		var $q = $(this).val()   
+		var $spinner = 	$('.search-spinner')
+		var $section_content = 	$('.section-content')
+		var $searching = 	$('.searching')
+			$spinner.removeClass('d-none')
+			$searching.removeClass('d-none')
+			$section_content.addClass('d-none')
+			if ( $q == '' ) {
+				$searching.addClass('d-none')
+				$('.section-content').removeClass('d-none')
+				$spinner.addClass('d-none')
+				return
+			}
 		$.ajax({
 			url: "/search",
 			type:"GET",
 			data: { q: $(this).val() }
 		}).done(function(res) {
-			if ( $search == '' ) {
+			$spinner.addClass('d-none')
+			$searching.addClass('d-none')
+
+			if ( $q == '' ) {
 				$('.section-content').removeClass('d-none')
 				return
 			}
+
 			if($.trim(res) == 'No videos'){
 				$("#searched-videos-content").html('') 
 				return
@@ -214,8 +235,10 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 			    $("#searched-videos-content").html(res) 
 			}
 			
-		}).fail(function(){
-		     
+		}).fail(function(e){
+			$("#searched-videos-content").html("We could not get any videos at the moment ") 
+			$spinner.addClass('d-none')
+			$searching.addClass('d-none')
 		});
 	})
 
@@ -224,8 +247,6 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		e.preventDefault()
 		var $self =  $(this)
 		$self.addClass('disable-click') 
-		//$('.rent-video').addClass('disable-click') 
-			        
 		var property = $self.data('prop');
 		var type = $self.data('type');
 		var price = null

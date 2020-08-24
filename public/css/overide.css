@@ -48,12 +48,22 @@ input#main-text-field {
     width: 100%;
     padding: 14px 50px 14px 20px;
     font-size: 14px;
-    background-image: url("images/search-magnify.png");
-    background-position: right 10px;
-    background-repeat: no-repeat;
-    border-radius: 0px;
     box-shadow: 0px 0px 25px rgba(0,0,0, 0);
     height: 80px;
+}
+
+#video-search-header .search-spinner{
+	position: absolute;
+	right: 70px;
+    top: 30px;   
+}
+
+#video-search-header .close-icon{
+	position: absolute;
+	right: 30px;
+	top: 16px;
+	font-size: 1.6rem;
+	cursor: pointer;
 }
 
 

@@ -1,6 +1,8 @@
+
 @if( $videos->count())
 
 <div id="content-pro">
+    
 			
     <div class="container-fluid custom-gutters-pro">   
         <div id="">                

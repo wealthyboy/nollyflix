@@ -1,6 +1,11 @@
 @extends('layouts.access')
 
 @section('content')
+<div class="h-100 d-none searching">
+    <div class="">                    
+        <p class="large">Searching.....</p>
+    </div>
+</div>
 <section class="section-content">
 <div class="flexslider progression-studios-slider">
     <ul class="slides">
@@ -8,9 +13,7 @@
             <div class="progression-studios-slider-image-background" style="background-image:url({{ optional($featured->video)->poster }});">
                 <div class="progression-studios-slider-display-table">
                     <div class="progression-studios-slider-vertical-align">
-                        
                         <div class="container">
-                            
                             <div class="progression-studios-slider-caption-width">
                                 <div class="progression-studios-slider-caption-align">
                                     <h2><a href="/">{{ optional($featured->video)->title }}</a></h2>
@@ -31,53 +34,46 @@
                         
                     </div><!-- close .progression-studios-slider-vertical-align -->
                 </div><!-- close .progression-studios-slider-display-table -->
-                
+        
                 <div class="progression-studios-slider-overlay-gradient"></div>
-                
-                
-                
+            
             </div><!-- close .progression-studios-slider-image-background -->
         </li>
-      
     </ul>
 </div><!-- close .progression-studios-slider - See /js/script.js file for options -->
 
 <div id="content-pro">
-    
     <div class="container-fluid custom-gutters-pro">
-        
         <div style="height:15px;"></div>
         @if($sections->count())
             @foreach($sections as $section)
             <h2 class="post-list-heading">{{ $section->name }}<span></span></h2>
-        
             <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
                 <div id="progression-video-carousel" class="owl-carousel progression-carousel-theme">
                     @foreach($section->videos()->latest()->get() as $video)
-
-                    <div class="item">
-                        <div class="progression-studios-video-index-container">
-                            <a href="/browse/{{ $video->slug }}">
-                                <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
-                                <div class="progression-video-index-content no-background">
-                                    <div class="progression-video-index-table">
-                                        <div class="progression-video-index-vertical-align">
-                                            <h2 class="progression-video-title"></h2>
-                                            <div class="clearfix"></div>                                    
-                                        </div><!-- close .progression-video-index-vertical-align -->
-                                    </div><!-- close .progression-video-index-table -->
-                                </div><!-- close .progression-video-index-content -->
-                                <div class="video-index-border-hover"></div>
-                            </a>
-                        </div><!-- close .progression-studios-video-index-container  -->
-                        <div class="d-flex  flex-column justify-content-center ">
-                            <div class="mx-auto buy-rent-links">
-                                <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>
-                                <a href="#" class="buy-video btn anchor-btn"   data-prop="{{ $video }}"  data-type="buy" id=""><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
-                                <a href="#" class="rent-video btn anchor-btn"  data-prop="{{ $video }}"  data-type="rent"id=""><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
-                            </div>
-                        </div><!-- close #video-post-buttons-container -->
-                    </div><!-- close .item -->
+                        <div class="item">
+                            <div class="progression-studios-video-index-container">
+                                <a href="/browse/{{ $video->slug }}">
+                                    <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
+                                    <div class="progression-video-index-content no-background">
+                                        <div class="progression-video-index-table">
+                                            <div class="progression-video-index-vertical-align">
+                                                <h2 class="progression-video-title"></h2>
+                                                <div class="clearfix"></div>                                    
+                                            </div><!-- close .progression-video-index-vertical-align -->
+                                        </div><!-- close .progression-video-index-table -->
+                                    </div><!-- close .progression-video-index-content -->
+                                    <div class="video-index-border-hover"></div>
+                                </a>
+                            </div><!-- close .progression-studios-video-index-container  -->
+                            <div class="d-flex  flex-column justify-content-center ">
+                                <div class="mx-auto buy-rent-links">
+                                    <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>
+                                    <a href="#" class="buy-video btn anchor-btn"   data-prop="{{ $video }}"  data-type="buy" id=""><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
+                                    <a href="#" class="rent-video btn anchor-btn"  data-prop="{{ $video }}"  data-type="rent"id=""><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
+                                </div>
+                            </div><!-- close #video-post-buttons-container -->
+                        </div><!-- close .item -->
                     
                     @endforeach
 
@@ -91,13 +87,10 @@
         <div class="clearfix"></div>
         
         </div>
-    </div><!-- close .container -->
-
-
-    
-    
-    
+    </div><!-- close .container --> 
 </div><!-- close #content-pro -->
 </section>
+
+
 @include('includes.search')
 @endsection

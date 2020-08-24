@@ -30,7 +30,7 @@ class SearchController extends Controller
     {    
         if($request->has('q')){
             $filtered_array = $request->only(['q', 'field']);
-
+sa
 			$filtered_array = array_filter($filtered_array);
 			$query = Video::select('videos.*')->
 						with('categories')->

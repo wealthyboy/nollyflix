@@ -79,6 +79,8 @@
 				<div id="video-search-header">
 					<div class="">
 						<input type="text" class="search-input" placeholder="Search for Movies or TV Series" aria-label="Search" id="main-text-field">
+						<span  style=""  class="spinner-border d-none search-spinner spinner-border-sm" role="status" aria-hidden="true"></span>
+						<span class="close-icon"><i class="fas fa-times"></i></span>
 					</div><!-- close .container -->
 				</div><!-- close .video-search-header -->
 				

@@ -13,15 +13,15 @@ jQuery(document).ready(function($) {
 =============================================== 01. MENU ACTIVATION  ===============================================
 */
 	 jQuery('nav#site-navigation-pro ul.sf-menu, nav#sidebar-nav ul.sf-menu').superfish({
-			 	popUpSelector: 'ul.sub-menu, .sf-mega', 	// within menu context
-	 			delay:      	200,                	// one second delay on mouseout
-	 			speed:      	0,               		// faster \ speed
-		 		speedOut:    	200,             		// speed of the closing animation
-				animation: 		{opacity: 'show'},		// animation out
-				animationOut: 	{opacity: 'hide'},		// adnimation in
-		 		cssArrows:     	true,              		// set to false
-			 	autoArrows:  	true,                    // disable generation of arrow mark-up
-		 		disableHI:      true,
+		popUpSelector: 'ul.sub-menu, .sf-mega', 	// within menu context
+		delay:      	200,                	// one second delay on mouseout
+		speed:      	0,               		// faster \ speed
+		speedOut:    	200,             		// speed of the closing animation
+		animation: 		{opacity: 'show'},		// animation out
+		animationOut: 	{opacity: 'hide'},		// adnimation in
+		cssArrows:     	true,              		// set to false
+		autoArrows:  	true,                    // disable generation of arrow mark-up
+		disableHI:      true,
 	 });
 	 
 	 
