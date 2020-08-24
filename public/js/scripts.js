@@ -161,8 +161,8 @@ jQuery(document).ready(function($) {
 =============================================== 07. Carousel JS  ===============================================
 */	
 
-$( ".owl-prev").html('<i class="fa fa-chevron-left"></i>');
-$( ".owl-next").html('<i class="fa fa-chevron-right"></i>');
+$( ".owl-prev").html('<i class="fas fa-arrow-left"></i>');
+$( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 	$('#progression-video-carousel').owlCarousel({
 	    margin:4,
 	    items:5,
