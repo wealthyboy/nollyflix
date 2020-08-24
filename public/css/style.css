@@ -1815,10 +1815,10 @@ ul.progression-studios-episode-list-meta li:last-child {
 	font-weight:400;
 	width:45px;
 	
-	left:-45px;
-	background:none;
-	color: rgba(255,255,255,0.3);
-	font-size: 70px;
+	left: -4px;
+	background: none;
+	color: #E50914;
+	font-size: 80px;
 	height:90px;
 	line-height:90px;
 	margin-top:-50px;
@@ -1836,7 +1836,7 @@ ul.progression-studios-episode-list-meta li:last-child {
 
 .progression-carousel-theme .owl-nav button.owl-next {
 	left:auto;
-	right:-45px;
+	right:-4px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1260px) {
