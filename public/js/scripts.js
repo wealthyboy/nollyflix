@@ -167,7 +167,7 @@ jQuery(document).ready(function($) {
 		autoplayTimeout:5000,
 		nav: true,
 		slideBy:1,
-	   
+		loop:true,//match with rewind
 		dots: false,
 		autoplayHoverPause:true,
 		responsive : {
@@ -317,7 +317,7 @@ jQuery(document).ready(function($) {
 			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
 			$('.cart-count').text(count)
 		 }).fail(function(){
-			notify('danger','top','right',"We could not add your item to cart.")
+			//notify('danger','top','right',"We could not get your cart.")
 		 });
 	}
 
