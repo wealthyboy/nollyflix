@@ -57,7 +57,7 @@
 				</div><!-- close #header-user-profile -->
 				@else
 				<div class="header-user-profile" id="header-user-profile">
-				  <a href="/login" class="btn p-2 rounded-0"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
+				   <a href="/login" class="btn p-2 rounded-0"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
 	            </div>
 				@endif
 				
@@ -77,7 +77,7 @@
 				
 
 				<div id="video-search-header">
-					<div class="container">
+					<div class="">
 						<input type="text" class="search-input" placeholder="Search for Movies or TV Series" aria-label="Search" id="main-text-field">
 					</div><!-- close .container -->
 				</div><!-- close .video-search-header -->

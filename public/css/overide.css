@@ -30,6 +30,33 @@ header#masthead-pro h1 img {
     margin: 18px 0px 25px 0px;
 }
 
+
+#video-search-header {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    padding: 0px 0px 0px 0px;
+    background: #171425;
+    z-index: 555;
+}
+
+input#main-text-field {
+    background: #272633;
+    border: none;
+    border-bottom: 2px solid #3b3a45;
+    margin: 0px !important;
+    width: 100%;
+    padding: 14px 50px 14px 20px;
+    font-size: 14px;
+    background-image: url("images/search-magnify.png");
+    background-position: right 10px;
+    background-repeat: no-repeat;
+    border-radius: 0px;
+    box-shadow: 0px 0px 25px rgba(0,0,0, 0);
+    height: 80px;
+}
+
+
 #cart-section {
     position: relative;
     float: right;
