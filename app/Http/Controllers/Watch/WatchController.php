@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Watch;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Video;
+use App\Cart;
 
 class WatchController extends Controller
 {
@@ -30,7 +30,7 @@ class WatchController extends Controller
      */
     public function index($id)
     {
-        $video = Video::find($id);
+        $video = Cart::find($id);
 
         return view('watch.index',compact('video'));
     }
