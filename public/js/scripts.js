@@ -160,9 +160,12 @@ jQuery(document).ready(function($) {
 /*
 =============================================== 07. Carousel JS  ===============================================
 */	
+
+$( ".owl-prev").html('<i class="fa fa-chevron-left"></i>');
+$( ".owl-next").html('<i class="fa fa-chevron-right"></i>');
 	$('#progression-video-carousel').owlCarousel({
 	    margin:4,
-	    items:4,
+	    items:5,
 		autoplay:false,
 		autoplayTimeout:5000,
 		nav: true,
@@ -181,7 +184,7 @@ jQuery(document).ready(function($) {
 		    },
 		    // breakpoint from 1025 up
 		    1025 : {
-		        items:4,
+		        items:5,
 		    }
 		}
 	});
