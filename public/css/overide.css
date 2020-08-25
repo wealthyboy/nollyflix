@@ -67,7 +67,7 @@ input#main-text-field {
 }
 
 .fa-1x {
-    font-size: 1.7em;
+    font-size: 1.3em;
 }
 
 #video-search-header .close-icon{
@@ -93,9 +93,9 @@ input#main-text-field {
 .badge.cart-count {
     position: absolute;
     font-size: 11px;
-    bottom: 25px;
+    bottom: 22px;
     background-color: red;
-    left: 20px;
+    left: 18px;
     border-radius: 20px;
 }
 
