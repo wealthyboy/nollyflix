@@ -224,7 +224,6 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 			if ( $q == '' ) {
 				$('.section-content').removeClass('d-none')
 				$("#searched-videos-content").html('') 
-
 				return
 			}
 			if($.trim(res) == 'No videos'){

@@ -31,6 +31,14 @@ header#masthead-pro h1 img {
 }
 
 
+#progression-studios-header-search-icon {
+    float: right;
+    position: relative;
+    z-index: 15;
+    margin-top: -8px;
+}
+
+
 #video-search-header {
     width: 100%;
     position: absolute;
@@ -58,6 +66,10 @@ input#main-text-field {
     top: 30px;   
 }
 
+.fa-1x {
+    font-size: 1.7em;
+}
+
 #video-search-header .close-icon{
 	position: absolute;
 	right: 30px;
@@ -80,15 +92,15 @@ input#main-text-field {
 
 .badge.cart-count {
     position: absolute;
-    font-size: 13px;
-    bottom: 29px;
+    font-size: 11px;
+    bottom: 25px;
     background-color: red;
-    left: 28px;
+    left: 20px;
     border-radius: 20px;
 }
 
 
-.btn.p-2.rounded-0 {
+.login-btn{
     margin-right: 15px;
     margin-left: 20px;
     margin-top: 20px;
@@ -176,16 +188,29 @@ a#video-post-play-text-btn {
     padding: 5px !important;
     font-size: 13px;
     border: 2px solid #E50914;
-    background: none !important;
+    background: #E50914 !important;
     color: #ffffff;
     border-radius: 100px;
     margin-top: 5px;
 	width: 150px;
-	display: block;
+	display: none;
 	text-align: center;
 	vertical-align: middle;
+	transition: 0.3s;
+
 }
 
+
+div.item:hover  .anchor-btn{
+	display: block;
+}
+
+
+.links-section{
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
 /*Slide*/
 .progression-studios-slider-caption-width {

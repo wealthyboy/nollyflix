@@ -57,14 +57,14 @@
 				</div><!-- close #header-user-profile -->
 				@else
 				<div class="header-user-profile" id="header-user-profile">
-				   <a href="/login" class="btn p-2 rounded-0"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
+				   <a href="/login" class="btn p-1 login-btn rounded-0 pr-3"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
 	            </div>
 				@endif
 				
 				<div id="cart-section" class="noselect cursor-pointer">
 					<div class="">
 					   <a href="/checkout">
-							<i class="fas fa-shopping-cart fa-2x"></i>
+							<i class="fas fa-shopping-cart fa-1x"></i>
 							<span class="badge cart-count">0</span>
 					    </a>
 					</div>
@@ -72,7 +72,7 @@
 				
 
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
-					<a href="#"><i class="fas fa-search mt-4"></i> </a>
+					<a href="#"><i class="fas fa-search mt-4 fa-1x"></i> </a>
 				</div>
 				
 
