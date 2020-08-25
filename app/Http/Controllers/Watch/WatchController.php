@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Watch;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Video;
 
 class WatchController extends Controller
 {
