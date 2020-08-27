@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+ @extends('admin.layouts.app')
 @section('pagespecificstyles')
 @stop
 @section('content')
@@ -118,7 +118,7 @@
                         <div class="row">
                            <div class="col-md-12">
                               <div class="form-group label-floating ">
-                                 <label class="control-label">Video Link</label>
+                                 <label class="control-label">Video Link  (Use the Http Live streaming link from vimeo.)</label>
                                  <input name="link" required="true"  data-msg="Enter video link"    type="text" value="{{ $video->link ?? old('link') }}" class="form-control">
                                  <span class="material-input"></span>
                               </div>
