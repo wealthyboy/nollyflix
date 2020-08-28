@@ -8,6 +8,17 @@
   font-style: normal;
 }
 
+
+#background_video {
+  position: absolute;
+
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+
+  object-fit: cover;
+  height: 100%; width: 100%;
+}
+
 .video-js {
   /* The base font size controls the size of everything, not just text.
      All dimensions use em-based sizes so that the scale along with the font size.
