@@ -10,6 +10,5 @@
         <track src="{{ $video->track_file }}" kind="subtitles" srclang="en" label="English">
         @endif
     </video>
-</div>
 </div><!-- close #content-pro -->
 @endsection
