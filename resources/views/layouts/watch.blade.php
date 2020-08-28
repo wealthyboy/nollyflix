@@ -36,7 +36,6 @@ j
 		
 		
 		<script src="https://vjs.zencdn.net/7.6.5/video.js"></script>
-
 		<script src="/js/watch.js" defer></script><!-- Custom Document Ready JS -->
 	</body>
 </html>
