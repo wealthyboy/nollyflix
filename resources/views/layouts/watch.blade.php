@@ -21,7 +21,7 @@
 j
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
-		<link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+		<link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet">
 
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -29,11 +29,9 @@ j
 	</head>
 	<body>
 	
-		
 		<section>
 			@yield('content')
 		</section>
-		
 		
 		<script src="https://vjs.zencdn.net/7.6.5/video.js"></script>
 		<script src="/js/watch.js" defer></script><!-- Custom Document Ready JS -->
