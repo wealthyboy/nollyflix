@@ -106,6 +106,17 @@ $progress-position:-2.5em;
 }
 
 
+#background_video {
+  position: absolute;
+
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+
+  object-fit: cover;
+  height: 100%; width: 100%;
+}
+
+
 .video-js .vjs-volume-panel .vjs-volume-control { 
   top: 20px !important;
 }
