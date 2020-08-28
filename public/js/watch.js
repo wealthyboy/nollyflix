@@ -1,4 +1,12 @@
 
+videojs('background_video', {
+      html5: {
+        hls: {
+          overrideNative: !videojs.browser.IS_SAFARI
+        }
+      }
+})
+
 //document.addEventListener('contextmenu', event => event.preventDefault());
 
 // var video = document.querySelector('video');
