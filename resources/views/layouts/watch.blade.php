@@ -35,7 +35,8 @@ j
 		</section>
 		
 		
-		<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+		<script src="https://vjs.zencdn.net/7.6.5/video.js"></script>
+
 		<script src="/js/watch.js" defer></script><!-- Custom Document Ready JS -->
 	</body>
 </html>
