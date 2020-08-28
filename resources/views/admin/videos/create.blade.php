@@ -116,11 +116,21 @@
                         </div>
                         <div class="row">
                            <div class="col-md-12">
-                              <div class="form-group label-floating is-empty">
+                              <div class="form-group label-floating is-empty ">
                                  <label class="control-label">Video preview link</label>
                                  <input name="preview_link"  required="true"  data-msg="Enter preview link"  type="text" value="{{ old('preview_link') }}" class="form-control">
                                  <span class="material-input"></span>
                               </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12">
+                              <div class="form-group  is-empty no-file-input-style">
+                                 <label class="control-label">Subtile file</label>
+                                 <input name="track_file"   type="file" class="form-control">
+                              </div>
+                              <span class="material-input">Upload track file</span>
+
                            </div>
                         </div>
                         <div class="row">
@@ -180,7 +190,7 @@
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <div class="col-md-6 hide">
                               <legend>  
                                  Allow Buy
                               </legend>
@@ -191,7 +201,7 @@
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <div class="col-md-6 hide">
                               <legend>  
                                  Allow Rent
                               </legend>

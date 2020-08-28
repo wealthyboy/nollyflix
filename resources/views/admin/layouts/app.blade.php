@@ -18,7 +18,7 @@
 	<meta name="viewport" content="width=device-width" />
 
 	<!--  Material Dashboard CSS    -->
-    <link href="{{ asset('backend/css/admin.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('backend/css/admin.css?version='.mt_rand(1000000, 9999999) ) }}" rel="stylesheet"/>
     @yield('pagespecificstyles')
 	<!--     Fonts and icons     -->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">

@@ -135,6 +135,15 @@
                         </div>
                         <div class="row">
                            <div class="col-md-12">
+                              <div class="form-group  is-empty no-file-input-style">
+                                 <label class="control-label">Subtile file</label>
+                                 <input name="track_file"    type="file" class="form-control">
+                              </div>
+                              <span class="material-input">{{ $video->track_file }}</span>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12">
                               <div class="form-group label-floating">
                                  <label class="control-label">Film Rating (PG13, R)</label>
                                  <input name="film_rating" required="true"  data-msg="Enter video rating"   type="text" value="{{ $video->film_rating ?? old('film_rating') }}" class="form-control">

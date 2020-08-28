@@ -90,6 +90,11 @@ class VideosController extends Controller
             ],
         ]);
 
+        if( $request->hasFile('track_file') ){
+            $path = $request->file('track_file')->store('videos/subtitles');
+            $video->track_file = asset($path);
+        }
+
         $video->title           = $request->title;
         $video->slug            = str_slug($request->title);
         $video->preview_link    = $request->preview_link;
@@ -245,6 +250,11 @@ class VideosController extends Controller
         ]);
 
         $video = Video::find($id);
+
+        if( $request->hasFile('track_file') ){
+            $path = $request->file('track_file')->store('videos/subtitles');
+            $video->track_file = asset($path);
+        }
 
         $video->title           = $request->title;
         $video->slug            = str_slug($request->title);

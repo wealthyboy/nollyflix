@@ -5,6 +5,14 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/watch.scss', 'public/css/watch.css');
 
+
+  mix.styles([
+    'public/backend/css/bootstrap.min.css',
+    'public/backend/css/dashboard.css',
+    'public/backend/css/custom.css',
+    'public/backend/css/slick.css'
+  ],'public/backend/css/admin.css');
+
 mix.scripts([
   'public/backend/js/bootstrap.min.js',
   'public/backend/js/material.min.js',
