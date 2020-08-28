@@ -77,6 +77,11 @@
   width: 100%;
 }
 
+
+#background_video {
+  position: relative;
+}
+
 .video-js .vjs-volume-panel .vjs-volume-control {
   top: 20px !important;
 }
