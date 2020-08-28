@@ -15,6 +15,8 @@
   font-size: 16px;
   /* The main font color changes the ICON COLORS as well as the text */
   color: #cacaca;
+  border: none !important;
+  outline: none !important;
 }
 
 /* The "Big Play Button" is the play button that shows before the video plays.
@@ -36,7 +38,6 @@
   height: 1.5em;
   width: 1.5em;
   /* 0.06666em = 2px default */
-  border: 0.06666em solid #b7090b;
   /* 0.3em = 9px default */
   border-radius: 50%;
   display: none;
