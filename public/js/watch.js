@@ -1,18 +1,14 @@
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-videojs('video', {
+let = video = videojs('video', {
       html5: {
         hls: {
           overrideNative: !videojs.browser.IS_SAFARI
         }
       }
-}).ready(function(){
-  var myPlayer = this;
+})
 
-  myPlayer.currentTime(120);
-  console.log(myPlayer)
-
-});
+video.currentTime(0.06)
 
 
 
