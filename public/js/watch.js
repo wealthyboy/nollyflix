@@ -8,7 +8,7 @@ videojs('video', {
 }).ready(function(){
   var myPlayer = this;
 
-  myPlayer.play();
+  console.log(myPlayer)
 
 });
 
