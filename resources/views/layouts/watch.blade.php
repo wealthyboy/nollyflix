@@ -23,8 +23,6 @@ j
 		<link rel="stylesheet" href="/css/style.css">
 		<link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
 		<link rel="stylesheet" href="/css/watch.css">
-
-
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	
@@ -36,7 +34,7 @@ j
 			@yield('content')
 		</section>
 		
-		
+		<script src="/js/libs/jquery-3.5.1.min.js"></script><!-- jQuery -->
 		<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
 		<script src="/js/watch.js" defer></script><!-- Custom Document Ready JS -->
 	</body>
