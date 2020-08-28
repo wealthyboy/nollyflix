@@ -1,11 +1,16 @@
 
-videojs('background_video', {
+videojs('video', {
       html5: {
         hls: {
           overrideNative: !videojs.browser.IS_SAFARI
         }
       }
-})
+}).ready(function(){
+  var myPlayer = this;
+
+  myPlayer.play();
+
+});
 
 $(function(){
   var $refreshButton = $('#refresh');
