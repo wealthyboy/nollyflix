@@ -8,6 +8,7 @@ videojs('video', {
 }).ready(function(){
   var myPlayer = this;
 
+  myPlayer.currentTime(120);
   console.log(myPlayer)
 
 });
