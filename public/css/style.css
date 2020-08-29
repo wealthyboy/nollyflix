@@ -436,15 +436,6 @@ header#masthead-pro.landing-page-header .sf-menu a:hover {
 	background: linear-gradient(0deg, rgba(8,7,14,1) 0%, rgba(8,7,14,0.7) 100%);
 }
 
-#background_video {
-  position: absolute;
-
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-
-  object-fit: cover;
-  height: 100%; width: 100%;
-}
 
 /*
 =============================================== 07. NAVIGATION STYLES ===============================================
