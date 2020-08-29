@@ -8,7 +8,6 @@ let = video = videojs('video', {
       }
 })
 
-video.currentTime(0.06)
 
 
 

@@ -199,7 +199,7 @@
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <div class="col-md-6 hide">
                               <legend>  
                                  Allow Buy
                               </legend>
@@ -210,7 +210,7 @@
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <div class="col-md-6 hide">
                               <legend>  
                                  Allow Rent
                               </legend>
