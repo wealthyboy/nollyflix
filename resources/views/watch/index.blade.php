@@ -13,7 +13,7 @@
 
 <div class="background_video">
     <video id="video" class="video-js vjs-default-skin"  data-setup ='{}'
-        controls preload="none" poster='{{ optional($video->video)->poster }}'
+        controls poster='{{ optional($video->video)->poster }}'
         data-setup='{ "playbackRates": [1, 1.5, 2] }'>
          <source src="{{ optional($video->video)->link }}" type="application/x-mpegURL">
         @if(optional($video->video)->track_file)
