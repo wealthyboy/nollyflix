@@ -23,18 +23,14 @@
                 <div class="progression-studios-video-index-container">
                     <a href="/browse/{{ $video->slug }}/user/{{ $user->slug }}">
                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
-                    
                         <div class="progression-video-index-content no-background">
                             <div class="progression-video-index-table">
                                 <div class="progression-video-index-vertical-align">
-                                    <div class="clearfix"></div>
                                     <div class="clearfix"></div>
                                 </div><!-- close .progression-video-index-vertical-align -->
                             </div><!-- close .progression-video-index-table -->
                         </div><!-- close .progression-video-index-content -->
                         <div class="video-index-border-hover"></div>
-                      
-                        
                     </a>
                 </div><!-- close .progression-studios-video-index-container -->
                 <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
