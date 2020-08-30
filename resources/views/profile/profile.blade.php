@@ -19,7 +19,7 @@
             @if($user->profile_videos->count())
             @foreach($user->profile_videos as $video)
 
-            <div class="col col-12 col-md-6 col-lg-3">
+            <div class="col col-6 col-md-6 col-lg-3">
                 <div class="progression-studios-video-index-container">
                     <a href="/browse/{{ $video->slug }}/user/{{ $user->slug }}">
                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
@@ -37,11 +37,11 @@
                         
                     </a>
                 </div><!-- close .progression-studios-video-index-container -->
-                <div class="d-flex  flex-column justify-content-center ">
+                <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
                     <div class="mx-auto buy-rent-links">
-                        <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>
-                        <a href="#" class="buy-video btn anchor-btn"   data-prop="{{ $video }}"  data-type="buy" id=""><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
-                        <a href="#" class="rent-video btn anchor-btn"  data-prop="{{ $video }}"  data-type="rent"id=""><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
+                        <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn rounded-0"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>
+                        <a href="#" class="buy-video btn anchor-btn rounded-0"   data-prop="{{ $video }}"  data-type="buy" id=""><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
+                        <a href="#" class="rent-video btn anchor-btn rounded-0"  data-prop="{{ $video }}"  data-type="rent"id=""><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
                     </div>
                 </div><!-- close #video-post-buttons-container -->
             </div><!-- close .col -->
