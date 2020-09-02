@@ -1,6 +1,7 @@
 @extends('layouts.access')
 
 @section('content')
+
 <div class="h-100 d-none searching">
     <div class="">                    
         <p class="large">Searching.....</p>
@@ -29,7 +30,7 @@
                                     <a class="btn btn-slider-pro rent-video"  data-prop="{{ $featured->video }}" data-type="rent"  href="#"><i class="fas fa-shopping-cart"></i>Rent {{ $featured->video->currency }}{{ number_format($featured->video->converted_rent_price) }} </a>
                                 </div><!-- close .progression-studios-slider-caption-align -->
                             </div><!-- close .progression-studios-slider-caption-width -->
-                            
+ 
                         </div><!-- close .container -->
                         
                     </div><!-- close .progression-studios-slider-vertical-align -->
