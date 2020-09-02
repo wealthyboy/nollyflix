@@ -7,28 +7,28 @@
            
             <div class="col col-12 col-md-7 col-lg-7">
                 <div class="progression-studios-video-index-container">
-                    <div class="progression-studios-video-feaured-image"><img src="{{ $video->poster }}" alt="{{ $video->title }}"></div>
+                    <div class="progression-studios-video-feaured-image"><img src="{{ optional($video->video)->poster }}" alt="{{ $video->title }}"></div>
                 </div><!-- close .progression-studios-video-index-container -->
             </div><!-- close .col -->
 
             <div class="col col-12 col-md-5 col-lg-5">
                 <div class="video-title-container ml-3">
-                    <h1 class="video-post-heading-title">{{ optional($video)->title }}</h1>
+                    <h1 class="video-post-heading-title">{{ optional($video->video)->title }}</h1>
                     <div class="clearfix"></div>
                 
                     <ul id="video-post-meta-list">
-                        <li><a href="/">{{ $video->genres[0]->name }}</a></li>
-                        <li id="video-post-meta-year">{{ $video->created_at->format('Y') }}</li>
-                        <li id="video-post-meta-rating"><span>{{ $video->film_rating }}</span></li>
+                        <li><a href="/">{{ optional($video->video)->genres[0]->name }}</a></li>
+                        <li id="video-post-meta-year">{{ optional($video->video)->created_at->format('Y') }}</li>
+                        <li id="video-post-meta-rating"><span>{{  optional($video->video)->film_rating }}</span></li>
                     </ul>
                     <div class="clearfix"></div>
 
                     <div id="vayvo-video-post-content">
-                        <div class="content-sidebar-short-description">{{ $video->duration }}</div>
+                        <div class="content-sidebar-short-description">{{  optional($video->video)->duration }}</div>
                     </div><!-- #vayvo-video-post-content -->
 
                     <div id="vayvo-video-post-content">
-                       <div class="content-sidebar-short-description mt-3"> Starring: {{ implode(' , ',$video->casts()->pluck('name','last_name')->toArray() )}}</div>
+                       <div class="content-sidebar-short-description mt-3"> Starring: {{ implode(' , ', optional($video->video)->casts()->pluck('name','last_name')->toArray() )}}</div>
                     </div><!-- #vayvo-video-post-content -->
 
                     <div id="vayvo-video-post-content">
@@ -37,9 +37,9 @@
                     
 
                     <div id="video-post-buttons-container">
-                        <a href="{{ optional($video)->preview_link }}" class="w-100"  data-fancybox id="video-post-play-text-btn"><i class="far fa-play-circle"></i>Play Trailer </a>
-                        <a href="#" class="buy-video w-100"   data-prop="{{ $video }}"  data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
-                        <a href="#" class="rent-video w-100"  data-prop="{{ $video }}"  data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
+                        <a href="{{  optional($video->video)->preview_link }}" class="w-100"  data-fancybox id="video-post-play-text-btn"><i class="far fa-play-circle"></i>Play Trailer </a>
+                        <a href="#" class="buy-video w-100"   data-prop="{{  optional($video->video) }}"  data-type="buy" id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Buy  {{  optional($video->video)->currency }}{{ number_format( optional($video->video)->converted_buy_price) }} </a>
+                        <a href="#" class="rent-video w-100"  data-prop="{{  optional($video->video) }}"  data-type="rent"id="video-post-play-text-btn"><i class="fas fa-shopping-cart"></i>Rent  {{  optional($video->video)->currency }}{{ number_format( optional($video->video)->converted_rent_price) }}</a>
                         <div class="clearfix"></div>
                     </div><!-- close #video-post-buttons-container -->
                 </div>
@@ -47,12 +47,12 @@
 
             <div id="video-more-like-this-details-section">
                 
-                @if($video->related_videos->count())
+                @if( optional($video->video)->related_videos->count())
                 <h3 id="more-videos-heading">More Like This</h3>
             
                 <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
                     <div id="progression-video-carousel" class="owl-carousel progression-carousel-theme">
-                    @foreach( $video->related_videos as $video)
+                    @foreach(  optional($video->video)->related_videos as $video)
 
                         <div class="item">
                             <div class="progression-studios-video-index-container">

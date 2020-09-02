@@ -43,9 +43,7 @@ class WatchController extends Controller
      */
     public function expired($id)
     {
-        $video = Video::find($id);
-
-        dd($video);
+        $video = Cart::find($id);
 
         return view('watch.video_expired',compact('video'));
     }
