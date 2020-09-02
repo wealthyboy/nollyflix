@@ -432,6 +432,10 @@ div.item:hover  .anchor-btn{
 	  transform: translate3d(0, 0, 0);
 	}
   }
+
+  .logo{
+	  display: none;
+  }
   
   
 
