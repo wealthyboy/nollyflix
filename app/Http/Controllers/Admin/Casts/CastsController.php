@@ -49,7 +49,7 @@ class CastsController extends Controller
         request()->validate([
             'email'       => 'required|email|max:255|unique:users',
             'first_name'  => 'required|min:1|max:100',
-            'username'    => 'required|string|max:255|unique:users,regex:/^\S*$/u',
+            'username'    => 'required|string|max:255|unique:users',
             'description' => 'required|min:1|max:1000',
         ]);
 
