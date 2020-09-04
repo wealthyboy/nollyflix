@@ -117,7 +117,7 @@
                         <div class="row">
                            <div class="col-md-12">
                               <div class="form-group label-floating is-empty ">
-                                 <label class="control-label">Video preview link</label>
+                                 <label class="control-label">Video preview link  (Do not use the Http Live streaming link for previews. Use High def 1080 (mp4, 1746x1080) or any other)</label>
                                  <input name="preview_link"  required="true"  data-msg="Enter preview link"  type="text" value="{{ old('preview_link') }}" class="form-control">
                                  <span class="material-input"></span>
                               </div>

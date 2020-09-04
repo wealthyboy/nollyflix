@@ -32,7 +32,7 @@
                             </div><!-- close .progression-video-index-content -->
                             <div class="video-index-border-hover"></div>
                         </a>
-                    </div><!-- close .progression-studios-video-index-container -->
+                    </div><!-- close ohram.progression-studios-video-index-container -->
                     <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
                         <div class="mx-auto buy-rent-links">
                             <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn rounded-0"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>

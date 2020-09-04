@@ -61,16 +61,7 @@
 	            </div>
 				@endif
 				
-				<div id="cart-section" class="noselect cursor-pointer">
-					<div class="">
-					   <a href="/checkout">
-							<i class="fas fa-shopping-cart fa-1x"></i>
-							<span class="badge cart-count">0</span>
-					    </a>
-					</div>
-				</div>
-				
-
+		
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
 					<a href="#"><i class="fas fa-search mt-4 fa-1x"></i> </a>
 				</div>
@@ -156,8 +147,6 @@
 		<script src="/js/libs/popper.min.js"></script><!-- Bootstrap Popper/Extras JS -->
 		<script src="/js/libs/bootstrap.min.js"></script><!-- Bootstrap Main JS -->
 		<!-- All JavaScript in Footer -->
-
-		
 		<!-- Additional Plugins and JavaScript -->
 		<script src="/js/navigation.js"></script><!-- Header Navigation JS Plugin -->
 		<script src="/js/bootstrap-notify.js"></script><!-- Header Navigation JS Plugin -->
