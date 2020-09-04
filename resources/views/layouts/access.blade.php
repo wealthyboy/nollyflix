@@ -21,6 +21,12 @@
 						    	<a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
 						    </li>
 						@endforeach
+						<li class="normal-item-pro">
+							<a href="/browse/casta">Actors/Actress</a>
+						</li>
+						<li class="normal-item-pro">
+							<a href="/browse/filmakers">Film Makers</a>
+						</li>
 					</ul>
 				</nav>
 				
@@ -85,12 +91,12 @@
 							<a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
 						</li>
 					@endforeach
-					    <li class="normal-item-pro">
-							<a href="/browse/casta">Actors/Actress</a>
-						</li>
-						<li class="normal-item-pro">
-							<a href="/browse/filmakers">Film Makers</a>
-						</li>
+					<li class="normal-item-pro">
+						<a href="/browse/casta">Actors/Actress</a>
+					</li>
+					<li class="normal-item-pro">
+						<a href="/browse/filmakers">Film Makers</a>
+					</li>
 				</ul>
 				<!--button class="btn btn-mobile-pro btn-header-pro noselect" data-toggle="modal" data-target="#LoginModal" >Login</button-->
 				
@@ -133,10 +139,10 @@
 					</div><!-- close .col -->
 					<div class="col-md">
 						<ul class="social-icons-pro">
-							<li class="facebook-color"><a href="{{ $system_settings->facebook_link }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="twitter-color"><a href="{{  $system_settings->twitter_link }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li class="facebook-color"><a  href="{{ $system_settings->facebook_link }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="twitter-color"><a   href="{{  $system_settings->twitter_link }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
 							<li class="instagram-color"><a href="{{  $system_settings->instagram_link }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li class="youtube-color"><a href="{{  $system_settings->youtube_link }}" target="_blank"><i class="fab fa-youtube"></i></a></li>
+							<li class="youtube-color"><a   href="{{  $system_settings->youtube_link }}" target="_blank"><i class="fab fa-youtube"></i></a></li>
 						</ul>
 					</div><!-- close .col -->
 				</div><!-- close .row -->
