@@ -26,8 +26,6 @@
                                     <div class="clearfix"></div>
                                     <div class="progression-studios-slider-excerpt"><?php echo html_entity_decode($featured->video->description) ?></div>
                                     <a class="btn btn-slider-pro" data-fancybox  href="{{ optional($featured->video)->preview_link }}"><i class="far fa-play-circle"></i>Play Trailer</a>
-                                    <a class="btn btn-slider-pro buy-video"   data-prop="{{ $featured->video }}" data-type="buy" href="#"><i class="fas fa-shopping-cart"></i>Buy {{ $featured->video->currency }}{{ number_format($featured->video->converted_buy_price) }} </a>
-                                    <a class="btn btn-slider-pro rent-video"  data-prop="{{ $featured->video }}" data-type="rent"  href="#"><i class="fas fa-shopping-cart"></i>Rent {{ $featured->video->currency }}{{ number_format($featured->video->converted_rent_price) }} </a>
                                 </div><!-- close .progression-studios-slider-caption-align -->
                             </div><!-- close .progression-studios-slider-caption-width -->
  
@@ -70,8 +68,6 @@
                             <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
                                 <div class="mx-auto buy-rent-links">
                                     <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn rounded-0"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>
-                                    <a href="#" class="buy-video btn anchor-btn rounded-0"   data-prop="{{ $video }}"  data-type="buy" id=""><i class="fas fa-shopping-cart"></i>Buy  {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
-                                    <a href="#" class="rent-video btn anchor-btn rounded-0"  data-prop="{{ $video }}"  data-type="rent"id=""><i class="fas fa-shopping-cart"></i>Rent  {{ $video->currency }}{{ number_format($video->converted_rent_price) }}</a>
                                 </div>
                             </div><!-- close #video-post-buttons-container -->
                         </div><!-- close .item -->

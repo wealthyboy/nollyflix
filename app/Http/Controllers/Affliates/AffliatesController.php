@@ -29,7 +29,6 @@ class AffliatesController extends Controller
 
         $description = "";
 
-
         if (  $type == 'casts' ){
             $cast_title = 'Actors and Actresses';
             $description = "We have a selection of your favorite movie actors/actresses.";
