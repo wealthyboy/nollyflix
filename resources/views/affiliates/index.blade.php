@@ -38,10 +38,7 @@
                     </div>
                 @endforeach
             </div>
-			
-
         @else
-
             <div class="row">
                 <div class="col-12 text-center">
                     <h2>No one found.</h2>
