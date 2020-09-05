@@ -18,8 +18,12 @@
          
 
             <div class="row profile-section-images">
-                <h2 class="">CASTS</h2>
-                <p>Select from our </p>
+                <div class="col-6 col-lg-12">
+                    <div class="text-center">
+                        <h2 class="">CASTS</h2>
+                        <p>Select from our </p>
+                    </div>
+                </div>
                 @foreach($users as $user)
                     <div class=" col-6 col-lg-2">
                         <div class="card card-profile text-center card-plain">
