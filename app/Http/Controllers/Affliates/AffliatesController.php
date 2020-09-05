@@ -32,9 +32,9 @@ class AffliatesController extends Controller
         $cast_title = $type;
 
         if (  $type == 'casts' ){
-            $description = "We have a selection of your favorite movie actors/actress";
+            $description = "We have a selection of your favorite movie actors/actresses.";
         } else {
-            $description = "We have a selection of your favorite movie actors/actress";
+            $description = "We have a selection of your favorite movie producers.";
         }
 
         $users =  User::where('type',$type)->orderBy('name','ASC')->get();
