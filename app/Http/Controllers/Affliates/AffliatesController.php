@@ -29,6 +29,8 @@ class AffliatesController extends Controller
 
         $description = "";
 
+        $cast_title = $type;
+
         if (  $type == 'casts' ){
             $description = "We have a selection of your favorite movie actors/actress";
         } else {
@@ -36,7 +38,7 @@ class AffliatesController extends Controller
         }
 
         $users =  User::where('type',$type)->orderBy('name','ASC')->get();
-        return view('affiliates.index',compact('users','type','description'));
+        return view('affiliates.index',compact('users','cast_title','description'));
     }
 
     /**
