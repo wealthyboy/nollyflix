@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="card-body">
-                                <h4 class="card-title">{{ $user->fullname() }}</h4>
+                                <h5 class="card-title">{{ $user->fullname() }}</h5>
                             </div>
                         </div>
                     </div>
