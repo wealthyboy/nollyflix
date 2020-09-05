@@ -29,11 +29,12 @@ class AffliatesController extends Controller
 
         $description = "";
 
-        $cast_title = $type;
 
         if (  $type == 'casts' ){
+            $cast_title = 'Actors and Actresses';
             $description = "We have a selection of your favorite movie actors/actresses.";
         } else {
+            $cast_title = 'Producers and Directors';
             $description = "We have a selection of your favorite movie producers.";
         }
 
