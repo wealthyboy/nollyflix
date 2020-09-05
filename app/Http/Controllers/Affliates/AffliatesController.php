@@ -27,8 +27,16 @@ class AffliatesController extends Controller
             return;
         }
 
+        $description = "";
+
+        if (  $type == 'casts' ){
+            $description = "We have a selection of your favorite movie actors/actress";
+        } else {
+            $description = "We have a selection of your favorite movie actors/actress";
+        }
+
         $users =  User::where('type',$type)->orderBy('name','ASC')->get();
-        return view('affiliates.index',compact('users'));
+        return view('affiliates.index',compact('users','type','description'));
     }
 
     /**
