@@ -17,7 +17,7 @@ class ImagesController extends Controller
     
     public function __construct()
     {	  
-	  $this->settings =  SystemSetting::first();
+	   $this->settings =  SystemSetting::first();
     }
     /**
      * Display a listing of the resource.
@@ -106,7 +106,7 @@ class ImagesController extends Controller
             $path = $request->file('file')->store('images/'.$request->folder);
             $file = basename($path);
             $path =  public_path('images/'. $request->folder .'/'.$file);
-            $img  = \Image::make($path)->fit(400, 600)->save(
+            $img  = \Image::make($path)->fit(200, 200)->save(
                 public_path('images/'. $request->folder .'/m/'.$file)
             );
          

@@ -61,6 +61,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::resource('filmers',                  'Admin\Filmers\FilmersController',['name'=>'filmers']);
     Route::resource('genres',                   'Admin\Genres\GenresController',['name'=>'genres']);
 
+
     Route::resource('newsletter',               'Admin\NewsLetter\NewsLetterController',['name'=>'newsletter']);
     Route::resource('lists',                    'Admin\EmailLists\EmailListsController',['name'=>'lists']);
     Route::get('lists/emails/create/{id}',      'Admin\NewsLetter\NewsLetterController@create');
@@ -92,12 +93,14 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('carts',                'Cart\CartController@index');
     Route::get('cart/delete/{id}',     'Cart\CartController@destroy');
     Route::get('thankyou',             'Thankyou\ThankYouCtrl@index');
-    Route::get('pages/{information}',          'Information\InformationController@show');
+    Route::get('pages/{information}',       'Information\InformationController@show');
 
     Route::get('checkout',             'Checkout\CheckoutController@index');
     Route::post('checkout',            'Checkout\CheckoutController@store');
     Route::post('payment/successful',  'Checkout\CheckoutController@paymentSuccessful');
-    Route::get('search',              'Search\SearchController@index');
+    Route::get('search',               'Search\SearchController@index');
+    Route::get('browse/a/{types}',     'Affliates\AffliatesController@index');
+
 
 
     Route::resource('profile',     'Profile\ProfileController',['name'=>'profile']);

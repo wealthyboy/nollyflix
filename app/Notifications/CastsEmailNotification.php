@@ -43,16 +43,16 @@ class CastsEmailNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                        ->greeting('Congratulations '. $this->casts->casts['first_name']) 
-                        ->line('We have added you to nollyflix. ') 
+                        ->greeting('Congratulations '. $this->casts->casts['first_name'] . '!') 
+                        ->line('Your actors profile have been approved for Nollyflix. You are now eligible to earn 10% of every film sold or rented from from your actors page. ') 
+                        ->line('Your are therefore encouraged to promote your page by telling your fans to watch your movies through your profile page link') 
                         ->line('Your username is: '.$this->casts->casts['email'])
                         ->line('Your password is: '.$this->casts->casts['password'])
                         ->line('Your profile page is: https://nollyflix.tv/'.str_slug($this->casts->casts['username'])) 
-                        ->line('Your can  login and check how your movies are doing through your dashboard') 
-                        ->subject("Your profile have been created")
-                        ->action('Click here to visit your dashboard', url('/profile'))
-                        ->line('Please note only you can update your profile information');
-
+                        ->line('You can also make the link available to them on your social media platforms. ') 
+                        ->line('You will be able to Access your sales by logging into your dashboard. You can also edit your Profile and change your password through your dashboard.') 
+                        ->subject("Your profile has been created")
+                        ->action('Click here to visit your dashboard', url('/profile'));
     }
 
     /**

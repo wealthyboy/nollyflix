@@ -16,6 +16,8 @@ class CastsController extends Controller
     {
         $this->middleware('admin'); 
     }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +62,7 @@ class CastsController extends Controller
         $user->last_name=$request->last_name;
         $user->slug=str_slug($request->first_name.' '.$request->last_name);
         $user->email  =$request->email;
-        $user->username  =$request->username;
+        $user->username  =str_slug($request->username);
         $user->description  =$request->description;
         $user->image  =$request->image;
         $user->type   ='casts';

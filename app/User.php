@@ -226,5 +226,12 @@ class User extends Authenticatable
 
 	public function getRouteKeyName(){
         return 'slug';
-    }
+	}
+	
+
+	public function m_path()
+	{
+		$image = basename($this->image);
+		return  asset('images/users/m/'.$image);
+	}	
 }
