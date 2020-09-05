@@ -17,9 +17,9 @@
         @if($users->count())
            <h2 class="mb-5">CASTS</h2>
 
-            <div class="row ">
+            <div class="row">
                 @foreach($users as $user)
-                    <div class=" col-6 col-lg-3">
+                    <div class=" col-6 col-lg-2">
                         <div class="card card-profile text-center card-plain">
                             <div class="card-avatar">
                                 <a href="/{{ $user->username }}">
