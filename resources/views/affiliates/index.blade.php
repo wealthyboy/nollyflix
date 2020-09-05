@@ -16,7 +16,7 @@
         @if($users->count())
         
             <div class="row">
-                <div class="col-6 col-lg-12">
+                <div class="col-lg-12">
                     <div class="text-center profile-section-images-title">
                         <h2 class="">{{ $cast_title }}</h2>
                         <p>{{ $description }}</p>
