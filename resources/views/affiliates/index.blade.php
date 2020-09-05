@@ -13,13 +13,11 @@
 <div id="content-pro">
     <div class="container-fluid custom-gutters-pro">
         <div style="height:15px;"></div>
-
         @if($users->count())
-         
-
-            <div class="row profile-section-images">
+        
+            <div class="row">
                 <div class="col-6 col-lg-12">
-                    <div class="text-center">
+                    <div class="text-center profile-section-images-title">
                         <h2 class="">CASTS</h2>
                         <p>Select from our </p>
                     </div>
