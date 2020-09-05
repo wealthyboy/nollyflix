@@ -15,9 +15,11 @@
         <div style="height:15px;"></div>
 
         @if($users->count())
-           <h2 class="mb-5">CASTS</h2>
+         
 
-            <div class="row">
+            <div class="row profile-section-images">
+                <h2 class="">CASTS</h2>
+                <p>Select from our </p>
                 @foreach($users as $user)
                     <div class=" col-6 col-lg-2">
                         <div class="card card-profile text-center card-plain">
