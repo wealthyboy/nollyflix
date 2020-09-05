@@ -232,6 +232,6 @@ class User extends Authenticatable
 	public function m_path()
 	{
 		$image = basename($this->image);
-		return null !== $image ?  asset('images/users/m/'.$image) : asset('images/users/default/default_image.jpg');
+		return !empty(trim($image)) ?  asset('images/users/m/'.$image) : asset('images/users/default/default_image.jpg');
 	}	
 }
