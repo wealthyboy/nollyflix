@@ -22,7 +22,7 @@
                     <div class=" col-6 col-lg-3">
                         <div class="card card-profile text-center card-plain">
                             <div class="card-avatar">
-                                <a href="">
+                                <a href="/{{ $user->username }}">
                                     <img class="img" src="{{ $user->m_path() }}">
                                 </a>
                             </div>
@@ -40,7 +40,7 @@
 
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2>No casts found.</h2>
+                    <h2>No one found.</h2>
                 </div>
             </div>
         @endif            
