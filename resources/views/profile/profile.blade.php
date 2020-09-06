@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-9">
         <div class="col-6 col-lg-2 mb-5">
             <div class="card card-profile text-center card-plain">
                 <div class="card-avatar">
