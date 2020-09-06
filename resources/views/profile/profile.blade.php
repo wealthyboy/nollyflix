@@ -12,7 +12,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">{{ $user->fullname() }}</h5>
+                    <h4 class="card-title">{{ $user->fullname() }}</h4>
                 </div>
             </div>
         </div>
