@@ -4,15 +4,14 @@
 
 <div class="container-fluid">
     
-    <div class="row">
-        <div class=" col-6 col-lg-2 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-6 col-lg-2 mb-5">
             <div class="card card-profile text-center card-plain">
                 <div class="card-avatar">
                     <a href="#">
                         <img class="img" src="{{ $user->m_path() }}">
                     </a>
                 </div>
-
                 <div class="card-body">
                     <h5 class="card-title">{{ $user->fullname() }}</h5>
                 </div>
