@@ -2,15 +2,23 @@
 
 @section('content')
 
-<div id="page-title-pro">
-    <div id="progression-studios-page-title-container">
-        <div class="container">
-            <h1 class="page-title">{{ $user->fullname() }}</h1>
-            <h4 class="progression-sub-title"></h4>				
-        </div><!-- close .container -->
-    </div><!-- close #progression-studios-page-title-container -->
-    <div class="clearfix"></div>
-    <div id="page-title-overlay-image" style="background-image:url('images/banners/Bgnollyn01.jpg');"></div>
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class=" col-6 col-lg-2 mb-5">
+            <div class="card card-profile text-center card-plain">
+                <div class="card-avatar">
+                    <a href="#">
+                        <img class="img" src="{{ $user->m_path() }}">
+                    </a>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ $user->fullname() }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="content-pro">	
     <div class="container custom-gutters-pro">
