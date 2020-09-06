@@ -20,7 +20,6 @@
 </div>
 <div id="content-pro">	
     <div class="container custom-gutters-pro">
-        <h2 class="post-list-heading"><span></span></h2>
         <div class="row">
             @if($user->profile_videos->count())
             @foreach($user->profile_videos as $video)
