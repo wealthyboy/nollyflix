@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
+
         $site_status =Live::first();
 
         if ( empty($site_status->make_live) ) {
