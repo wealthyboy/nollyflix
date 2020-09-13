@@ -78,13 +78,13 @@ Auth::routes();
 Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('/', 'Browse\BrowseController@index')->name('home');
 
-    Route::get('browse',          'Browse\BrowseController@index')->name('browse');
-    Route::get('browse/{video}',          'Browse\BrowseController@show')->name('browse.show');
-    Route::get('browse/{video}/user/{user}',  'Browse\BrowseController@show')->name('browse.show');
-    Route::get('browse/category/{category}',     'Category\CategoryController@index');
+    Route::get('browse',                      'Browse\BrowseController@index')->name('browse');
+    Route::get('browse/{video}',              'Browse\BrowseController@show')->name('browse.show');
+    Route::get('browse/{video}/user/{user}',  'Browse\BrowseController@show')->name('browse.user.show');
+    Route::get('browse/category/{category}',  'Category\CategoryController@index');
 
-    Route::get('profile/videos',       'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
-    Route::get('profile/watchlists',   'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
+    Route::get('profile/videos',              'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
+    Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{id}',           'Watch\WatchController@index')->name('watch');
     Route::get('watch/expired/{id}',   'Watch\WatchController@expired')->name('watch.expired');
 
@@ -93,19 +93,18 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('carts',                'Cart\CartController@index');
     Route::get('cart/delete/{id}',     'Cart\CartController@destroy');
     Route::get('thankyou',             'Thankyou\ThankYouCtrl@index');
-    Route::get('pages/{information}',       'Information\InformationController@show');
+    Route::get('pages/{information}',  'Information\InformationController@show');
 
     Route::get('checkout',             'Checkout\CheckoutController@index');
     Route::post('checkout',            'Checkout\CheckoutController@store');
     Route::post('payment/successful',  'Checkout\CheckoutController@paymentSuccessful');
     Route::get('search',               'Search\SearchController@index');
     Route::get('browse/a/{types}',     'Affliates\AffliatesController@index');
-
-
-
     Route::resource('profile',     'Profile\ProfileController',['name'=>'profile']);
     Route::post('change/password', 'Profile\ProfileController@changePassword');
     Route::get('{username}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
+    Route::post('/me',              'Auth\LoginController@me');
+
 });
 
 

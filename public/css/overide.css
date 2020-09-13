@@ -455,6 +455,27 @@ div.item:hover  .anchor-btn{
 .profile-section-images-title{
 	margin-bottom:110px;
 }
+
+#video-page-title-pro {
+    height: 85vh;
+    margin-bottom: 0px;
+}
+
+h1.video-post-heading-title {
+    font-size: 30px;
+}
+
+
+ .purchase-btn-icon svg {
+    fill: #fff;
+}
+ .purchase-btn-icon svg {
+    height: 32px;
+    width: 32px;
+    margin: 0 auto;
+    fill: #fff;
+    max-width: 32px;
+}
  
   
   

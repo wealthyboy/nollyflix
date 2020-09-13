@@ -18,10 +18,10 @@ class WatchController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('CanWatchVideo',['except' => [
-        //         'expired'
-        //     ]
-        // ]);
+        $this->middleware('CanWatchVideo',['except' => [
+                'expired'
+            ]
+        ]);
     }
 
     /**

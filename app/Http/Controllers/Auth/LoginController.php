@@ -35,6 +35,22 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest',['except' => [
+                'logout',
+                "me"
+
+            ]
+        ]);
+    }
+
+    public function me(){
+        if (auth()->check()){
+            return  response()->json([
+                'loggedIn' => true,
+                'user' =>  auth()->user()
+            ],200);
+        }
+
+        return response()->json(null,401);
     }
 }

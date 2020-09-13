@@ -5,11 +5,15 @@
 	</head>
 
 	<script>
-		Window.content_owner = {
-			user: {!! auth()->check() ? auth()->user() : null !!}
+		Window.user = {
+			user: {!! auth()->check() ? auth()->user() : 0000 !!},
+			loggedIn: {!! auth()->check() ? 1 : 0 !!},
+			video: {!! isset($video) ? $video : '' !!},
+			settings: {!! isset($system_settings) ? $system_settings : '' !!}
 		}
 	</script>
 	<body>
+	   <div id="app">
 		<header id="masthead-pro" class="sticky-header"><!-- Remove sticky-header class to remove sticky header -->
 			<div class="header-container">
 				<h1><a href="/"><img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a></h1>
@@ -149,22 +153,20 @@
 			</div><!-- close .container -->
 		</footer>
 		
-		<a href="home.html#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
+		<a href="#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
+		</div>
 		
 	
-		
-
 		<!-- Required Framework JavaScript -->
-		<script src="/js/libs/jquery-3.5.1.min.js"></script><!-- jQuery -->
-		<script src="/js/libs/popper.min.js"></script><!-- Bootstrap Popper/Extras JS -->
-		<script src="/js/libs/bootstrap.min.js"></script><!-- Bootstrap Main JS -->
+		<script src="/js/app.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
+
 		<!-- All JavaScript in Footer -->
 		<!-- Additional Plugins and JavaScript -->
 		<script src="/js/navigation.js"></script><!-- Header Navigation JS Plugin -->
-		<script src="/js/bootstrap-notify.js"></script><!-- Header Navigation JS Plugin -->
 		<script src="/js/jquery.flexslider-min.js"></script><!-- FlexSlider JS Plugin -->	
 		<script src="/js/owl.carousel.min.js"></script><!-- Carousel JS Plugin -->
 		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
 		<script src="/js/scripts.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 	</body>
 </html>
