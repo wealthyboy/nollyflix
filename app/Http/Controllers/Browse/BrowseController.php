@@ -32,6 +32,9 @@ class BrowseController extends Controller
      */
     public function index()
     {   
+
+        opcache_reset();
+
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured =  DefaultBanner::first();
