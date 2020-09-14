@@ -82,6 +82,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('browse/{video}',              'Browse\BrowseController@show')->name('browse.show');
     Route::get('browse/{video}/user/{user}',  'Browse\BrowseController@show')->name('browse.user.show');
     Route::get('browse/category/{category}',  'Category\CategoryController@index');
+    Route::get('browse/genre/{genre}',        'Genre\GenreController@index')->name('browse.genres');
 
     Route::get('profile/videos',              'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
