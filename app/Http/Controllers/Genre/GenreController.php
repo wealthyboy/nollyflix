@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Genre;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Genre;
+
 
 class GenreController extends Controller
 {
@@ -12,20 +14,12 @@ class GenreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function  index(Request $request,Genre $genre)  
+    {   
+        return view('genre.index',compact('genre'));   
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     
 
