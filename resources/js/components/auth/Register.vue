@@ -98,7 +98,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Login from './login'
-import Payment from './payment'
+import Payment from '../checkout/payment'
 
 
 

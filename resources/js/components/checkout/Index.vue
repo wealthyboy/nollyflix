@@ -7,7 +7,7 @@
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header-pro">
-                    <h1><a href="/"><img :src="logo" alt="Nolly Flix Logo"></a></h1>
+                    <h1><a href="/"><img width="150" height="100" :src="logo" alt="Nolly Flix Logo"></a></h1>
                 </div>
                 <div v-if="loading" class="modal-body-pro text-center social-login-modal-body-pro">
                      <span  v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -24,9 +24,9 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Login from './login'
+import Login from '../auth/login'
 import Payment from './payment'
-import Register from './Register'
+import Register from '../auth/Register'
 
 
 
