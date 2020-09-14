@@ -25,8 +25,7 @@
                     <ul id="video-post-meta-list">
                         <li id="video-post-meta-year">{{ $video->created_at->format('Y') }}</li>
                         <li id="video-post-meta-rating"><span>{{ $video->film_rating }}</span></li>
-                        <li id=""><span> 1hr 30mins</span></li>
-
+                        <li id=""><span>{{ $video->duration }}</span></li>
                     </ul>
                     <div class="clearfix"></div>
 
@@ -47,6 +46,20 @@
                         ?>
        
                     {!! $casts !!}
+                    </div>
+
+                    <div class="content-sidebar-short-description mt-3"> Produced By:
+                        <?php  $filmers = ''; $x= 1; 
+                            foreach( $video->filmers as  $filmer ) {
+                                $filmers .="<a href='/$filmer->username'>$filmer->name &nbsp; $filmer->last_name </a>" ;
+                                if($x < count($video->filmers)){
+                                    $filmers .= ' | ';
+                                    $x++;
+                                }
+                            }
+                        ?>
+                        {!! $filmers !!}
+
                     </div>
 
                     <div id="vayvo-video-post-content">

@@ -25,7 +25,7 @@
             @foreach($user->profile_videos as $video)
                 <div class="col col-6 col-md-6 item col-lg-3">
                     <div class="progression-studios-video-index-container">
-                        <a href="/browse/{{ $video->slug }}">
+                        <a href="/browse/{{ $video->slug }}/user/{{ $user->slug }}">
                             <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                         
                             <div class="progression-video-index-content">
