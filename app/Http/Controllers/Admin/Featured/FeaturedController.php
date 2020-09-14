@@ -8,17 +8,10 @@ use App\DefaultBanner;
 
 class FeaturedController extends Controller
 {
-    public function add(Request $request,$id){
-       $featured  =  DefaultBanner::first();
-       if ($featured !== null){
-            $featured->update([
-               'video_id' => $id, 
-            ]);
-       } else {
-            DefaultBanner::create([
-                'video_id' => $id, 
-            ]);
-       }
+    public function add(Request $request,$id){      
+        DefaultBanner::create([
+            'video_id' => $id, 
+        ]);
        return back()->with('success','Featured added.');
     }
 }

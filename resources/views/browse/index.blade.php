@@ -8,40 +8,45 @@
     </div>
 </div>
 <section class="section-content">
+
+@if ($featured_videos->count())
 <div class="flexslider progression-studios-slider">
     <ul class="slides">
-        <li class="progression_studios_animate_left">
-            <div class="progression-studios-slider-image-background" style="background-image:url({{ optional($featured->video)->poster }});">
-                <div class="progression-studios-slider-display-table">
-                    <div class="progression-studios-slider-vertical-align">
-                        <div class="container">
-                            <div class="progression-studios-slider-caption-width">
-                                <div class="progression-studios-slider-caption-align">
-                                    <h2><a href="/">{{ optional($featured->video)->title }}</a></h2>
-                                    <ul class="slider-video-post-meta-list">
-                                        <li class="slider-video-post-meta-cat"><ul><li><a href="#">{{ 'Drama' }}</a></li></ul></li>
-                                        <li class="slider-video-post-meta-year">{{ $featured->created_at->format('Y') }}</li>
-                                        <li class="slider-video-post-meta-rating"><span>PG-{{ optional($featured->video)->film_rating }}</span></li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                    <div class="progression-studios-slider-excerpt"><?php echo html_entity_decode($featured->video->description) ?></div>
-                                    <a class="btn btn-slider-pro" data-fancybox  href="{{ optional($featured->video)->preview_link }}"><i class="far fa-play-circle"></i>Play Trailer</a>
-                                    <a class="btn btn-slider-pro"  data-type="buy" href="{{ route('browse.show',['video' => $featured->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Buy {{ $featured->video->currency }}{{ number_format($featured->video->converted_buy_price) }} </a>
-                                    <a class="btn btn-slider-pro"   data-type="rent"  href="{{ route('browse.show',['video' => $featured->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Rent {{ $featured->video->currency }}{{ number_format($featured->video->converted_rent_price) }} </a>
-                                </div><!-- close .progression-studios-slider-caption-align -->
-                            </div><!-- close .progression-studios-slider-caption-width -->
- 
-                        </div><!-- close .container -->
-                        
-                    </div><!-- close .progression-studios-slider-vertical-align -->
-                </div><!-- close .progression-studios-slider-display-table -->
-        
-                <div class="progression-studios-slider-overlay-gradient"></div>
+        @foreach($featured_videos as $video)
+            <li class="progression_studios_animate_left">
+                <div class="progression-studios-slider-image-background" style="background-image:url({{ optional($video->video)->poster }});">
+                    <div class="progression-studios-slider-display-table">
+                        <div class="progression-studios-slider-vertical-align">
+                            <div class="container">
+                                <div class="progression-studios-slider-caption-width">
+                                    <div class="progression-studios-slider-caption-align">
+                                        <h2><a href="/">{{ optional($video->video)->title }}</a></h2>
+                                        <ul class="slider-video-post-meta-list">
+                                            <li class="slider-video-post-meta-cat"><ul><li><a href="#">{{ 'Drama' }}</a></li></ul></li>
+                                            <li class="slider-video-post-meta-year">{{ $video->created_at->format('Y') }}</li>
+                                            <li class="slider-video-post-meta-rating"><span>{{ optional($video->video)->film_rating }}</span></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                        <div class="progression-studios-slider-excerpt"><?php echo html_entity_decode($video->video->description) ?></div>
+                                        <a class="btn btn-slider-pro" data-fancybox  href="{{ optional($video->video)->preview_link }}"><i class="far fa-play-circle"></i>Play Trailer</a>
+                                        <a class="btn btn-slider-pro"  data-type="buy" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Buy {{ $video->video->currency }}{{ number_format($video->video->converted_buy_price) }} </a>
+                                        <a class="btn btn-slider-pro"   data-type="rent"  href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Rent {{ $video->video->currency }}{{ number_format($video->video->converted_rent_price) }} </a>
+                                    </div><!-- close .progression-studios-slider-caption-align -->
+                                </div><!-- close .progression-studios-slider-caption-width -->
+    
+                            </div><!-- close .container -->
+                            
+                        </div><!-- close .progression-studios-slider-vertical-align -->
+                    </div><!-- close .progression-studios-slider-display-table -->
             
-            </div><!-- close .progression-studios-slider-image-background -->
-        </li>
+                    <div class="progression-studios-slider-overlay-gradient"></div>
+                
+                </div><!-- close .progression-studios-slider-image-background -->
+            </li>
+        @endforeach
     </ul>
 </div><!-- close .progression-studios-slider - See /js/script.js file for options -->
+@endif
 
 <div id="content-pro">
     <div class="container-fluid custom-gutters-pro">

@@ -36,14 +36,14 @@ class BrowseController extends Controller
 
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
-        $featured =  DefaultBanner::first();
+        $featured_videos =  DefaultBanner::all();
 
         if ( empty($site_status->make_live) ) {
-            return view('browse.index',compact('sections','featured')); 
+            return view('browse.index',compact('sections','featured_videos')); 
         } else {
             //Show site if admin is logged in
             if ( auth()->check()  && auth()->user()->isAdmin()){
-                return view('browse.index',compact('sections','featured')); 
+                return view('browse.index',compact('sections','featured_videos')); 
             }
             return view('welcome');
         }
