@@ -25,12 +25,12 @@
                                 <strong class="text-danger"></strong>
                             </span>
                         </div>
-                        <div class="form-field-wrapper">
+                        <div class="form-group">
                             <button  type="submit" class="btn btn-primary rounded-0 btn-lg btn-block" name="checkout_place_order" id="place_order" value="Place order" data-value="Place Order">
                                 <span  v-if="submiting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Save
                             </button>
-                    </div>
+                        </div>
                 </form>
             </div>
             <div  v-if="p = false" class="review-form-wrapper">
