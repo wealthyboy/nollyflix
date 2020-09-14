@@ -33,10 +33,10 @@
                     <div class="content-sidebar-short-description mt-3"> Genres:
                         <?php   $len = count($video->genres); ?>
                         @foreach( $video->genres as $index =>  $genre )
-                          <a href="/{{ $genre->name }}">{{ $genre->name .'   |  ' }} </a>
-                           @if ($index == $len - 1) 
-                             <a href="/{{ $genre->name }}">{{ $genre->name  }} </a>
-                           @endif
+                            <a href="{{ route('browse.genres', ['genre' => $genre->slug]) }}">{{ $genre->name .'   |  ' }} </a>
+                            @if ($index == $len - 1) 
+                               <a href="{{ route('browse.genres', ['genre' => $genre->slug]) }}">{{ $genre->name  }} </a>
+                            @endif
                         @endforeach
                     </div>
 

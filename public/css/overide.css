@@ -83,27 +83,6 @@ input#main-text-field {
 }
 
 
-#cart-section {
-    position: relative;
-    float: right;
-    margin-top: 1.4rem;
-    margin-left: 17px;
-}
-
-#cart-section a:hover {
-    color: #fff;
-}
-
-.badge.cart-count {
-    position: absolute;
-    font-size: 11px;
-    bottom: 22px;
-    background-color: red;
-    left: 18px;
-    border-radius: 20px;
-}
-
-
 .login-btn{
     margin-right: 15px;
     margin-left: 20px;
@@ -139,6 +118,25 @@ input#main-text-field {
 
 }
 
+.progression-video-index-content{
+	opacity: 0;
+	display: none;
+	transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+div.item:hover  .progression-video-index-content{
+	opacity: 1;
+	display: block;
+}
+
 
 .progression-video-index-content.no-background{
 	position:absolute;
@@ -147,6 +145,19 @@ input#main-text-field {
 	left:0;
 	bottom:-1px;
 	background:none;	
+}
+
+li svg{
+	height: 22px;
+    width: 22px;
+    margin: 0 auto;
+    fill: #fff;
+    max-width: 22px;
+}
+
+
+ul.video-index-meta-taxonomy li::after {
+    content: ' ';
 }
 
 
@@ -170,20 +181,6 @@ input#main-text-field {
 
 .btn:focus {
 	box-shadow: none;
-}
-
-a#video-post-play-text-btn:focus {
-	box-shadow: none;
-}
-
-a#video-post-play-text-btn:hover {
-    background: #E50914;
-    border-color: #E50914;
-}
-
-a#video-post-play-text-btn {
-    background: #E50914;
-    border-color: #E50914;
 }
 
 .anchor-btn {
@@ -218,7 +215,6 @@ a#video-post-play-text-btn {
 div.item:hover  .anchor-btn{
 	opacity: 1;
 	display: block;
-	
 }
 
 
@@ -408,6 +404,25 @@ div.item:hover  .anchor-btn{
 	.alert {
 	  margin-bottom: 0px;
   }
+
+  @-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
   /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
   
   @-webkit-keyframes rollIn {
@@ -435,7 +450,7 @@ div.item:hover  .anchor-btn{
 	  -webkit-transform: translate3d(0, 0, 0);
 	  transform: translate3d(0, 0, 0);
 	}
-  }
+}
 
 .card{
 	background-color: #08070e !important;
@@ -466,7 +481,7 @@ h1.video-post-heading-title {
 }
 
 
- .purchase-btn-icon svg {
+.purchase-btn-icon svg {
     fill: #fff;
 }
  .purchase-btn-icon svg {

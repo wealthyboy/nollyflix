@@ -20,7 +20,7 @@ class Genre extends Model
 
     public function videos()
     {
-        return $this->belongsToMany('App\Video')->where('allow',1);
+        return $this->belongsToMany('App\Video');
     }
 
     public function check($collections,$id)
