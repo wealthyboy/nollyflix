@@ -169,6 +169,36 @@ class Video extends Model
         return Helper::getFormatBack($this->release_date); 
     }
 
+
+    public function allGenres(){
+
+        $genres = ''; $x= 1; 
+        foreach( $this->genres as $index =>  $genre ) {
+            $genres .="<a href='/browse/genre/$genre->slug'>$genre->name</a>" ;
+            if($x < count($this->genres)){
+            $genres .= ' | ';
+            $x++;
+            }
+        }
+        return $genres;
+
+    }
+
+
+    public function allActors(){
+        $casts = ''; $x= 1; 
+        foreach( $this->casts as $index =>  $cast ) {
+            $casts .="<a href='/$cast->username'>$cast->name</a>" ;
+            if($x < count($this->casts)){
+               $casts .= ' | ';
+               $x++;
+            }
+        }
+        return $this->casts;
+    }
+
+   
+
     public function getRouteKeyName(){
         return 'slug';
     }

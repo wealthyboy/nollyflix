@@ -160,6 +160,16 @@ ul.video-index-meta-taxonomy li::after {
     content: ' ';
 }
 
+ul.video-index-meta-taxonomy li {
+    margin: 0px 0px 5px 18.5px;
+	font-weight: bolder;
+	color: #ffffff;
+}
+
+.progression-video-index-vertical-align {
+    padding: 0px;
+}
+
 
 .disable-click{
     pointer-events:none;
@@ -480,11 +490,25 @@ h1.video-post-heading-title {
     font-size: 30px;
 }
 
+a.video-page-title-play-button span {
+    position: relative;
+    top: calc(50% - 85px);
+    text-align: center;
+    border-radius: 150px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    color: #ffffff;
+    font-size: 42px;
+    background: rgba(0,0,0, 0.2);
+    box-shadow: 0px 0px 20px rgba(0,0,0, 0.2);
+}
+
 
 .purchase-btn-icon svg {
     fill: #fff;
 }
- .purchase-btn-icon svg {
+.purchase-btn-icon svg {
     height: 32px;
     width: 32px;
     margin: 0 auto;
