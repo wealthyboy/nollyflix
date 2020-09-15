@@ -117,6 +117,7 @@ export default {
         setTitle(){
             this.$store.commit('setTitle','To comment')
             this.$store.commit('showPaymentForm',false)
+            this.$store.commit('setFormErrors',{})
         },
         videoComments() {
             this.loading =true

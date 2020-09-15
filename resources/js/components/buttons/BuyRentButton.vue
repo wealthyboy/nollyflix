@@ -40,9 +40,10 @@ export default {
         buyOrRent(type){
             this.$store.commit('setBuyOrRent',type)
             this.$store.commit('setTitle','To purchase')
-            this.$store.commit('showPaymentForm',true)
+            this.$store.commit('setFormErrors',{})
         },
        
     } 
 }
+//90ErFPYZlko5rXCb1HzA
 </script>

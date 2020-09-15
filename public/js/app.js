@@ -2291,10 +2291,10 @@ __webpack_require__.r(__webpack_exports__);
     buyOrRent: function buyOrRent(type) {
       this.$store.commit('setBuyOrRent', type);
       this.$store.commit('setTitle', 'To purchase');
-      this.$store.commit('showPaymentForm', true);
+      this.$store.commit('setFormErrors', {});
     }
   }
-});
+}); //90ErFPYZlko5rXCb1HzA
 
 /***/ }),
 
@@ -2607,6 +2607,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setTitle: function setTitle() {
       this.$store.commit('setTitle', 'To comment');
       this.$store.commit('showPaymentForm', false);
+      this.$store.commit('setFormErrors', {});
     },
     videoComments: function videoComments() {
       var _this = this;

@@ -39,7 +39,7 @@ header#masthead-pro h1 img {
     float: right;
     position: relative;
     z-index: 15;
-    margin-top: -8px;
+    margin-top: 0px;
 }
 
 
@@ -86,7 +86,7 @@ input#main-text-field {
 .login-btn{
     margin-right: 15px;
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .background-image{
