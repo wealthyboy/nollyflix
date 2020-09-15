@@ -22074,11 +22074,13 @@ var render = function() {
     _c("div", { staticClass: "col-12 col-lg-6 mb-5" }, [
       _vm.loggedIn
         ? _c("div", { staticClass: "review-form-wrapper" }, [
-            _c("h3", { staticClass: "review-title text-uppercase" }, [
+            _c("h3", { staticClass: "review-title text-uppercase ml-3" }, [
               _vm._v("Add a Comment")
             ]),
             _vm._v(" "),
-            _c("p", [_vm._v(" Required fields are marked *")]),
+            _c("p", { staticClass: "ml-3" }, [
+              _vm._v(" Required fields are marked *")
+            ]),
             _vm._v(" "),
             _c(
               "form",
@@ -22215,8 +22217,8 @@ var render = function() {
             "div",
             { staticClass: "comments" },
             [
-              _c("h6", { staticClass: "review-title text-uppercase" }, [
-                _vm._v(" Comments ")
+              _c("h3", { staticClass: "review-title text-uppercase" }, [
+                _vm._v(_vm._s(_vm.meta.total) + "  Comment(s)")
               ]),
               _vm._v(" "),
               _vm._l(_vm.comments, function(comment) {
