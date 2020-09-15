@@ -131,7 +131,6 @@ export const validateForm = ({dispatch,commit},{context,input}) => {
             if (element.value == '' ){
                 k = element.name.split('_').join(' ');
                 errors = Object.assign({}, errors, { [ element.name ]: k + '  is required' }) 
-                console.log(errors)  
             }
             if (element.name == 'email'){
                 let value = element.value;
@@ -203,10 +202,13 @@ export const clearErrors =  ({commit},{context,input}) => {
     let p = {},errors = []
     if (input.length) {
         input.forEach(function( element,v){
-            console.log()
-            if (element.value !== '' ){
+            if (element.value != '' ){
+                console.log(element.name)
+
                 const prop = element.name
-                delete context.errorsBag[prop]
+
+                delete store.getters.errors[prop]
+
             } 
             if (  
                 context.form.password !== ''  && 
@@ -219,30 +221,11 @@ export const clearErrors =  ({commit},{context,input}) => {
             } 
         })
     }
-    errors = Object.assign({}, context.errorsBag, p);
+    errors = Object.assign({}, store.getters.errors, p);
     commit('setFormErrors',errors)
 }
 
-export const checkInput =  ({commit},{context,input}) => {
-    let p = {},errors = [],errMsg = [],k
-    if (typeof input !== 'undefined'){
-        if (input.target.value == '') {
-           k = input.target.name.split('_').join(' ');
-           errMsg = Object.assign({}, errMsg, { [ input.target.name ]: k + '  is required' })
-        }
-        if ( input.target.name == 'email') {
-            if (!validateEmail(input.target.value)  ){
-                p.email = 'Please enter a valid email'
-            }
-        }
-    }
 
-    if (typeof context !== 'undefined'){
-        errMsg = Object.assign({}, context.errorsBag, errMsg);
-    }
-    errors = Object.assign({}, errMsg, p);
-    commit('setFormErrors',errors)
-}
 
 export const validateEmail =  (email) => {
    return  ruleE().test(String(email).toLowerCase());   

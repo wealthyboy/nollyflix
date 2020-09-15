@@ -11,7 +11,7 @@
                 class="form-control required" 
                 :class="{'is-invalid': errors.first_name}" 
                 name="first_name" 
-                v-model="form.first_name" 
+                v-model="form.first_name"
                 placeholder="Name" 
                 @input="removeError" 
                 value=""  
@@ -49,7 +49,7 @@
                 name="email"  
                 placeholder="Email" 
                 @input="removeError" 
-                @blur="checkInput($event)"
+                @blur="vInput($event)"
                 value="" 
                 autocomplete="email"
             >
@@ -81,9 +81,13 @@
                 name="password_confirmation" 
                 placeholder="Confirm Password"
                 @input="removeError" 
+                :class="{'is-invalid': errors.password_confirmation}" 
                 autocomplete="new-password"
                 v-model="form.password_confirmation"  
             >
+            <span class="invalid-feedback" v-if="errors.password_confirmation" role="alert">
+                <strong>{{ formatError(errors.password_confirmation) }}</strong>
+            </span>
         </div>
         <div class="form-group aligncenter">
             <button type="submit" class="btn">
@@ -124,10 +128,11 @@ export default {
             title: 'title'
         })
     },
-  
+   
     methods: {
         showLogin(){
             this.$store.commit('showLoginForm',true)
+            this.$store.commit('setFormErrors',{})
         },
         ...mapActions({
             register: 'register',
@@ -147,7 +152,7 @@ export default {
         vInput(e){
             let input = document.querySelectorAll('.required');
             if (typeof input !== 'undefined') {
-                this.checkInput({ context: this, email: this.form.email, input:e })
+                this.validateForm({ context: this, input:input})
             }
         },
         submit: function(){

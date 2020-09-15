@@ -2161,6 +2161,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2187,6 +2191,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: _objectSpread(_objectSpread({
     showLogin: function showLogin() {
       this.$store.commit('showLoginForm', true);
+      this.$store.commit('setFormErrors', {});
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
     register: 'register',
@@ -2211,10 +2216,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var input = document.querySelectorAll('.required');
 
       if (typeof input !== 'undefined') {
-        this.checkInput({
+        this.validateForm({
           context: this,
-          email: this.form.email,
-          input: e
+          input: input
         });
       }
     },
@@ -21510,7 +21514,7 @@ var render = function() {
                   _vm.removeError
                 ],
                 blur: function($event) {
-                  return _vm.checkInput($event)
+                  return _vm.vInput($event)
                 }
               }
             }),
@@ -21585,6 +21589,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control required",
+              class: { "is-invalid": _vm.errors.password_confirmation },
               attrs: {
                 id: "password-confirm",
                 type: "password",
@@ -21608,7 +21613,23 @@ var render = function() {
                   _vm.removeError
                 ]
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.errors.password_confirmation
+              ? _c(
+                  "span",
+                  { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+                  [
+                    _c("strong", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.formatError(_vm.errors.password_confirmation)
+                        )
+                      )
+                    ])
+                  ]
+                )
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group aligncenter" }, [
@@ -36323,7 +36344,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************!*\
   !*** ./resources/js/store/actions.js ***!
   \***************************************/
-/*! exports provided: flashMessage, login, me, register, createComments, updatePassword, resetPassword, validateForm, forgotPassword, getReviews, clearError, clearErrors, checkInput, validateEmail, ruleE */
+/*! exports provided: flashMessage, login, me, register, createComments, updatePassword, resetPassword, validateForm, forgotPassword, getReviews, clearError, clearErrors, validateEmail, ruleE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36340,7 +36361,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviews", function() { return getReviews; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearError", function() { return clearError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkInput", function() { return checkInput; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateEmail", function() { return validateEmail; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ruleE", function() { return ruleE; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -36502,7 +36522,6 @@ var validateForm = function validateForm(_ref14, _ref15) {
       if (element.value == '') {
         k = element.name.split('_').join(' ');
         errors = Object.assign({}, errors, _defineProperty({}, element.name, k + '  is required'));
-        console.log(errors);
       }
 
       if (element.name == 'email') {
@@ -36584,11 +36603,10 @@ var clearErrors = function clearErrors(_ref21, _ref22) {
 
   if (input.length) {
     input.forEach(function (element, v) {
-      console.log();
-
-      if (element.value !== '') {
+      if (element.value != '') {
+        console.log(element.name);
         var prop = element.name;
-        delete context.errorsBag[prop];
+        delete _index__WEBPACK_IMPORTED_MODULE_1__["default"].getters.errors[prop];
       }
 
       if (context.form.password !== '' && typeof context.form.password_confirmation !== 'undefined' && context.form.password_confirmation !== '') {
@@ -36599,36 +36617,7 @@ var clearErrors = function clearErrors(_ref21, _ref22) {
     });
   }
 
-  errors = Object.assign({}, context.errorsBag, p);
-  commit('setFormErrors', errors);
-};
-var checkInput = function checkInput(_ref23, _ref24) {
-  var commit = _ref23.commit;
-  var context = _ref24.context,
-      input = _ref24.input;
-  var p = {},
-      errors = [],
-      errMsg = [],
-      k;
-
-  if (typeof input !== 'undefined') {
-    if (input.target.value == '') {
-      k = input.target.name.split('_').join(' ');
-      errMsg = Object.assign({}, errMsg, _defineProperty({}, input.target.name, k + '  is required'));
-    }
-
-    if (input.target.name == 'email') {
-      if (!validateEmail(input.target.value)) {
-        p.email = 'Please enter a valid email';
-      }
-    }
-  }
-
-  if (typeof context !== 'undefined') {
-    errMsg = Object.assign({}, context.errorsBag, errMsg);
-  }
-
-  errors = Object.assign({}, errMsg, p);
+  errors = Object.assign({}, _index__WEBPACK_IMPORTED_MODULE_1__["default"].getters.errors, p);
   commit('setFormErrors', errors);
 };
 var validateEmail = function validateEmail(email) {
