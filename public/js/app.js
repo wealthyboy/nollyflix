@@ -2563,6 +2563,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2600,6 +2603,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     videoComments: function videoComments() {
       var _this = this;
 
+      this.loading = true;
       return axios.get('/comments/' + this.$root.video.slug).then(function (response) {
         _this.loading = false;
 
@@ -22061,8 +22065,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row pt-5" }, [
-    _c("div", { staticClass: "col-12 col-lg-6" }, [
+  return _c("div", { staticClass: "row pt-5 " }, [
+    _c("div", { staticClass: "col-12 col-lg-6 mb-5" }, [
       _vm.loggedIn
         ? _c("div", { staticClass: "review-form-wrapper" }, [
             _c("h3", { staticClass: "review-title text-uppercase" }, [
@@ -22197,41 +22201,55 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-12 col-lg-6" }, [
-      _c(
-        "div",
-        { staticClass: "comments" },
-        [
-          _c("h6", { staticClass: "review-title text-uppercase" }, [
-            _vm._v(" Comments ")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.comments, function(comment) {
-            return _c("div", { key: comment.id, staticClass: "media mb-3" }, [
-              _c("img", {
-                staticClass: "mr-3 rounded-circle",
-                attrs: { src: "/images/icons/avtar.jpg", alt: "..." }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "media-body" }, [
-                _c("h5", { staticClass: "mt-0" }, [
-                  _vm._v(_vm._s(comment.full_name) + "  "),
-                  _c("small", { staticClass: "mt-0" }, [
-                    _vm._v(_vm._s(comment.date))
-                  ])
-                ]),
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(comment.description) +
-                    "\n                "
-                )
-              ])
-            ])
-          })
-        ],
-        2
-      ),
+      _vm.loading
+        ? _c("div", { staticClass: "comments" }, [_vm._v(" Loading...")])
+        : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "comments" }),
+      !_vm.loading && _vm.comments.length
+        ? _c(
+            "div",
+            { staticClass: "comments" },
+            [
+              _c("h6", { staticClass: "review-title text-uppercase" }, [
+                _vm._v(" Comments ")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.comments, function(comment) {
+                return _c(
+                  "div",
+                  { key: comment.id, staticClass: "media mb-3" },
+                  [
+                    _c("img", {
+                      staticClass: "mr-3 rounded-circle",
+                      attrs: { src: "/images/icons/avtar.jpg", alt: "..." }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("h5", { staticClass: "mt-0" }, [
+                        _vm._v(_vm._s(comment.full_name) + "  "),
+                        _c("small", { staticClass: "mt-0" }, [
+                          _vm._v(_vm._s(comment.date))
+                        ])
+                      ]),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(comment.description) +
+                          "\n                "
+                      )
+                    ])
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.loading && !_vm.comments.length
+        ? _c("div", { staticClass: "comments" }, [
+            _vm._v("\n            No Comments yet.\n        ")
+          ])
+        : _vm._e(),
       _vm._v(" "),
       !_vm.loading && _vm.meta && _vm.meta.total > _vm.meta.per_page
         ? _c("div", {}, [_c("pagination", { attrs: { meta: _vm.meta } })], 1)

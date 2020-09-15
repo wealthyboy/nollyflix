@@ -1,7 +1,7 @@
 <template>
 
-    <div class="row pt-5">
-        <div class="col-12 col-lg-6">
+    <div class="row pt-5 ">
+        <div class="col-12 col-lg-6 mb-5">
             <div v-if="loggedIn" class="review-form-wrapper">
                 <h3 class="review-title text-uppercase">Add a Comment</h3>
                 <p> Required fields are marked *</p>
@@ -43,7 +43,9 @@
             
         </div>
         <div class="col-12 col-lg-6">
-            <div  class="comments">
+            <div v-if="loading" class="comments"> Loading...</div>
+
+            <div v-if="!loading && comments.length" class="comments">
                 <h6 class="review-title text-uppercase"> Comments </span></h6>
                 <div v-for="comment in comments" :key="comment.id"  class="media mb-3">
                     <img src="/images/icons/avtar.jpg" class="mr-3 rounded-circle" alt="...">
@@ -54,7 +56,8 @@
                 </div>
                 
             </div>
-            <div  class="comments">
+            <div  v-if="!loading && !comments.length"  class="comments">
+                No Comments yet.
             </div>
         <!--Paginattion-->
           
@@ -115,6 +118,7 @@ export default {
             this.$store.commit('setTitle','To comment')
         },
         videoComments() {
+            this.loading =true
             return axios.get('/comments/'+ this.$root.video.slug).then((response) => {
                 this.loading = false;
                 this.$store.commit('setComments', response.data.data)
