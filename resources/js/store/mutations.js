@@ -34,6 +34,11 @@ export const showLoginForm= (state , trueOrFalse) =>{
 }
 
 
+export const showPaymentForm= (state , trueOrFalse) =>{
+   state.showPayemtForm =trueOrFalse;
+}
+
+
 export const setNotification= (state , notification) =>{
    state.notification =notification;
 }

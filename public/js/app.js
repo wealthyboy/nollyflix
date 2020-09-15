@@ -2287,6 +2287,7 @@ __webpack_require__.r(__webpack_exports__);
     buyOrRent: function buyOrRent(type) {
       this.$store.commit('setBuyOrRent', type);
       this.$store.commit('setTitle', 'To purchase');
+      this.$store.commit('showPaymentForm', true);
     }
   }
 });
@@ -2352,7 +2353,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    loggedIn: 'loggedIn'
+    loggedIn: 'loggedIn',
+    showPayemtForm: 'showPayemtForm'
   })), {}, {
     logo: function logo() {
       return '/images/logo/' + this.$root.settings.store_logo;
@@ -2436,7 +2438,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     loggedIn: 'loggedIn',
-    purchaseType: 'purchaseType'
+    purchaseType: 'purchaseType',
+    showPayemtForm: 'showPayemtForm'
   })), {}, {
     price: function price() {
       return this.purchaseType == 'Rent' ? this.$root.video.converted_rent_price : this.$root.video.converted_buy_price;
@@ -2599,6 +2602,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: _objectSpread(_objectSpread({
     setTitle: function setTitle() {
       this.$store.commit('setTitle', 'To comment');
+      this.$store.commit('showPaymentForm', false);
     },
     videoComments: function videoComments() {
       var _this = this;
@@ -21869,6 +21873,7 @@ var staticRenderFns = [
         staticClass: "close float-close-pro noselect",
         attrs: {
           type: "button",
+          id: "close-modal",
           "data-dismiss": "modal",
           "aria-label": "Close"
         }
@@ -36357,6 +36362,11 @@ var login = function login(_ref2, _ref3) {
     commit('loggedIn', true);
     commit('setUser', response.data.user);
     context.loading = false;
+
+    if (!_index__WEBPACK_IMPORTED_MODULE_1__["default"].getters.showPayemtForm) {
+      document.getElementById("close-modal").click();
+    }
+
     return Promise.resolve();
   })["catch"](function (error) {
     context.loading = false;
@@ -36389,6 +36399,11 @@ var register = function register(_ref6, _ref7) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/register', context.form).then(function (response) {
     commit('loggedIn', true);
     commit('setUser', response.data.user);
+
+    if (!_index__WEBPACK_IMPORTED_MODULE_1__["default"].getters.showPayemtForm) {
+      document.getElementById("close-modal").click();
+    }
+
     context.loading = false;
   })["catch"](function (error) {
     context.loading = false;
@@ -36628,7 +36643,7 @@ var ruleE = function ruleE() {
 /*!***************************************!*\
   !*** ./resources/js/store/getters.js ***!
   \***************************************/
-/*! exports provided: message, comments, commentsMeta, notification, loggedIn, purchaseType, title, showLoginForm, total, errors, loading */
+/*! exports provided: message, comments, commentsMeta, notification, loggedIn, purchaseType, title, showLoginForm, showPayemtForm, total, errors, loading */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36641,6 +36656,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "purchaseType", function() { return purchaseType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "title", function() { return title; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLoginForm", function() { return showLoginForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showPayemtForm", function() { return showPayemtForm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "total", function() { return total; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errors", function() { return errors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loading", function() { return loading; });
@@ -36667,6 +36683,9 @@ var title = function title(state) {
 };
 var showLoginForm = function showLoginForm(state) {
   return state.showLoginForm;
+};
+var showPayemtForm = function showPayemtForm(state) {
+  return state.showPayemtForm;
 };
 var total = function total(state) {
   return state.total;
@@ -36716,7 +36735,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*!*****************************************!*\
   !*** ./resources/js/store/mutations.js ***!
   \*****************************************/
-/*! exports provided: setMessage, setComments, setLoading, setUser, setCommentsMeta, setBuyOrRent, setTitle, showLoginForm, setNotification, clearMessage, appendToWishlist, loggedIn, setFormErrors */
+/*! exports provided: setMessage, setComments, setLoading, setUser, setCommentsMeta, setBuyOrRent, setTitle, showLoginForm, showPaymentForm, setNotification, clearMessage, appendToWishlist, loggedIn, setFormErrors */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36729,6 +36748,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBuyOrRent", function() { return setBuyOrRent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTitle", function() { return setTitle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLoginForm", function() { return showLoginForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showPaymentForm", function() { return showPaymentForm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setNotification", function() { return setNotification; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearMessage", function() { return clearMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appendToWishlist", function() { return appendToWishlist; });
@@ -36757,6 +36777,9 @@ var setTitle = function setTitle(state, title) {
 };
 var showLoginForm = function showLoginForm(state, trueOrFalse) {
   state.showLoginForm = trueOrFalse;
+};
+var showPaymentForm = function showPaymentForm(state, trueOrFalse) {
+  state.showPayemtForm = trueOrFalse;
 };
 var setNotification = function setNotification(state, notification) {
   state.notification = notification;
@@ -36797,7 +36820,8 @@ __webpack_require__.r(__webpack_exports__);
   loading: false,
   buyOrRent: '',
   title: '',
-  showLoginForm: false
+  showLoginForm: false,
+  showPayemtForm: true
 });
 
 /***/ }),

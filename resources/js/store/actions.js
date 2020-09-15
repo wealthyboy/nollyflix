@@ -17,6 +17,9 @@ export const login = ({ commit },{ context }) => {
         commit('loggedIn',true)
         commit('setUser',response.data.user)
         context.loading = false
+        if (!store.getters.showPayemtForm){
+            document.getElementById("close-modal").click()
+        }
         return Promise.resolve()
     }).catch((error)=>{
         context.loading = false
@@ -47,6 +50,9 @@ export const register = ({ commit },{ context }) => {
     return axios.post('/register',context.form).then((response) => {
         commit('loggedIn',true)
         commit('setUser',response.data.user)
+        if (!store.getters.showPayemtForm){
+            document.getElementById("close-modal").click()
+        }
         context.loading = false
     }).catch((error) =>{
         context.loading = false

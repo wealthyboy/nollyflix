@@ -33,6 +33,10 @@ export  const showLoginForm = (state) => {
 }
 
 
+export  const showPayemtForm = (state) => {
+   return state.showPayemtForm
+}
+
 
 export  const total = (state) => {
    return state.total

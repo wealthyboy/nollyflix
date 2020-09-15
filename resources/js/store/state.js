@@ -10,5 +10,6 @@ export default {
     loading: false,
     buyOrRent: '',
     title: '',
-    showLoginForm:false
+    showLoginForm:false,
+    showPayemtForm: true
 } 

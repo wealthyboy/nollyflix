@@ -47,7 +47,8 @@ export default {
     computed:{
         ...mapGetters({
             loggedIn: 'loggedIn',
-            purchaseType: 'purchaseType'
+            purchaseType: 'purchaseType',
+            showPayemtForm: 'showPayemtForm'
         }),
         price: function () {
            return this.purchaseType == 'Rent' ? this.$root.video.converted_rent_price : this.$root.video.converted_buy_price

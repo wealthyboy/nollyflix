@@ -1,7 +1,7 @@
 <template>
     <!-- Modal -->
     <div class="modal fade" id="apModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
-        <button type="button" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
+        <button type="button" id="close-modal" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -45,7 +45,9 @@ export default {
     },
     computed:{
         ...mapGetters({
-            loggedIn: 'loggedIn'
+            loggedIn: 'loggedIn',
+            showPayemtForm: 'showPayemtForm'
+
         }),
         logo : function () {
             return '/images/logo/'+this.$root.settings.store_logo
