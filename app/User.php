@@ -87,7 +87,9 @@ class User extends Authenticatable
 	public function filmer_videos()
     {
         return $this->belongsToMany('App\Video','filmer_video');
-    }
+	}
+	
+	
 
 	public function scopeCastings(Builder $builder)
 	{

@@ -1,6 +1,6 @@
 <template>
     <!--Paginattion-->
-    <ul class="pagination-numbers">
+    <ul class="page-numbers">
         <li>
             <a href="#" @click.prevent="switched(meta.current_page - 1)"   :class="{'disabled': meta.current_page === 1 }"  class="previous"><i class="fas fa-chevron-left"></i></a>
         </li>
@@ -21,8 +21,7 @@ export default {
         meta:Object,
         useUrl:Boolean
     },
-    created(){
-    },
+   
     methods:{
         switched(page){
             if (this.pageIsFinished(page)) {
@@ -39,8 +38,8 @@ export default {
             } else {
                 return  axios.get(this.meta.path + '?page=' +page).then((response) => {
                             this.loading = false;
-                            this.$store.commit('setReviews', response.data.data)
-                            this.$store.commit('setReviewsMeta', response.data.meta)
+                            this.$store.commit('setComments', response.data.data)
+                            this.$store.commit('setCommentsMeta', response.data.meta)
                         }).catch((error) => {}) 
             }
           
@@ -52,3 +51,6 @@ export default {
 
 }
 </script>
+<style>
+ 
+</style>

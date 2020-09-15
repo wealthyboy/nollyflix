@@ -6,7 +6,7 @@ import store from './store'
 
 const CheckoutIndex = require('./components/checkout/Index.vue').default
 const Buttons = require('./components/buttons/BuyRentButton.vue').default
-const Reviews = require('./components/reviews/Index.vue').default
+const Reviews = require('./components/comments/Index.vue').default
 
 
 

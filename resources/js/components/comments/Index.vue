@@ -2,10 +2,10 @@
 
     <div class="row pt-5">
         <div class="col-12 col-lg-6">
-            <div v-if="user" class="review-form-wrapper">
+            <div v-if="loggedIn" class="review-form-wrapper">
                 <h3 class="review-title text-uppercase">Add a Comment</h3>
                 <p> Required fields are marked *</p>
-                <form id="comment-form" class="comment-form">
+                <form id="comment-form" @submit.prevent="submit" class="comment-form">
                     
 
                     <div class="clearfix"></div>
@@ -13,16 +13,20 @@
                         <label>Your Comment<span class="req">*</span></label>
                         <textarea   
                                 id="comment" 
-                                    
+                                v-model="form.description" 
+  
                                 name="description" 
                                 class="form-control rating_required" 
                                 cols="45" 
                                 rows="10"
                                 aria-required="true" 
+                                 @input="removeError($event)"
+                                @blur="vInput($event)" 
                         >
                         </textarea>
-                            <span class="help-block error  text-danger text-sm-left" >
-                                <strong class="text-danger"></strong>
+                            
+                            <span class="help-block error  text-danger text-sm-left" v-if="errors.description">
+                                <strong class="text-danger">{{ formatError(errors.description) }}</strong>
                             </span>
                         </div>
                         <div class="form-group">
@@ -33,56 +37,55 @@
                         </div>
                 </form>
             </div>
-            <div v-if="!loggedIn"   class="review-form-wrapper">
-                <button data-toggle="modal" data-target="#checkoutModal"  type="button"  class="btn btn-primary rounded-0 btn-lg btn-block"><i class="fas fa-comment"></i> Add Comment </button>
+            <div v-if="!loading && !loggedIn"   class="review-form-wrapper">
+                <button data-toggle="modal" @click="setTitle" data-target="#apModal"  type="button"  class="btn btn-primary rounded-0 btn-lg btn-block"><i class="fas fa-comment"></i> Add Comment </button>
             </div>
+            
         </div>
         <div class="col-12 col-lg-6">
-            <div class="comments">
-                <h5 class="review-title text-uppercase"> Comments </span></h5>
-                <div class="media">
-                    <img src="/images/icons/avtar.jpg" class="mr-3" alt="...">
+            <div  class="comments">
+                <h6 class="review-title text-uppercase"> Comments </span></h6>
+                <div v-for="comment in comments" :key="comment.id"  class="media mb-3">
+                    <img src="/images/icons/avtar.jpg" class="mr-3 rounded-circle" alt="...">
                     <div class="media-body">
-                        <h5 class="mt-0">Media heading  <small class="mt-0">01/02/30</small></h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <h5 class="mt-0">{{ comment.full_name }}  <small class="mt-0">{{ comment.date }}</small></h5>
+                        {{ comment.description }}
                     </div>
                 </div>
                 
             </div>
             <div  class="comments">
-                
             </div>
         <!--Paginattion-->
           
 
-            <div class="pagination-wraper">
-                <div class="pagination">
-                </div>
+            <div v-if="!loading && meta && meta.total > meta.per_page"  class="">
+                <pagination :meta="meta" />
             </div>
         </div> 
+
+
+       
     </div>
 
 
                 
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 
 import  Login from '../auth/login'
 import  Register from '../auth/register'
+import  Pagination from '../pagination/Index'
+
 
 
 
 export default {
-    name: "Show",
-    props:{
-        product:Object,
-        attributes:Object,
-    },
     components:{
-       Images,
-       LoginModal,
-       Pagination,
-       RegisterModal
+       Login,
+       Register,
+       Pagination
     },
     data(){
         return {
@@ -91,31 +94,31 @@ export default {
             fadeIn: false,
             form:{
                 description: null,
-                product_id:this.product.id ,
-                image: null
             },
             submiting:false
         }
     },
     computed: {
         ...mapGetters({
-            cart: 'cart' ,
             loggedIn:'loggedIn',
-            reviews: 'reviews',
-            meta: 'reviewsMeta',
-            errors:'errors'
+            errors:'errors',
+            comments: 'comments',
+            meta: 'commentsMeta',
+
         }),
     },
     created(){
-        this.commentsReviews() 
+       this.videoComments() 
     },
     methods: {
-    
+        setTitle(){
+            this.$store.commit('setTitle','To comment')
+        },
         videoComments() {
-            return axios.get('/reviews/'+ 9).then((response) => {
+            return axios.get('/comments/'+ this.$root.video.slug).then((response) => {
                 this.loading = false;
-                this.$store.commit('setReviews', response.data.data)
-                this.$store.commit('setReviewsMeta', response.data.meta)
+                this.$store.commit('setComments', response.data.data)
+                this.$store.commit('setCommentsMeta', response.data.meta)
             }).catch((error) => {
                 this.loading = false;
             }) 
@@ -137,29 +140,24 @@ export default {
             }
         }, 
         ...mapActions({
-            createReviews: 'createReviews',
+            createComments: 'createComments',
             validateForm:  'validateForm',
             clearErrors:   'clearErrors',
             checkInput:    'checkInput',
-            getReviews:    'getReviews'
         }),
       
         submit(){
             let input = document.querySelectorAll('.rating_required');
             this.validateForm({ context:this, input:input })
             if ( Object.keys(this.errors).length !== 0 ){ 
-                if (!this.form.rating){
-                   this.noRating = true
-                }
                 return false; 
             }
             this.submiting = true
             let form = new FormData();
-             
             form.append('description',this.form.description)
-            form.append('rating',this.form.rating)
-            form.append('video_id',this.form.product_id)
-            this.createReviews({ context: this ,form})
+            //this.$root came from the Vue isntance app.js
+            form.append('video_id',this.$root.video.id)
+            this.createComments({ context: this ,form})
         }  
     }
 }

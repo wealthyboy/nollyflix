@@ -19,9 +19,14 @@ export const login = ({ commit },{ context }) => {
         context.loading = false
         return Promise.resolve()
     }).catch((error)=>{
-        this.loading = false
-        console.log(error.response.error)
-        this.errors = error.response.data.error ||  error.response.data.errors
+        context.loading = false
+        if ( error.response.status == 500 ){
+            commit('setFormErrors', {
+                general: "We could register you.Please try again later"
+            })
+            return;
+        }
+        commit('setFormErrors', error.response.data.errors)
     })
 }
 
@@ -53,6 +58,24 @@ export const register = ({ commit },{ context }) => {
         }
         commit('setFormErrors', error.response.data.errors)
     })
+}
+
+
+export const createComments = ({commit} , { payload, context,form }) => {
+    return axios.post('/comments/store',form).then((response) => {
+        context.submiting = false;
+        commit('setComments', response.data.data)
+    }).catch((error) => {
+        context.submiting = false;
+        if ( error.response.status == 500 ){
+            let errors = { general: "We could create your comment"}
+            commit('setFormErrors', errors)
+            return;
+        }
+        if (error.response.data.errors){
+            commit('setFormErrors', error.response.data.errors)
+        }
+    }) 
 }
 
 
@@ -101,7 +124,8 @@ export const validateForm = ({dispatch,commit},{context,input}) => {
         input.forEach(function( element,v){
             if (element.value == '' ){
                 k = element.name.split('_').join(' ');
-                errors = Object.assign({}, errors, { [ element.name ]: k + '  is required' })   
+                errors = Object.assign({}, errors, { [ element.name ]: k + '  is required' }) 
+                console.log(errors)  
             }
             if (element.name == 'email'){
                 let value = element.value;
@@ -143,26 +167,6 @@ export const forgotPassword = ({commit} , { payload, context }) => {
     }) 
 }
 
-
-
-
-
-export const createComment = ({commit} , { payload, context }) => {
-    return axios.post('/blog',context.form).then((response) => {
-        context.submiting = false;
-        commit('setComments', response.data.data)
-    }).catch((error) => {
-        context.submiting = false;
-        if ( error.response.status == 500 ){
-            let errors = { general: "We could not send your password reset link"}
-            commit('setFormErrors', errors)
-            return;
-        }
-        if (error.response.data.errors){
-            commit('setFormErrors', error.response.data.errors)
-        }
-    }) 
-}
 
 
 export const getReviews = ({commit} , { context }) => {

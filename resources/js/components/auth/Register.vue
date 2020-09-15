@@ -2,7 +2,7 @@
     <form   @submit.prevent="submit" v-if="!showLoginForm && !loggedIn"  method="POST" action="">
         <div class="aligncenter">
             <h1>Register</h1>
-            <p>To purchase, join NollyFlix or <span><a @click="showLogin" href="#"> log in</a></span></h2></p>
+            <p>{{ title }}, join NollyFlix or <span><a @click="showLogin" href="#"> log in</a></span></h2></p>
         </div>
         <div class="form-group">
             <input 
@@ -97,17 +97,10 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Login from './login'
-import Payment from '../checkout/payment'
 
 
 
 export default {
-
-    components:{
-        Login,
-        Payment
-    },
     data(){
         return {
             showForgotPassword: false,
@@ -127,7 +120,8 @@ export default {
             errors: 'errors',
             showLoginForm:'showLoginForm',
             loggedIn: 'loggedIn',
-            user: 'user'
+            user: 'user',
+            title: 'title'
         })
     },
   

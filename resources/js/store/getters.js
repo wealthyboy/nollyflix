@@ -7,6 +7,10 @@ export  const comments = (state) => {
    return state.comments
 }
 
+export  const commentsMeta = (state) => {
+   return state.commentsMeta
+}
+
 
 export  const notification = (state) => {
    return state.notification
@@ -18,6 +22,10 @@ export  const loggedIn = (state) => {
 
 export  const purchaseType = (state) => {
    return state.buyOrRent
+}
+
+export  const title = (state) => {
+   return state.title
 }
 
 export  const showLoginForm = (state) => {

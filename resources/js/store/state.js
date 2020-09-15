@@ -6,7 +6,9 @@ export default {
     reviews: [],
     user: [],
     comments:[],
+    commentsMeta:null,
     loading: false,
     buyOrRent: '',
+    title: '',
     showLoginForm:false
 } 

@@ -142,6 +142,15 @@ class Video extends Model
     }
 
 
+     /**
+     * The videos bought that belong to the video.
+    */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+
     /**
      * The video's views that belong to the video.
     */

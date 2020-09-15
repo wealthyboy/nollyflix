@@ -105,7 +105,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('change/password', 'Profile\ProfileController@changePassword');
     Route::get('{username}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
     Route::post('/me',              'Auth\LoginController@me');
-
+    Route::get('comments/{video}',       'Api\Comments\CommentsController@index');
+    Route::post('comments/store',         'Api\Comments\CommentsController@store');
 });
 
 

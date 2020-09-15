@@ -16,13 +16,17 @@ export const setUser= (state , user) =>{
    state.user.push(user);
 }
 
-export const setReviewsMeta= (state , meta) =>{
-   state.reviewsMeta =meta;
+export const setCommentsMeta= (state , meta) =>{
+   state.commentsMeta =meta;
 }
 
 
 export const setBuyOrRent= (state , buyOrRent) =>{
    state.buyOrRent =buyOrRent;
+}
+
+export const setTitle= (state , title) =>{
+   state.title =title;
 }
 
 export const showLoginForm= (state , trueOrFalse) =>{

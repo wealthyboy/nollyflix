@@ -3,14 +3,14 @@
     <form method="POST"  @submit.prevent="submit" v-if="showLoginForm && !loggedIn"  action="">
         <div class="aligncenter">
             <h1>LOGIN</h1>
-            <p>To purchase, login or <span><a @click="showLogin" href="#"> register </a></span></h2></p>
+            <p>{{ title }}, login or <span><a @click="showLogin" href="#"> register </a></span></h2></p>
 
         </div>
             <div class="form-group">
                 <input 
                     id="email" 
                     type="email" 
-                    class="form-control required"  
+                    class="form-control lrequired"  
                     placeholder="Email" 
                     name="email" 
                     value="" 
@@ -26,7 +26,7 @@
                 <input 
                     id="password" 
                     type="password" 
-                    class="form-control required" 
+                    class="form-control lrequired" 
                     placeholder="Password" 
                     name="password"  
                     autocomplete="current-password"
@@ -60,7 +60,6 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-    
     data(){
         return {
             showForgotPassword: false,
@@ -76,8 +75,9 @@ export default {
         ...mapGetters({
             errors: 'errors',
             showLoginForm: 'showLoginForm',
-            loggedIn: 'loggedIn'
-        })
+            loggedIn: 'loggedIn',
+            title: 'title'
+        }),
     },
     methods: {
         showLogin(){
@@ -93,19 +93,19 @@ export default {
             return Array.isArray(error) ? error[0] : error
         },
         removeError(e){
-            let input = document.querySelectorAll('.required');
+            let input = document.querySelectorAll('.lrequired');
             if (typeof input !== 'undefined'){
                 this.clearErrors({  context:this, input:input })
             }
         },
         vInput(e){
-            let input = document.querySelectorAll('.required');
+            let input = document.querySelectorAll('.lrequired');
             if (typeof input !== 'undefined') {
                 this.checkInput({ context: this, email: this.form.email, input:e })
             }
         },
         submit: function(){
-            let input = document.querySelectorAll('.required');
+            let input = document.querySelectorAll('.lrequired');
             this.validateForm({ context:this, input:input })
             if ( Object.keys(this.errors).length !== 0 ){
                 this.error = "Please check for errors"

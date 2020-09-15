@@ -1,6 +1,6 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
+    <div class="modal fade" id="apModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
         <button type="button" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -14,8 +14,8 @@
                      {{ 'Loading...' }}
                 </div><!-- close .modal-body -->
                 <div v-else class="modal-body-pro social-login-modal-body-pro">
-                    <register />
-                    <login />
+                    <register title="To purchase" />
+                    <login title="To purchase" />
                     <payment />
                 </div><!-- close .modal-body -->
             </div><!-- close .modal-content -->
@@ -26,7 +26,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import Login from '../auth/login'
 import Payment from './payment'
-import Register from '../auth/Register'
+import Register from '../auth/register'
 
 
 
