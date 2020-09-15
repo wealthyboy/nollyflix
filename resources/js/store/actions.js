@@ -53,6 +53,12 @@ export const register = ({ commit },{ context }) => {
         if (!store.getters.showPayemtForm){
             document.getElementById("close-modal").click()
         }
+
+        //enable login dropdown on the nav bar
+        $('.prfDrpdwn').removeClass('d-none')
+
+        $('.prfLBtn').addClass('d-none')
+
         context.loading = false
     }).catch((error) =>{
         context.loading = false
@@ -203,10 +209,7 @@ export const clearErrors =  ({commit},{context,input}) => {
     if (input.length) {
         input.forEach(function( element,v){
             if (element.value != '' ){
-                console.log(element.name)
-
                 const prop = element.name
-
                 delete store.getters.errors[prop]
 
             } 

@@ -39,8 +39,7 @@
 				</div-->
 					
 				<div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
-				@if (auth()->check()) 
-				<div class="header-user-profile" id="header-user-profile">
+				<div class="header-user-profile prfDrpdwn {{ !auth()->check() ? 'd-none' : '' }}" id="header-user-profile">
 					<div id="header-user-profile-click" class="noselect header-user-profile-click">
 						<img src="/images/profile_icon.png" alt="Suzie">
 						<div id="header-username">{{ '' }}</div><i class="fas fa-angle-down"></i>
@@ -65,11 +64,11 @@
 						</ul>
 					</div><!-- close #header-user-profile-menu -->
 				</div><!-- close #header-user-profile -->
-				@else
-				<div class="header-user-profile" id="header-user-profile">
+
+
+				<div class="header-user-profile prfLBtn {{ auth()->check() ? 'd-none' : '' }}" id="header-user-profile">
 				   <a href="/login" class="btn p-1 login-btn rounded-0 pr-3"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
 	            </div>
-				@endif
 				
 		
 				<div id="progression-studios-header-search-icon" class="noselect cursor-pointer">

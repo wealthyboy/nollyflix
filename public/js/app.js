@@ -36425,8 +36425,11 @@ var register = function register(_ref6, _ref7) {
 
     if (!_index__WEBPACK_IMPORTED_MODULE_1__["default"].getters.showPayemtForm) {
       document.getElementById("close-modal").click();
-    }
+    } //enable login dropdown on the nav bar
 
+
+    $('.prfDrpdwn').removeClass('d-none');
+    $('.prfLBtn').addClass('d-none');
     context.loading = false;
   })["catch"](function (error) {
     context.loading = false;
@@ -36605,7 +36608,6 @@ var clearErrors = function clearErrors(_ref21, _ref22) {
   if (input.length) {
     input.forEach(function (element, v) {
       if (element.value != '') {
-        console.log(element.name);
         var prop = element.name;
         delete _index__WEBPACK_IMPORTED_MODULE_1__["default"].getters.errors[prop];
       }
