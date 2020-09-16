@@ -13,7 +13,7 @@ export const setLoading= (state , trueOrFalse) =>{
 
 
 export const setUser= (state , user) =>{
-   state.user.push(user);
+   state.user = user;
 }
 
 export const setCommentsMeta= (state , meta) =>{

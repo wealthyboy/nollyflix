@@ -9,7 +9,8 @@
 			user: {!! auth()->check() ? auth()->user() : 0000 !!},
 			loggedIn: {!! auth()->check() ? 1 : 0 !!},
 			video: {!! isset($video) ? $video : 0 !!},
-			settings: {!! isset($system_settings) ? $system_settings : '' !!}
+			settings: {!! isset($system_settings) ? $system_settings : '' !!},
+			token: '{!! csrf_token() !!}'
 		}
 	</script>
 	<body>

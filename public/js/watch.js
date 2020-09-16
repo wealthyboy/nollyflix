@@ -1,12 +1,17 @@
-document.addEventListener('contextmenu', event => event.preventDefault());
+//document.addEventListener('contextmenu', event => event.preventDefault());
 
-let = video = videojs('video', {
+let video = videojs('video', {
       html5: {
         hls: {
           overrideNative: !videojs.browser.IS_SAFARI
         }
       }
 })
+
+
+video.ready(function() {
+  console.log('true')
+});
 
 
 

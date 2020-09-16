@@ -11,15 +11,10 @@ export const flashMessage = ({ commit },message) => {
 }
 
 
-export const login = ({ commit },{ context }) => {
+export const login = ({dispatch, commit },{ context }) => {
 
     return axios.post('/login',context.form).then((response) => {
-        commit('loggedIn',true)
-        commit('setUser',response.data.user)
-        context.loading = false
-        if (!store.getters.showPayemtForm){
-            document.getElementById("close-modal").click()
-        }
+        dispatch('IsLoggedIn',{context,response})
         return Promise.resolve()
     }).catch((error)=>{
         context.loading = false
@@ -34,11 +29,22 @@ export const login = ({ commit },{ context }) => {
 }
 
 
-export const me = ({ commit },{ context }) => {
+export const IsLoggedIn = ({ commit },{ context,response}) => {
+    commit('loggedIn',true)
+    commit('setUser',response.data.user)
+    context.loading = false
+    if (!store.getters.showPayemtForm){
+        document.getElementById("close-modal").click()
+    }
+    //enable login dropdown on the nav bar
+    $('.prfDrpdwn').removeClass('d-none')
+    $('.prfLBtn').addClass('d-none')
+}
+
+
+export const me = ({ dispatch },{ context }) => {
     return axios.post('/me').then((response) => {
-        commit('loggedIn',true)
-        commit('setUser',response)
-        context.loading = false
+        dispatch('IsLoggedIn',{ context , response})
         return Promise.resolve()
     }).catch((error)=>{
         context.loading = false
@@ -48,18 +54,7 @@ export const me = ({ commit },{ context }) => {
 
 export const register = ({ commit },{ context }) => {
     return axios.post('/register',context.form).then((response) => {
-        commit('loggedIn',true)
-        commit('setUser',response.data.user)
-        if (!store.getters.showPayemtForm){
-            document.getElementById("close-modal").click()
-        }
-
-        //enable login dropdown on the nav bar
-        $('.prfDrpdwn').removeClass('d-none')
-
-        $('.prfLBtn').addClass('d-none')
-
-        context.loading = false
+        dispatch('IsLoggedIn',{ commit },{ context ,response})
     }).catch((error) =>{
         context.loading = false
         if ( error.response.status == 500 ){
@@ -128,7 +123,6 @@ export const resetPassword = ({commit} , { payload, context }) => {
 }
 
 
-
 export const validateForm = ({dispatch,commit},{context,input}) => {
 
     let p = {},k,errors = []
@@ -160,7 +154,6 @@ export const validateForm = ({dispatch,commit},{context,input}) => {
 }
 
 
-
 export const forgotPassword = ({commit} , { payload, context }) => {
     return axios.post('/password/reset/link',payload).then((response) => {
         context.loading = false;
@@ -177,7 +170,6 @@ export const forgotPassword = ({commit} , { payload, context }) => {
         }
     }) 
 }
-
 
 
 export const getReviews = ({commit} , { context }) => {
@@ -227,7 +219,6 @@ export const clearErrors =  ({commit},{context,input}) => {
     errors = Object.assign({}, store.getters.errors, p);
     commit('setFormErrors',errors)
 }
-
 
 
 export const validateEmail =  (email) => {

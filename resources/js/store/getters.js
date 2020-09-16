@@ -51,6 +51,11 @@ export  const loading = (state) => {
 }
 
 
+export  const user = (state) => {
+   return state.user
+}
+
+
 
 
 

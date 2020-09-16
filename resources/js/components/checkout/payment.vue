@@ -7,27 +7,37 @@
                         <h1>CHECKOUT</h1>
                     </div>
                     <form action="/checkout" method="POST" id="checkout" class="cart-form">
-                        <div class="cart-product-table-wrap ">
-                            <div class="row cart-rows raised mb-3 pt-4 pb-4 border border-gray">
-                            <div class="col-md-3 col-3">
-                                <div class="cart-image"><img :src="$root.video.tn_poster" alt=""></div>
-                            </div>
-                            <div class="col-md-9 col-9">
-                                <h5><a href="#">{{ $root.video.title }}</a></h5>
-                                <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ purchaseType }} 
+                       <input :value="$root.token" type="hidden" name="_token" />
+                       
+                        <div  class="cart-product-table-wrap ">
+                            <div  v-if="!loading" class="row cart-rows raised mb-3 pt-4 pb-4 border border-gray">
+                                <div class="col-md-3 col-12">
+                                    <div class="cart-image"><img :src="$root.video.tn_poster" alt=""></div>
+                                </div>
+                                <div class="col-md-9 col-12">
+                                    <h5><a href="#">{{ $root.video.title }}</a></h5>
+                                    <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ purchaseType }} 
                                         <span v-if="purchaseType == 'rent' " class="ml-2 border">Expires after 48hour</span>
-                                </div>
-                                <div class="product-item-price">
-                                    <div class="product-price-amount"><span class="retail-title text-gold">PRICE: </span> <span class="product--price text-gold">{{ $root.video.currency }}{{ price  }}</span></div>
+                                    </div>
+                                    <div class="product-item-price">
+                                        <div class="product-price-amount"><span class="retail-title text-gold">PRICE: </span> <span class="product--price text-gold">{{ $root.video.currency }}{{ price  }}</span></div>
+                                    </div>
                                 </div>
                             </div>
-                            
+                            <div v-if="loading" class="row justify-content-center text-center">
+                                <div class="text-center col-md-9 col-12">
+                                    <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+                                      Please wait. while we round things up
+                                </div>
                             </div>
                         </div>
                     </form>
                     <hr class="line">
-                    <div class="d-flex justify-content-between information"><span>Total </span><span>{{ $root.video.currency }}{{ price  }}</span></div>
-                    <button class="btn btn-primary btn-block d-flex justify-content-center mt-3" @click="submit" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                    <div  v-if="!loading">
+                        <div  class="d-flex justify-content-between information"><span>Total </span><span>{{ $root.video.currency }}{{ price  }}</span></div>
+                        <button class="btn btn-primary btn-block d-flex justify-content-center mt-3" @click="submit" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,13 +52,15 @@ export default {
         return {
             loading:false,
             scriptLoaded: null, 
+
         }
     },
     computed:{
         ...mapGetters({
             loggedIn: 'loggedIn',
             purchaseType: 'purchaseType',
-            showPayemtForm: 'showPayemtForm'
+            showPayemtForm: 'showPayemtForm',
+            user: 'user'
         }),
         price: function () {
            return this.purchaseType == 'Rent' ? this.$root.video.converted_rent_price : this.$root.video.converted_buy_price
@@ -67,7 +79,7 @@ export default {
        
         loadScript(callback) {
             const script = document.createElement('script')
-            script.src = 'https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js'
+            script.src = 'https://checkout.flutterwave.com/v3.js'
             document.getElementsByTagName('head')[0].appendChild(script)
             if (script.readyState) {  // IE
                 script.onreadystatechange = () => {
@@ -83,21 +95,44 @@ export default {
             }
         },
         submit: function(){
+            var context = this
+            this.loading = true
             this.scriptLoaded && this.scriptLoaded.then(() => {
-                var x = getpaidSetup({
-                    PBFPubKey: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
-                    customer_email: 'jacob.atam@gmail.com',
-                    amount: 4000,
-                    currency:'NGN',
+                var x = FlutterwaveCheckout({
+                    public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
+                    customer_email:context.user.email,
+                    amount: context.user.cart_total,
+                    currency:context.user.iso_code,
                     country: "NG",
-                    payment_method: "both",
-                    txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
-                    meta: [{
-                        metaname: 'sss',
-                    }],
+                    tx_ref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
+                    meta: {
+                       consumer_id: context.user.id,
+                    },
+                    customer: {
+                        email: context.user.email,
+                        name: context.user.name + ' ' +context.user.last_name,
+                    },
                     onclose: function() {
-                        //context.loading =false
+                       // context.loading =false
                        // context.error = "Payment was not completed"
+                    },
+                    callback: function (response) {
+
+                        if (
+                            response.status == "successful" 
+                        ) {
+                            // context.loading =false
+                            document.getElementById('checkout').submit()
+                            x.close();
+                            console.log(true)
+                            return;
+
+                        } else {
+                            console.log(false)
+                            x.close();
+                        }
+                    
+                        //x.close(); // use this to close the modal immediately after payment.
                     },
                    
                 });

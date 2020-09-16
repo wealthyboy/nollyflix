@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -40,6 +41,17 @@ class LoginController extends Controller
                 "me"
             ]
         ]);
+    }
+
+
+    protected function authenticated(Request $request,$user)
+    {
+        if ( $request->ajax() ) { 
+		    return response()->json([
+				'loggedIn'=>true,
+				'user' => auth()->user()
+			],200);
+		}
     }
 
     public function me(){
