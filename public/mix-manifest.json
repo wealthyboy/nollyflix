@@ -1,7 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/watch.css": "/css/watch.css",
     "/backend/css/admin.css": "/backend/css/admin.css",
     "/js/dashboard.js": "/js/dashboard.js"
 }
