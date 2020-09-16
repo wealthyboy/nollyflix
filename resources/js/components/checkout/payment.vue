@@ -85,7 +85,7 @@ export default {
         submit: function(){
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = getpaidSetup({
-                    PBFPubKey: "FLWPUBK_TEST-c6cf10e2bc06ebc7365ab4fae35daf92-X",
+                    PBFPubKey: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
                     customer_email: 'jacob.atam@gmail.com',
                     amount: 4000,
                     currency:'NGN',
