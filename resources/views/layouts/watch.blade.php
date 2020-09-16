@@ -16,21 +16,16 @@
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="Watch nollywood movies online">
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
-		<link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="/css/watch.css">
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	
 	</head>
 	<body>
-
-		<section>
+		<div class="video-container">
 			@yield('content')
-		</section>
-		
-		<script src="/js/libs/jquery-3.5.1.min.js"></script><!-- jQuery -->
-		<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+		</div>	
 		<script src="/js/watch.js" defer></script><!-- Custom Document Ready JS -->
 	</body>
 </html>
