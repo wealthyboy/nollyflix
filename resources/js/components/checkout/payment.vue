@@ -9,10 +9,10 @@
                     <form action="/checkout" method="POST" id="checkout" class="cart-form">
                         <div class="cart-product-table-wrap ">
                             <div class="row cart-rows raised mb-3 pt-4 pb-4 border border-gray">
-                            <div class="col-md-2 col-6">
+                            <div class="col-md-3 col-3">
                                 <div class="cart-image"><img :src="$root.video.tn_poster" alt=""></div>
                             </div>
-                            <div class="col-md-7 col-6">
+                            <div class="col-md-9 col-9">
                                 <h5><a href="#">{{ $root.video.title }}</a></h5>
                                 <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ purchaseType }} 
                                         <span v-if="purchaseType == 'rent' " class="ml-2 border">Expires after 48hour</span>
@@ -27,7 +27,7 @@
                     </form>
                     <hr class="line">
                     <div class="d-flex justify-content-between information"><span>Total </span><span>{{ $root.video.currency }}{{ price  }}</span></div>
-                    <button class="btn btn-primary btn-block d-flex justify-content-center mt-3" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                    <button class="btn btn-primary btn-block d-flex justify-content-center mt-3" @click="submit" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
                 </div>
             </div>
         </div>
@@ -55,6 +55,13 @@ export default {
         }
         
     },
+    created() {
+        this.scriptLoaded = new Promise((resolve) => {
+            this.loadScript(() => {
+                resolve()
+            })
+        })
+    },
  
     methods: {
        
@@ -77,7 +84,24 @@ export default {
         },
         submit: function(){
             this.scriptLoaded && this.scriptLoaded.then(() => {
-
+                var x = getpaidSetup({
+                    PBFPubKey: "FLWPUBK_TEST-c6cf10e2bc06ebc7365ab4fae35daf92-X",
+                    customer_email: 'jacob.atam@gmail.com',
+                    amount: 4000,
+                    currency:'NGN',
+                    country: "NG",
+                    payment_method: "both",
+                    txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
+                    meta: [{
+                        metaname: 'sss',
+                    }],
+                    onclose: function() {
+                        //context.loading =false
+                       // context.error = "Payment was not completed"
+                    },
+                   
+                });
+                
             })
         }
     }
