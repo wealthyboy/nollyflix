@@ -1,1 +1,227 @@
-body{margin:0;padding:0;width:100vw;height:100vh;overflow:hidden;background:#000;font-family:Rubik,sans-serif}.video-container{width:100%;height:100%;display:flex;justify-content:center;align-items:center}.video-container video{width:100%;height:100%;position:fixed;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;z-index:-100;transform:translateX(-50%) translateY(-50%);background-size:cover;transition:opacity 1s}.video-container .controls-container{position:fixed;bottom:0;width:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:40vh;background:linear-gradient(transparent,rgba(0,0,0,.9));transition:opacity .5s linear}.video-container .progress-controls{width:100%;display:flex;justify-content:center;align-items:center;color:#fff}.video-container .progress-controls .time-remaining{margin:1vw;width:4vw}.video-container .progress-controls .progress-bar{width:90vw;height:1vw;max-height:7px;background:#5b5b5b;display:flex;align-items:center;cursor:pointer}.video-container .progress-controls .progress-bar .playhead,.video-container .progress-controls .progress-bar .watched-bar{background:#e31221;display:inline-block;transition:all .2s}.video-container .progress-controls .progress-bar .watched-bar{height:110%;width:20%}.video-container .progress-controls .progress-bar .playhead{height:3vw;width:3vw;max-height:25px;max-width:25px;border-radius:50%;transform:translateX(-50%)}.video-container .controls{width:100%;display:flex;justify-content:space-between;align-items:center}.video-container .controls button{background:none;outline:none;box-shadow:none;border:none;width:5vw;height:5vw;min-width:50px;min-height:50px;margin:0 1vw;opacity:.4;transform:scale(.9);transition:all .2s ease-in-out;cursor:pointer}.video-container .controls button:hover{opacity:1;transform:scale(1.2)}.video-container .controls button svg{fill:#fff;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;width:100%;height:100%}.video-container .controls button.cast svg,.video-container .controls button.episodes svg,.video-container .controls button.full-screen svg,.video-container .controls button.help svg,.video-container .controls button.volume svg path{fill:none}.video-container .controls button.captions svg,.video-container .controls button.fast-forward svg,.video-container .controls button.rewind svg{stroke:none}.video-container .controls .title{font-size:2vw;width:100%;height:100%;display:flex;justify-content:flex-start;align-items:center}@media only screen and (max-width:768px){.video-container .controls .title{display:none}}.video-container .controls .title .series{color:#fefefe;font-weight:700;font-size:.3em}.video-container .controls .title .episode{color:#a1a1a1;font-size:.75em;padding-left:1vw}
+.video-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+#video-page-title-pro video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+#video-page-title-pro .controls-container {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 40vh;
+  /* Thanks to theArtifacts */
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+  transition: opacity 0.5s linear;
+}
+
+#video-page-title-pro .controls-container {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 40vh;
+  /* Thanks to theArtifacts */
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+  transition: opacity 0.5s linear;
+}
+
+.video-container .controls-container {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 40vh;
+  /* Thanks to theArtifacts */
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+  transition: opacity 0.5s linear;
+}
+
+.video-container .progress-controls,
+#video-page-title-pro .progress-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.video-container .progress-controls .time-remaining,
+#video-page-title-pro .progress-controls .time-remaining {
+  margin: 1vw;
+  width: 4vw;
+}
+
+.video-container .progress-controls .progress-bar,
+#video-page-title-pro .progress-controls .progress-bar {
+  width: 90vw;
+  height: 1vw;
+  max-height: 7px;
+  background: #5B5B5B;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.video-container .progress-controls .progress-bar .watched-bar,
+.video-container .progress-controls .progress-bar .playhead,
+#video-page-title-pro .progress-controls .progress-bar .watched-bar,
+#video-page-title-pro .progress-controls .progress-bar .playhead {
+  background: #E31221;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.video-container .progress-controls .progress-bar .watched-bar,
+#video-page-title-pro .progress-controls .progress-bar .watched-bar {
+  height: 110%;
+  width: 20%;
+}
+
+.video-container .progress-controls .progress-bar .playhead,
+#video-page-title-pro .progress-controls .progress-bar .playhead {
+  height: 3vw;
+  width: 3vw;
+  max-height: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.video-container .controls,
+#video-page-title-pro .controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-container .controls button,
+#video-page-title-pro .controls button {
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 0px 1vw;
+  opacity: 0.4;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.video-container .controls button:hover,
+#video-page-title-pro .controls button:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.video-container .controls button svg,
+#video-page-title-pro .controls button svg {
+  fill: white;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container .controls button.volume svg path,
+.video-container .controls button.help svg,
+.video-container .controls button.episodes svg,
+.video-container .controls button.full-screen svg,
+.video-container .controls button.volume svg path,
+.video-container .controls button.cast svg,
+#video-page-title-pro .controls button.volume svg path,
+#video-page-title-pro .controls button.help svg,
+#video-page-title-pro .controls button.episodes svg,
+#video-page-title-pro .controls button.full-screen svg,
+#video-page-title-pro .controls button.volume svg path,
+#video-page-title-pro .controls button.cast svg {
+  fill: none;
+}
+
+.video-container .controls button.rewind svg,
+.video-container .controls button.fast-forward svg,
+#video-page-title-pro.controls button.rewind svg,
+#video-page-title-pro.controls button.fast-forward svg {
+  stroke: none;
+}
+
+.video-container .controls button.captions svg,
+#video-page-title-pro .controls button.captions svg {
+  stroke: none;
+}
+
+.video-container .controls .title,
+#video-page-title-pro .controls .title {
+  font-size: 2vw;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .video-container .controls .title {
+    display: none;
+  }
+}
+
+.video-container .controls .title .series {
+  color: #FEFEFE;
+  font-weight: bold;
+  font-size: 0.3em;
+}
+
+.video-container .controls .title .episode {
+  color: #A1A1A1;
+  font-size: 0.75em;
+  padding-left: 1vw;
+}
+

@@ -64,7 +64,8 @@ const video = document.querySelector('.video-container video');
             video.src = videoSrc;
             video.addEventListener('loadedmetadata', function() {
             video.play();
-            video.muted = !video.muted;
+            
+
         });
     }
      playButton.style.display = 'none';
@@ -98,10 +99,10 @@ const video = document.querySelector('.video-container video');
 
 
  const setSavedTime = () => {
-//    const savedTimeInfo = JSON.parse(localStorage.getItem('nextflix-video-player-playtime'));
-//    if (savedTimeInfo.pauseTime && savedTimeInfo.filename === video.src) {
-//      video.currentTime = savedTimeInfo.pauseTime;
-//    }
+   const savedTimeInfo = JSON.parse(localStorage.getItem('nextflix-video-player-playtime'));
+   if (savedTimeInfo.pauseTime && savedTimeInfo.filename === video.src) {
+     video.currentTime = savedTimeInfo.pauseTime;
+   }
  };
 
  document.addEventListener('fullscreenchange', () => {
@@ -166,7 +167,7 @@ const video = document.querySelector('.video-container video');
 
 
  window.addEventListener('load', (e) => {
-   playPauseButton.click()
+    playPauseButton.click()
  });
 
 

@@ -22,6 +22,17 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	
 	</head>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			width: 100vw;
+			height: 100vh;
+			overflow: hidden;
+			background: black;
+			font-family: 'Rubik', sans-serif;
+		}
+	</style>
 	<body>
 		<div class="video-container">
 			@yield('content')
