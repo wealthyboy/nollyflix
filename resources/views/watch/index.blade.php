@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- <video src="bbb.mp4"></video> -->
-    <video src="{{ optional($video->video)->link }}" muted></video>
+    <video src="https://player.vimeo.com/external/285939748.m3u8?s=6756e58390f3a1bdf23464a815bf47e0ff1b6f78" muted></video>
     <div class="controls-container">
       <div class="progress-controls">
         <div class="progress-bar">
