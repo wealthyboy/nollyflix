@@ -4,9 +4,20 @@
 <div id="content-pro">
 			
 	<div class="container custom-gutters-pro">
-	   @include('includes.success')
-	   @include('includes.errors')
+	    <div class="row">	
+			<div class="col-12">
+				@include('includes.success')
+				@include('includes.errors')
+            </div>
+        </div>
 		<div id="vayvo-progression-author-sidebar">
+		    @if (!$user->isSubscriber()  && !$user->isAdmin())
+				<div id="content-sidebar-info">
+					<div id="avatar-sidebar-large-profile" style="background-image:url({{ $user->m_path() }})"></div>
+					<div id="profile-sidebar-gradient"></div>
+					<a href="#!" class="edit-profile-sidebar">Edit</a>
+				</div>
+			@endif
 			@include('partials.profile_aside',['user' => $user])
 		</div><!-- close #vayvo-progression-author-content-sidebar -->
 			

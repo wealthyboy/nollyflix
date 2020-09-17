@@ -13,6 +13,8 @@
                 </div>
                 <div class="card-body">
                     <h4 class="card-title">{{ $user->fullname() }}</h4>
+                    <p class="">{{ $user->bio }}</p>
+
                 </div>
             </div>
         </div>
