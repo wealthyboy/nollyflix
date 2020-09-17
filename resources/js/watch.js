@@ -166,7 +166,7 @@ const video = document.querySelector('.video-container video');
 
 
  window.addEventListener('load', (e) => {
-   // playPauseButton.click()
+   playPauseButton.click()
  });
 
 
