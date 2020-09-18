@@ -11,13 +11,9 @@
             </div>
         </div>
 		<div id="vayvo-progression-author-sidebar">
-		    @if (!$user->isSubscriber()  && !$user->isAdmin())
-				<div id="content-sidebar-info">
-					<div id="avatar-sidebar-large-profile" style="background-image:url({{ $user->m_path() }})"></div>
-					<div id="profile-sidebar-gradient"></div>
-					<a href="#!" class="edit-profile-sidebar">Edit</a>
-				</div>
-			@endif
+			<div>
+			<profile-picture />
+            </div>
 			@include('partials.profile_aside',['user' => $user])
 		</div><!-- close #vayvo-progression-author-content-sidebar -->
 			
@@ -25,7 +21,6 @@
 		    @include('partials.profile_nav_link',['user' => $user,'current' => 'profile'])
 
 			    <!-- close #dashboard-sub-menu -->
-				
 				<div class="row">	
 					<div class="col">
 						<form action="{{ route('profile.update',['profile' => $user->id ]) }}" method="POST" class="account-settings-form">

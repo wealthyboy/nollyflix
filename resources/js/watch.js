@@ -63,10 +63,8 @@ const video = document.querySelector('.video-container video');
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = videoSrc;
             video.addEventListener('loadedmetadata', function() {
-            video.play();
-            
-
-        });
+               video.play();
+            });
     }
      playButton.style.display = 'none';
      pauseButton.style.display = '';

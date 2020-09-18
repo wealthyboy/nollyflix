@@ -29,7 +29,8 @@ class User extends Authenticatable
 	public $appends = [
 		'currency',
 		'cart_total',
-		'iso_code'
+		'iso_code',
+		'profile_picture'
 	];
 
 	/**
@@ -202,6 +203,15 @@ class User extends Authenticatable
     public function hasWatchedVideo()
     {
         //return null !== $this->view ? 
+	}
+	
+
+	 /**
+     * The user's views that belong to the video.
+    */
+    public function getProfilePictureAttribute()
+    {
+        return $this->m_path();
     }
 
 

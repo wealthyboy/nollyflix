@@ -238,6 +238,46 @@ div.item:hover  .anchor-btn{
 .progression-studios-slider-caption-width {
     max-width: 590px;
 }
+
+/*
+ Profile
+*/
+
+
+a.edit-profile-sidebar:hover {
+    background: rgba(0,0,0,.7);
+}
+
+a.edit-profile-pic {
+    text-align: center;
+    z-index: 8;
+    position: absolute;
+    right: 0px;
+    line-height: 1;
+    padding: 15px 10px;
+    border-bottom-left-radius: 0px;
+    font-size: 13px;
+    color: #ffffff;
+    box-shadow: 0px 2px 14px rgba(0,0,0, 0.25);
+    bottom: 0px;
+    display: inline-block;
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+}
+
+input.profile-pic {
+	display: block;
+	filter: alpha(opacity=0);
+	font-size: 10px;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	text-align: right;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
   
 
 @media only screen and (max-width: 575px) {

@@ -85,6 +85,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('browse/genre/{genre}',        'Genre\GenreController@index')->name('browse.genres');
 
     Route::get('profile/videos',              'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
+
     Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{id}',           'Watch\WatchController@index')->name('watch');
     Route::get('watch/expired/{id}',   'Watch\WatchController@expired')->name('watch.expired');
@@ -101,7 +102,9 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('payment/successful',  'Checkout\CheckoutController@paymentSuccessful');
     Route::get('search',               'Search\SearchController@index');
     Route::get('browse/a/{types}',     'Affliates\AffliatesController@index');
-    Route::resource('profile',     'Profile\ProfileController',['name'=>'profile']);
+    Route::resource('profile',         'Profile\ProfileController',['name'=>'profile']);
+    Route::post('profile/picture',     'Profile\ProfileController@updateImage');
+
     Route::post('change/password', 'Profile\ProfileController@changePassword');
     Route::get('{username}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
     Route::post('/me',              'Auth\LoginController@me');

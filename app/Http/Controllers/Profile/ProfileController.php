@@ -91,4 +91,32 @@ class ProfileController extends Controller
         $user->save();
         return back()->with('success','Profile Updated.');
     }
+
+
+
+
+    public function updateImage(Request $request)
+    {   
+        if($request->hasFile('file')){
+
+            //when the user clicks change remove the previuos image
+            request()->validate([
+               'file' => 'required|image|mimes:jpeg,png,jpg,gif',
+            ]);
+
+            $path = $request->file('file')->store('images/users');
+            $file = basename($path);
+            $path =  public_path('images/users/'.$file);
+            $img  = \Image::make($path)->fit(200, 200)->save(
+                public_path('images/users/m/'.$file)
+            );
+         
+            $path = asset('images/users/'.$file);
+
+            $user = auth()->user();
+            $user->image = $path;
+            $user->save();
+            return $path = asset('images/users/'.$file);
+        }
+    }
 }

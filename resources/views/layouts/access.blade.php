@@ -96,10 +96,10 @@
 						</li>
 					@endforeach
 					<li class="normal-item-pro">
-						<a href="/browse/a/cast">Actors/Actress</a>
+					    <a href="/browse/a/casts">Actors/Actress</a>
 					</li>
 					<li class="normal-item-pro">
-						<a href="/browse/a/filmakers">Film Makers</a>
+					    <a href="/browse/a/filmakers">Film Makers</a>
 					</li>
 				</ul>
 				<!--button class="btn btn-mobile-pro btn-header-pro noselect" data-toggle="modal" data-target="#LoginModal" >Login</button-->
