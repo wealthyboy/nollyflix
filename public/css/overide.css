@@ -190,17 +190,24 @@ ul.video-index-meta-taxonomy li {
 	padding:20px 36px;
 }
 
-.btn:focus {
+.btn:focus, .btn-primary:focus{
 	box-shadow: none;
 }
+
+
+.btn-primary {
+	box-shadow: none;
+	background: #ef0f1a !important;
+}
+
 
 .anchor-btn {
     font-family: 'Fira Sans Condensed', sans-serif;
     font-weight: 500;
     padding: 5px !important;
     font-size: 13px;
-    border: 2px solid #E50914;
-    background: #E50914 !important;
+    border: 2px solid #ef0f1a;
+    background: #ef0f1a !important;
     color: #ffffff;
     border-radius: 100px;
     margin-top: 5px;

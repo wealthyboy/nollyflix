@@ -27,7 +27,6 @@
                             <div v-if="loading" class="row justify-content-center text-center">
                                 <div class="text-center col-md-9 col-12">
                                     <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-
                                       Please wait. while we round things up
                                 </div>
                             </div>
@@ -51,8 +50,7 @@ export default {
     data(){
         return {
             loading:false,
-            scriptLoaded: null, 
-
+            scriptLoaded: null,
         }
     },
     computed:{
@@ -68,6 +66,7 @@ export default {
         
     },
     created() {
+
         this.scriptLoaded = new Promise((resolve) => {
             this.loadScript(() => {
                 resolve()
@@ -97,11 +96,12 @@ export default {
         submit: function(){
             var context = this
             this.loading = true
+
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
                     public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
                     customer_email:context.user.email,
-                    amount: context.user.cart_total,
+                    amount: context.price,
                     currency:context.user.iso_code,
                     country: "NG",
                     tx_ref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
@@ -109,23 +109,33 @@ export default {
                        consumer_id: context.user.id,
                     },
                     customer: {
+                        id: context.user.id,
                         email: context.user.email,
                         name: context.user.name + ' ' +context.user.last_name,
                     },
                     onclose: function() {
-                       // context.loading =false
-                       // context.error = "Payment was not completed"
+                        context.loading =false
+                        //context.error = "Payment was not completed"
                     },
                     callback: function (response) {
+                        context.$emit('paymentCompleted', 'Completed')
+
+                        $('#apModal').on('hide.bs.modal', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        });
 
                         if (
                             response.status == "successful" 
                         ) {
-                            // context.loading =false
-                            document.getElementById('checkout').submit()
                             x.close();
-                            console.log(true)
-                            return;
+                            context.loading = true;
+                            axios.post('/checkout').then((res) => {
+                                location.href='/watch/' +context.$root.video.id
+                            }).catch((error) => {
+                                context.loading = false;
+                            })
 
                         } else {
                             console.log(false)

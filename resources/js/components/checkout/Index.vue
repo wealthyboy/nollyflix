@@ -1,7 +1,7 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="apModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
-        <button type="button" id="close-modal" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade"   id="apModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
+        <button type="button"  :class="{ 'pointer-events': isPaymentCompleted }" id="close-modal" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -16,7 +16,7 @@
                 <div v-else class="modal-body-pro social-login-modal-body-pro">
                     <register title="To purchase" />
                     <login title="To purchase" />
-                    <payment />
+                    <payment  @paymentCompleted="disableClick" />
                 </div><!-- close .modal-body -->
             </div><!-- close .modal-content -->
         </div><!-- close .modal-dialog -->
@@ -29,8 +29,6 @@ import Payment from './payment'
 import Register from '../auth/register'
 
 
-
-
 export default {
 
     components:{
@@ -41,6 +39,7 @@ export default {
     data(){
         return {
             loading:false,
+            isPaymentCompleted: false,
         }
     },
     computed:{
@@ -64,7 +63,13 @@ export default {
         },
         ...mapActions({
             me:'me',
-        }),  
+        }),
+        disableClick(value){
+            //Jquer
+            this.isPaymentCompleted = true
+            
+        }
+
     }
 
 }

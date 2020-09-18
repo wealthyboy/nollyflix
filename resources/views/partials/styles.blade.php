@@ -18,9 +18,10 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+		<link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/css/watch.css?version={{ str_random(6) }}">
 
 		<link rel="stylesheet" href="/css/overide.css?version={{ str_random(6) }}">
-		<link rel="stylesheet" href="/css/watch.css">
 
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">

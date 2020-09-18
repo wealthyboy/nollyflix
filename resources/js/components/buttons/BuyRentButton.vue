@@ -57,7 +57,9 @@ export default {
                 currency: this.$root.video.currency,
 		    }
             return axios.post('/carts',payLoad).then((response) => {
+                  
             }).catch((error) => {
+
             }) 
         },
        

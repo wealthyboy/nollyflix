@@ -11,7 +11,6 @@ $().ready(function(){
 jQuery(document).ready(function($) {
 	 'use strict';
 
-	 loadCart()
 /*
 =============================================== 01. MENU ACTIVATION  ===============================================
 */
@@ -194,11 +193,7 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		}
 	});
 
-	$('.checkout-button').on('click',function(e){
-		e.preventDefault()
-		var $self =  $(this)
-		var user  =  $self.data('user')
-	})
+	
 
 	$(".search-input").on('input',function(e){
 		var $q = $(this).val()   
@@ -242,107 +237,11 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 	})
 
 
-	$('.buy-video, .rent-video').on('click',function(e){
+	$('.play-trailer').on('click',function(e){
 		e.preventDefault()
-		var $self =  $(this)
-		$self.addClass('disable-click') 
-		var property = $self.data('prop');
-		var type = $self.data('type');
-		var price = null
-		if (type == 'undefined' || type == ''){
-			notify('danger','top','right',"We could not process your request")
-            return false;
-		} else{
-			if (type == 'buy'){
-			   var price = property.buy_price
-			}
-			if (type == 'rent'){
-				var price = property.rent_price
-			}
-		}
-		//$(".spinner-border").remove()
-		$self.find('.spinner-border').remove();
-		$self.append('<span  style=" margin-left: 8px; float: right;"  class="spinner-border  spinner-border-sm" role="status" aria-hidden="true"></span>')
-		var payLoad = {
-			purchase_type: $self.data('type'),
-			id: property.id,
-			price: price,
-			type: type,
-			currency: property.currency,
-		}
-
-		$.ajax({
-			url: "/carts",
-			type:"POST",
-			data: payLoad,
-		 }).done(function(res) {
-			//$('.buy-video').removeClass('disable-click') 
-			 $self.removeClass('disable-click') 
-			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
-			notify('success','top','right',"" +property.title + "  has been added to your cart")
-			$self.find('.spinner-border').remove();
-			$('.cart-count').text(count);
-		 }).fail(function(e){
-			$self.removeClass('disable-click') 
-			console.log(e)
-			//$('.buy-video').removeClass('disable-click') 
-			//$('.rent-video').removeClass('disable-click') 
-			notify('danger','top','right',"We could not add your item to cart.")
-			$self.find('.spinner-border').remove();
-
-		 });
-
-
-		
-	
-		// var x = getpaidSetup({
-		// 	PBFPubKey: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
-		// 	customer_email: 're@g.ail.com',
-		// 	amount: price,
-		// 	currency: property.iso_code,
-		// 	country: "NG",
-		// 	payment_method: "both",
-		// 	txref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
-		// 	meta: [{
-		// 		metatitle: property.title,
-		// 	}],
-		// 	onclose: function() {
-				
-		// 	},
-		// 	callback: function(response) {
-		// 		if (
-		// 			response.respcode == "00" ||
-		// 			response.success == true
-		// 		) {
-		// 			$.ajax({
-		// 			   url: "/cart",
-		// 			   type:"POST",
-		// 			   data: payLoad,
-		// 			}).done(function(res) {
-		// 			  // location.href="/watch/"+property.id
-		// 			  console.log(res)
-		// 			});
-		// 		} else {
-		// 			console.log(false)
-		// 		}
-			 
-		// 		x.close(); // use this to close the modal immediately after payment.
-		// 	}
-		// });
-	
 	})
 
-	function loadCart(){
-		$.ajax({
-			url: "/carts?number=true",
-			type:"GET",
-		 }).done(function(res) {
-			var count = res.count && typeof res.count.original !== 'undefined' ? res.count.original.count : res.count;
-			$('.cart-count').text(count)
-		 }).fail(function(){
-			//notify('danger','top','right',"We could not get your cart.")
-		 });
-	}
+	
 
 	function notify(color,from,align,msg){
 		$.notify({

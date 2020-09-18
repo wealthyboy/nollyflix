@@ -29,6 +29,11 @@ export const setTitle= (state , title) =>{
    state.title =title;
 }
 
+export const setCartTotal= (state , t) =>{
+   state.cartTotal =t;
+}
+
+
 export const showLoginForm= (state , trueOrFalse) =>{
    state.showLoginForm =trueOrFalse;
 }

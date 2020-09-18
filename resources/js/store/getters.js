@@ -12,6 +12,11 @@ export  const commentsMeta = (state) => {
 }
 
 
+export  const cartTotal = (state) => {
+   return state.cartTotal
+}
+
+
 export  const notification = (state) => {
    return state.notification
 }

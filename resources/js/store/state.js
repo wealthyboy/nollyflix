@@ -11,5 +11,7 @@ export default {
     buyOrRent: '',
     title: '',
     showLoginForm:false,
-    showPayemtForm: true
+    showPayemtForm: true,
+    cartTotal: null
+
 } 

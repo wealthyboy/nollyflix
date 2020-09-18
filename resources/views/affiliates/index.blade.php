@@ -33,6 +33,7 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">{{ $user->fullname() }}</h5>
+
                             </div>
                         </div>
                     </div>

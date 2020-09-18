@@ -73,8 +73,6 @@ export default {
                     this.icon = '<i class="fas fa-edit"></i>'
                     this.statusColor = 'rgba(0,0,0,.7)'
                 }, 1000);
-
-               
             }) 
        }
     } 

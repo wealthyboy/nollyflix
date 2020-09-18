@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center mt-9">
-        <div class="col-6 col-lg-3 mb-5">
+        <div class="col-6 col-lg-6 mb-5">
             <div class="card card-profile text-center card-plain">
                 <div class="card-avatar">
                     <a href="#">
@@ -13,8 +13,7 @@
                 </div>
                 <div class="card-body">
                     <h4 class="card-title">{{ $user->fullname() }}</h4>
-                    <p class="">{{ $user->bio }}</p>
-
+                    <p class="">{!! $user->description !!}</p>
                 </div>
             </div>
         </div>

@@ -70,15 +70,22 @@ class CheckoutController extends Controller
 		]);
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
-		$when = now()->addMinutes(5);
-		\Mail::to($user->email)
-			->bcc($admin_emails[0])
-			->send(new OrderReceipt($user, $order, $this->settings,$symbol));
+		
+
+		try {
+			$when = now()->addMinutes(5);
+			\Mail::to($user->email)
+				->bcc($admin_emails[0])
+				->later($when, new OrderReceipt($user, $order, $this->settings,$symbol));
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
+		
 
 		\Cookie::queue(\Cookie::forget('cart'));
 		$request->session()->forget('content_owner_id');
 
-		return redirect('/thankyou');
+		return 1;
 	}
 
 
