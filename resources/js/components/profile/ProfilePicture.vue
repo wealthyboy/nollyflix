@@ -1,11 +1,8 @@
 <template>
-    <div id="content-sidebar-info ">
+    <div :class="{ 'pointer-events': submiting }" id="">
         <div id="avatar-sidebar-large-profile" @click.prevent="activateFile" :style="{ 'background-image': 'url(' + profile_photo + ')' }"></div>
-        <a href="#" @click.prevent="activateFile" class="edit-profile-pic">
-            <span v-html="icon"></span> 
-            {{ text }}
-        </a>
-        <input accept="image/*"  @change="readURL($event)"  class="profile-pic" data-msg="Upload  your image" type="file" id="file_upload_input" name="img"  />
+        <a href="#" @click.prevent="activateFile"  :style="{'background-color': statusColor}" class="edit-profile-pic "><span v-html="icon" class="mr-1"></span>{{ text }}</a>
+        <input accept="image/*"   class="profile-pic-file" data-msg="Upload  your image" @change="readURL($event)" type="file" id="file_upload_input" name="img"  />
     </div>
 </template>
 <script>
@@ -17,7 +14,8 @@ export default {
             allowedFileTypes: ['image/jpeg','image/png','image/gif'],
             submiting: false,
             text: 'Edit',
-            icon: '<i class="fas fa-edit"></i>'
+            icon: '<i class="fas fa-edit"></i>',
+            statusColor: 'rgba(0,0,0,.7)'
         }
     },
     methods:{
@@ -57,16 +55,25 @@ export default {
                 this.submiting = false;
                 this.text = 'Uploaded'
                 this.icon = '<i class="fas fa-check"></i>'
-                 setTimeout(() => {
+                this.statusColor = 'green'
+                setTimeout(() => {
                     this.text = 'Edit'
                     this.icon = '<i class="fas fa-edit"></i>'
-                }, 3000);
+                    this.statusColor = 'rgba(0,0,0,.7)'
+
+                }, 1000);
             }).catch((error) => {
                 this.submiting = false;
-                if ( error.response.status == 500 ){
-                    let errors = { general: "We could not upload your picture"}
-                    return;
-                }
+                this.text = 'Uploading Failed'
+                this.icon = '<i aria-hidden="true" class="fas fa-times"></i>'
+
+                this.statusColor = 'red'
+                setTimeout(() => {
+                    this.text = 'Edit'
+                    this.icon = '<i class="fas fa-edit"></i>'
+                    this.statusColor = 'rgba(0,0,0,.7)'
+                }, 1000);
+
                
             }) 
        }

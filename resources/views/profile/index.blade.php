@@ -11,8 +11,8 @@
             </div>
         </div>
 		<div id="vayvo-progression-author-sidebar">
-			<div>
-			<profile-picture />
+		    <div id="content-sidebar-info">
+			   <profile-picture />
             </div>
 			@include('partials.profile_aside',['user' => $user])
 		</div><!-- close #vayvo-progression-author-content-sidebar -->
