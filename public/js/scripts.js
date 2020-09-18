@@ -237,9 +237,7 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 	})
 
 
-	$('.play-trailer').on('click',function(e){
-		e.preventDefault()
-	})
+	
 
 	
 
