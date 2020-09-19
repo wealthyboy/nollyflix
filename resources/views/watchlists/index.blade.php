@@ -1,6 +1,7 @@
 @extends('layouts.access')
 
 @section('content')
+<section class="section-content"> 
 <div id="content-pro">
 			
     <div class="container custom-gutters-pro">
@@ -69,4 +70,6 @@
     
     
 </div><!-- close #content-pro -->
+</section>
+@include('includes.search')
 @endsection

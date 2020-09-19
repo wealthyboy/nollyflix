@@ -2,8 +2,8 @@
         
 @section('content')
 
-
-<section id="home">   
+@include('includes.searching')
+<section class="section-content">  
     <div class="container">
         <div class="row justifiy-content-center">        
           <div id="content" class="col-md-12  mb-5">
@@ -13,4 +13,6 @@
       </div> <!-- /row -->
     </div> <!-- /container -->
 </section>
+@include('includes.search')
+
 @endsection

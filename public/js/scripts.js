@@ -196,38 +196,57 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 	
 
 	$(".search-input").on('input',function(e){
-		var $q = $(this).val()   
+		var $q = $(this).val(),show=null;  
 		var $spinner = 	$('.search-spinner')
 		var $section_content = 	$('.section-content')
 		var $searching = 	$('.searching')
 			$spinner.removeClass('d-none')
 			$searching.removeClass('d-none')
 			$section_content.addClass('d-none')
-			if ( $q == '' ) {
+			$('.section-content').removeClass('input-is-empty')
+			$('.no-videos-found').addClass('d-none')
+
+
+			if ( $q === '' ) {
+				show =  false
 				$searching.addClass('d-none')
-				$('.section-content').removeClass('d-none')
+				$('.section-content').addClass('empty').removeClass('d-none')
+				$("#searched-videos-content").addClass('d-none')
 				$spinner.addClass('d-none')
-				return
+				return false
 			}
+
 		$.ajax({
 			url: "/search",
 			type:"GET",
-			data: { q: $(this).val() }
+			data: { q: $q }
 		}).done(function(res) {
 			$spinner.addClass('d-none')
 			$searching.addClass('d-none')
-			if ( $q == '' ) {
+			console.log(show)
+			if ( $q === '' ) {
 				$('.section-content').removeClass('d-none')
-				$("#searched-videos-content").html('') 
-				return
+				$("#searched-videos-content").addClass('d-none')
+				console.log(res)
+				return false
 			}
+
+			if ($('.section-content').hasClass('empty')){
+				$('.section-content').removeClass('d-none')
+				$("#searched-videos-content").addClass('d-none')
+				console.log(res)
+				return false
+			}
+
 			if($.trim(res) == 'No videos'){
-				$("#searched-videos-content").html('') 
-				return
-			} else{
-                $('.section-content').addClass('d-none')
-			    $("#searched-videos-content").html(res) 
-			}
+				$("#searched-videos-content").addClass('d-none')
+				$('.no-videos-found').removeClass('d-none')
+				return false
+			} 
+
+
+			$('.section-content').addClass('d-none')
+			$("#searched-videos-content").removeClass('d-none').html(res) 
 			
 		}).fail(function(e){
 			$("#searched-videos-content").html("We could not get any videos at the moment ") 
@@ -235,9 +254,6 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 			$searching.addClass('d-none')
 		});
 	})
-
-
-	
 
 	
 
