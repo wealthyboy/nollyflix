@@ -5,8 +5,7 @@
 
 
 <div class="background_video">
-  jdjdjdjj
-    <video id="video" class="video-js vjs-default-skin"  data-setup ='{}'
+    <video id="video" class="video-js vjs-default-skin"  muted data-setup ='{}'
         controls poster='{{ optional($video)->poster }}'
         data-setup='{ "playbackRates": [1, 1.5, 2] }'>
         <source src="{{ optional($video)->link }}" type="application/x-mpegURL">

@@ -1,9 +1,6 @@
-<!-- <div id="content-sidebar-info">
-    <div id="avatar-sidebar-large-profile" style="background-image:url('images/demo/profile-image.jpg')"></div>
-    <div id="profile-sidebar-gradient"></div>
-    <a href="#" class="edit-profile-sidebar">Edit</a>
-</div> -->
-<!-- close .content-sidebar-info -->
+<div id="content-sidebar-info">
+    <profile-picture />
+</div>
 
 <div id="vayvo-profile-sidebar-name">
     <h5>{{ $user->fullname() }}</h5> 			

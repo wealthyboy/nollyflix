@@ -1,4 +1,4 @@
-@extends('layouts.access')
+@extends('layouts.profile')
 
 @section('content')
 <section class="section-content"> 
@@ -18,7 +18,7 @@
                 <div class="row">
                     @if( $user->movies->count())
                         @foreach($user->movies as $video)
-                            <div class="col col-6 col-md-4 col-lg-4">
+                            <div class="col col-6 col-md-4 col-lg-3">
                                 <div class="progression-studios-video-index-container">
                                     <a href="/watch/{{ optional($video->video)->id }}">
                                 

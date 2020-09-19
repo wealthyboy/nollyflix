@@ -3,7 +3,7 @@ let video = null;
 
 var  v = document.getElementById('video')
 if (v){
-  videojs('video', {
+  video = videojs('video', {
   html5: {
     hls: {
       overrideNative: !videojs.browser.IS_SAFARI
@@ -11,7 +11,9 @@ if (v){
   }
 })
 
-
+video.ready(function() {
+ // document.getElementsByClassName('vjs-big-play-button')[0].click()
+});
 
 }
 

@@ -1,4 +1,4 @@
-@extends('layouts.access')
+@extends('layouts.profile')
 
 @section('content')
 <div id="content-pro">
@@ -11,9 +11,6 @@
             </div>
         </div>
 		<div id="vayvo-progression-author-sidebar">
-		    <div id="content-sidebar-info">
-			   <profile-picture />
-            </div>
 			@include('partials.profile_aside',['user' => $user])
 		</div><!-- close #vayvo-progression-author-content-sidebar -->
 			

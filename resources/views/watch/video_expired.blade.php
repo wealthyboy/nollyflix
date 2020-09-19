@@ -1,4 +1,4 @@
-@extends('layouts.access')
+@extends('layouts.profile')
 
 @section('content')
 @include('partials.video_show')

@@ -32,7 +32,9 @@ class ProfileController extends Controller
     {   
         $user = auth()->user();
         $active = "profile";
-        return view('profile.index',compact('user','active'));
+        $page_title = "Buy ,Rent Movies, Profile for {$user->fullname()}";
+        $page_meta_description = "Buy nollywood movies, {$user->fullname()}";
+        return view('profile.index',compact('user','active','page_title','page_meta_description'));
     }
 
     /**
@@ -47,7 +49,11 @@ class ProfileController extends Controller
         if ($user){
             session(['content_owner_id' => $user->id]);
         }
-        return view('profile.profile',compact('user'));
+
+        $page_title = "Buy ,Rent Movies, Profile for {$user->fullname()}";
+        $page_meta_description = "Buy nollywood movies, {$user->fullname()}";
+        return view('profile.profile',compact('user','page_title','page_meta_description'));
+    
     }
 
     public function changePassword(Request $request)

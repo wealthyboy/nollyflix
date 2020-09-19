@@ -223,7 +223,6 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		}).done(function(res) {
 			$spinner.addClass('d-none')
 			$searching.addClass('d-none')
-			console.log(show)
 			if ( $q === '' ) {
 				$('.section-content').removeClass('d-none')
 				$("#searched-videos-content").addClass('d-none')
@@ -234,7 +233,6 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 			if ($('.section-content').hasClass('input-is-empty')){
 				$('.section-content').removeClass('d-none')
 				$("#searched-videos-content").addClass('d-none')
-				console.log(res)
 				return false
 			}
 

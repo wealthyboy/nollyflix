@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div id="">
-                    <h1 class="video-post-heading-title">{{ optional($video)->title }} HD</h1>
+                    <h1 class="video-post-heading-title">{{ optional($video)->title }} {{ optional($video)->resolution }}</h1>
                     <div class="clearfix"></div>
                     <ul id="video-post-meta-list">
                         <li id="video-post-meta-year">{{ $video->created_at->format('Y') }}</li>

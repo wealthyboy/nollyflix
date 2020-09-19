@@ -21,6 +21,8 @@ class ProfileWatchListController extends Controller
     {   
         $user = auth()->user();
         $active = "watchlists";
-        return view('watchlists.index',compact('user','active'));
+        $page_title = "Buy ,Rent Movies, Watchlists for {$user->fullname()}";
+        $page_meta_description = "Buy,Rent nollywood movies";
+        return view('watchlists.index',compact('user','active','page_title','page_meta_description'));
     }
 }

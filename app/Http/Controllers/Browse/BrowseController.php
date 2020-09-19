@@ -37,13 +37,16 @@ class BrowseController extends Controller
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured_videos =  DefaultBanner::all();
+        $page_title = "Welcome to NollyFlix";
+        $page_meta_description = "Buy nollywood movies, african movies, rent movies, rent nollywood movies";
+
 
         if ( empty($site_status->make_live) ) {
-            return view('browse.index',compact('sections','featured_videos')); 
+            return view('browse.index',compact('sections','featured_videos','page_title','page_meta_description')); 
         } else {
             //Show site if admin is logged in
             if ( auth()->check()  && auth()->user()->isAdmin()){
-                return view('browse.index',compact('sections','featured_videos')); 
+                return view('browse.index',compact('sections','featured_videos','page_title','page_meta_description')); 
             }
             return view('welcome');
         }
@@ -53,7 +56,9 @@ class BrowseController extends Controller
 
     public function show(Video $video,User $user)
     {   
-        return view('browse.show',compact('video','user'));   
+        $page_title = "Buy ,Rent , {$video->title}";
+        $page_meta_description = "Buy nollywood movies, $video->description";
+        return view('browse.show',compact('video','page_title','user','page_meta_description'));   
     }
     
 }

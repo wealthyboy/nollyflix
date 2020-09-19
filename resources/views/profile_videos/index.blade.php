@@ -1,4 +1,4 @@
-@extends('layouts.access')
+@extends('layouts.profile')
 
 @section('content')
 <div id="content-pro">

@@ -2,7 +2,9 @@
 
 @section('content')
 
+@include('includes.searching')
 
+<section class="section-content">
 <div id="content-pro">
     
     <div class="container-fluid custom-gutters-pro">
@@ -64,4 +66,8 @@
     
     
 </div><!-- close #content-pro -->
+</section>
+
+
+@include('includes.search')
 @endsection

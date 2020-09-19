@@ -245,5 +245,12 @@ class User extends Authenticatable
 	{
 		$image = basename($this->image);
 		return !empty(trim($image)) ?  asset('images/users/m/'.$image) : asset('images/users/default/default_image.png');
-	}	
+	}
+	
+	
+	public function tn_path()
+	{
+		$image = basename($this->image);
+		return !empty(trim($image)) ?  asset('images/users/tn/'.$image) : asset('images/users/default/default_image.png');
+	}
 }

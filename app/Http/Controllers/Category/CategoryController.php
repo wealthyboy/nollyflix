@@ -27,6 +27,8 @@ class CategoryController extends Controller
      */
 	public function  index(Request $request,Category $category)  
     {   
+        $page_title = "Buy ,Rent Movies, {$category->name}";
+        $page_meta_description = "Buy nollywood movies, $category->name";
         return view('category.index',compact('category'));   
     }
     
