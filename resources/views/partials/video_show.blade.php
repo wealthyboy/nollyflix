@@ -1,18 +1,16 @@
 <div id="video-page-title-pro" style="background-image:url({{ $video->poster }});">
-    <a class="video-page-title-play-button  play-trailer" href="#Video"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
+    <a class="video-page-title-play-button  play-trailer" id="play-trailer" href="#Video"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
     <!-- <video src="bbb.mp4"></video> -->
 </div><!-- close #video-page-title-pro -->
 
-<div id="" class="video-container">
 <video id="video" class="video-js vjs-default-skin"  data-setup ='{}'
     controls poster='{{ optional($video)->poster }}'
     data-setup='{ "playbackRates": [1, 1.5, 2] }'>
-    <source src="/videos/shayfeen.mp4">
+    <source src="{{ optional($video)->preview_link }}">
     @if(optional($video->video)->track_file)
     <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
     @endif
 </video>
-</div>
 
 		
 		

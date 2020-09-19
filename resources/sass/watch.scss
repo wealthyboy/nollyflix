@@ -42,11 +42,16 @@ $progress-position:-2.5em;
 }
 
 #video {
-  position: absolute;
+  position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   object-fit: cover;
   height: 100%; width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #222222;
+  display: none;
+  
 }
 
 .video-js .vjs-tech {
@@ -61,11 +66,10 @@ $progress-position:-2.5em;
   height: auto;
   z-index: -100;
   transform: translateX(-50%) translateY(-50%);
-  background-size: cover;
   transition: 1s opacity;
   border: none !important;
-
   outline: none !important;
+  overflow: hidden;
 }
 
 
@@ -74,8 +78,9 @@ $progress-position:-2.5em;
   display: none;
 }
 
-.video-container .video-js .vjs-tech {
+#video .video-js .vjs-tech {
   position: absolute;
+
 }
 
 

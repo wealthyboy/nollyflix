@@ -1,6 +1,8 @@
 @extends('layouts.access')
 
 @section('content')
+@include('includes.searching')
+<section class="section-content"> 
 
 <div class="container-fluid">
     <div class="row justify-content-center mt-9">
@@ -83,4 +85,6 @@
         </div><!-- close .row -->
     </div><!-- close .container -->
 </div><!-- close #content-pro -->
+</section>
+@include('includes.search')
 @endsection
