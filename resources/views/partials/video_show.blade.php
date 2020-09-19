@@ -3,7 +3,9 @@
     <!-- <video src="bbb.mp4"></video> -->
 </div><!-- close #video-page-title-pro -->
 
-<video id="video" class="video-js vjs-default-skin"  data-setup ='{}'
+
+
+<video id="show_video" class="video-js vjs-default-skin"  data-setup ='{}'
     controls poster='{{ optional($video)->poster }}'
     data-setup='{ "playbackRates": [1, 1.5, 2] }'>
     <source src="{{ optional($video)->preview_link }}">
@@ -11,6 +13,7 @@
     <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
     @endif
 </video>
+
 
 		
 		

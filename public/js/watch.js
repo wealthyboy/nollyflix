@@ -1,7 +1,9 @@
 
 let video = null;
 
- videojs('video', {
+var  v = document.getElementById('video')
+if (v){
+ video = videojs('video', {
   html5: {
     hls: {
       overrideNative: !videojs.browser.IS_SAFARI
@@ -9,14 +11,26 @@ let video = null;
   }
 })
 
+}
+
 // //video.play();
 
 
 
-// var v = document.getElementById('play-trailer')
-// console.log(v)
-// // $('.play-trailer').on('click',function(e){
-// //   e.preventDefault()
-// //   $('#video').css('display', 'block')
-// //   video.play();
-// // })
+var play = document.getElementById('play-trailer')
+
+if (play){
+
+  video = videojs('show-video', {
+    html5: {
+      hls: {
+        overrideNative: !videojs.browser.IS_SAFARI
+      }
+    }
+  })
+  $('.play-trailer').on('click',function(e){
+    e.preventDefault()
+    $('#show-video').css('display', 'block')
+    video.play();
+  })
+}

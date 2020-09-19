@@ -17,8 +17,8 @@
   outline: none !important;
 }
 
-#video {
-  position: fixed;
+#video,
+#show-video {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -29,7 +29,6 @@
   min-width: 100%;
   min-height: 100%;
   background-color: #222222;
-  display: none;
 }
 
 .video-js .vjs-tech {
@@ -53,9 +52,14 @@
 .video-container {
   width: 100%;
   display: none;
+  position: absolute;
 }
 
-#video .video-js .vjs-tech {
+#video {
+  position: fixed;
+}
+
+#show-video {
   position: absolute;
 }
 
