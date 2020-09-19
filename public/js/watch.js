@@ -1,7 +1,7 @@
 
 let video = null;
 
-video = videojs('video', {
+ videojs('video', {
   html5: {
     hls: {
       overrideNative: !videojs.browser.IS_SAFARI
@@ -9,11 +9,14 @@ video = videojs('video', {
   }
 })
 
-
-$('.play-trailer').on('click',function(e){
-  e.preventDefault()
-  $('.video-container').css('display', 'block')
+// //video.play();
 
 
-  video.play();
-})
+
+// var v = document.getElementById('play-trailer')
+// console.log(v)
+// // $('.play-trailer').on('click',function(e){
+// //   e.preventDefault()
+// //   $('#video').css('display', 'block')
+// //   video.play();
+// // })
