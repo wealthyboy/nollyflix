@@ -3,13 +3,15 @@ let video = null;
 
 var  v = document.getElementById('video')
 if (v){
- video = videojs('video', {
+  videojs('video', {
   html5: {
     hls: {
       overrideNative: !videojs.browser.IS_SAFARI
     }
   }
 })
+
+
 
 }
 
@@ -21,7 +23,7 @@ var play = document.getElementById('play-trailer')
 
 if (play){
 
-  video = videojs('show-video', {
+ video = videojs('show-video', {
     html5: {
       hls: {
         overrideNative: !videojs.browser.IS_SAFARI

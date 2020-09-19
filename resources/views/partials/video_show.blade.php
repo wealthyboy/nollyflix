@@ -5,7 +5,7 @@
 
 
 
-<video id="show_video" class="video-js vjs-default-skin"  data-setup ='{}'
+<video id="show-video" class="video-js vjs-default-skin"  data-setup ='{}'
     controls poster='{{ optional($video)->poster }}'
     data-setup='{ "playbackRates": [1, 1.5, 2] }'>
     <source src="{{ optional($video)->preview_link }}">
