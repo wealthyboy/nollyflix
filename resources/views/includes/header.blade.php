@@ -25,7 +25,7 @@
         <div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
         <div class="header-user-profile prfDrpdwn {{ !auth()->check() ? 'd-none' : '' }}" id="header-user-profile">
             <div id="header-user-profile-click" class="noselect header-user-profile-click">
-            <img src="{{ auth()->user()->m_path() }}" alt="Suzie">
+            <img src="{{ auth()->check() ? auth()->user()->m_path() : asset('images/users/default/default_image.png')}}" alt="Suzie">
                 <div id="header-username">{{ '' }}</div><i class="fas fa-angle-down"></i>
             </div><!-- close #header-user-profile-click -->
             <div class="header-user-profile-menu" id="header-user-profile-menu">
