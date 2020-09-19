@@ -29,17 +29,7 @@ export const login = ({dispatch, commit },{ context }) => {
 }
 
 
-export const IsLoggedIn = ({ commit },{ context,response}) => {
-    commit('loggedIn',true)
-    commit('setUser',response.data.user)
-    context.loading = false
-    if (!store.getters.showPayemtForm){
-        document.getElementById("close-modal").click()
-    }
-    //enable login dropdown on the nav bar
-    $('.prfDrpdwn').removeClass('d-none')
-    $('.prfLBtn').addClass('d-none')
-}
+
 
 
 export const me = ({ dispatch },{ context }) => {
@@ -52,9 +42,9 @@ export const me = ({ dispatch },{ context }) => {
 }
 
 
-export const register = ({ commit },{ context }) => {
+export const register = ({ dispatch, commit },{ context }) => {
     return axios.post('/register',context.form).then((response) => {
-        dispatch('IsLoggedIn',{ commit },{ context ,response})
+        dispatch('IsLoggedIn',{ context , response })
     }).catch((error) =>{
         context.loading = false
         if ( error.response.status == 500 ){
@@ -67,6 +57,18 @@ export const register = ({ commit },{ context }) => {
     })
 }
 
+
+export const IsLoggedIn = ({ commit },{ context, response }) => {
+    commit('loggedIn',true)
+    commit('setUser',response.data.user)
+    context.loading = false
+    if (!store.getters.showPayemtForm){
+        document.getElementById("close-modal").click()
+    }
+    //enable login dropdown on the nav bar
+    $('.prfDrpdwn').removeClass('d-none')
+    $('.prfLBtn').addClass('d-none')
+}
 
 export const createComments = ({commit} , { payload, context,form }) => {
     return axios.post('/comments/store',form).then((response) => {

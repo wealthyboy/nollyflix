@@ -16,7 +16,6 @@
 	<body>
 	   <div id="app">
 		@include('includes.header')
-	
 		<section>
 			@yield('content')
 		</section>
