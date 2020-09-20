@@ -11,6 +11,7 @@ use App\Video;
 use App\User;
 use App\Http\Helper;
 use App\Live;
+use Illuminate\Support\Str;
 
 
 class BrowseController extends Controller
@@ -37,16 +38,17 @@ class BrowseController extends Controller
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured_videos =  DefaultBanner::all();
+        $Str =  new Str;
         $page_title = "Welcome to NollyFlix";
         $page_meta_description = "Buy nollywood movies, african movies, rent movies, rent nollywood movies";
 
 
         if ( empty($site_status->make_live) ) {
-            return view('browse.index',compact('sections','featured_videos','page_title','page_meta_description')); 
+            return view('browse.index',compact('Str','sections','featured_videos','page_title','page_meta_description')); 
         } else {
             //Show site if admin is logged in
             if ( auth()->check()  && auth()->user()->isAdmin()){
-                return view('browse.index',compact('sections','featured_videos','page_title','page_meta_description')); 
+                return view('browse.index',compact('Str','sections','featured_videos','page_title','page_meta_description')); 
             }
             return view('welcome');
         }
