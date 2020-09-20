@@ -53,6 +53,13 @@
         <div class="header-user-profile prfLBtn {{ auth()->check() ? 'd-none' : '' }}" id="header-user-profile">
             <a href="/login" class="btn p-1 login-btn rounded-0 pr-3"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
         </div>
+
+        @if(isset($allow_search))
+            <div id="progression-studios-header-search-icon" class="noselect cursor-pointer">
+                <a href="#"><i class="fas fa-search mt-4 fa-1x"></i> </a>
+            </div>
+        @endif
+        
         
 
         
@@ -86,7 +93,7 @@
         <!--button class="btn btn-mobile-pro btn-header-pro noselect" data-toggle="modal" data-target="#LoginModal" >Login</button-->
         
         <div id="search-mobile-nav-pro">
-            <input type="text" placeholder="Search for Movies or TV Series" aria-label="Search">
+            <input type="text" placeholder="Search for Movies " aria-label="Search">
         </div>
         
     </nav>

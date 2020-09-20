@@ -15,9 +15,7 @@
 	</script>
 	<body>
 	   <div id="app">
-	    @include('includes.header')
-
-		
+	    @include('includes.header',['allow_search' => true])
 		<section>
 			@yield('content')
 		</section>
