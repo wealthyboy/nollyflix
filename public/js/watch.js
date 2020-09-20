@@ -29,7 +29,7 @@ video.ready(function() {
 }
 
 
-var play = document.getElementById('play-trailer')
+var play = document.getElementById('show-video')
 
 if (play){
 
@@ -40,9 +40,7 @@ if (play){
       }
     }
   })
-  $('.play-trailer').on('click',function(e){
-    e.preventDefault()
-    $('#show-video').css('display', 'block')
+
     video.play();
-  })
+
 }

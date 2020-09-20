@@ -4,6 +4,8 @@
 		@include('partials.styles')
 	</head>
 
+	
+
 	<script>
 		Window.user = {
 			user: {!! auth()->check() ? auth()->user() : 0000 !!},
@@ -13,6 +15,7 @@
 			token: '{!! csrf_token() !!}'
 		}
 	</script>
+	
 	<body>
 	   <div id="app">
 	    @include('includes.header',['allow_search' => true])
@@ -70,8 +73,7 @@
 		<script src="/js/jquery.flexslider-min.js"></script><!-- FlexSlider JS Plugin -->	
 		<script src="/js/owl.carousel.min.js"></script><!-- Carousel JS Plugin -->
 		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-		<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
-		<script src="/js/watch.js" defer></script><!-- Custom Document Ready JS -->
+		@yield('page-scripts')
 		<script src="/js/scripts.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 	</body>
 </html>

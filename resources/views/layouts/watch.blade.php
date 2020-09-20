@@ -24,6 +24,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	
 	</head>
+	
 	<body>
 
 		<section>
@@ -33,6 +34,7 @@
 		<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
 		<script src="/js/watch.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
 	</body>
+
 </html>
 
    
