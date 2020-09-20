@@ -3,7 +3,7 @@
     <div class="row pt-5 ">
         <div class="col-12 col-lg-6 mb-5">
             <div v-if="loggedIn" class="review-form-wrapper">
-                <h3 class="review-title text-uppercase ml-3">Add a Comment</h3>
+                <h3 class="review-title text-uppercase ml-3 mb-3">Add a Comment</h3>
                 <p class="ml-3"> Required fields are marked *</p>
                 <form id="comment-form" @submit.prevent="submit" class="comment-form">
                     
@@ -46,11 +46,11 @@
             <div v-if="loading" class="comments"> Loading...</div>
 
             <div v-if="!loading && comments.length" class="comments">
-                <h3 class="review-title text-uppercase">{{ meta.total }}  Comment(s)</h3>
+                <h3 class="review-title text-uppercase mb-5">{{ meta.total }}  Comment(s)</h3>
                 <div v-for="comment in comments" :key="comment.id"  class="media mb-3">
                     <img src="/images/icons/avtar.jpg" class="mr-3 rounded-circle" alt="...">
                     <div class="media-body">
-                        <h5 class="mt-0">{{ comment.full_name }}  <small class="mt-0">{{ comment.date }}</small></h5>
+                        <h6 class="mt-0 text-danger">{{ comment.full_name }}  <small class="mt-0">{{ comment.date }}</small></h6>
                         {{ comment.description }}
                     </div>
                 </div>

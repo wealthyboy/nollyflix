@@ -17,7 +17,7 @@ video.ready(function() {
 
   // In this context, `this` is the player that was created by Video.js.
   //this.play();
-   this.muted(false)
+  this.muted(false)
 
 
    // How about an event listener?

@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div id="">
-                    <h1 class="video-post-heading-title">{{ optional($video)->title }} {{ optional($video)->resolution }}</h1>
+                    <h1 class="video-post-heading-title">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
                     <div class="clearfix"></div>
                     <ul id="video-post-meta-list">
                         <li id="video-post-meta-year">{{ $video->created_at->format('Y') }}</li>
@@ -41,7 +41,7 @@
                     <div class="content-sidebar-short-description mt-3"> Starring:
                        <?php  $casts = ''; $x= 1; 
                             foreach( $video->casts as  $cast ) {
-                                $casts .="<a href='/$cast->username'>$cast->name &nbsp; $cast->last_name </a>" ;
+                                $casts .="<a class='text-danger' href='/$cast->username'>$cast->name &nbsp; $cast->last_name </a>" ;
                                 if($x < count($video->casts)){
                                     $casts .= ' | ';
                                     $x++;
@@ -55,7 +55,7 @@
                     <div class="content-sidebar-short-description mt-3"> Produced By:
                         <?php  $filmers = ''; $x= 1; 
                             foreach( $video->filmers as  $filmer ) {
-                                $filmers .="<a href='/$filmer->username'>$filmer->name &nbsp; $filmer->last_name </a>" ;
+                                $filmers .="<a class='text-danger' href='/$filmer->username'>$filmer->name &nbsp; $filmer->last_name </a>" ;
                                 if($x < count($video->filmers)){
                                     $filmers .= ' | ';
                                     $x++;

@@ -41,7 +41,7 @@ $progress-position:-2.5em;
 
 }
 
-#video ,#show-video{
+#video ,#show-videol{
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   object-fit: cover;
@@ -73,6 +73,10 @@ $progress-position:-2.5em;
 
 .video-js .vjs-big-play-button{ display: none !important;}
 
+.video-js .vjs-control-bar{
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.9));
+  transition: opacity 0.5s linear;
+}
 
 
 .video-container{

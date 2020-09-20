@@ -22,7 +22,7 @@
                                 <div class="progression-studios-video-index-container">
                                     <a href="/watch/{{ optional($video->video)->id }}">
                                 
-                                        <div class="progression-studios-video-feaured-image"><img src="{{ optional($video->video)->tn_poster }}" alt="{{ $video->video->title }}"></div>
+                                        <div class="progression-studios-video-feaured-image"><img src="{{ optional($video->video)->tn_poster }}" alt="{{ optional($video->video)->title }}"></div>
                             
                                         <div class="progression-video-index-content no-background">
                                             <div class="progression-video-index-table">
