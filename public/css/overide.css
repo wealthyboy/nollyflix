@@ -303,10 +303,14 @@ input.profile-pic-file:hover { display: none;}
 		margin: 26px 0px 25px 0px;
 	}
 
-	.btn.p-2.rounded-0 {
-		margin-right: 0px;
-		margin-left: 0px;
-		margin-top: 20px;
+	div.item:hover  .anchor-btn{
+		opacity: 0;
+		display: none;
+	}
+
+	div.item:hover  .progression-video-index-content{
+		opacity: 1;
+		display: block;
 	}
 
 	.btn-slider-pro{
@@ -317,10 +321,6 @@ input.profile-pic-file:hover { display: none;}
 		width: 120px;
 		margin: 19px 0px 25px 10px;
 		height: 40px;
-	}
-
-	#cart-section {
-		margin-right: 35px;
 	}
 
 	.membership-required-container {
