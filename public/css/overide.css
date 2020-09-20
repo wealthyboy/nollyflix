@@ -40,12 +40,17 @@ header#masthead-pro h1 img {
 	padding: 24px 35px 20px 25px;
 }
 
+
+.flexslider.progression-studios-slider, .progression-studios-slider-image-background {height: 88vh;}
+
 #progression-studios-header-search-icon {
     float: right;
     position: relative;
     z-index: 15;
     margin-top: 0px;
 }
+
+
 
 
 #video-search-header {
