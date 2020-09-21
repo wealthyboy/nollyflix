@@ -196,15 +196,14 @@ ul.video-index-meta-taxonomy li {
 }
 
 .btn:focus, .btn-primary:focus{
-	box-shadow: none;
+	box-shadow: none !important;
+	outline: none !important;
 }
-
 
 .btn-primary {
 	box-shadow: none;
 	background: #ef0f1a !important;
 }
-
 
 .anchor-btn {
     font-family: 'Fira Sans Condensed', sans-serif;
