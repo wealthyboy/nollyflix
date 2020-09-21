@@ -38,18 +38,17 @@ class BrowseController extends Controller
         $site_status =Live::first();
         $sections = Section::orderBy('sort_order','asc')->get();
 
-        $featured_videos =  DefaultBanner::all();
-        $Str =  new Str;
+        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get();
         $page_title = "Welcome to NollyFlix";
         $page_meta_description = "Buy nollywood movies, african movies, rent movies, rent nollywood movies";
 
 
         if ( empty($site_status->make_live) ) {
-            return view('browse.index',compact('Str','sections','featured_videos','page_title','page_meta_description')); 
+            return view('browse.index',compact('sections','featured_videos','page_title','page_meta_description')); 
         } else {
             //Show site if admin is logged in
             if ( auth()->check()  && auth()->user()->isAdmin()){
-                return view('browse.index',compact('Str','sections','featured_videos','page_title','page_meta_description')); 
+                return view('browse.index',compact('sections','featured_videos','page_title','page_meta_description')); 
             }
             return view('welcome');
         }
