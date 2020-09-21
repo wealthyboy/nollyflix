@@ -132,9 +132,10 @@ export default {
                             x.close();
                             context.loading = true;
                             axios.post('/checkout').then((res) => {
-                                location.href='/watch/' +context.$root.video.id
                                 context.$emit('paymentCompleted', 'Redirecting')
                                 context.loading = false
+                                location.href='/watch/' +context.$root.video.id
+                                
                             }).catch((error) => {
                                 context.loading = false;
                             })
