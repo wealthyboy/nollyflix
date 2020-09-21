@@ -132,6 +132,7 @@ export default {
                             x.close();
                             context.loading = true;
                             axios.post('/checkout').then((res) => {
+                                 $('#apModal').modal('hide')
                                 location.href='/watch/' +context.$root.video.id
                             }).catch((error) => {
                                 context.loading = false;
