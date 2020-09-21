@@ -10,14 +10,6 @@ const Reviews = require('./components/comments/Index.vue').default
 const ProfilePicture = require('./components/profile/ProfilePicture.vue').default
 
 
-
-
-
-
-
-
-
-
 let app = new Vue({
     el: '#app',
     store, 
@@ -36,7 +28,7 @@ export default app
 
 window.onpageshow = function(event) {
     if (event.persisted) {
-        $('#close-modal').removeClass('pointer-events').click()
         store.commit('setLoading',false)
+        $('#close-modal').removeClass('pointer-events').trigger('click')
     }
 };

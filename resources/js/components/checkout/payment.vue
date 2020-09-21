@@ -94,9 +94,7 @@ export default {
         },
         submit: function(){
             var context = this
-            this.$store.commit('setLoading',true)
-            context.$emit('paymentCompleted', 'Completed')
-            
+            this.$store.commit('setLoading',true)            
         
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
@@ -115,10 +113,10 @@ export default {
                         name: context.user.name + ' ' +context.user.last_name,
                     },
                     onclose: function() {
-                        context.loading =false
+                        context.$store.commit('setLoading',false)
                     },
                     callback: function (response) {
-                        context.$emit('paymentCompleted', 'Completed')
+                         context.$emit('paymentCompleted', 'Completed')
 
                         $('#apModal').on('hide.bs.modal', function (e) {
                             e.preventDefault();
@@ -130,16 +128,16 @@ export default {
                             response.status == "successful" 
                         ) {
                             x.close();
-                            this.$store.commit('setLoading',true)
+                            context.$store.commit('setLoading',true)
                             axios.post('/checkout').then((res) => {
                                 location.href='/watch/' +context.$root.video.id
                             }).catch((error) => {
-                                this.$store.commit('setLoading',true)
+                                context.$store.commit('setLoading',false)
                             })
 
                         } else {
-                            console.log(false)
                             x.close();
+                            context.$store.commit('setLoading',false)
                         }
                     
                         //x.close(); // use this to close the modal immediately after payment.
