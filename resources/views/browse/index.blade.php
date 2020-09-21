@@ -75,8 +75,8 @@
                             <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
                                 <div class="mx-auto buy-rent-links">
                                     <a href="{{ optional($video)->preview_link }}" class="btn anchor-btn rounded-0"  data-fancybox id=""><i class="far fa-play-circle"></i>Play Trailer </a>
-                                    <a href="/browse/{{ $video->slug }}" class="btn anchor-btn rounded-0"  id=""><i class="far fa-play-circle"></i>Buy {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
-                                    <a href="/browse/{{ $video->slug }}" class="btn anchor-btn rounded-0"  id=""><i class="far fa-play-circle"></i>Rent {{ $video->currency }}{{ number_format($video->converted_rent_price) }} </a>
+                                    <a href="/browse/{{ $video->slug }}" class="btn anchor-btn rounded-0"  id=""><i class="fas fa-shopping-cart">Buy {{ $video->currency }}{{ number_format($video->converted_buy_price) }} </a>
+                                    <a href="/browse/{{ $video->slug }}" class="btn anchor-btn rounded-0"  id=""><i class="fas fa-shopping-cart">Rent {{ $video->currency }}{{ number_format($video->converted_rent_price) }} </a>
                                 </div>
                             </div><!-- close #video-post-buttons-container -->
                         </div><!-- close .item -->
