@@ -115,7 +115,6 @@ export default {
                     },
                     onclose: function() {
                         context.loading =false
-                        //context.error = "Payment was not completed"
                     },
                     callback: function (response) {
                         context.$emit('paymentCompleted', 'Completed')
@@ -132,12 +131,12 @@ export default {
                             x.close();
                             context.loading = true;
                             axios.post('/checkout').then((res) => {
-                                location.href='/watch/' +context.$root.video.id
                                 window.addEventListener("beforeunload", function (e) {
                                     context.$emit('paymentCompleted', 'Redirecting')
                                     context.loading = false  
                                 });
-                                
+                                location.href='/watch/' +context.$root.video.id
+                        
                             }).catch((error) => {
                                 context.loading = false;
                             })
