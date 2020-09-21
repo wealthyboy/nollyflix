@@ -36,7 +36,8 @@ class BrowseController extends Controller
 
 
         $site_status =Live::first();
-        $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
+        $sections = Section::orderBy('sort_order','asc')->get();
+
         $featured_videos =  DefaultBanner::all();
         $Str =  new Str;
         $page_title = "Welcome to NollyFlix";

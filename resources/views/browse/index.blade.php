@@ -49,12 +49,14 @@
 <div id="content-pro">
     <div class="container-fluid custom-gutters-pro">
         <div style="height:15px;"></div>
+        
         @if($sections->count())
             @foreach($sections as $section)
-            <h2 class="post-list-heading">{{ $section->name }}<span></span></h2>
-            <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
-                <div id="progression-video-carousel" class="owl-carousel progression-carousel-theme">
-                    @foreach($section->videos()->latest()->get() as $video)
+            <h2 class="post-list-heading ">{{ $section->name }}<span></span></h2>
+            
+            <div class="progression-studios-elementor-carousel-container mb-5 progression-studios-always-arrows-on">
+                <div id="progression-video-carousel" class="owl-carousel progression-video-carousel progression-carousel-theme">
+                    @foreach($section->videos as $video)
                         <div class="item">
                             <div class="progression-studios-video-index-container">
                                 <a href="/browse/{{ $video->slug }}">

@@ -19,7 +19,7 @@ class CommentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Video $video)
-    {
+    {   
         $comments =  $video->comments()->orderBy('created_at','DESC')->paginate(3);
         return CommentsResource::collection( $comments );
     }

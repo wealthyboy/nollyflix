@@ -257,6 +257,37 @@
                               </div>
                            </div>
                         </div>
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                           <div class="panel panel-default">
+                              <div class="panel-heading" role="tab" id="headingThree">
+                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="panels.html#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4 class="panel-title">
+                                       Sections
+                                       <i class="material-icons">keyboard_arrow_down</i>
+                                    </h4>
+                                 </a>
+                              </div>
+                              <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
+                                 <div class="panel-body">
+                                    <ul>
+                                       @foreach($categories as $category)
+                                       <li data-caption="Documents">
+                                          <div class="checkbox">
+                                             <label>
+                                                <input name="category_id[]" 
+                                                value="{{ $category->id }}"
+                                                {{ $category->checked($video->categories , $category->id) ? 'checked' : '' }} 
+                                                type="checkbox">
+                                                {{ $category->name }}
+                                             </label>
+                                          </div>
+                                       </li>
+                                       @endforeach
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
                         <div class="panel-group" id="accordionGenres" role="tablist" aria-multiselectable="true">
                            <div class="panel panel-default">
                               <div class="panel-heading" role="tab" id="heading2">

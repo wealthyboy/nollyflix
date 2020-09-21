@@ -168,7 +168,7 @@ jQuery(document).ready(function($) {
 
 $( ".owl-prev").html('<i class="fas fa-arrow-left"></i>');
 $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
-	$('#progression-video-carousel').owlCarousel({
+	$('.progression-video-carousel').owlCarousel({
 	    margin:4,
 	    items:5,
 		autoplay:false,
