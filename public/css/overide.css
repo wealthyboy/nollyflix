@@ -40,7 +40,6 @@ header#masthead-pro h1 img {
 	padding: 24px 35px 20px 25px;
 }
 
-
 .flexslider.progression-studios-slider, .progression-studios-slider-image-background {height: 88vh;}
 
 #progression-studios-header-search-icon {
@@ -49,9 +48,6 @@ header#masthead-pro h1 img {
     z-index: 15;
     margin-top: 0px;
 }
-
-
-
 
 #video-search-header {
     width: 100%;
@@ -331,6 +327,12 @@ input.profile-pic-file:hover { display: none;}
 	.membership-required-container {
 		padding-left: 0px;
 		padding-right: 0px;
+	}
+
+	.btn-slider-pro{
+		font-size: 13px;
+		width: 100%;
+		margin-top: 10px;
 	}
 
 }
