@@ -66,8 +66,7 @@ export default {
         
     },
     created() {
-        this.$emit('paymentCompleted', 'Redirecting')
-        this.loading = false
+    
         this.scriptLoaded = new Promise((resolve) => {
             this.loadScript(() => {
                 resolve()
@@ -134,6 +133,11 @@ export default {
                             context.loading = true;
                             axios.post('/checkout').then((res) => {
                                 location.href='/watch/' +context.$root.video.id
+                                window.addEventListener("beforeunload", function (e) {
+                                    context.$emit('paymentCompleted', 'Redirecting')
+                                    context.loading = false  
+                                });
+                                
                             }).catch((error) => {
                                 context.loading = false;
                             })
