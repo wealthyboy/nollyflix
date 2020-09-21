@@ -12,6 +12,12 @@ const ProfilePicture = require('./components/profile/ProfilePicture.vue').defaul
 
 
 
+
+
+
+
+
+
 let app = new Vue({
     el: '#app',
     store, 
@@ -24,3 +30,13 @@ let app = new Vue({
     }
 });
 export default app
+
+//This code helps  browser like safari that caches
+// javascript Back/Forward cache (the cache pulled from when a visitor presses the Back or Forward browser buttons) 
+
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        $('#close-modal').removeClass('pointer-events').click()
+        store.commit('setLoading',false)
+    }
+};

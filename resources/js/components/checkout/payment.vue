@@ -49,7 +49,6 @@ export default {
     
     data(){
         return {
-            loading:false,
             scriptLoaded: null,
         }
     },
@@ -58,7 +57,8 @@ export default {
             loggedIn: 'loggedIn',
             purchaseType: 'purchaseType',
             showPayemtForm: 'showPayemtForm',
-            user: 'user'
+            user: 'user',
+            loading:'loading'
         }),
         price: function () {
            return this.purchaseType == 'Rent' ? this.$root.video.converted_rent_price : this.$root.video.converted_buy_price
@@ -66,7 +66,6 @@ export default {
         
     },
     created() {
-    
         this.scriptLoaded = new Promise((resolve) => {
             this.loadScript(() => {
                 resolve()
@@ -95,8 +94,10 @@ export default {
         },
         submit: function(){
             var context = this
-            this.loading = true
+            this.$store.commit('setLoading',true)
             context.$emit('paymentCompleted', 'Completed')
+            
+        
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
                     public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
@@ -129,16 +130,11 @@ export default {
                             response.status == "successful" 
                         ) {
                             x.close();
-                            context.loading = true;
+                            this.$store.commit('setLoading',true)
                             axios.post('/checkout').then((res) => {
-                                window.addEventListener("beforeunload", function (e) {
-                                    context.$emit('paymentCompleted', 'Redirecting')
-                                    context.loading = false  
-                                });
                                 location.href='/watch/' +context.$root.video.id
-                        
                             }).catch((error) => {
-                                context.loading = false;
+                                this.$store.commit('setLoading',true)
                             })
 
                         } else {

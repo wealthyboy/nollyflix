@@ -15,15 +15,15 @@ if (v){
 
 video.ready(function() {
 
-  // In this context, `this` is the player that was created by Video.js.
-  //this.play();
-  this.muted(false)
+// In this context, `this` is the player that was created by Video.js.
+//this.play();
+this.muted(false)
 
 
    // How about an event listener?
-   this.on('ended', function() {
-     videojs.log('Awww...over so soon?!');
-   });
+this.on('ended', function() {
+    videojs.log('Awww...over so soon?!');
+  });
 });
 
 }

@@ -6,13 +6,6 @@
  * code may be modified to fit the specific needs of your application.
  */
 
-// (function () {
-// 	window.onpageshow = function(event) {
-// 		if (event.persisted) {
-// 			window.location.reload();
-// 		}
-// 	};
-// })();
 
 try {
    window.Popper = require('popper.js').default;
