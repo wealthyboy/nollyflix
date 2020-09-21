@@ -96,7 +96,7 @@ export default {
         submit: function(){
             var context = this
             this.loading = true
-
+            context.$emit('paymentCompleted', 'Completed')
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
                     public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
@@ -132,8 +132,9 @@ export default {
                             x.close();
                             context.loading = true;
                             axios.post('/checkout').then((res) => {
-                                 $('#apModal').modal('hide')
                                 location.href='/watch/' +context.$root.video.id
+                                context.$emit('paymentCompleted', 'Redirecting')
+                                context.loading = false
                             }).catch((error) => {
                                 context.loading = false;
                             })

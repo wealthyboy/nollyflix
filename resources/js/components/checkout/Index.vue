@@ -58,15 +58,21 @@ export default {
         this.me({context:this})
     },
      methods: {
-        showLogin(){
+        showLogin(value){
             this.$store.commit('showLoginForm',true)
         },
         ...mapActions({
             me:'me',
         }),
         disableClick(value){
-            //Jquer
-            this.isPaymentCompleted = true
+            console.log(value)
+            if (value == 'Completed'){
+                this.isPaymentCompleted = true
+            } else {
+                this.isPaymentCompleted = false
+                document.getElementById('close-modal').click()
+
+            }
             
         }
 
