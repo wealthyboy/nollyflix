@@ -310,8 +310,8 @@ input.profile-pic-file:hover { display: none;}
 	}
 
 	div.item:hover  .progression-video-index-content{
-		opacity: 1;
-		display: block;
+		opacity: 0;
+		display: none;
 	}
 
 	.btn-slider-pro{
