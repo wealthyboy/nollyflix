@@ -1,14 +1,14 @@
-
 @extends('layouts.watch')
 
 @section('content')
 
 
-<div class="background_video">
-    <video id="video" class="video-js vjs-default-skin"  muted data-setup ='{}'
+<div  class="background_video">
+    <div class="back"><a href="/"> <i class="fas fa-long-arrow-alt-left"></i>  Back</a></div>
+    <video id="video"  poster="{{ $video->poster }}" class="video-js vjs-default-skin "  muted data-setup ='{}'
         controls 
         data-setup='{ "playbackRates": [1, 1.5, 2] }'>
-        <source src="{{ optional($video)->link }}" type="application/x-mpegURL">
+        <source src="/videos/shayfeen.mp4" type="video/mp4">
         @if(optional($video)->track_file)
         <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
         @endif

@@ -3,6 +3,21 @@
 let video = null;
 
 var  v = document.getElementById('video')
+var  bV = document.querySelector('.background_video')
+var  bK = document.querySelector('.back')
+
+bV.addEventListener('mouseenter',function(e) {
+   bK.style.display ="block"
+   bK.style.opacity ="1"
+})
+
+bV.addEventListener('mouseleave',function(e) {
+  bK.style.display ="none"
+  bK.style.opacity ="0"
+})
+
+
+
 if (v){
   video = videojs('video', {
   html5: {
@@ -10,18 +25,15 @@ if (v){
       overrideNative: !videojs.browser.IS_SAFARI
     }
   },
-  autoplay: true
 })
+
 
 video.ready(function() {
 
-// In this context, `this` is the player that was created by Video.js.
-//this.play();
-this.muted(false)
-
-
-   // How about an event listener?
-this.on('ended', function() {
+  this.muted(false)
+  v.style.display ="block"
+  console.log(v)
+  this.on('ended', function() {
     videojs.log('Awww...over so soon?!');
   });
 });
@@ -29,18 +41,6 @@ this.on('ended', function() {
 }
 
 
-var play = document.getElementById('show-video')
 
-if (play){
 
- video = videojs('show-video', {
-    html5: {
-      hls: {
-        overrideNative: !videojs.browser.IS_SAFARI
-      }
-    }
-  })
 
-    video.play();
-
-}
