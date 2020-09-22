@@ -25,12 +25,16 @@ if (v){
       overrideNative: !videojs.browser.IS_SAFARI
     }
   },
+  autoplay:true
 })
 
 
 video.ready(function() {
-
   this.muted(false)
+  document.getElementById("video-page-title-pro").classList.add('hide')
+  bV.classList.remove('hide')
+
+
   v.style.display ="block"
   console.log(v)
   this.on('ended', function() {
