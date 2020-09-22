@@ -98,7 +98,6 @@ video[poster]{
 
 .video-js .vjs-play-progress{background-color: red;}
 
-
 #video {
   position: fixed;
 }
@@ -115,11 +114,6 @@ video[poster]{
   color: #ffffff;
 }
 
-
-#video-page-title-pro {
-  height: 85vh;
-  margin-bottom: 0px;
-}
 
 #video-page-title-pro {
   height: 100vh;
@@ -147,7 +141,7 @@ video[poster]{
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
-vjs-loading-spinner {
+.vjs-loading-spinner {
   border: none;
   opacity: 0;
   visibility: hidden;
