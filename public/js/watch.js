@@ -55,11 +55,6 @@ bV.addEventListener('mouseleave',function(e) {
   bK.style.opacity ="0"
 })
 
-var video = document.getElementById("video");
-var spinner = document.getElementById("spinner");
-var delayMillis = 4000;
-var spinnerIsHere = 1;
-video.volume = 0;
 
 vidjs = videojs('video', {
   html5: {
@@ -74,6 +69,8 @@ vidjs = videojs('video', {
 
 vidjs.ready(function() {
   document.getElementById("video-page-title-pro").classList.add('hide')
+  this.muted(false)
+
  /// let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 });
 

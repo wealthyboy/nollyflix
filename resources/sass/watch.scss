@@ -52,6 +52,9 @@ body{
 video[poster]{
   object-fit: cover;
   z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 
@@ -59,6 +62,9 @@ video[poster]{
   background-size: cover;
   background-position: inherit;
   z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 #video{
@@ -95,6 +101,9 @@ video[poster]{
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.9));
   transition: opacity 0.5s linear;
 }
+
+
+.video-js button{outline: none;}
 
 .video-js .vjs-play-progress{background-color: red;}
 
