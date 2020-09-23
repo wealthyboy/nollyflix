@@ -29,6 +29,9 @@
                                         </div><!-- close .progression-video-index-content -->
                                         <div class="video-index-border-hover"></div>
                                         <div class="ml-3">
+                                            <small class="progression-video-title"><span>Rent</span> - {{ $video->currency }}{{ number_format($video->converted_buy_price) }}</small><br/>
+                                            <small class="progression-video-title"><span>Buy</span> - {{ $video->currency }}{{ number_format($video->converted_buy_price) }}</small><br/>
+
                                             <small class="progression-video-title"><span>{{ $video->solds->count() }}</span> - Sold</small><br/>
                                             <small class="progression-video-title"><span>{{ $video->rents->count() }}</span> - Rented</small><br/>
                                             <small class="progression-video-title"><span>{{ $video->views->count() }}</span> - Views</small>
