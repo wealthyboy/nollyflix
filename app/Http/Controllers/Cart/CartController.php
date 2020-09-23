@@ -55,7 +55,7 @@ class CartController  extends Controller {
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
 			$result = $cart->updateOrCreate(
-				['video_id' => $request->id,'remember_token' => $remember_token],
+				['remember_token' => $remember_token],
 				[
 					'video_id'   => $request->id,
 					'quantity'   => 1,
