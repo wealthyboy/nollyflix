@@ -49,7 +49,6 @@
 <div id="content-pro">
     <div class="container-fluid custom-gutters-pro">
         <div style="height:15px;"></div>
-        
         @if($sections->count())
             @foreach($sections as $section)
             <h2 class="post-list-heading ">{{ $section->name }}<span></span></h2>
