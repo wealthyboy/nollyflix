@@ -105,9 +105,11 @@ video[poster]{
 .back{
   position: relative;
   z-index: 100;
-  font-size: 18px;
   opacity: 0;
   display: none;
+  font-size: 3em;
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3));
+  transition: opacity 0.5s linear;
 }
 
 .back a {
