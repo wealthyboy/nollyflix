@@ -334,6 +334,10 @@ input.profile-pic-file:hover { display: none;}
 		margin-top: 10px;
 	}
 
+	.modal-body-pro{
+		padding: 0px;
+	}
+
 }
 
 .progress {

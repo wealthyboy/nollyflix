@@ -49,6 +49,9 @@
             @endforeach
 
         @else
+           <div class="col col-12 col-md-6 col-lg-4">
+                No videos for {{ $category->name }}
+            </div>
         @endif            
     
         <div class="clearfix"></div>

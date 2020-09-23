@@ -20,7 +20,7 @@
                 @foreach($genre->videos as $video)
  
 
-                <div class="col item col-12 col-md-6 col-lg-3 mt-3">
+                <div class="col item col-6 col-md-6 col-lg-3 mt-3">
                     <div class="progression-studios-video-index-container">
                         <a href="/browse/{{ $video->slug }}">
 
@@ -57,7 +57,7 @@
 
             </div><!-- close .row -->
             @else
-
+              
             @endif
             
            
