@@ -1,46 +1,4 @@
 
-
-// let video = null;
-
-
-
-
-
-// if (v){
-//   //Destroy the old instance
-
-//   video = videojs('video', {
-//   html5: {
-//     hls: {
-//       overrideNative: !videojs.browser.IS_SAFARI
-//     }
-//   },
-//   autoplay:true
-// })
-
-
-// video.ready(function() {
-
-//   this.muted(false)
-//   bV.classList.remove('hide')
-//   let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-//   if (isSafari){
-//    // this.play();
-//   }
-
-
-//   v.style.display ="block"
-
-//   this.on('ended', function() {
-//     videojs.log('Awww...over so soon?!');
-//   });
-// });
-
-// }
-
-
-// var  bV = document.querySelector('.background_video')
-
 var  v = document.getElementById('video')
 var  bV = document.querySelector('.background_video')
 var  bK = document.querySelector('.back')
@@ -55,23 +13,29 @@ bV.addEventListener('mouseleave',function(e) {
   bK.style.opacity ="0"
 })
 
-
 vidjs = videojs('video', {
   html5: {
     hls: {
-      overrideNative: !videojs.browser.IS_SAFARI
-    }
+      overrideNative: !videojs.browser.IS_SAFAR}
   },
   autoplay:true
-
 })
 
+let loader = document.querySelector(".vjs-loading-spinner")
+
+if (loader){
+  loader.style.display = 'block'
+}
+
+vidjs.on('timeupdate', function () {
+  loader.style.display = 'none'
+})
 
 vidjs.ready(function() {
   document.getElementById("video-page-title-pro").classList.add('hide')
+  let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isSafari){return}
   this.muted(false)
-
- /// let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 });
 
 
