@@ -24,11 +24,11 @@ vidjs = videojs('video', {
 let loader = document.querySelector(".vjs-loading-spinner")
 
 if (loader){
-  loader.style.display = 'block'
+  loader.style.visibility = 'visible'
 }
 
 vidjs.on('timeupdate', function () {
-  loader.style.display = 'none'
+  loader.style.visibility = 'hidden'
 })
 
 vidjs.ready(function() {

@@ -95,11 +95,7 @@ export default {
         submit: function(){
             var context = this
             this.$store.commit('setLoading',true) 
-             axios.post('/checkout').then((res) => {
-                                location.href='/watch/' +context.$root.video.id
-                            }).catch((error) => {
-                                context.$store.commit('setLoading',false)
-                            })           
+                    
         
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
