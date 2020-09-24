@@ -5,7 +5,7 @@
 // But don't feel limited by them. Change/replace whatever you want. 
 // The color of icons, text, and the big play button border.
 // Try changing to #0f0
-$primary-foreground-color: #cacaca; // #fff default
+$primary-foreground-color: #ffffff; // #fff default
 $secondary-foreground-color: #b7090b;
 // The default color of control backgrounds is mostly black but with a little
 // bit of blue so it can still be seen on all-black video frames, which are common.
@@ -38,7 +38,7 @@ body{
   /* The base font size controls the size of everything, not just text.
      All dimensions use em-based sizes so that the scale along with the font size.
      Try increasing it to 15px and see what happens. */
-  font-size: 20px;
+  font-size: 1.1em;
   /* The main font color changes the ICON COLORS as well as the text */
   color: $primary-foreground-color;
 
@@ -46,6 +46,26 @@ body{
 
   outline: none !important;
 
+}
+
+.background_video{
+  position: relative;
+  z-index: 1;
+}
+
+.background_video .back{
+  position: relative;
+  z-index: 100;
+  opacity: 0;
+  display: none;
+  font-size: 3em;
+  background: transparent;
+  top: 0px;
+  transition: opacity 0.5s linear;
+}
+
+.background_video .back a {
+  color: #ffffff;
 }
 
 
@@ -102,6 +122,54 @@ video[poster]{
   transition: opacity 0.5s linear;
 }
 
+.video-js .vjs-progress-control {
+  position: absolute;
+  bottom: 45px;
+}
+
+.vjs-progress-control.vjs-control {
+  width: 95%;
+}
+
+
+.video-js .vjs-time-control {
+  right: 0px;
+  bottom: 45px;
+  position: absolute;
+}
+
+.vjs-text-track-display {
+  bottom: 4em;
+}
+
+.vjs-subs-caps-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button {
+  position: absolute;
+  right: 70px;
+}
+
+.vjs-fullscreen-control.vjs-control.vjs-button {
+  position: absolute;
+  right: 0px;
+}
+
+
+.vjs-chapters-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button {
+  position: absolute;
+  right: 150px;
+}
+
+.video-js .vjs-progress-holder {
+  height: 0.2em;
+}
+
+.video-js .vjs-play-progress::before {
+  font-size: 0.7em;
+  position: absolute;
+  right: -0.5em;
+  top: -0.3em;
+  z-index: 1;
+  color: red;
+}
 
 .video-js button{outline: none;}
 
@@ -111,19 +179,6 @@ video[poster]{
   position: fixed;
 }
 
-.back{
-  position: relative;
-  z-index: 100;
-  opacity: 0;
-  display: none;
-  font-size: 3em;
-  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.3));
-  transition: opacity 0.5s linear;
-}
-
-.back a {
-  color: #ffffff;
-}
 
 
 #video-page-title-pro {
@@ -147,6 +202,8 @@ video[poster]{
   -moz-animation:spin 2s linear infinite;
   animation:spin 2s linear infinite;
 }
+
+
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
@@ -217,6 +274,13 @@ a.video-page-title-play-button {
   height: 100%;
   text-align: center;
 }
+
+@media only screen and (max-width: 575px) {
+  .vjs-progress-control.vjs-control {
+    width: 85%;
+  }
+}
+
 
 
 

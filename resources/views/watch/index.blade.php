@@ -8,7 +8,7 @@
 
 <div  class="background_video">
     <div class="back"><a href="/"> <i class="fas fa-long-arrow-alt-left"></i></a></div>
-    <video id="video"  poster="{{ $video->poster }}"  muted  class="video-js vjs-default-skin"   
+    <video id="video"  poster="{{ $video->poster }}"  muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin"   
         controls 
         >
         <source src="{{ $video->link }}" type="application/x-mpegURL">       

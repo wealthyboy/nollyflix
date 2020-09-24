@@ -71,7 +71,6 @@ class CheckoutController extends Controller
 		$admin_emails = explode(',',$this->settings->alert_email);
 		$symbol = Helper::getCurrency();
 		
-
 		try {
 			$when = now()->addMinutes(5);
 			\Mail::to($user->email)

@@ -65,8 +65,8 @@ jQuery(document).ready(function($) {
 =============================================== 03. FLEXSLIDER  ===============================================
 */
     $('.progression-studios-slider').flexslider({
-		slideshow: false,  		/* Autoplay True/False */
-		slideshowSpeed: 8000,	/* Autoplay Speed */
+		slideshow: true,  		/* Autoplay True/False */
+		slideshowSpeed: 4000,	/* Autoplay Speed */
 		animation: "fade",		/* Slideshow Transition Animation */
 		animationSpeed: 800, 	/* Slide Transition Speed */
 		directionNav: true,		/* Left/Right Navigation True/False */

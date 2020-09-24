@@ -43,11 +43,14 @@
                                             <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                         <div class="ml-2">
-                                            <div class="progression-video-title">{{ $video->purchase_type == 'rent' ? 'Rented' : 'Purchased' }}</div>
+                                            <div class="progression-video-title">{{ optional($video->video)->title }}sss</div>
+
+                                            <div class="progression-video-title">Type: {{ $video->purchase_type == 'rent' ? 'Rented' : 'Purchased' }}</div>
                                             <div class="progression-video-title">Price:  {{ $video->orders->first()->currency }}{{ number_format($video->customer_price) }}</div>
                                             @if ($video->purchase_type == 'rent')
                                                <div class="progression-video-title">Expires:  {{  $video->isVideoRentExpired() ? 'Video Expired' : $video->videoExpires()->format('d/m/y')  }}</div>
                                             @endif
+                                            <div class="progression-video-title">Date:  {{  $video->created_at->format('d/m/y')  }}</div>
                                         </div>
                                        
                                 
