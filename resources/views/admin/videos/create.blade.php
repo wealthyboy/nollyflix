@@ -33,6 +33,8 @@
                      <div class="col-sm-6">
                         <div class="row">
                            <div  class="  text-center">
+                           <small><b>Recommended 1920 × 1080</b></small>
+
                            </div>
                            <div   class="col-md-12 col-sm-6 col-xs-6">
                               <div id="m_image"  class="uploadloaded_image text-center mb-3">

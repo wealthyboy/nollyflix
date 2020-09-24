@@ -33,7 +33,8 @@
                      </div>
                      <div class="col-sm-6">
                         <div class="row">
-                           <div  class="  text-center">
+                           <div  class="text-center">
+                              <small><b>Recommended 1920 × 1080</b></small>
                            </div>
                            <div   class="col-md-12 col-sm-6 col-xs-6">
                               <div id="m_image"  class="uploadloaded_image text-center mb-3">
@@ -53,7 +54,10 @@
                                  <input accept="image/*"  class="upload_input" data-msg="Please add a big poster image"  type="file" id="big_poster" name="cimage"  />
                                  <input type="hidden"  value="{{ $video->poster }}"  class="file_upload_input  stored_image" id="stored_image" name="poster">
                               </div>
+                              
+
                            </div>
+
                         </div>
                      </div>
                      <div class="col-sm-6">
