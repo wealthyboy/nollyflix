@@ -74,7 +74,6 @@ export default {
     },
  
     methods: {
-       
         loadScript(callback) {
             const script = document.createElement('script')
             script.src = 'https://checkout.flutterwave.com/v3.js'
@@ -95,8 +94,6 @@ export default {
         submit: function(){
             var context = this
             this.$store.commit('setLoading',true) 
-                    
-        
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
                     public_key: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",

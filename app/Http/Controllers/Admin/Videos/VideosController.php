@@ -279,6 +279,10 @@ class VideosController extends Controller
 
         if(!empty($request->category_id)){
             $video->categories()->sync($request->category_id);
+            $categories = Category::find($request->category_id);
+            foreach ($categories as $category) {
+                $category->sections()->sync($request->section_id);
+            }
         }
 
         if(!empty($request->cast_id)){

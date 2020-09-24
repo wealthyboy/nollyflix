@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Check;
+
 
 class Section extends Model
 {
+    
+
+    use Check;
+    
     /**
      * The casts that belong to the user.
     */

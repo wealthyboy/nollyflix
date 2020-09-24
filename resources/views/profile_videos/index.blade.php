@@ -17,7 +17,6 @@
                             <div class="col col-6 col-md-3 col-lg-3">
                                 <div class="progression-studios-video-index-container">
                                     <a href="#">
-                                
                                         <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                             
                                         <div class="progression-video-index-content no-background">

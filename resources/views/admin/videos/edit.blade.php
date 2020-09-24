@@ -270,15 +270,15 @@
                               <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
                                  <div class="panel-body">
                                     <ul>
-                                       @foreach($categories as $category)
+                                       @foreach($sections as $section)
                                        <li data-caption="Documents">
                                           <div class="checkbox">
                                              <label>
-                                                <input name="category_id[]" 
-                                                value="{{ $category->id }}"
-                                                {{ $category->checked($video->categories , $category->id) ? 'checked' : '' }} 
+                                                <input name="section_id[]" 
+                                                value="{{ $section->id }}"
+                                                {{ $section->checked($video->sections , $section->id) ? 'checked' : '' }} 
                                                 type="checkbox">
-                                                {{ $category->name }}
+                                                {{ $section->name }}
                                              </label>
                                           </div>
                                        </li>
@@ -305,11 +305,13 @@
                                           <li data-caption="Documents">
                                              <div class="checkbox">
                                                 <label>
-                                                   <input name="genre_id[]" 
-                                                   value="{{ $genre->id }}" 
-                                                   {{ $genre->checked($video->genres , $genre->id) ? 'checked' : '' }} 
-                                                   type="checkbox">
-                                                   {{ $genre->name }}
+                                                   <input 
+                                                         name="genre_id[]" 
+                                                         value="{{ $genre->id }}" 
+                                                         {{ $genre->checked($video->genres , $genre->id) ? 'checked' : '' }} 
+                                                         type="checkbox"
+                                                      >
+                                                         {{ $genre->name }}
                                                 </label>
                                              </div>
                                           </li>
