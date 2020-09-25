@@ -27,7 +27,7 @@ class OrdersController extends Controller{
 
 	public function index ( ) 
 	{ 
-		Order::truncate();
+		OrderVideo::truncate();
 		$orders = Order::orderBy('created_at','desc')->get();
         return view('admin.orders.index',compact('orders'));
     }
