@@ -25,7 +25,9 @@ class FilmersController extends Controller
      */
     public function index()
     {
-       
+        User::where('type','filmakers')->update([
+            'type' => 'filmakers'
+        ]);
 
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
