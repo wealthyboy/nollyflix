@@ -27,7 +27,9 @@ class OrdersController extends Controller{
 
 	public function index ( ) 
 	{ 
+		\Schema::disableForeignKeyConstraints();
 		Order::truncate();
+		\Schema::enableForeignKeyConstraints();
 		$orders = Order::orderBy('created_at','desc')->get();
         return view('admin.orders.index',compact('orders'));
     }
