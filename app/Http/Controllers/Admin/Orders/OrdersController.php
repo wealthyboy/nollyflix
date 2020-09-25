@@ -11,7 +11,6 @@ use App\OrderedProduct;
 use App\Http\Controllers\Controller;
 use App\Http\Helper;
 use App\Cart;
-use App\OrderedMovie;
 
 
 
@@ -28,7 +27,7 @@ class OrdersController extends Controller{
 
 	public function index ( ) 
 	{ 
-		OrderedMovie::truncate();
+		Order::truncate();
 		$orders = Order::orderBy('created_at','desc')->get();
         return view('admin.orders.index',compact('orders'));
     }
