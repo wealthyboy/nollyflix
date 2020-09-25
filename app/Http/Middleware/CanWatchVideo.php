@@ -23,7 +23,7 @@ class CanWatchVideo
     public function handle($request, Closure $next)
     {   
         if (!auth()->check()){
-           return redirect('/404');
+           return redirect('/login');
         }
 
         $user  = auth()->user();
