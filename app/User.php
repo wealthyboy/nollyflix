@@ -134,7 +134,7 @@ class User extends Authenticatable
 
 	public function scopeFilmers(Builder $builder)
 	{
-		return $builder->where('type','filmers');
+		return $builder->where('type','filmakers');
 	}
 
 	public function scopeAdmin(Builder $builder)
