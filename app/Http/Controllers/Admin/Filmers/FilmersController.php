@@ -25,6 +25,10 @@ class FilmersController extends Controller
      */
     public function index()
     {
+        User::where('type','filmers')->update([
+            'type' => 'filmakers'
+        ]);
+        
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
@@ -65,7 +69,7 @@ class FilmersController extends Controller
         $user->description  =  $request->description;
         $user->username  =     $request->username;
         $user->image        =  $request->image;
-        $user->type         =  'filmers';
+        $user->type         =  'filmakers';
         $user->password= bcrypt($password); 
         $user->save();
         $data['password'] = $password;
