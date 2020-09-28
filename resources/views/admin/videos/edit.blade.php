@@ -166,7 +166,7 @@
                         <div class="row">
                            <div class="col-md-12">
                               <div class="form-group ">
-                                 <label class="control-label">Release Date</label>
+                                 <label class="control-label">Release Date</label>{{ $video->getFormatBack() }}
                                  <input name="release_date"   type="text" class="datepicker form-control" value="{{ $video->getFormatBack() ?? old('release_date') }}" class="form-control">
                               </div>
                            </div>
