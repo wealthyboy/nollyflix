@@ -94,7 +94,7 @@
                     <h1 class="video-post-heading-title">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
                     <div class="clearfix"></div>
                     <ul id="video-post-meta-list">
-                        <li id="video-post-meta-year">{{ $video->release_date->format('Y') }}</li>
+                        <li id="video-post-meta-year">{{ optional($video->release_date)->format('Y') }}</li>
                         <li id="video-post-meta-rating"><span>{{ $video->film_rating }}</span></li>
                         <li id=""><span>{{ $video->duration }}</span></li>
                     </ul>
