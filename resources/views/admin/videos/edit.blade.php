@@ -141,7 +141,7 @@
                            <div class="col-md-12">
                               <div class="form-group  is-empty no-file-input-style">
                                  <label class="control-label">Subtile file</label>
-                                 <input name="track_file"    type="file" class="form-control">
+                                 <input name="track_file"  type="file" class="form-control">
                               </div>
                               <span class="material-input">{{ $video->track_file }}</span>
                            </div>
@@ -166,8 +166,9 @@
                         <div class="row">
                            <div class="col-md-12">
                               <div class="form-group ">
-                                 <label class="control-label">Release Date</label>{{ $video->getFormatBack() }}
-                                 <input name="release_date"   type="text" class="datepicker form-control" value="{{ $video->getFormatBack() ?? old('release_date') }}" class="form-control">
+                                 <label class="control-label">Release Date  &nbsp;  {{ $video->getReversedDate() }}</label>
+                                 <input name="release_date"   type="text" class="datepicker form-control" >
+                                 <input name="release_date_hidden"  value="{{ $video->getReversedDate() }}"  type="hidden" class=" form-control" >
                               </div>
                            </div>
                         </div>

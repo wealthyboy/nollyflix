@@ -256,6 +256,8 @@ class VideosController extends Controller
             $video->track_file = asset($path);
         }
 
+
+       // dd(Helper::getFormatedDate($request->release_date));
         $video->title           = $request->title;
         $video->slug            = str_slug($request->title);
         $video->preview_link    = $request->preview_link;
@@ -268,7 +270,7 @@ class VideosController extends Controller
         $video->film_rating     = $request->film_rating;
         $video->description     = $request->description;
         $video->resolution      = $request->resolution;
-        $video->release_date        =  Helper::getFormatedDate($request->release_date);//Format data
+        $video->release_date        =  $request->filled('release_date') ?  Helper::getFormatedDate($request->release_date) : $video->release_date;//Format data
         $video->link                =  $request->link;
         $video->iframe              =  $request->iframe;
         $video->featured            =  $request->featured_video ? 1 : 0;

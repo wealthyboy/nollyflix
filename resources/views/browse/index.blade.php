@@ -20,7 +20,7 @@
                                         <h2><a href="/">{{ optional($video->video)->title }}</a></h2>
                                         <ul class="slider-video-post-meta-list">
                                             <li class="slider-video-post-meta-cat"><ul><li><a href="#"> {!! $video->video->genres[0]->name !!} </a></li></ul></li>
-                                            <li class="slider-video-post-meta-year">{{ $video->created_at->format('Y') }}</li>
+                                            <li class="slider-video-post-meta-year">{{ optional(optional($video->video)->release_date)->format('Y') }}</li>
                                             <li class="slider-video-post-meta-rating"><span>{{ optional($video->video)->film_rating }}</span></li>
                                         </ul>
                                         <div class="clearfix"></div>

@@ -19,7 +19,11 @@ class Video extends Model
         'converted_buy_price',
         'converted_rent_price',
         'iso_code'
-	];
+    ];
+    
+    protected $dates = [
+        'release_date',
+    ];
 
     /**
      * The casts that belong to the user.
@@ -174,7 +178,7 @@ class Video extends Model
         return $this->hasMany(RelatedVideo::class);
     }
     
-    public function getFormatBack(){
+    public function getReversedDate(){
         return Helper::getFormatBack($this->release_date); 
     }
 
