@@ -177,7 +177,7 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		responsive : {
 		    // breakpoint from 0 up
 		    0 : {
-		        items:2,
+		        items:3,
 		    },
 		    // breakpoint from 768 up
 		    768 : {
