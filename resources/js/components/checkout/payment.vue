@@ -96,7 +96,7 @@ export default {
             this.$store.commit('setLoading',true) 
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
-                    public_key: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",
+                    public_key: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X", //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
                     customer_email:context.user.email,
                     amount: context.price,
                     currency:context.user.iso_code,
@@ -114,8 +114,7 @@ export default {
                         context.$store.commit('setLoading',false)
                     },
                     callback: function (response) {
-                         context.$emit('paymentCompleted', 'Completed')
-
+                        context.$emit('paymentCompleted', 'Completed')
                         $('#apModal').on('hide.bs.modal', function (e) {
                             e.preventDefault();
                             e.stopPropagation();
