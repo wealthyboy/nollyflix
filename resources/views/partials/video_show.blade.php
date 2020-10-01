@@ -139,7 +139,10 @@
                 </div>
                 
             </div>
-             <div class="col-lg-4 mb-5">
+
+             @if( $system_settings->allow_multi_currency)
+
+              <div class="col-lg-4 mb-5">
                 <div class="">
                   <div class="dotted-dividers-pro">
                   <h5>Switch Currency: {{ $video->currency }}</h5>
@@ -156,6 +159,7 @@
                   </form>
                 </div><!-- close .dotted-dividers-pro -->
               </div>
+              @endif
               <div  class="mt-3" id=""> 
                 <buttons />
               </div>
