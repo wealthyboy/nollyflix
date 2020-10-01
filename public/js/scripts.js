@@ -250,21 +250,9 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		});
 	})
 
-	
-
-	function notify(color,from,align,msg){
-		$.notify({
-			icon: "<i class='fas fa-bell'></i>",
-			message: msg
-		},{
-			type: color,
-			timer: 3000,
-			placement: {
-				from: from,
-				align: align
-			}
-		});
-	}
+	$("#switch-currency").on('change',function(){
+		$("#form-currency").submit()
+	})
 
 	
 		 	 

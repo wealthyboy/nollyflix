@@ -293,6 +293,19 @@ input.profile-pic-file {
 	z-index: 0;
 }
 
+
+/* Seleect STyles */
+select.custom-select {
+	background:none;
+	color:#dcdbde;
+	border-width:2px;
+	background-image:url("/images/select-arrow.png");
+	background-position:right 11px;
+	background-repeat:no-repeat;
+	background-size:34px 12px;
+}
+
+
 input.profile-pic-file:hover { display: none;}
 
   

@@ -139,10 +139,26 @@
                 </div>
                 
             </div>
-            <div class="col-lg-4">
-                <div id=""> 
-                    <buttons />
-                </div>
+             <div class="col-lg-4 mb-5">
+                <div class="">
+                  <div class="dotted-dividers-pro">
+                  <h5>Switch Currency: {{ $video->currency }}</h5>
+                  <form method="GET" id="form-currency"  action="/currency">
+                    <select name="currency_id" id="switch-currency" class="custom-select">
+                      @foreach($currencies as $currency)
+                        @if ($currency->symbol === $video->currency)
+                            <option value="{{ $currency->id }}"  selected>{{ $currency->symbol }} {{ $currency->iso_code3 }} </option>
+                        @else
+                          <option value="{{ $currency->id }}">{{ $currency->symbol }} {{ $currency->iso_code3 }} </option>
+                        @endif 
+                      @endforeach
+                    </select>
+                  </form>
+                </div><!-- close .dotted-dividers-pro -->
+              </div>
+              <div  class="mt-3" id=""> 
+                <buttons />
+              </div>
             </div>
         </div>
 

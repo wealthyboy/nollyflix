@@ -15,7 +15,6 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::resource('banners', 'Admin\Design\BannersController',['names' =>'banners']);
     Route::get('customers',  'Admin\Users\UsersController@customers')->name('customers');
     Route::resource('reviews',  'Admin\Reviews\ReviewsController',['names' => 'reviews']);
-    Route::resource('posts',  'Admin\Blog\BlogController',['names' => 'posts']);
     Route::get('post/{post_id}/comments',  'Admin\Comments\CommentsController@comments');
     Route::delete('comments/{comment}',  'Admin\Comments\CommentsController@destroy');
 
@@ -77,6 +76,8 @@ Auth::routes();
 
 Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('/', 'Browse\BrowseController@index')->name('home');
+    Route::get('currency',              'CurrencySwitcher\\CurrencySwitcherController@index');
+
 
     Route::get('browse',                      'Browse\BrowseController@index')->name('browse');
     Route::get('browse/{video}',              'Browse\BrowseController@show')->name('browse.show');
@@ -108,13 +109,12 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('change/password', 'Profile\ProfileController@changePassword');
     Route::get('{username}',       'Profile\ProfileController@ActorsAndFilMakers')->name('user.profiles');
     Route::post('/me',              'Auth\LoginController@me');
-    Route::get('comments/{video}',       'Api\Comments\CommentsController@index');
-    Route::post('comments/store',         'Api\Comments\CommentsController@store');
+    Route::get('comments/{video}',  'Api\Comments\CommentsController@index');
+    Route::post('comments/store',   'Api\Comments\CommentsController@store');
 });
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+
 
 
