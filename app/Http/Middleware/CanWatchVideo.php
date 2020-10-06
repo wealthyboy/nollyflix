@@ -40,7 +40,7 @@ class CanWatchVideo
             return redirect()->route('watch.expired',['id' => $request->id]);
         }
 
-        $this->viwed($video);
+        $this->viwed($video,$request);
         return $next($request);
     }
 
