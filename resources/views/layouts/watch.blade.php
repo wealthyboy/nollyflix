@@ -18,7 +18,11 @@
 		<meta property="og:description" content="Watch nollywood movies online">
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
+
 		<link href="/css/vd.css?version={{ str_random(6) }}" rel="stylesheet" />
+		<script src="/js/video.js?version={{ str_random(6) }}"></script>
+		<script src="/js/watch.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
+	</body>
 		<script src='https://kit.fontawesome.com/a076d05399.js'></script> 
 
 		<link rel="stylesheet" href="/css/watch.css?version={{ str_random(6) }}">
@@ -30,9 +34,7 @@
 		<section>
 			@yield('content')
 		</section>
-		<script src="/js/video.js?version={{ str_random(6) }}"></script>
-		<script src="/js/watch.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
-	</body>
+		
 
 </html>
 
