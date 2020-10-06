@@ -92,7 +92,7 @@ button.slick-prev{position: absolute;
 
 .sccroll ul.treeview{display: block; margin:0px;padding:0px;}
 .panel-body.scroll {
-  height: 550px;
+  height: 200px;
   overflow: scroll;
 }
 
