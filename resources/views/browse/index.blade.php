@@ -51,8 +51,7 @@
         <div style="height:15px;"></div>
         @if($sections->count())
             @foreach($sections as $section)
-            <h2 class="post-list-heading ">{{ $section->name }}<span></span></h2>
-            
+            <h2 class="post-list-heading">{{ $section->name }}<span></span></h2>
             <div class="progression-studios-elementor-carousel-container mb-5 progression-studios-always-arrows-on">
                 <div id="progression-video-carousel" class="owl-carousel progression-video-carousel progression-carousel-theme">
                     @foreach($section->videos as $video)
@@ -60,18 +59,18 @@
                             <div class="progression-studios-video-index-container">
                                 <a href="/browse/{{ $video->slug }}">
                                     <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
-                                    <div class="progression-video-index-content">
-                                        <div class="progression-video-index-table">
-                                            <div class="progression-video-index-vertical-align">
-                                                <h2 class="progression-video-title"></h2>
-                                                <div class="clearfix"></div> 	                                   
-                                            </div><!-- close .progression-video-index-vertical-align -->
-                                        </div><!-- close .progression-video-index-table -->
-                                    </div><!-- close .progression-video-index-content -->
+                                        <div class="progression-video-index-content">
+                                            <div class="progression-video-index-table">
+                                                <div class="progression-video-index-vertical-align">
+                                                    <h2 class="progression-video-title"></h2>
+                                                    <div class="clearfix"></div> 	                                   
+                                                </div><!-- close .progression-video-index-vertical-align -->
+                                            </div><!-- close .progression-video-index-table -->
+                                        </div><!-- close .progression-video-index-content -->
                                     <div class="video-index-border-hover"></div>
                                 </a>
                             </div><!-- close .progression-studios-video-index-container  -->
-                            <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
+                            <div class="d-flex position-absolute links-section flex-column  justify-content-center">
                                 <div class="mx-auto buy-rent-links">
                                    @include('partials.links')
                                 </div>
@@ -80,7 +79,7 @@
                     
                     @endforeach
 
-                </div><!-- close #progression-video-carousel - See /js/script.js file for options -->
+                </div><!-- close #progression-video-carousel  file for options -->
             </div><!-- close .progression-studios-elementor-carousel-container  -->
             @endforeach
 
