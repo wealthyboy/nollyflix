@@ -21,6 +21,8 @@
 
 		<link href="/css/vd.css?version={{ str_random(6) }}" rel="stylesheet" />
 		<script src="/js/video.js?version={{ str_random(6) }}"></script>
+		<script src="/js/watch.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
+
 		
 		<script src='https://kit.fontawesome.com/a076d05399.js'></script> 
 
@@ -34,7 +36,6 @@
 			@yield('content')
 		</section>
 		
-	<script src="/js/watch.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
 	</body>
 </html>
 
