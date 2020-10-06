@@ -184,7 +184,6 @@ class Video extends Model
 
 
     public function allGenres(){
-
         $genres = ''; $x= 1; 
         foreach( $this->genres as $index =>  $genre ) {
             $genres .="<a href='/browse/genre/$genre->slug'>$genre->name</a>" ;
@@ -194,7 +193,28 @@ class Video extends Model
             }
         }
         return $genres;
+    }
 
+
+    public function watchType(){
+
+        if ($this->is_free){
+           return '<a href=""></a>';
+        }
+
+        if ($this->is_for_rent_and_buy ){
+            return '<a href=""></a>';
+        }
+
+        if ( $this->is_only_for_rent ){
+            return '<a href=""></a>';
+        }
+
+        if ( $this->is_only_for_buy ){
+            return '<a href=""></a>';
+        }
+
+        return $genres;
     }
 
 

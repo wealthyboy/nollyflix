@@ -54,8 +54,6 @@
                                  <input accept="image/*"  class="upload_input" data-msg="Please add a big poster image"  type="file" id="big_poster" name="cimage"  />
                                  <input type="hidden"  value="{{ $video->poster }}"  class="file_upload_input  stored_image" id="stored_image" name="poster">
                               </div>
-                              
-
                            </div>
 
                         </div>
@@ -112,7 +110,7 @@
                         </div>
                         <div class="row">
                            <div class="col-md-12">
-                              <div class="form-group label-floating ">
+                              <div class="form-group label-floating">
                                  <label class="control-label">Price  (for renting)</label>
                                  <input name="rent_price"  required="true" type="text" value="{{ $video->rent_price ?? old('rent_price') }}" class="form-control">
                                  <span class="material-input"></span>
@@ -121,7 +119,7 @@
                         </div>
                         <div class="row">
                            <div class="col-md-12">
-                              <div class="form-group label-floating ">
+                              <div class="form-group label-floating">
                                  <label class="control-label">Video Link  (Use the Http Live streaming link from vimeo.)</label>
                                  <input name="link" required="true"  data-msg="Enter video link"    type="text" value="{{ $video->link ?? old('link') }}" class="form-control">
                                  <span class="material-input"></span>
@@ -193,40 +191,40 @@
                            </div>
                         </div>
                         <div class="row">
-                           <div class="col-md-6">
-                              <legend>  
-                                 Allow Restriction
-                              </legend>
-                              <div class="togglebutton">
+                           <div class="col-md-3">
+
+                              <div class="radio">
                                  <label>
-                                 <input name="allow" {{ $video->allow_restriction == 1 ? 'checked' : '' }}  value="1" type="checkbox" checked>
-                                 Allow Restriction
+                                    <input type="radio" value="is_free" name="access_type" {{ $video->access_type ==  'is_free' ? 'checked' : '' }}>
+                                    Free 
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6 hide">
-                              <legend>  
-                                 Allow Buy
-                              </legend>
-                              <div class="togglebutton">
+                           <div class="col-md-3">
+                              <div class="radio">
                                  <label>
-                                 <input name="allow_buy"  {{ $video->allow_buy == 1 ? 'checked' : '' }}   value="1" type="checkbox">
-                                 Allow Buying
+                                    <input type="radio" value="is_only_for_buy"  name="access_type"  {{ $video->access_type ==  'is_only_for_buy' ? 'checked' : '' }} >
+                                    Buy Only
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6 hide">
-                              <legend>  
-                                 Allow Rent
-                              </legend>
-                              <div class="togglebutton">
+                           <div class="col-md-3">
+                              <div class="radio">
                                  <label>
-                                 <input name="allow_rent" {{ $video->allow_rent == 1 ? 'checked' : '' }}  value="1" type="checkbox" >
-                                 Allow Renting
+                                    <input type="radio" value="is_only_for_rent"  name="access_type"  {{ $video->access_type ==  'is_only_for_rent' ? 'checked' : '' }} >  
+                                    Rent Only
                                  </label>
                               </div>
                            </div>
-                          
+                           <div class="col-md-3">
+                              <div class="radio">
+                                 <label>
+                                    <input type="radio" value="is_for_rent_and_buy" name="access_type"   {{ $video->access_type ==  'is_for_rent_and_buy' ? 'checked' : '' }}> 
+                                    Buy & Rent  
+
+                                 </label>
+                              </div>
+                           </div>
                         </div>
                         <div class="clearfix"></div>
                      </div>

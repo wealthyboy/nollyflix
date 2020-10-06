@@ -111,9 +111,7 @@ class VideosController extends Controller
         $video->link                =  $request->link;
         $video->iframe              =  $request->iframe;
         $video->featured            =  $request->featured_video ? 1 : 0;
-        $video->allow_restriction   =  $request->allow_restriction ? 1 : 0;
-        $video->allow_rent          =  $request->allow_rent ? 1 : 0;
-        $video->allow_buy           =  $request->allow_buy ? 1 : 0;
+        $video->access_type         =  $request->access_type;
         $video->save();
 
         if(!empty($request->category_id)){
@@ -270,13 +268,11 @@ class VideosController extends Controller
         $video->film_rating     = $request->film_rating;
         $video->description     = $request->description;
         $video->resolution      = $request->resolution;
-        $video->release_date        =  $request->filled('release_date') ?  Helper::getFormatedDate($request->release_date) : $video->release_date;//Format data
-        $video->link                =  $request->link;
-        $video->iframe              =  $request->iframe;
-        $video->featured            =  $request->featured_video ? 1 : 0;
-        $video->allow_restriction   =  $request->allow_restriction ? 1 : 0;
-        $video->allow_rent          =  $request->allow_rent ? 1 : 0;
-        $video->allow_buy           =  $request->allow_buy ? 1 : 0;
+        $video->release_date    =  $request->filled('release_date') ?  Helper::getFormatedDate($request->release_date) : $video->release_date;//Format data
+        $video->link            =  $request->link;
+        $video->iframe          =  $request->iframe;
+        $video->featured        =  $request->featured_video ? 1 : 0;
+        $video->access_type     =  $request->access_type;
         $video->save();
 
         if(!empty($request->category_id)){

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableInformationAddSortOrder extends Migration
+class AlterVideosAddAccessType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AlterTableInformationAddSortOrder extends Migration
      */
     public function up()
     {
-        Schema::table('information', function (Blueprint $table) {
-            $table->integer('sort_order')->nullable();
-            $table->integer('custom_link')->nullable(); 
+        Schema::table('videos', function (Blueprint $table) {
+            $table->string('access_type')->nullable();
         });
     }
 
@@ -26,8 +25,8 @@ class AlterTableInformationAddSortOrder extends Migration
      */
     public function down()
     {
-        Schema::table('information', function (Blueprint $table) {
-            $table->dropColumn('sort_order','custom_link');
+        Schema::table('videos', function (Blueprint $table) {
+            Schema::dropIfExists('access_type');
         });
     }
 }

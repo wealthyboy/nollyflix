@@ -90,8 +90,11 @@ button.slick-prev{position: absolute;
     color: #7e7e7e;
 }
 
-div.well ul.treeview{display: block; margin:0px;padding:0px;}
-
+.sccroll ul.treeview{display: block; margin:0px;padding:0px;}
+.panel-body.sccroll {
+  height: 550px;
+  overflow: scroll;
+}
 
 div.well ul li{ list-style: none;}
 

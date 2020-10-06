@@ -104,7 +104,6 @@
                         {!! $video->allGenres() !!}
                     </div>
 
-        
                     <div class="content-sidebar-short-description mt-3"> Starring:
                        <?php  $casts = ''; $x= 1; 
                             foreach( $video->casts as  $cast ) {

@@ -180,40 +180,45 @@
                               </div>
                            </div>
                         </div>
+                        
                         <div class="row">
-                           <div class="col-md-6">
-                              <legend>  
-                                 Allow Restriction
-                              </legend>
-                              <div class="togglebutton">
+                           <div class="col-md-3">
+
+                              <div class="radio">
                                  <label>
-                                 <input name="allow"  value="1" type="checkbox" checked>
-                                 Allow Restriction
+                                    <input type="radio" value="is_free" name="access_type" >
+                                    Free
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6 hide">
-                              <legend>  
-                                 Allow Buy
-                              </legend>
-                              <div class="togglebutton">
+                           <div class="col-md-3">
+                              <div class="radio">
                                  <label>
-                                 <input name="allow_buy"  value="1" type="checkbox" checked>
-                                 Allow Buying
+                                    <input type="radio" value="is_only_for_buy"  name="access_type">
+                                    Buy Only
                                  </label>
                               </div>
                            </div>
-                           <div class="col-md-6 hide">
-                              <legend>  
-                                 Allow Rent
-                              </legend>
-                              <div class="togglebutton">
+                           <div class="col-md-3">
+                              <div class="radio">
                                  <label>
-                                 <input name="allow_rent"  value="1" type="checkbox" checked>
-                                 Allow Renting
+                                    <input type="radio" value="is_only_for_rent"  name="access_type">
+                                    Rent Only
                                  </label>
                               </div>
                            </div>
+                           <div class="col-md-3">
+                              <div class="radio">
+                                 <label>
+                                    <input type="radio" value="is_for_rent_and_buy" name="access_type"  checked="true">
+                                    Buy & Rent  
+
+                                 </label>
+                              </div>
+                           </div>
+                           
+                          
+      
                          
                         </div>
                         <div class="clearfix"></div>
@@ -230,7 +235,7 @@
                                  </a>
                               </div>
                               <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-                                 <div class="panel-body">
+                                 <div class="panel-body well">
                                     <ul>
                                        @foreach($categories as $category)
                                        <li data-caption="Documents">
