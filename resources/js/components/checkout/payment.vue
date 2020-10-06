@@ -35,7 +35,7 @@
                     <hr class="line">
                     <div  v-if="!loading">
                         <div  class="d-flex justify-content-between information"><span>Total </span><span>{{ $root.video.currency }}{{ price  }}</span></div>
-                        <button class="btn btn-primary btn-block d-flex justify-content-center mt-3" @click="submit" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                        <button class="btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2" @click="submit" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
                     </div>
                 </div>
             </div>
