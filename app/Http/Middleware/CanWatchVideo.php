@@ -28,15 +28,13 @@ class CanWatchVideo
         }
 
         if ($request->watch === 'free'){
-            $video = Video::findOrFail($request->id);
+            $video = Cart::findOrFail($request->id);
             $this->viwed($video,$request);
             return $next($request);
         }
 
         $user  = auth()->user();
-        $video = Cart::where('video_id',$request->id)->firstOrFail();
-       // dd(now() > $video->videoExpires());
-        dd( $video );
+        $video = Cart::findOrFail($request->id);
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);
         }
@@ -53,7 +51,7 @@ class CanWatchVideo
 
         $view = View::where([
             'user_id' => $user->id,
-            'video_id' => optional($video)->video_id ?? optional($video)->id 
+            'video_id' => optional($video)->video_id 
         ])->first();
 
         /**
@@ -62,7 +60,7 @@ class CanWatchVideo
         if (!$view){
             $view = new View;
             $view->user_id = $user->id;
-            $view->video_id = $request->id;
+            $view->video_id = optional($video)->video_id;
             $view->save();
         }
     }

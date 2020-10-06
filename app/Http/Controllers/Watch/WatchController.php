@@ -31,8 +31,7 @@ class WatchController extends Controller
      */
     public function index($id)
     {
-        $video = Video::find($id);
-
+        $video = Cart::find($id)->video;
         return view('watch.index',compact('video'));
     }
 

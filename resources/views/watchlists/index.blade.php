@@ -20,7 +20,7 @@
                         @foreach($user->movies as $video)
                             <div class="col col-6 col-md-4 col-lg-3">
                                 <div class="progression-studios-video-index-container">
-                                    <a href="/watch/{{ optional($video->video)->id }}">
+                                    <a href="/watch/{{ optional($video)->id }}">
                                 
                                         <div class="progression-studios-video-feaured-image"><img src="{{ optional($video->video)->tn_poster }}" alt="{{ optional($video->video)->title }}"></div>
                             
