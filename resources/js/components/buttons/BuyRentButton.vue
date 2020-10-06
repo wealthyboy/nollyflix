@@ -65,7 +65,7 @@ export default {
             loading:false,
             price: null,
             type:null,
-            watch: '/watch/'+$root.video.id
+
         }
     },
 
