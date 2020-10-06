@@ -11,10 +11,10 @@
                        
                         <div  class="cart-product-table-wrap ">
                             <div  v-if="!loading" class="row cart-rows raised mb-3 pt-4 pb-4 border border-gray">
-                                <div class="col-md-3 col-12">
+                                <div class="col-md-3 col-4">
                                     <div class="cart-image"><img :src="$root.video.tn_poster" alt=""></div>
                                 </div>
-                                <div class="col-md-9 col-12">
+                                <div class="col-md-9 col-8">
                                     <h5><a href="#">{{ $root.video.title }}</a></h5>
                                     <div class="product--share  mt-3"><span class="bold">Type #:</span> {{ purchaseType }} 
                                         <span v-if="purchaseType == 'rent' " class="ml-2 border">Expires after 48hour</span>
