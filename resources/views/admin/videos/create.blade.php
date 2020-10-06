@@ -235,7 +235,7 @@
                                  </a>
                               </div>
                               <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-                                 <div class="panel-body well">
+                                 <div class="panel-body scroll">
                                     <ul>
                                        @foreach($categories as $category)
                                        <li data-caption="Documents">
@@ -262,7 +262,7 @@
                                  </a>
                               </div>
                               <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
-                                 <div class="panel-body">
+                                 <div class="panel-body scroll">
                                     <ul>
                                        @foreach($genres as $genre)
                                           <li data-caption="Documents">
@@ -290,7 +290,7 @@
                                  </a>
                               </div>
                               <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
-                                 <div class="panel-body">
+                                 <div class="panel-body scroll">
                                     <ul>
                                        @foreach($sections as $section)
                                           <li data-caption="Documents">
@@ -318,7 +318,7 @@
                                  </a>
                               </div>
                               <div id="collapse3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-                                 <div class="panel-body">
+                                 <div class="panel-body scroll">
                                     <ul>
                                        @foreach($casts as $cast)
                                           <li data-caption="Documents">
@@ -346,7 +346,7 @@
                                     </a>
                                  </div>
                                  <div id="collapseFilmer" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading4" aria-expanded="false">
-                                    <div class="panel-body">
+                                    <div class="panel-body scroll">
                                        <ul>
                                           @foreach($filmers as $filmer)
                                              <li data-caption="Documents">
