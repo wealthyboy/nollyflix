@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.access')
 @section('page-css')
 <link rel="stylesheet" href="/css/trailer.css">
 @stop
