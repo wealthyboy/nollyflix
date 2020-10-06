@@ -47,7 +47,7 @@
 
                                             <div class="progression-video-title">Type: {{ $video->purchase_type === 'Rent' ? 'Rented' : 'Purchased' }}</div>
                                             <div class="progression-video-title">Price:  {{ optional(optional($video->orders)->first())->currency }}{{ number_format($video->customer_price) }}</div>
-                                            @if ($video->purchase_type == 'rent')
+                                            @if ($video->purchase_type == 'Rent')
                                                <div class="progression-video-title">Expires:  {{  $video->isVideoRentExpired() ? 'Video Expired' : $video->videoExpires()->format('d/m/y')  }}</div>
                                             @endif
                                             <div class="progression-video-title">Date:  {{  $video->created_at->format('d/m/y')  }}</div>
