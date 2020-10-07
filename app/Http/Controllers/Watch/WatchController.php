@@ -29,9 +29,13 @@ class WatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Request $request,$id)
     {
-        $video = Cart::find($id)->video;
+        if ($request->watch === 'free'){
+            $video = Video::find($id);
+        } else {
+            $video = Cart::find($id)->video;
+        }
         return view('watch.index',compact('video'));
     }
 
