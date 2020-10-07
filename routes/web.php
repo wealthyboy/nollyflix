@@ -89,6 +89,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
 
     Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{id}',           'Watch\WatchController@index')->name('watch');
+    
     Route::get('watch/expired/{id}',   'Watch\WatchController@expired')->name('watch.expired');
 
     Route::resource('orders',          'Orders\OrdersController',['name'=>'orders']);

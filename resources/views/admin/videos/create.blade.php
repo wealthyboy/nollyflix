@@ -202,6 +202,14 @@
                            <div class="col-md-3">
                               <div class="radio">
                                  <label>
+                                    <input type="radio" value="coming_soon"  name="access_type">
+                                    Coming soon
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-md-3">
+                              <div class="radio">
+                                 <label>
                                     <input type="radio" value="is_only_for_rent"  name="access_type">
                                     Rent Only
                                  </label>
@@ -212,7 +220,6 @@
                                  <label>
                                     <input type="radio" value="is_for_rent_and_buy" name="access_type"  checked="true">
                                     Buy & Rent  
-
                                  </label>
                               </div>
                            </div>
