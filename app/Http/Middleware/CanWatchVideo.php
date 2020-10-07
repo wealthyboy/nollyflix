@@ -28,7 +28,7 @@ class CanWatchVideo
         }
 
         if ($request->watch === 'free'){
-            $video = Cart::findOrFail($request->id);
+            $video = Video::findOrFail($request->id);
             $this->viwed($video,$request);
             return $next($request);
         }
@@ -51,7 +51,7 @@ class CanWatchVideo
 
         $view = View::where([
             'user_id' => $user->id,
-            'video_id' => optional($video)->video_id 
+            'video_id' => optional($video)->video_id ?? $video->id,
         ])->first();
 
         /**
@@ -60,7 +60,7 @@ class CanWatchVideo
         if (!$view){
             $view = new View;
             $view->user_id = $user->id;
-            $view->video_id = optional($video)->video_id;
+            $view->video_id = optional($video)->video_id ?? $video->id;
             $view->save();
         }
     }
