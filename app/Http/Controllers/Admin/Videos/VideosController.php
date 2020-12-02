@@ -92,7 +92,8 @@ class VideosController extends Controller
         ]);
 
         if( $request->hasFile('track_file') ){
-            $path = $request->file('track_file')->store('videos/subtitles');
+            $file = $request->file('track_file');
+            $path = $request->file('track_file')->storeAs('videos/subtitles',Str::random(40).'.'.$file->getClientOriginalExtension());
             $video->track_file = asset($path);
         }
 
@@ -252,7 +253,7 @@ class VideosController extends Controller
 
         if( $request->hasFile('track_file') ){
             $file = $request->file('track_file');
-            $path = $request->file('track_file')->storeAs('videos/subtitles',Str::random(40).$file->getClientOriginalExtension());
+            $path = $request->file('track_file')->storeAs('videos/subtitles',Str::random(40).'.'.$file->getClientOriginalExtension());
             $video->track_file = asset($path);
         }
 
