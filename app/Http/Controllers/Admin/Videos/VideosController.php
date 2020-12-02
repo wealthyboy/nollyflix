@@ -22,6 +22,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 
 class VideosController extends Controller
@@ -250,7 +251,8 @@ class VideosController extends Controller
         $video = Video::find($id);
 
         if( $request->hasFile('track_file') ){
-            $path = $request->file('track_file')->store('videos/subtitles');
+            $file = $request->file('track_file');
+            $path = $request->file('track_file')->storeAs('videos/subtitles',Str::random(40).$file->getClientOriginalExtension());
             $video->track_file = asset($path);
         }
 
