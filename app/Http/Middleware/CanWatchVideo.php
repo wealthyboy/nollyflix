@@ -27,6 +27,11 @@ class CanWatchVideo
             return redirect('/login');
         }
 
+
+        if ($request->user()->isAdmin()){
+            return $next($request);
+        }
+
         if ($request->watch === 'free'){
             $video = Video::findOrFail($request->id);
             $this->viwed($video,$request);

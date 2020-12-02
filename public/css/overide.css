@@ -95,6 +95,7 @@ input#main-text-field {
     margin-top: 25px;
 }
 
+
 .background-image{
 	/* Background image */
 	background-image: url('/images/banners/Bgnollyn01.jpg');
@@ -121,7 +122,6 @@ input#main-text-field {
 	padding-right: 10px;
 	width: auto;
 	z-index: 1;
-
 }
 
 .progression-video-index-content{
