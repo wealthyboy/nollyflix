@@ -27,7 +27,7 @@ class CastsCreatedNotification
      */
     public function handle(CastsCreated $event)
     {   
-        \Notification::route('mail', $event->casts['email'])
+        \Notification::route('mail', 'jacob.atam@gmail.com')
         ->notify(new CastsEmailNotification($event));
     }
 }
