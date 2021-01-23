@@ -71,6 +71,8 @@ class FilmersController extends Controller
         $user->password= bcrypt($password); 
         $user->save();
         $data['password'] = $password;
+
+        dd($data);
         /**
          * Send Notification
          */
