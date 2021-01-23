@@ -75,6 +75,7 @@ class FilmersController extends Controller
          * Send Notification
          */
         event(new FilmerCreated($data)); 
+        
         return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
     }
 
