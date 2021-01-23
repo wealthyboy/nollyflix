@@ -114,6 +114,9 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('comments/store',   'Api\Comments\CommentsController@store');
 });
 
+Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
+
+
 
 
 
