@@ -48,7 +48,10 @@ class FilmersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+        dd(1);
+
         Validator::make($request->all(), [
             'first_name'   => 'required|min:1|max:100',
             'email'        => 'required|email|max:255|unique:users',
