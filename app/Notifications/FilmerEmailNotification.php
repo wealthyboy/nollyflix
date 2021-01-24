@@ -11,14 +11,16 @@ class FilmerEmailNotification extends Notification
 {
     use Queueable;
 
+    public $filmers
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->filmers = $data;
     }
 
     /**
@@ -42,12 +44,12 @@ class FilmerEmailNotification extends Notification
     {
        
         return (new MailMessage)
-        ->greeting('Congratulations '. $this->casts->casts['first_name'] . '!') 
+        ->greeting('Congratulations '. $this->filmers['first_name'] . '!') 
         ->line('Your actors profile have been approved for Nollyflix. You are now eligible to earn 10% of every film sold or rented from from your actors page. ') 
         ->line('Your are therefore encouraged to promote your page by telling your fans to watch your movies through your profile page link') 
-        ->line('Your username is: '.$this->casts->casts['email'])
-        ->line('Your password is: '.$this->casts->casts['password'])
-        ->line('Your profile page is: https://nollyflix.tv/'.str_slug($this->casts->casts['username'])) 
+        ->line('Your username is: '.$this->filmers['email'])
+        ->line('Your password is: '.$this->filmers['password'])
+        ->line('Your profile page is: https://nollyflix.tv/'.str_slug($this->filmers['username'])) 
         ->line('You can also make the link available to them on your social media platforms. ') 
         ->line('You will be able to Access your sales by logging into your dashboard. You can also edit your Profile and change your password through your dashboard.') 
         ->subject("Your profile has been created")
