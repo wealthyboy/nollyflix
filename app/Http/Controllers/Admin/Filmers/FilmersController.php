@@ -73,13 +73,13 @@ class FilmersController extends Controller
         $user->password= bcrypt($password); 
         $user->save();
         $data['password'] = $password;
-        
+
         /**
          * Send Notification
          */
         event(new FilmerCreated($data)); 
         
-        return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
+        //return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
     }
 
     /**
