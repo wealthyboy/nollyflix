@@ -44,7 +44,7 @@ class CastsEmailNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                         ->greeting('Congratulations '. $this->casts['first_name'] . '!') 
-                        ->line('Your actors profile have been approved for Nollyflix. You are now eligible to earn 10% of every film sold or rented from your actors page. ') 
+                        ->line('Your  profile have been approved for Nollyflix. You are now eligible to earn 10% of every film sold or rented from your actors page. ') 
                         ->line('Your are therefore encouraged to promote your page by telling your fans to watch your movies through your profile page link') 
                         ->line('Your username is: '.$this->casts['email'])
                         ->line('Your password is: '.$this->casts['password'])
