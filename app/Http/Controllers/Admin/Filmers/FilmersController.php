@@ -50,7 +50,6 @@ class FilmersController extends Controller
     public function store(Request $request)
     {   
 
-        dd(1);
 
         Validator::make($request->all(), [
             'first_name'   => 'required|min:1|max:100',
@@ -74,8 +73,7 @@ class FilmersController extends Controller
         $user->password= bcrypt($password); 
         $user->save();
         $data['password'] = $password;
-
-        dd($data);
+        
         /**
          * Send Notification
          */
