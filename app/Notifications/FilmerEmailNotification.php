@@ -11,7 +11,7 @@ class FilmerEmailNotification extends Notification
 {
     use Queueable;
 
-    public $filmers
+    public $filmers;
 
     /**
      * Create a new notification instance.
