@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
-use App\Events\CastsCreated;
+use Illuminate\Notifications\Notification;
+use App\Notifications\CastsEmailNotification;
+
+
 
 
 class CastsController extends Controller
@@ -70,9 +73,13 @@ class CastsController extends Controller
         $user->save();
         $data['password'] = $password;
         /**
-         * Send Notification
-         */
-        event(new CastsCreated($data)); 
+         * Send Email Notification
+        */
+
+        Notification::route('mail', $request->email)
+        ->notify(new CastsEmailNotification($data));
+
+
         return redirect()->route('casts.index')->with('success','An email has been sent to '.$request->email);
     }
 

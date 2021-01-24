@@ -45,7 +45,7 @@ class FilmerEmailNotification extends Notification
        
         return (new MailMessage)
         ->greeting('Congratulations '. $this->filmers['first_name'] . '!') 
-        ->line('Your actors profile have been approved for Nollyflix. You are now eligible to earn 10% of every film sold or rented from from your actors page. ') 
+        ->line('Your actors profile have been approved for Nollyflix. You are now eligible to earn 10% of every film sold or rented from  your actors page. ') 
         ->line('Your are therefore encouraged to promote your page by telling your fans to watch your movies through your profile page link') 
         ->line('Your username is: '.$this->filmers['email'])
         ->line('Your password is: '.$this->filmers['password'])

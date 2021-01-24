@@ -9,6 +9,7 @@ use App\User;
 use App\Events\FilmerCreated;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\FilmerEmailNotification;
+use Illuminate\Support\Facades\Notification;
 
 
 
@@ -77,13 +78,10 @@ class FilmersController extends Controller
         $data['password'] = $password;
 
         /**
-         * Send Notification
+         * Send  Email Notification 
          */
-        \Notification::route('mail', $request->email)
-        ->notify(new FilmerEmailNotification($data));
-
-
-       // event(new FilmerCreated($data)); 
+        Notification::route('mail', $request->email)
+           ->notify(new FilmerEmailNotification($data));
         
         return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
     }
