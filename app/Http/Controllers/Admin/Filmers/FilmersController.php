@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Events\FilmerCreated;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\FilmerEmailNotification;
+
 
 
 
@@ -77,9 +79,13 @@ class FilmersController extends Controller
         /**
          * Send Notification
          */
-        event(new FilmerCreated($data)); 
+        \Notification::route('mail', $request->email)
+        ->notify(new FilmerEmailNotification($data));
+
+
+       // event(new FilmerCreated($data)); 
         
-        //return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
+        return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
     }
 
     /**
