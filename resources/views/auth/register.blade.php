@@ -20,7 +20,7 @@
 						
    					 <div class="membership-required-container">
       					 <div class="registration-login-container">
-                           <form method="POST" action="{{ route('register') }}">
+                           <form method="POST" action="{{ route('register') }}pppp">
                                 <div class="aligncenter"><h1>Sign Up</h1></div>
 
                                 @csrf
