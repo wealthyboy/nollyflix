@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Auth::routes();
 
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
@@ -115,6 +114,9 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('comments/{video}',  'Api\Comments\CommentsController@index');
     Route::post('comments/store',   'Api\Comments\CommentsController@store');
 });
+
+Auth::routes();
+
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 

@@ -67,7 +67,6 @@ class RegisterController extends Controller
     {   
 		$this->validator($request->all())->validate();
 		
-		dd($request->all());
 		event(new Registered($user = $this->create($request->all())));
 		
 	    if ( $request->is ('admin/*') ) { 
