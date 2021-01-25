@@ -73,6 +73,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 });
 
 
+Auth::routes();
 
 
 Route::group(['middleware' => 'currencyByIp'], function(){
@@ -115,7 +116,6 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('comments/store',   'Api\Comments\CommentsController@store');
 });
 
-Auth::routes();
 
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
