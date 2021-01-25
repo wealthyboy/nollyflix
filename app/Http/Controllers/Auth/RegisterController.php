@@ -65,7 +65,6 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {   
-		dd(true);
 		$this->validator($request->all())->validate();
 
 
@@ -105,8 +104,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {    
-        $request = new Request();
-        			
+        dd($data);        			
 		if ( isset($data['admin'] )){
 			return Validator::make($data, [
 				'name' => ['required', 'string', 'max:255'],
