@@ -188,7 +188,6 @@ class RegisterController extends Controller
 		
 		$user = new User();
 		
-		dd($data);
         
         $request = new Request();
         

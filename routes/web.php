@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Auth::routes();
+
+
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::get('/','Admin\HomeCtrl@index')->name('admin_home');
     Route::get('/maintainance/mode', 'Live\LiveController@index')->name('maintainance');
@@ -71,7 +74,6 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 });
 
 
-Auth::routes();
 
 
 Route::group(['middleware' => 'currencyByIp'], function(){
