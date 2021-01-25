@@ -186,7 +186,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {    
 		
-        $user = new User();
+		$user = new User();
+		
+		dd($data);
         
         $request = new Request();
         
