@@ -65,7 +65,9 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {   
-        $this->validator($request->all())->validate();
+		$this->validator($request->all())->validate();
+		
+		dd($request->all());
 		event(new Registered($user = $this->create($request->all())));
 		
 	    if ( $request->is ('admin/*') ) { 
@@ -75,7 +77,6 @@ class RegisterController extends Controller
 		$this->guard()->login($user);
 
 		if ( $request->ajax() ) { 
-
 		    return response()->json([
 				'loggedIn'=>true,
 				'user' => auth()->user()

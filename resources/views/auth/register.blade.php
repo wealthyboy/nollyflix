@@ -9,10 +9,6 @@
 <div class="background-image">
 			
     <div class="container">
-        <div class="centered-headings-pro pricing-plans-headings">
-        </div>
-    </div><!-- close .container -->
-    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div id="membership-plan-background">
@@ -20,7 +16,7 @@
 						
    					 <div class="membership-required-container">
       					 <div class="registration-login-container">
-                           <form method="POST" action="{{ route('register') }}pppp">
+                           <form method="POST" action="{{ route('register') }}">
                                 <div class="aligncenter"><h1>Sign Up</h1></div>
 
                                 @csrf
