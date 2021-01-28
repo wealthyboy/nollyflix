@@ -28,7 +28,7 @@ class FilmersController extends Controller
      */
     public function index()
     {   
-        $user = User::where("email",'sneezefilmes@yahoo.com')->get();
+        $user = User::withTrashed)->where(["email"=>'sneezefilmes@yahoo.com')->get();
         dd($user);
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
