@@ -10,6 +10,8 @@ use App\Events\FilmerCreated;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\FilmerEmailNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Validation\Rule;
+
 
 
 
