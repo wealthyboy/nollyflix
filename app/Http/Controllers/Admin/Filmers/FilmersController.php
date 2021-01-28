@@ -56,7 +56,7 @@ class FilmersController extends Controller
         
         Validator::make($request->all(), [
             'first_name'   => 'required|min:1|max:100',
-            'email'=>['required','email',\Rule::unique('users','email')->whereNotNull('deleted_at')]
+            'email'=>['required','email',\Rule::unique('users','email')->whereNotNull('deleted_at')],
             'username'    => 'required|string|max:255|unique:users',
             'last_name'    => 'required|min:1|max:200',
             'description'  => 'required|min:1|max:1000',
