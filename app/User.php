@@ -11,12 +11,14 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Traits\Check;
 use App\Http\Helper;
 use App\Cart;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class User extends Authenticatable
 {
-    use Notifiable,Check;
-
+	use Notifiable,Check;
+	
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
