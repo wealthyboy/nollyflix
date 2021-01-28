@@ -51,10 +51,10 @@ class FilmersController extends Controller
     public function store(Request $request)
     {   
 
-
+        
         Validator::make($request->all(), [
             'first_name'   => 'required|min:1|max:100',
-            'email'        => 'required|email|max:255|unique:users',
+            'email'        => 'required|email|max:255|unique:users,delete_at',
             'username'    => 'required|string|max:255|unique:users',
             'last_name'    => 'required|min:1|max:200',
             'description'  => 'required|min:1|max:1000',
