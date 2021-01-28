@@ -22,7 +22,7 @@ class CustomersController extends Controller
     public function index()
     {   
         
-        $users = User::withTrashed()->customers()->latest()->get();
+        $users = User::customers()->latest()->get();
         return   view('admin.customers.index', compact('users'));  
 
     }
