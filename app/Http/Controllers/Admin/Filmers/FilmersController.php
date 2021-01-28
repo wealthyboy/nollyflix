@@ -27,7 +27,9 @@ class FilmersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $user = User::where("email",'sneezefilmes@yahoo.com')->get();
+        dd($user);
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
@@ -54,7 +56,7 @@ class FilmersController extends Controller
         
         Validator::make($request->all(), [
             'first_name'   => 'required|min:1|max:100',
-            'email'        => 'required|email|max:255|unique:users,delete_at',
+            'email'=>['required','email',\Rule::unique('users','email')->whereNotNull('deleted_at')]
             'username'    => 'required|string|max:255|unique:users',
             'last_name'    => 'required|min:1|max:200',
             'description'  => 'required|min:1|max:1000',
