@@ -29,7 +29,6 @@ class FilmersController extends Controller
     public function index()
     {
        
-        User::query()->delete();
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
