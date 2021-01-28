@@ -28,7 +28,7 @@ class FilmersController extends Controller
      */
     public function index()
     {
-        User::restore();
+        (new User())->restore();
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
