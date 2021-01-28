@@ -20,8 +20,9 @@ class CustomersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $users = (new User())->customers()->latest()->get();
+    {   
+        
+        $users = User::withTrashed()->customers()->latest()->get();
         return   view('admin.customers.index', compact('users'));  
 
     }
