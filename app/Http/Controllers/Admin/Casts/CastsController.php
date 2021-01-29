@@ -28,8 +28,13 @@ class CastsController extends Controller
      */
     public function index()
     {    
-        $users  = User::withTrashed()->whereNotNull('deleted_at')->get();
-        dd($users);
+        $users  = User::withTrashed()->get();
+        foreach ($users as $user) {
+            $user->deletes_at = nulll;
+            $user->save();
+        }
+
+        
 
 
         $casts = (new User())->castings()->latest()->get();
