@@ -146,7 +146,12 @@ class FilmersController extends Controller
 						->withInput();
 		}
 				
-		User::destroy($request->selected);
+        $users = User::find($request->selected);
+        
+        foreach($users as $user){
+            $user->forcedelete();
+        }
+        
 		return redirect()->back();
 	}
 }
