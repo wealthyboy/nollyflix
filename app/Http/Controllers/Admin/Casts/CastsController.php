@@ -28,15 +28,6 @@ class CastsController extends Controller
      */
     public function index()
     {    
-        $users  = User::withTrashed()->get();
-        foreach ($users as $user) {
-            $user->deleted_at = null;
-            $user->save();
-        }
-
-        
-
-
         $casts = (new User())->castings()->latest()->get();
         return  view('admin.casts.index', compact('casts'));  
     }
