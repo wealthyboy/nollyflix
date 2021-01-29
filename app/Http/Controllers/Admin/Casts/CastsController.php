@@ -27,7 +27,11 @@ class CastsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {    
+        $users  = User::whereNotNull('deleted_at')->get();
+        dd($users);
+
+
         $casts = (new User())->castings()->latest()->get();
         return  view('admin.casts.index', compact('casts'));  
     }
@@ -140,9 +144,15 @@ class CastsController extends Controller
 			return \Redirect::back()
 						->withErrors($validator)
 						->withInput();
-		}
+        }
+        
+        $users = User::find($request->selected);
+        
+        foreach($users as $user){
+            $user->forcedelete();
+        }
+       
 				
-		User::destroy($request->selected);
 		return redirect()->back()->with('success','Deleted');
 	}
 }
