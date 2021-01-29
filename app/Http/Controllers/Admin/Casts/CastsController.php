@@ -30,7 +30,7 @@ class CastsController extends Controller
     {    
         $users  = User::withTrashed()->get();
         foreach ($users as $user) {
-            $user->deletes_at = nulll;
+            $user->deleted_at = null;
             $user->save();
         }
 
