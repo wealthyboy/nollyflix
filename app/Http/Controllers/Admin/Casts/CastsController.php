@@ -76,8 +76,8 @@ class CastsController extends Controller
          * Send Email Notification
         */
 
-        Notification::route('mail', $request->email)
-        ->notify(new CastsEmailNotification($data));
+        // Notification::route('mail', $request->email)
+        // ->notify(new CastsEmailNotification($data));
 
 
         return redirect()->route('casts.index')->with('success','An email has been sent to '.$request->email);

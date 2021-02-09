@@ -80,8 +80,8 @@ class FilmersController extends Controller
         /**
          * Send  Email Notification 
          */
-        Notification::route('mail', $request->email)
-           ->notify(new FilmerEmailNotification($data));
+        // Notification::route('mail', $request->email)
+        //    ->notify(new FilmerEmailNotification($data));
         
         return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
     }
