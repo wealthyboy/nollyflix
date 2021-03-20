@@ -8,9 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Section;
 use App\DefaultBanner;
 use App\Video;
-use App\User;
-use App\Http\Helper;
 use App\Live;
+use App\Http\Resources\BrowseResource;
+
 use Illuminate\Support\Str;
 
 
@@ -27,8 +27,9 @@ class BrowseController extends Controller
     {   
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
-        
-        return $sections->load('videos');
+        return BrowseResource::collection(
+            $sections->load('videos')
+        );
     }
 
 
