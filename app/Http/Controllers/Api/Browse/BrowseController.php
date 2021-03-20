@@ -28,7 +28,6 @@ class BrowseController extends Controller
     public function index()
     {   
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
-        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
         return BrowseResource::collection(
             $sections->load('videos')
         );
@@ -39,7 +38,7 @@ class BrowseController extends Controller
     {   
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
         return FeaturedResource::collection(
-            $featured_videos->load('videos')
+            $featured_videos->load('video')
         );
     }
 
