@@ -10,6 +10,8 @@ use App\DefaultBanner;
 use App\Video;
 use App\Live;
 use App\Http\Resources\BrowseResource;
+use App\Http\Resources\FeaturedResource;
+
 
 use Illuminate\Support\Str;
 
@@ -31,6 +33,16 @@ class BrowseController extends Controller
             $sections->load('videos')
         );
     }
+
+
+    public function featuredVideos()
+    {   
+        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
+        return FeaturedResource::collection(
+            $featured_videos->load('videos')
+        );
+    }
+
 
 
     public function show(Video $video,User $user)
