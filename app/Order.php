@@ -7,7 +7,7 @@ use App\Http\Helper;
 use App\Voucher;
 use App\SystemSetting;
 
-class order extends Model
+class Order extends Model
 {
     
 	
