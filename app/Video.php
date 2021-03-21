@@ -18,7 +18,8 @@ class Video extends Model
 		'currency',
         'converted_buy_price',
         'converted_rent_price',
-        'iso_code'
+        'iso_code',
+        'year_release'
     ];
     
     protected $dates = [
@@ -130,6 +131,7 @@ class Video extends Model
         return $this->belongsToMany('App\Genre');
     }
 
+
     public function getUrlAttribute()
 	{
 		$link  = '/watch/';
@@ -234,5 +236,10 @@ class Video extends Model
 
     public function getRouteKeyName(){
         return 'slug';
+    }
+
+
+    public function getYearReleaseAttribute(){
+        return $this->release_date->format('Y');
     }
 }
