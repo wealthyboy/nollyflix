@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\DefaultBanner;
+
 
 class BrowseResource extends JsonResource
 {
@@ -14,6 +16,12 @@ class BrowseResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
+        return array_merge(parent::toArray($request), [
+            'slides' => FeaturedResource::collection(
+                $featured_videos->load('video')  
+            )
+        ]);
+
     }
 }
