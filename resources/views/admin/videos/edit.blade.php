@@ -184,8 +184,10 @@
                                  <label>Description</label>
                                  <div class="form-group ">
                                     <label class="control-label"> Enter description here</label>
-                                    <textarea name="description" 
-                                        class="form-control" rows="50">{{ $video->description ?? old('description') }}</textarea>
+                                    <textarea 
+                                       name="description" 
+                                       class="form-control" 
+                                       rows="50">{{ $video->description ?? old('description') }}</textarea>
                                  </div>
                               </div>
                            </div>
@@ -473,9 +475,6 @@
 
 @section('inline-scripts')
 $(document).ready(function() {
-   CKEDITOR.replace('description',{
-      height: '400px'
-   }) 
    
    let activateFileExplorer = 'a.activate-file';
    let delete_image = 'a.delete_image';

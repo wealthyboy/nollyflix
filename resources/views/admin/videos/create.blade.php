@@ -429,9 +429,7 @@
 
 @section('inline-scripts')
 $(document).ready(function() {
-   CKEDITOR.replace('description',{
-      height: '400px'
-   }) 
+   
    let activateFileExplorer = 'a.activate-file';
    let delete_image = 'a.delete_image';
    var big_poster = $("input#big_poster");
