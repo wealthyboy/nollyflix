@@ -43,11 +43,8 @@ class BrowseController extends Controller
     public function featuredVideos()
     {   
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
-        FeaturedResource::collection($featured_videos->load('video') )
-        ->additional(['meta' => [
-            'slides' =>  FeaturedResource::collection($featured_videos->load('video'))
-            
-        ]]);
+        return FeaturedResource::collection($featured_videos->load('video') );
+       
     }
 
 
