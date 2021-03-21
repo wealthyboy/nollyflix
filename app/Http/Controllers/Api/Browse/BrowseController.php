@@ -34,7 +34,7 @@ class BrowseController extends Controller
             $sections->load('videos')
         )
         ->additional(['meta' => [
-            'slides' =>  FeaturedResource::collection($featured_videos->load('video'))
+            'slides' =>  $featured_videos->load('video')->toJson()
             
         ]]);
     }
