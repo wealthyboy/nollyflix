@@ -28,6 +28,8 @@ class BrowseController extends Controller
     public function index()
     {   
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
+        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
+
         return BrowseResource::collection(
             $sections->load('videos')
         )
