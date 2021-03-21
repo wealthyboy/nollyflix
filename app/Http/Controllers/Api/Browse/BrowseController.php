@@ -47,13 +47,5 @@ class BrowseController extends Controller
        
     }
 
-
-
-    public function show(Video $video,User $user)
-    {   
-        $page_title = "Buy ,Rent , {$video->title}";
-        $page_meta_description = "Buy nollywood movies, $video->description";
-        return view('browse.show',compact('video','page_title','user','page_meta_description'));   
-    }
     
 }

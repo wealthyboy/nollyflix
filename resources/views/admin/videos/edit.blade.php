@@ -185,7 +185,7 @@
                                  <div class="form-group ">
                                     <label class="control-label"> Enter description here</label>
                                     <textarea name="description" 
-                                       id="description" class="form-control" rows="50">{{ $video->description ?? old('description') }}</textarea>
+                                        class="form-control" rows="50">{{ $video->description ?? old('description') }}</textarea>
                                  </div>
                               </div>
                            </div>
