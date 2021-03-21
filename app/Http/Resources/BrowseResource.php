@@ -24,4 +24,20 @@ class BrowseResource extends JsonResource
         ]);
 
     }
+
+
+    /**
+     * Get additional data that should be returned with the resource array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function with($request)
+    {
+        return [
+            'slides' => FeaturedResource::collection(
+                $featured_videos->load('video')  
+            )
+        ];
+    }
 }
