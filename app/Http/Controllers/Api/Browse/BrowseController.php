@@ -30,16 +30,22 @@ class BrowseController extends Controller
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         return BrowseResource::collection(
             $sections->load('videos')
-        );
+        )
+        ->additional(['meta' => [
+            'slides' =>  FeaturedResource::collection($featured_videos->load('video'))
+            
+        ]]);
     }
 
 
     public function featuredVideos()
     {   
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
-        return FeaturedResource::collection(
-            $featured_videos->load('video')
-        );
+        FeaturedResource::collection($featured_videos->load('video') )
+        ->additional(['meta' => [
+            'slides' =>  FeaturedResource::collection($featured_videos->load('video'))
+            
+        ]]);
     }
 
 
