@@ -11,16 +11,14 @@ class LoginController extends Controller
 {
     public function action(LoginRequest $request)
     {
-        if (!$token = auth()->attempt($request->only('email', 'password'))) {
+        if (!$token = \JWTAuth::attempt($request->only('email', 'password'))) {
             return response()->json([
                 'errors' => [
                     'email' => ['Could not sign you in with those details.']
                 ]
             ], 422);
         }
-
-        return $this->respondWithToken($token);
-
+        
 
         return (new PrivateUserResource($request->user()))
             ->additional([
