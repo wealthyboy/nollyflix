@@ -9,8 +9,8 @@ Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
 
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('register', 'Auth\RegisterController@action');
-    Route::post('login', 'Auth\LoginController@action');
-    Route::get('me', 'Auth\MeController@action');
+    Route::post('register', 'Api\Auth\RegisterController@action');
+    Route::post('login', 'Api\Auth\LoginController@action');
+    Route::get('me', 'Api\Auth\MeController@action');
 });
 
