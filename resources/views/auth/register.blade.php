@@ -20,7 +20,7 @@
                                 <div class="aligncenter"><h1>Sign Up</h1></div>
                                 @csrf
       							<div class="form-group">
-                                   <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"  placeholder="Name"  value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                   <input id="first_name" type="text" class="form-control @error('name') is-invalid @enderror" name="first_name"  placeholder="First Name"  value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
 
                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                                     @enderror
       							</div>
                                 <div class="form-group">
-                                   <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name"  placeholder="Last Name"  value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                   <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name"  placeholder="Last Name"  value="{{ old('name') }}" required autocomplete="name">
 
                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
