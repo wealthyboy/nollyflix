@@ -12,9 +12,11 @@ use App\Traits\Check;
 use App\Http\Helper;
 use App\Cart;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements JWTSubject
 {
 	use Notifiable,Check;
 	
@@ -221,7 +223,7 @@ class User extends Authenticatable
 	{
 		return $this->type == 'subscriber' ? true : false;
 	}
-	
+
 
 	public static function IsSuperUser()
 	{
