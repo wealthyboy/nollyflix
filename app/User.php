@@ -221,6 +221,7 @@ class User extends Authenticatable
 	{
 		return $this->type == 'subscriber' ? true : false;
 	}
+	
 
 	public static function IsSuperUser()
 	{
@@ -228,15 +229,18 @@ class User extends Authenticatable
 		return optional(optional($model->users_permission)->permission)->name == 'Super User' ? true : false;
 	}
 
+
 	public function activity(){
 		return $this->hasMany('App\Activity');
 	}
+
 		
 	public function hasVerified() {
 		$this->verified=true;
 		$this->token = null;
 		$this->save(); 
 	}
+
 
 	public function getRouteKeyName(){
         return 'slug';
@@ -255,4 +259,23 @@ class User extends Authenticatable
 		$image = basename($this->image);
 		return !empty(trim($image)) ?  asset('images/users/tn/'.$image) : asset('images/users/default/default_image.png');
 	}
+
+
+	/**
+     * [getJWTIdentifier description]
+     * @return [type] [description]
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    /**
+     * [getJWTCustomClaims description]
+     * @return [type] [description]
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
