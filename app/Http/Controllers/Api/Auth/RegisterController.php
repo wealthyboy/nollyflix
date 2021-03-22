@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function action(RegisterRequest $request)
     {
-        $user = User::create([
+        $user   = User::create([
                         'name' => $request->first_name,
                         'last_name' => $request->last_name,
                         'email'=> $request->email,
