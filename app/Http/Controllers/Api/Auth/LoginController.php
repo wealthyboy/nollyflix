@@ -19,6 +19,9 @@ class LoginController extends Controller
             ], 422);
         }
 
+        return $this->respondWithToken($token);
+
+
         return (new PrivateUserResource($request->user()))
             ->additional([
                 'meta' => [
