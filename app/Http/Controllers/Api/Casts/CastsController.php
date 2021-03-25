@@ -19,7 +19,7 @@ class CastsController extends Controller
     {   
         $users =  User::where('type','casts')->orderBy('name','ASC')->get();
         return CastsResource::collection(
-            $users
+            $users->load('videos')
         );
     }
 
