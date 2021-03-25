@@ -18,7 +18,7 @@ class FilmMakersController extends Controller
     {
         $users =  User::where('type','filmakers')->orderBy('name','ASC')->get();
         return FilmMakersResource::collection(
-            $users
+            $users->load('videos')
         );
     }
 
