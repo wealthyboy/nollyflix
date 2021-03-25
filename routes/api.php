@@ -3,8 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('browse', 'Api\Browse\BrowseController@index');
+Route::get('browse',          'Api\Browse\BrowseController@index');
 Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
+Route::get('browse/casts',    'Api\Casts\CastsController@index');
+Route::get('browse/filmers',  'Api\FilmMakers\FilmMakersController@index');
+
 
 
 
