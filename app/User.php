@@ -147,7 +147,7 @@ class User extends Authenticatable implements JWTSubject
 	}
 
 
-	 /**
+	/**
      * The user's views that belong to the video.
     */
     public function views()
@@ -155,7 +155,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\View');
 	}
 	
-
+	
+	
 
     /**
      * The user's views that belong to the video.
@@ -164,7 +165,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne('App\View');
     }
-
 
 
 	public function getCartTotalAttribute()
