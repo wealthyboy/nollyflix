@@ -31,7 +31,7 @@ class BrowseController extends Controller
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
 
         return BrowseResource::collection(
-            $sections->load('videos')
+            $sections->load('videos','videos.casts')
         )
         ->additional(['meta' => [
             'slides' =>  $featured_videos->load('video')->toJson()
@@ -44,7 +44,6 @@ class BrowseController extends Controller
     {   
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
         return FeaturedResource::collection($featured_videos->load('video') );
-       
     }
 
     
