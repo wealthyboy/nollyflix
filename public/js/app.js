@@ -2486,108 +2486,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/checkout/MobilePayment.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/checkout/MobilePayment.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      scriptLoaded: null
-    };
-  },
-  created: function created() {
-    var _this = this;
-
-    this.scriptLoaded = new Promise(function (resolve) {
-      _this.loadScript(function () {
-        resolve();
-      });
-    });
-  },
-  mounted: function mounted() {
-    this.submit();
-    console.log(true);
-  },
-  methods: {
-    loadScript: function loadScript(callback) {
-      var script = document.createElement('script');
-      script.src = 'https://checkout.flutterwave.com/v3.js';
-      document.getElementsByTagName('head')[0].appendChild(script);
-
-      if (script.readyState) {
-        // IE
-        script.onreadystatechange = function () {
-          if (script.readyState === 'loaded' || script.readyState === 'complete') {
-            script.onreadystatechange = null;
-            callback();
-          }
-        };
-      } else {
-        // Others
-        script.onload = function () {
-          callback();
-        };
-      }
-    },
-    submit: function submit() {
-      var context = this;
-      this.$store.commit('setLoading', true);
-      this.scriptLoaded && this.scriptLoaded.then(function () {
-        var x = FlutterwaveCheckout({
-          public_key: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",
-          //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
-          customer_email: 'jacob.atam@gmail.com',
-          amount: 900,
-          currency: "NGN",
-          country: "NG",
-          tx_ref: "rave-" + Math.floor(Math.random() * 1000000000 + 1),
-          meta: {
-            consumer_id: 7
-          },
-          customer: {
-            id: 7,
-            email: "jacob.atam@gmail.com",
-            name: "Jacob Atam"
-          },
-          onclose: function onclose() {
-            context.$store.commit('setLoading', false);
-          },
-          callback: function callback(response) {
-            context.$emit('paymentCompleted', 'Completed');
-            alert("done");
-          }
-        });
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/checkout/payment.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/checkout/payment.vue?vue&type=script&lang=js& ***!
@@ -22434,71 +22332,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/checkout/MobilePayment.vue?vue&type=template&id=c678d734&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/checkout/MobilePayment.vue?vue&type=template&id=c678d734& ***!
-  \*************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-5 rounded pb-3" }, [
-    _c("div", { staticClass: "row no-gutters d-flex justify-content-center" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "payment-info" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("hr", { staticClass: "line" }),
-          _vm._v(" "),
-          _c("div", [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 ",
-                attrs: { type: "button" },
-                on: { click: _vm.submit }
-              },
-              [_vm._m(1)]
-            )
-          ])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "aligncenter" }, [
-      _c("h1", [_vm._v("CHECKOUT")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [
-      _vm._v("MAKE PAYMENT"),
-      _c("i", { staticClass: "fa fa-long-arrow-right ml-1" })
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/checkout/payment.vue?vue&type=template&id=a1ffe3f0&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/checkout/payment.vue?vue&type=template&id=a1ffe3f0& ***!
@@ -36520,8 +36353,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 var CheckoutIndex = __webpack_require__(/*! ./components/checkout/Index.vue */ "./resources/js/components/checkout/Index.vue")["default"];
 
-var MobilePayment = __webpack_require__(/*! ./components/checkout/MobilePayment.vue */ "./resources/js/components/checkout/MobilePayment.vue")["default"];
-
 var Buttons = __webpack_require__(/*! ./components/buttons/BuyRentButton.vue */ "./resources/js/components/buttons/BuyRentButton.vue")["default"];
 
 var Reviews = __webpack_require__(/*! ./components/comments/Index.vue */ "./resources/js/components/comments/Index.vue")["default"];
@@ -36531,7 +36362,7 @@ var ProfilePicture = __webpack_require__(/*! ./components/profile/ProfilePicture
 var app = new Vue({
   el: '#app',
   store: _store__WEBPACK_IMPORTED_MODULE_0__["default"],
-  data: Window.user,
+  data: Window.user || {},
   components: {
     CheckoutIndex: CheckoutIndex,
     Buttons: Buttons,
@@ -36541,7 +36372,7 @@ var app = new Vue({
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (app); //This code helps  browser like safari that caches
-// javascript Back/Forward cache (the cache pulled from when a visitor presses the Back or Forward browser buttons) 
+//javascript Back/Forward cache (the cache pulled from when a visitor presses the Back or Forward browser buttons) 
 
 window.onpageshow = function (event) {
   if (event.persisted) {
@@ -36868,75 +36699,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_2fd0f134___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_2fd0f134___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/checkout/MobilePayment.vue":
-/*!************************************************************!*\
-  !*** ./resources/js/components/checkout/MobilePayment.vue ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MobilePayment_vue_vue_type_template_id_c678d734___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MobilePayment.vue?vue&type=template&id=c678d734& */ "./resources/js/components/checkout/MobilePayment.vue?vue&type=template&id=c678d734&");
-/* harmony import */ var _MobilePayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MobilePayment.vue?vue&type=script&lang=js& */ "./resources/js/components/checkout/MobilePayment.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MobilePayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _MobilePayment_vue_vue_type_template_id_c678d734___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _MobilePayment_vue_vue_type_template_id_c678d734___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/checkout/MobilePayment.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/checkout/MobilePayment.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/checkout/MobilePayment.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MobilePayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MobilePayment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/checkout/MobilePayment.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MobilePayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/checkout/MobilePayment.vue?vue&type=template&id=c678d734&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/checkout/MobilePayment.vue?vue&type=template&id=c678d734& ***!
-  \*******************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MobilePayment_vue_vue_type_template_id_c678d734___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MobilePayment.vue?vue&type=template&id=c678d734& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/checkout/MobilePayment.vue?vue&type=template&id=c678d734&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MobilePayment_vue_vue_type_template_id_c678d734___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MobilePayment_vue_vue_type_template_id_c678d734___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

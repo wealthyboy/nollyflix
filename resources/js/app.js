@@ -5,7 +5,6 @@ window.Vue = require('vue');
 import store from './store'
 
 const CheckoutIndex = require('./components/checkout/Index.vue').default
-const MobilePayment = require('./components/checkout/MobilePayment.vue').default
 
 const Buttons = require('./components/buttons/BuyRentButton.vue').default
 const Reviews = require('./components/comments/Index.vue').default
@@ -15,7 +14,7 @@ const ProfilePicture = require('./components/profile/ProfilePicture.vue').defaul
 let app = new Vue({
     el: '#app',
     store, 
-    data: Window.user,
+    data: Window.user || {},
     components:{
         CheckoutIndex,
         Buttons,
@@ -27,7 +26,7 @@ let app = new Vue({
 export default app
 
 //This code helps  browser like safari that caches
-// javascript Back/Forward cache (the cache pulled from when a visitor presses the Back or Forward browser buttons) 
+//javascript Back/Forward cache (the cache pulled from when a visitor presses the Back or Forward browser buttons) 
 
 window.onpageshow = function(event) {
     if (event.persisted) {
