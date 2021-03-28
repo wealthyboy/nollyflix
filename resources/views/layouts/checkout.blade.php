@@ -61,11 +61,6 @@
 		
 		<a href="#" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
 		
-		<!-- Required Framework JavaScript -->
-		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
-		<script src="/js/libs/popper.min.js" defer></script><!-- Bootstrap Popper/Extras JS -->
-        <script src="/js/libs/bootstrap.min.?version={{ str_random(6) }}" defer></script><!-- Bootstrap Main JS -->
-
 		<!-- All JavaScript in Footer -->
 		<script src="/js/app.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
 	</body>
