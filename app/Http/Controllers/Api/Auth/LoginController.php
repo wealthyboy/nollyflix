@@ -21,7 +21,7 @@ class LoginController extends Controller
             ], 422);
         }
 
-        $payload = JWTAuth::parseToken()->getPayload();
+        $payload = JWTAuth::setToken($token)->getPayload();
 
 
 
