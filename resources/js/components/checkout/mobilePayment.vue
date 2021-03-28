@@ -1,5 +1,5 @@
 <template>
-    <div v-if="loggedIn" class="container mt-5 rounded pb-3">
+    <div  class="container mt-5 rounded pb-3">
         <div class="row no-gutters d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="payment-info">
@@ -26,19 +26,7 @@ export default {
             scriptLoaded: null,
         }
     },
-    computed:{
-        ...mapGetters({
-            loggedIn: 'loggedIn',
-            purchaseType: 'purchaseType',
-            showPayemtForm: 'showPayemtForm',
-            user: 'user',
-            loading:'loading'
-        }),
-        price: function () {
-           return this.purchaseType == 'Rent' ? this.$root.video.converted_rent_price : this.$root.video.converted_buy_price
-        }
-        
-    },
+    
     created() {
         this.scriptLoaded = new Promise((resolve) => {
             this.loadScript(() => {
@@ -48,6 +36,7 @@ export default {
     },
     mounted(){
       this.submit();
+      console.log(true)
     },
     methods: {
         loadScript(callback) {
