@@ -65,11 +65,8 @@
 		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
 		<script src="/js/libs/popper.min.js" defer></script><!-- Bootstrap Popper/Extras JS -->
         <script src="/js/libs/bootstrap.min.?version={{ str_random(6) }}" defer></script><!-- Bootstrap Main JS -->
-        <script src="/js/bootstrap-notify.js?version={{ str_random(6) }}"></script><!-- Header Navigation JS Plugin -->
 
 		<!-- All JavaScript in Footer -->
-		<!-- Additional Plugins and JavaScript -->
-		<script src="/js/navigation.js?version={{ str_random(6) }}" defer></script><!-- Header Navigation JS Plugin -->
-		<script src="/js/checkout.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
+		<script src="/js/app.js?version={{ str_random(6) }}" defer></script><!-- Custom Document Ready JS -->
 	</body>
 </html>
