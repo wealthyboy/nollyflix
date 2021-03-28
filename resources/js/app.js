@@ -5,6 +5,8 @@ window.Vue = require('vue');
 import store from './store'
 
 const CheckoutIndex = require('./components/checkout/Index.vue').default
+const MobilePayemnt = require('./components/checkout/mobilePayment.vue').default
+
 const Buttons = require('./components/buttons/BuyRentButton.vue').default
 const Reviews = require('./components/comments/Index.vue').default
 const ProfilePicture = require('./components/profile/ProfilePicture.vue').default
@@ -18,7 +20,8 @@ let app = new Vue({
         CheckoutIndex,
         Buttons,
         Reviews,
-        ProfilePicture
+        ProfilePicture,
+        MobilePayemnt
     }
 });
 export default app
