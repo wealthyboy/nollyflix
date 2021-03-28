@@ -34,8 +34,6 @@ export default {
         })
     },
     mounted(){
-      this.submit();
-      console.log(true)
     },
     methods: {
         loadScript(callback) {
