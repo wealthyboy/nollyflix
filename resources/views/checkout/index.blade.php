@@ -4,7 +4,7 @@
 
 <div id="content-pro">
     <section class="pb-4 mt-1">
-       This is a good time
+        <mobile-payment />
     </div>
 </section>
 

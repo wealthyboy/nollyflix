@@ -37,7 +37,7 @@
 			</div><!-- close .container -->
 		</header>
 	
-		<div id="">
+		<div id="app">
   	 		@yield('content')
 		</div><!-- close #content-pro -->
 		
