@@ -23,7 +23,7 @@ class LoginController extends Controller
         return (new PrivateUserResource($request->user()))
             ->additional([
                 'meta' => [
-                    'token' => \JWTAuth::getPayload($token)->toArray()
+                    'token' => $token
                 ]
             ]);
     }
