@@ -19,7 +19,8 @@
 <script>
 
 export default {
-    
+    props: ['params'],
+
     data(){
         return {
             scriptLoaded: null,
@@ -35,6 +36,7 @@ export default {
     },
     mounted(){
         this.submit()
+        console.log(this.params)
     },
     methods: {
         loadScript(callback) {
