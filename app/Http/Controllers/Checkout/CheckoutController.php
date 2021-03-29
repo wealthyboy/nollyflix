@@ -33,7 +33,7 @@ class CheckoutController extends Controller
 
 		
 	public function  index(Request $request)  { 
-		$params =  $request->all();
+		$params =  json_encode($request->all());
 		return view('checkout.index',[
 				'params' => $params
 			]);
