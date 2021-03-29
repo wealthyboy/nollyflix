@@ -33,54 +33,10 @@ class CheckoutController extends Controller
 
 		
 	public function  index(Request $request)  { 
-		return $request->all();
 		$params =  $request->all();
 		return view('checkout.index',[
-				'params' => $currency
+				'params' => $params
 			]);
-	}
-
-	
-	public function store(Request $request,Order $order) { 
-		
-		$rate     =  Helper::rate();
-		$user     =  auth()->user();
-		$carts    =  Cart::all_items_in_cart();
-		$cart_ids =  $carts->pluck('id')->toArray();
-
-		$cart = new Cart();
-		$order->user_id        = $user->id;
-		$order->status         = 'Paid';
-		$order->currency       =  $user->currency;
-		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-		$order->payment_type   = 'online';
-		$order->total          = $user->cart_total;
-		$order->rate           = optional($rate)->rate;
-		$order->ip             = $request->ip();
-		$order->user_agent     = $request->server('HTTP_USER_AGENT');
-		$order->save();
-		$order->carts()->sync($cart_ids);
-		$user->carts()->update([
-		   'status' => 'Complete',
-		   'created_at' => now()
-		]);
-		$admin_emails = explode(',',$this->settings->alert_email);
-		$symbol = Helper::getCurrency();
-		
-		try {
-			$when = now()->addMinutes(5);
-			\Mail::to($user->email)
-				->bcc($admin_emails[0])
-				->later($when, new OrderReceipt($user, $order, $this->settings,$symbol));
-		} catch (\Throwable $th) {
-			//throw $th;
-		}
-		
-
-		\Cookie::queue(\Cookie::forget('cart'));
-		$request->session()->forget('content_owner_id');
-
-		return 1;
 	}
 
 
