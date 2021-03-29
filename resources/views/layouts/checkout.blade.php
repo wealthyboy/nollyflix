@@ -27,15 +27,7 @@
 		
 	</head>
 	<body>
-		<header id="masthead-pro">
-			<div class="container">
-				<nav class="navbar navbar-expand navbar-dark">
-                    <a class="navbar-brand" href="/">
-                        <img src="{{ $system_settings->logo_path() }}" width="180" height="150" class="d-inline-block align-top" alt="">
-                    </a>
-				</nav>
-			</div><!-- close .container -->
-		</header>
+		
 	
 		<div id="app">
   	 		@yield('content')
@@ -47,14 +39,7 @@
 					<div class="col-md">
 						<div class="copyright-text-pro">&copy; {{ Config('app.name') }}  {{ date('Y') }}. All rights reserved.</div>
 					</div><!-- close .col -->
-					<div class="col-md">
-						<ul class="social-icons-pro">
-							<li class="facebook-color"><a href="http://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="twitter-color"><a href="http://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li class="youtube-color"><a href="http://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a></li>
-							<li class="vimeo-color"><a href="http://vimeo.com" target="_blank"><i class="fab fa-vimeo-v"></i></a></li>
-						</ul>
-					</div><!-- close .col -->
+					
 				</div><!-- close .row -->
 			</div><!-- close .container -->
 		</footer>
