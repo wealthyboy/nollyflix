@@ -28,20 +28,15 @@ class CheckoutController extends Controller
 
 	public function __construct()
 	{
-		//$this->middleware('auth');
 		$this->settings =  SystemSetting::first();
 	}
 
 		
 	public function  index(Request $request)  { 
 		return $request->all();
-		$carts =  Cart::all_items_in_cart();
-		$csrf = json_encode(['csrf' => csrf_token()]);
-		$currency =  Helper::getCurrency();
+		$params =  $request->all();
 		return view('checkout.index',[
-				'csrf' => $csrf,
-				'carts' => $carts,
-				'currency' => $currency
+				'params' => $currency
 			]);
 	}
 
