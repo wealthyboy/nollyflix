@@ -2531,7 +2531,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.submit();
-    console.log(this.params);
   },
   methods: {
     loadScript: function loadScript(callback) {
@@ -2562,7 +2561,7 @@ __webpack_require__.r(__webpack_exports__);
           public_key: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",
           //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
           customer_email: 'jacob.atam@gmail.com',
-          amount: 900,
+          amount: context.params.price,
           currency: "NGN",
           country: "NG",
           tx_ref: "rave-" + Math.floor(Math.random() * 1000000000 + 1),
