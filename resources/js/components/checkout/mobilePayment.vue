@@ -3,8 +3,8 @@
         <div class="row no-gutters d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="payment-info">
-                     <div class="aligncenter">
-                        <h1>CHECKOUT</h1>
+                    <div class="aligncenter">
+                        <h1>Payment</h1>
                     </div>
                     
                     <hr class="line">
