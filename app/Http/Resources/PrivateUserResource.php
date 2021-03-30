@@ -18,7 +18,6 @@ class PrivateUserResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'name' => $this->name,
-            'videos' => $this->movies->load('video')
         ];
     }
 }
