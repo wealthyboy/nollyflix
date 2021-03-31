@@ -125,7 +125,7 @@ export default {
                             response.status == "successful" 
                         ) {
                             x.close();
-                            context.$store.commit('setLoading',true)
+                           // context.$store.commit('setLoading',true)
                            // location.href='/watch/' +context.$root.video.id
 
                             // axios.post('/checkout').then((res) => {
