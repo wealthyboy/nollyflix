@@ -2701,7 +2701,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit('setLoading', true);
       this.scriptLoaded && this.scriptLoaded.then(function () {
         var x = FlutterwaveCheckout({
-          public_key: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X",
+          public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
           //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
           customer_email: context.user.email,
           amount: context.price,
