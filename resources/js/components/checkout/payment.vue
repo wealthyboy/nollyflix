@@ -126,7 +126,7 @@ export default {
                         ) {
                             x.close();
                             context.$store.commit('setLoading',true)
-                            location.href='/watch/' +context.$root.video.id
+                           // location.href='/watch/' +context.$root.video.id
 
                             // axios.post('/checkout').then((res) => {
                             //     location.href='/watch/' +context.$root.video.id

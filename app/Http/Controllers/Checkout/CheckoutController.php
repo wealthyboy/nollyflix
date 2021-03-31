@@ -45,7 +45,6 @@ class CheckoutController extends Controller
 		$user     =  auth()->user();
 		$carts    =  Cart::all_items_in_cart();
 		$cart_ids =  $carts->pluck('id')->toArray();
-
 		$cart = new Cart();
 		$order->user_id        = $user->id;
 		$order->status         = 'Paid';
