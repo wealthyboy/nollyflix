@@ -126,11 +126,13 @@ export default {
                         ) {
                             x.close();
                             context.$store.commit('setLoading',true)
-                            axios.post('/checkout').then((res) => {
-                                location.href='/watch/' +context.$root.video.id
-                            }).catch((error) => {
-                                context.$store.commit('setLoading',false)
-                            })
+                            location.href='/watch/' +context.$root.video.id
+
+                            // axios.post('/checkout').then((res) => {
+                            //     location.href='/watch/' +context.$root.video.id
+                            // }).catch((error) => {
+                            //     context.$store.commit('setLoading',false)
+                            // })
 
                         } else {
                             x.close();

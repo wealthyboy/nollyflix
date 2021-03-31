@@ -119,6 +119,9 @@ Route::group(['middleware' => 'currencyByIp'], function(){
 
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
+Route::post('webhook/payment',     'WebHook\WebHookController@payment');
+
+
 
 
 
