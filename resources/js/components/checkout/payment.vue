@@ -109,6 +109,7 @@ export default {
                         id: context.user.id,
                         email: context.user.email,
                         name: context.user.name + ' ' +context.user.last_name,
+                        cart_id: 334
                     },
                     onclose: function() {
                         context.$store.commit('setLoading',false)

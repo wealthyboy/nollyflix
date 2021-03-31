@@ -2714,7 +2714,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           customer: {
             id: context.user.id,
             email: context.user.email,
-            name: context.user.name + ' ' + context.user.last_name
+            name: context.user.name + ' ' + context.user.last_name,
+            cart_id: 334
           },
           onclose: function onclose() {
             context.$store.commit('setLoading', false);
