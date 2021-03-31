@@ -7,11 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Order;
-use App\OrderedProduct;
 use App\Cart;
 use App\Currency;
-use App\Shipping;
-use App\ProductVariation;
 use App\Voucher;
 use App\Mail\OrderReceipt;
 use App\SystemSetting;
@@ -29,7 +26,7 @@ class WebHookController extends Controller
     }
     
 
-    public function payment(Request $request,OrderedProduct $ordered_product,Order $order)
+    public function payment(Request $request,Order $order)
     {   
         // if ( !array_key_exists('x-paystack-signature', $_SERVER) ) {
         //     return;
