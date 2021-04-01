@@ -2712,9 +2712,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           currency: context.user.iso_code,
           country: "NG",
           tx_ref: "rave-" + Math.floor(Math.random() * 1000000000 + 1),
-          meta: {
-            consumer_id: context.user.id
-          },
           customer: {
             id: 3,
             email: context.user.email,
