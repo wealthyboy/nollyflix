@@ -70,7 +70,6 @@ export default {
 
     methods: {
         buyOrRent(type,price){
-            //
             this.$store.commit('setBuyOrRent',type)
             this.$store.commit('setTitle','To purchase')
             this.$store.commit('setFormErrors',{})
@@ -88,7 +87,7 @@ export default {
 		    }
             
             return axios.post('/carts',payLoad).then((response) => {
-                console.log(response.data)
+                this.$store.commit('setCartId',response.data.cart)
             }).catch((error) => {
 
             }) 

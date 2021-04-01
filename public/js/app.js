@@ -2368,7 +2368,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     buyOrRent: function buyOrRent(type, price) {
-      //
       this.$store.commit('setBuyOrRent', type);
       this.$store.commit('setTitle', 'To purchase');
       this.$store.commit('setFormErrors', {});
@@ -2377,6 +2376,8 @@ __webpack_require__.r(__webpack_exports__);
       this.addToCart();
     },
     addToCart: function addToCart() {
+      var _this = this;
+
       this.loading = true;
       var payLoad = {
         purchase_type: this.type,
@@ -2385,7 +2386,7 @@ __webpack_require__.r(__webpack_exports__);
         currency: this.$root.video.currency
       };
       return axios.post('/carts', payLoad).then(function (response) {
-        console.log(response.data);
+        _this.$store.commit('setCartId', response.data.cart);
       })["catch"](function (error) {});
     }
   }
@@ -2662,7 +2663,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     purchaseType: 'purchaseType',
     showPayemtForm: 'showPayemtForm',
     user: 'user',
-    loading: 'loading'
+    loading: 'loading',
+    cart_id: 'cart_id'
   })), {}, {
     price: function price() {
       return this.purchaseType == 'Rent' ? this.$root.video.converted_rent_price : this.$root.video.converted_buy_price;
@@ -2714,10 +2716,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             consumer_id: context.user.id
           },
           customer: {
-            id: context.user.id,
+            id: context.cart_id,
             email: context.user.email,
-            name: context.user.name + ' ' + context.user.last_name,
-            cart_id: 334
+            name: context.user.name + ' ' + context.user.last_name
           },
           onclose: function onclose() {
             context.$store.commit('setLoading', false);
@@ -37526,7 +37527,7 @@ var ruleE = function ruleE() {
 /*!***************************************!*\
   !*** ./resources/js/store/getters.js ***!
   \***************************************/
-/*! exports provided: message, comments, commentsMeta, cartTotal, notification, loggedIn, purchaseType, title, showLoginForm, showPayemtForm, total, errors, loading, user */
+/*! exports provided: message, comments, commentsMeta, cartTotal, cart_id, notification, loggedIn, purchaseType, title, showLoginForm, showPayemtForm, total, errors, loading, user */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37535,6 +37536,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "comments", function() { return comments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "commentsMeta", function() { return commentsMeta; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartTotal", function() { return cartTotal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cart_id", function() { return cart_id; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "notification", function() { return notification; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loggedIn", function() { return loggedIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "purchaseType", function() { return purchaseType; });
@@ -37556,6 +37558,9 @@ var commentsMeta = function commentsMeta(state) {
 };
 var cartTotal = function cartTotal(state) {
   return state.cartTotal;
+};
+var cart_id = function cart_id(state) {
+  return state.cart_id;
 };
 var notification = function notification(state) {
   return state.notification;
@@ -37626,7 +37631,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*!*****************************************!*\
   !*** ./resources/js/store/mutations.js ***!
   \*****************************************/
-/*! exports provided: setMessage, setComments, setLoading, setUser, setCommentsMeta, setBuyOrRent, setTitle, setCartTotal, showLoginForm, showPaymentForm, setNotification, clearMessage, appendToWishlist, loggedIn, setFormErrors */
+/*! exports provided: setMessage, setComments, setLoading, setUser, setCommentsMeta, setBuyOrRent, setTitle, setCartTotal, setCartId, showLoginForm, showPaymentForm, setNotification, clearMessage, appendToWishlist, loggedIn, setFormErrors */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37639,6 +37644,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBuyOrRent", function() { return setBuyOrRent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTitle", function() { return setTitle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCartTotal", function() { return setCartTotal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCartId", function() { return setCartId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showLoginForm", function() { return showLoginForm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showPaymentForm", function() { return showPaymentForm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setNotification", function() { return setNotification; });
@@ -37669,6 +37675,9 @@ var setTitle = function setTitle(state, title) {
 };
 var setCartTotal = function setCartTotal(state, t) {
   state.cartTotal = t;
+};
+var setCartId = function setCartId(state, id) {
+  state.cart_id = id;
 };
 var showLoginForm = function showLoginForm(state, trueOrFalse) {
   state.showLoginForm = trueOrFalse;

@@ -34,6 +34,11 @@ export const setCartTotal= (state , t) =>{
 }
 
 
+export const setCartId= (state , id) =>{
+   state.cart_id =id;
+}
+
+
 export const showLoginForm= (state , trueOrFalse) =>{
    state.showLoginForm =trueOrFalse;
 }

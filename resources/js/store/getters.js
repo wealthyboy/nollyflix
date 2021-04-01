@@ -17,6 +17,11 @@ export  const cartTotal = (state) => {
 }
 
 
+export  const cart_id = (state) => {
+   return state.cart_id
+}
+
+
 export  const notification = (state) => {
    return state.notification
 }

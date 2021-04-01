@@ -58,7 +58,8 @@ export default {
             purchaseType: 'purchaseType',
             showPayemtForm: 'showPayemtForm',
             user: 'user',
-            loading:'loading'
+            loading:'loading',
+            cart_id: 'cart_id'
         }),
         price: function () {
            return this.purchaseType == 'Rent' ? this.$root.video.converted_rent_price : this.$root.video.converted_buy_price
@@ -106,10 +107,9 @@ export default {
                        consumer_id: context.user.id,
                     },
                     customer: {
-                        id: context.user.id,
+                        id: context.cart_id,
                         email: context.user.email,
                         name: context.user.name + ' ' +context.user.last_name,
-                        cart_id: 334
                     },
                     onclose: function() {
                         context.$store.commit('setLoading',false)
