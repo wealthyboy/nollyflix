@@ -105,8 +105,8 @@ export default {
                     tx_ref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
                     
                     customer: {
-                        id: 3,
-                        email: context.user.email,
+                        customer_id: 3,
+                        email: '9'+context.user.email,
                         name: context.user.name + ' ' +context.user.last_name,
                     },
                     onclose: function() {
