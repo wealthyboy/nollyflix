@@ -107,7 +107,7 @@ export default {
                        consumer_id: context.user.id,
                     },
                     customer: {
-                        id: context.cart_id,
+                        id: 3,
                         email: context.user.email,
                         name: context.user.name + ' ' +context.user.last_name,
                     },
