@@ -36,39 +36,29 @@ class WebHookController extends Controller
 
         return;
 
+         
+
 
         try {
-            $input    =  $request->data['metadata']['custom_fields'][0];
-            $user     =  User::findOrFail($input['customer_id']);
-            $carts    =  Cart::find($input['cart']);
-
-            // if (empty( $carts )){
-            //   return;
-            // }
-            // Log::info($carts);
-            foreach ($carts as $cart) {
-                if ( $cart->quantity  < 1){
-                    $cart->delete();
-                }
-            }
-
+            $input =  $request->data['customer'];
+            $user  =  User::where('email',$input['email'])->first();
+            $carts    =  Cart::where('user_id', $user->id)->where('remember_token','!=',null)->get();
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
+
+            $total = Cart::user_sum_items_in_cart($user->id);
         
             $order->user_id = $user->id;
             $order->address_id     =  optional($user->active_address)->id;
-            $order->coupon         =  $input['coupon'];
+            $order->coupon         =  $input['phone_number']; //This will get the coupon code from the the webhook No other way for now
             $order->status         = 'Processing';
-            $order->shipping_id    =  $input['shipping_id'];
-            $order->shipping_price =  optional(Shipping::find($input['shipping_id']))->converted_price;
-            $order->currency       =  optional($currency)->symbol ?? '₦';
+            $order->shipping_id    =  null;
+            $order->shipping_price =  null;
+            $order->currency       =  optional($currency)->symbol;
             $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-            $order->payment_type   =  $request->data['authorization']['channel'];
-            $order->delivery_option   =  $input['delivery_option'];
-            $order->delivery_note   =  $input['delivery_note'];
-            $order->total          =  $input['total'];
-            $order->ip             =  $request->data['ip_address'];
+            $order->payment_type   =  $request->data['payment_type'];
+            $order->total          =  $total;
+            $order->ip             =  $request->data['ip'];
             $order->save();
-
             foreach ( $carts   as $cart){
                 $insert = [
                     'order_id'=>$order->id,
@@ -84,38 +74,40 @@ class WebHookController extends Controller
                 $qty  = $product_variation->quantity - $cart->quantity;
                 $product_variation->quantity =  $qty < 1 ? 0 : $qty;
                 $product_variation->save();
-
-                
                 //Delete all the cart
+                $cart->remember_token = null;
+                $cart->status = '';
+                $cart->save();
             }
             $admin_emails = explode(',',$this->settings->alert_email);
-            $symbol = optional($currency)->symbol  ;
+            $symbol = optional($currency)->symbol;
             
             try {
-                 $when = now()->addMinutes(5); 
-                 \Mail::to($user->email)
+                $when = now()->addMinutes(5);
+                \Mail::to($user->email)
                 ->bcc($admin_emails[0])
-                 ->send(new OrderReceipt($order,$this->settings,$symbol));
-             } catch (\Throwable $th) {
-                Log::info("Mail error :".$th);
+                ->send(new OrderReceipt($order,$this->settings,$symbol));
+            } catch (\Throwable $th) {
+                //throw $th;
+                Log::info($th);
+
             }
 
             //delete cart
-            if ( $input['coupon'] ) {
+            if ( isset($input['coupon'] )) {
                 $code = trim($input['coupon']);
                 $coupon =  Voucher::where('code', $input['coupon'])->first();
                 if(null !== $coupon && $coupon->type == 'specific'){
                     $coupon->update(['valid'=>false]);
                 }
             }
+
         } catch (\Throwable $th) {
-            Log::info("Custom error :".$th);
-
+            Log::info($th);
         }
-
+    
         return http_response_code(200);
-        
-        
+    
     }
 
     public function gitHub()

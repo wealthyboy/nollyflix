@@ -12,6 +12,7 @@ export default {
     title: '',
     showLoginForm:false,
     showPayemtForm: true,
-    cartTotal: null
+    cartTotal: null,
+    cart_id: null
 
 } 

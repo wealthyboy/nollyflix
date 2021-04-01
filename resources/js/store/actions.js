@@ -60,7 +60,7 @@ export const register = ({ dispatch, commit },{ context }) => {
 
 export const IsLoggedIn = ({ commit },{ context, response }) => {
     commit('loggedIn',true)
-    commit('setUser',response.data.user)
+    commit('setUser', response.data.user )
     context.loading = false
     if (!store.getters.showPayemtForm){
         document.getElementById("close-modal").click()
@@ -69,6 +69,7 @@ export const IsLoggedIn = ({ commit },{ context, response }) => {
     $('.prfDrpdwn').removeClass('d-none')
     $('.prfLBtn').addClass('d-none')
 }
+
 
 export const createComments = ({commit} , { payload, context,form }) => {
     return axios.post('/comments/store',form).then((response) => {

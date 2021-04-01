@@ -65,7 +65,6 @@ export default {
             loading:false,
             price: null,
             type:null,
-
         }
     },
 
@@ -80,15 +79,16 @@ export default {
             this.addToCart()
         },
         addToCart() {
-            this.loading =true
+            this.loading = true
             var payLoad = {
                 purchase_type: this.type,
                 id: this.$root.video.id,
                 price: this.price,
                 currency: this.$root.video.currency,
 		    }
+            
             return axios.post('/carts',payLoad).then((response) => {
-                  
+                console.log(response)
             }).catch((error) => {
 
             }) 

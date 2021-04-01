@@ -2384,7 +2384,9 @@ __webpack_require__.r(__webpack_exports__);
         price: this.price,
         currency: this.$root.video.currency
       };
-      return axios.post('/carts', payLoad).then(function (response) {})["catch"](function (error) {});
+      return axios.post('/carts', payLoad).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {});
     }
   }
 });
@@ -37715,7 +37717,8 @@ __webpack_require__.r(__webpack_exports__);
   title: '',
   showLoginForm: false,
   showPayemtForm: true,
-  cartTotal: null
+  cartTotal: null,
+  cart_id: null
 });
 
 /***/ }),

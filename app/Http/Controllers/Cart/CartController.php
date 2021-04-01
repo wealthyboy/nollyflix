@@ -69,7 +69,7 @@ class CartController  extends Controller {
 			);
 
             return response()->json([
-				'count' => $this->loadCart()
+				'cart' => $result->id
 			],200);
 		}  else  {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
@@ -86,7 +86,7 @@ class CartController  extends Controller {
 			$cart->rate = optional($rate)->rate;
             $cart->save();
 			return response()->json([
-				'count' => 1
+				'cart' => $cart->id
 			])->withCookie($cookie);
 		}
     }
