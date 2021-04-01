@@ -2385,7 +2385,7 @@ __webpack_require__.r(__webpack_exports__);
         currency: this.$root.video.currency
       };
       return axios.post('/carts', payLoad).then(function (response) {
-        console.log(response);
+        console.log(response.data);
       })["catch"](function (error) {});
     }
   }

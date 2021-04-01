@@ -88,7 +88,7 @@ export default {
 		    }
             
             return axios.post('/carts',payLoad).then((response) => {
-                console.log(response)
+                console.log(response.data)
             }).catch((error) => {
 
             }) 
