@@ -41,7 +41,13 @@ class WebHookController extends Controller
 
         try {
             $input =  $request->data['customer'];
-            $user  =  User::where('email',$input['email'])->first();
+
+            //The phone_number carries the cart id. The payment process does not allow custom data
+            $cart     =   Cart::find($input['phone_number']);
+
+
+            $user     =    User::where('email',$input['email'])->first();
+            
             $carts    =  Cart::where('user_id', $user->id)->where('remember_token','!=',null)->get();
             $currency =  Currency::where('iso_code3',$request->data['currency'])->first();
 

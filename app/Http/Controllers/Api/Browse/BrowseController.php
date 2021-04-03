@@ -33,7 +33,7 @@ class BrowseController extends Controller
             $sections->load('videos','videos.casts','videos.related_videos.video')
         )
         ->additional(['meta' => [
-            'slides' =>  $featured_videos->load('video')->toJson()
+            'slides' =>  $featured_videos->load('video','videos.casts','videos.related_videos.video')->toJson()
         ]]);
     }
 
