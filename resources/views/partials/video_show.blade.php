@@ -170,8 +170,6 @@
         </div>
 
         <div id="video-more-like-this-details-section">
-          
-
 
             @if($video->related_videos->count())
             <h2 class="post-list-heading">More Like {{ $video->title }}<span></span></h2>

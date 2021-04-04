@@ -27,7 +27,7 @@
                             <div v-if="loading" class="row justify-content-center text-center">
                                 <div class="text-center col-md-9 col-12">
                                     <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                      {statusText}
+                                      Test
                                 </div>
                             </div>
                         </div>
@@ -104,8 +104,7 @@ export default {
                     amount: context.price,
                     currency:context.user.iso_code,
                     country: "NG",
-                    tx_ref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1), 
-                    
+                    tx_ref: "rave-"+ Math.floor((Math.random() * 1000000000) + 1),
                     customer: {
                         email: context.user.email,
                         phone_number:  context.cart_id,
