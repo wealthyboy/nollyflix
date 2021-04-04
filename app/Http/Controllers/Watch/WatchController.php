@@ -34,7 +34,8 @@ class WatchController extends Controller
         if ($request->watch === 'free'){
             $video = Video::find($id);
         } else {
-            $video = Cart::find($id)->video;
+            $video = Cart::where('video_id',$id)->firstOrFail();
+            $video = $video->video;
         }
         return view('watch.index',compact('video'));
     }
@@ -47,8 +48,8 @@ class WatchController extends Controller
      */
     public function expired($id)
     {
-        $video = Cart::find($id)->video;
-
+        $video = Cart::where('video_id',$id)->firstOrFail();
+        $video = $video->video;
         return view('watch.video_expired',compact('video'));
     }
 
