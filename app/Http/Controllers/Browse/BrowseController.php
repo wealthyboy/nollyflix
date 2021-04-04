@@ -12,7 +12,7 @@ use App\User;
 use App\Http\Helper;
 use App\Live;
 use Illuminate\Support\Str;
-use App\Cart;
+use App\Order;
 
 
 class BrowseController extends Controller
@@ -36,7 +36,7 @@ class BrowseController extends Controller
     {   
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        Cart::truncate();
+        Order::truncate();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         dd(true);
 
