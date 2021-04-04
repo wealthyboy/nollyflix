@@ -11,7 +11,7 @@
         controls 
         >
         <source src="{{ optional($video)->link }}" type="application/x-mpegURL">       
-         @if(optional($video)->track_file)
+         @if($video->track_file)
         <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
         @endif
     </video>
