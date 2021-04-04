@@ -2655,8 +2655,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      scriptLoaded: null,
-      statusText: ''
+      scriptLoaded: null
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
@@ -2704,7 +2703,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submit: function submit() {
       var context = this;
       this.$store.commit('setLoading', true);
-      this.statusText = "Your payment is in progress";
       this.scriptLoaded && this.scriptLoaded.then(function () {
         var x = FlutterwaveCheckout({
           public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
@@ -2731,10 +2729,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             });
 
             if (response.status == "successful") {
-              x.close();
-              context.$store.commit('setLoading', true);
-              this.statusText = "Payment Complete. Redirecting you to your video.....";
-              location.href = '/watch/' + context.$root.video.id;
+              x.close(); // context.$store.commit('setLoading',true)
+              // location.href='/watch/' +context.$root.video.id
+              // axios.post('/checkout').then((res) => {
+              //     location.href='/watch/' +context.$root.video.id
+              // }).catch((error) => {
+              //     context.$store.commit('setLoading',false)
+              // })
             } else {
               x.close();
               context.$store.commit('setLoading', false);
@@ -22701,7 +22702,7 @@ var staticRenderFns = [
         attrs: { role: "status", "aria-hidden": "true" }
       }),
       _vm._v(
-        "\n                                  Test\n                            "
+        "\n                                  Please wait. while we round things up\n                            "
       )
     ])
   },
