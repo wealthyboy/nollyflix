@@ -67,7 +67,7 @@ class WebHookController extends Controller
                 //throw $th;
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            Log::error($th);
 
 
         }
