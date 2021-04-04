@@ -15,7 +15,7 @@ bV.addEventListener('mouseleave',function(e) {
   bK.style.opacity ="0"
 })
 
-vidjs = videojs('video', {
+const vidjs = videojs('video', {
   html5: {
     hls: {
       overrideNative: !videojs.browser.IS_SAFAR}
