@@ -40,9 +40,6 @@ class WebHookController extends Controller
             //The phone_number carries the cart id. The payment process does not allow custom data
             $cart     =   Cart::find($input['phone_number']);
 
-            //$rate     =  Helper::rate();
-            $cart_ids =  $carts->pluck('id')->toArray();
-            $cart = new Cart();
             $order->user_id        = $cart->user->id;
             $order->status         = 'Paid';
             $order->currency       =  "NGN";
