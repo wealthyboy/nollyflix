@@ -16,6 +16,7 @@
                 <div v-else class="modal-body-pro social-login-modal-body-pro">
                     <register title="To purchase" />
                     <login title="To purchase" />
+                    <payment  @paymentCompleted="disableClick" />
                 </div><!-- close .modal-body -->
             </div><!-- close .modal-content -->
         </div><!-- close .modal-dialog -->
@@ -64,7 +65,6 @@ export default {
             me:'me',
         }),
         disableClick(value){
-            console.log(value)
             if (value == 'Completed'){
                 this.isPaymentCompleted = true
             } else {

@@ -2436,6 +2436,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2474,8 +2475,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     me: 'me'
   })), {}, {
     disableClick: function disableClick(value) {
-      console.log(value);
-
       if (value == 'Completed') {
         this.isPaymentCompleted = true;
       } else {
@@ -22225,10 +22224,10 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "purchase-btn-price-text-wrap p-3" }, [
                 _vm._v(
-                  "\n                Rent  " +
+                  "\n            Rent  " +
                     _vm._s(_vm.$root.video.currency) +
                     _vm._s(_vm.$root.video.converted_rent_price) +
-                    "\n                "
+                    "\n            "
                 ),
                 _c("div", { staticClass: "purchase-btn-price-subtext" }, [
                   _vm._v("48-hour streaming period")
@@ -22271,10 +22270,10 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticClass: "purchase-btn-price-text-wrap p-3" }, [
                 _vm._v(
-                  "\n                Buy  " +
+                  "\n            Buy  " +
                     _vm._s(_vm.$root.video.currency) +
                     _vm._s(_vm.$root.video.converted_buy_price) +
-                    "\n                "
+                    "\n            "
                 ),
                 _c("div", { staticClass: "purchase-btn-price-subtext" }, [
                   _vm._v("Streaming anytime")
@@ -22400,7 +22399,11 @@ var render = function() {
                   [
                     _c("register", { attrs: { title: "To purchase" } }),
                     _vm._v(" "),
-                    _c("login", { attrs: { title: "To purchase" } })
+                    _c("login", { attrs: { title: "To purchase" } }),
+                    _vm._v(" "),
+                    _c("payment", {
+                      on: { paymentCompleted: _vm.disableClick }
+                    })
                   ],
                   1
                 )
