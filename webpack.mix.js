@@ -5,6 +5,8 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/watch.js', 'public/js/watch.js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/watch.scss', 'public/css/watch.css')
+    .sass('resources/sass/video.scss', 'public/css/video.css')
+
 
 
 
