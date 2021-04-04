@@ -11,10 +11,12 @@
                 </div>
                 <div v-if="loading" class="modal-body-pro text-center social-login-modal-body-pro">
                      <span  v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                     
+                     {{ 'Loading...' }}
                 </div><!-- close .modal-body -->
                 <div v-else class="modal-body-pro social-login-modal-body-pro">
-                                   </div><!-- close .modal-body -->
+                    <register title="To purchase" />
+                    <login title="To purchase" />
+                </div><!-- close .modal-body -->
             </div><!-- close .modal-content -->
         </div><!-- close .modal-dialog -->
     </div><!-- close .modal -->

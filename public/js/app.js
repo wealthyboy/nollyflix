@@ -2434,6 +2434,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -22384,12 +22386,24 @@ var render = function() {
                           staticClass: "spinner-border spinner-border-sm",
                           attrs: { role: "status", "aria-hidden": "true" }
                         })
-                      : _vm._e()
+                      : _vm._e(),
+                    _vm._v(
+                      "\n                 " +
+                        _vm._s("Loading...") +
+                        "\n            "
+                    )
                   ]
                 )
-              : _c("div", {
-                  staticClass: "modal-body-pro social-login-modal-body-pro"
-                })
+              : _c(
+                  "div",
+                  { staticClass: "modal-body-pro social-login-modal-body-pro" },
+                  [
+                    _c("register", { attrs: { title: "To purchase" } }),
+                    _vm._v(" "),
+                    _c("login", { attrs: { title: "To purchase" } })
+                  ],
+                  1
+                )
           ])
         ]
       )
