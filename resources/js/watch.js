@@ -22,7 +22,7 @@ const vidjs = videojs('video', {
   autoplay:true
 })
 
-console.log(vidjs.getAllPlayers().length)
+console.log(vidjs.getAllPlayers.length)
 
 
 
