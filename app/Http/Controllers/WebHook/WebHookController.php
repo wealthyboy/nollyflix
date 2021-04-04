@@ -58,6 +58,8 @@ class WebHookController extends Controller
               'created_at' => now()
             ]);
             $admin_emails = explode(',',$this->settings->alert_email);
+            Log::info("Successfull payment");
+
             try {
                 $when = now()->addMinutes(5);
                 \Mail::to($user->email)
@@ -68,8 +70,6 @@ class WebHookController extends Controller
             }
         } catch (\Throwable $th) {
             Log::error($th);
-
-
         }
     
 
