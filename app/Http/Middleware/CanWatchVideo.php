@@ -28,18 +28,18 @@ class CanWatchVideo
         }
 
 
-        if ($request->user()->isAdmin()){
-            return $next($request);
-        }
+        // if ($request->user()->isAdmin()){
+        //     return $next($request);
+        // }
 
-        if ($request->watch === 'free'){
+        if ($request->watch  && $request->watch === 'free'){
             $video = Video::findOrFail($request->id);
             $this->viwed($video,$request);
             return $next($request);
         }
 
         $user  = auth()->user();
-        $video = Cart::findOrFail($request->id);
+        $video = Cart::where("video_id",$request->id)->firstOrFail();
         if ( $video->isVideoRentExpired() ){
             return redirect()->route('watch.expired',['id' => $request->id]);
         }
