@@ -9,7 +9,7 @@
     <div class="back">
         <a href="/"> <i class="fas fa-long-arrow-alt-left"></i></a>
     </div>
-    <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin"   
+    <video id="video"    muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin"   
         controls 
         >
         <source src="{{ optional($video)->link }}" type="application/x-mpegURL">       
