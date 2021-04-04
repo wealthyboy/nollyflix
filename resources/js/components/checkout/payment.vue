@@ -27,7 +27,7 @@
                             <div v-if="loading" class="row justify-content-center text-center">
                                 <div class="text-center col-md-9 col-12">
                                     <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                      Please wait. while we round things up
+                                      {statusText}
                                 </div>
                             </div>
                         </div>
@@ -50,6 +50,7 @@ export default {
     data(){
         return {
             scriptLoaded: null,
+            statusText: ''
         }
     },
     computed:{
@@ -95,6 +96,7 @@ export default {
         submit: function(){
             var context = this
             this.$store.commit('setLoading',true) 
+            this.statusText = "Your payment is in progress"
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
                     public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X", //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
@@ -124,8 +126,10 @@ export default {
                             response.status == "successful" 
                         ) {
                             x.close();
-                           // context.$store.commit('setLoading',true)
-                           // location.href='/watch/' +context.$root.video.id
+                            context.$store.commit('setLoading',true)
+                            this.statusText = "Payment Complete. Redirecting you to your video....."
+
+                            location.href='/watch/' + context.$root.video.id
 
                             // axios.post('/checkout').then((res) => {
                             //     location.href='/watch/' +context.$root.video.id
