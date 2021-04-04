@@ -34,12 +34,7 @@ class BrowseController extends Controller
      */
     public function index()
     {   
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-        Order::truncate();
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        dd(true);
-
+        
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
 
