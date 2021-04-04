@@ -227,4 +227,11 @@
 </div><!-- close #content-pro -->
 
 
-<modal />
+<div class="modal fade"   id="apModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
+    <button type="button"  id="close-modal" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
