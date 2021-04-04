@@ -16,6 +16,10 @@ import videojs from 'video.js'
 
   window.onload = (event) => {
 
+  let  bGv = document.querySelector('.background_video')
+  bGv.classList.remove('hide')
+
+
   
   const vidjs = videojs('video', {
     html5: {

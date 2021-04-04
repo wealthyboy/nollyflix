@@ -60846,6 +60846,8 @@ bV.addEventListener('mouseleave', function (e) {
 });
 
 window.onload = function (event) {
+  var bGv = document.querySelector('.background_video');
+  bGv.classList.remove('hide');
   var vidjs = Object(video_js__WEBPACK_IMPORTED_MODULE_0__["default"])('video', {
     html5: {
       hls: {
