@@ -227,4 +227,4 @@
 </div><!-- close #content-pro -->
 
 
-<checkout-index />
+<modal />

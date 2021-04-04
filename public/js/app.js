@@ -22102,7 +22102,7 @@ var render = function() {
               {
                 staticClass: "d-flex flex-row mb-2 rounded-0 btn-primary",
                 attrs: {
-                  href: "#",
+                  href: "#!",
                   "data-toggle": "modal",
                   "data-target": "#apModal"
                 },
@@ -22226,10 +22226,10 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "purchase-btn-price-text-wrap p-3" }, [
                 _vm._v(
-                  "\n            Rent  " +
+                  "\n                Rent  " +
                     _vm._s(_vm.$root.video.currency) +
                     _vm._s(_vm.$root.video.converted_rent_price) +
-                    "\n            "
+                    "\n                "
                 ),
                 _c("div", { staticClass: "purchase-btn-price-subtext" }, [
                   _vm._v("48-hour streaming period")
@@ -22272,10 +22272,10 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticClass: "purchase-btn-price-text-wrap p-3" }, [
                 _vm._v(
-                  "\n            Buy  " +
+                  "\n                Buy  " +
                     _vm._s(_vm.$root.video.currency) +
                     _vm._s(_vm.$root.video.converted_buy_price) +
-                    "\n            "
+                    "\n                "
                 ),
                 _c("div", { staticClass: "purchase-btn-price-subtext" }, [
                   _vm._v("Streaming anytime")
@@ -36519,7 +36519,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
-var CheckoutIndex = __webpack_require__(/*! ./components/checkout/Index.vue */ "./resources/js/components/checkout/Index.vue")["default"];
+var Modal = __webpack_require__(/*! ./components/checkout/Index.vue */ "./resources/js/components/checkout/Index.vue")["default"];
 
 var MobilePayment = __webpack_require__(/*! ./components/checkout/MobilePayment.vue */ "./resources/js/components/checkout/MobilePayment.vue")["default"];
 
@@ -36534,7 +36534,7 @@ var app = new Vue({
   store: _store__WEBPACK_IMPORTED_MODULE_0__["default"],
   data: Window.user || {},
   components: {
-    CheckoutIndex: CheckoutIndex,
+    Modal: Modal,
     Buttons: Buttons,
     Reviews: Reviews,
     ProfilePicture: ProfilePicture,
