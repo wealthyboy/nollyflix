@@ -2734,11 +2734,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               x.close();
               context.$store.commit('setLoading', true);
               this.statusText = "Payment Complete. Redirecting you to your video.....";
-              location.href = '/watch/' + context.$root.video.id; // axios.post('/checkout').then((res) => {
-              //     location.href='/watch/' +context.$root.video.id
-              // }).catch((error) => {
-              //     context.$store.commit('setLoading',false)
-              // })
+              location.href = '/watch/' + context.$root.video.id;
             } else {
               x.close();
               context.$store.commit('setLoading', false);

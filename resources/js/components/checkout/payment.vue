@@ -128,15 +128,7 @@ export default {
                             x.close();
                             context.$store.commit('setLoading',true)
                             this.statusText = "Payment Complete. Redirecting you to your video....."
-
                             location.href='/watch/' + context.$root.video.id
-
-                            // axios.post('/checkout').then((res) => {
-                            //     location.href='/watch/' +context.$root.video.id
-                            // }).catch((error) => {
-                            //     context.$store.commit('setLoading',false)
-                            // })
-
                         } else {
                             x.close();
                             context.$store.commit('setLoading',false)
