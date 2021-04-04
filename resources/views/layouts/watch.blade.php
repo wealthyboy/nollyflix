@@ -36,8 +36,6 @@
 		</section>
 
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
-
-		
 	</body>
 </html>
 
