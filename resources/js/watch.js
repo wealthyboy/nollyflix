@@ -1,7 +1,6 @@
 import videojs from 'video.js'
 
 
-var  v = document.getElementById('video')
 var  bV = document.querySelector('.background_video')
 var  bK = document.querySelector('.back')
 
