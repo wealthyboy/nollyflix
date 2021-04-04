@@ -37,7 +37,9 @@ class WatchController extends Controller
             $video = Cart::where('video_id',$id)->firstOrFail();
             $video = $video->video;
         }
-        return view('watch.index',compact('video'));
+
+        $title = "You are watching " .$video->title;
+        return view('watch.index',compact('video','title'));
     }
 
 
