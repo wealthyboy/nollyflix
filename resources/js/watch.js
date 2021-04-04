@@ -1,7 +1,6 @@
 import videojs from 'video.js'
 
 
-window.onload = (event) => {
   let  bV = document.querySelector('.background_video')
   let  bK = document.querySelector('.back')
   
@@ -14,6 +13,9 @@ window.onload = (event) => {
     bK.style.display ="none"
     bK.style.opacity ="0"
   })
+
+  window.onload = (event) => {
+
   
   const vidjs = videojs('video', {
     html5: {
