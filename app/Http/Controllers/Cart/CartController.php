@@ -75,15 +75,15 @@ class CartController  extends Controller {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart',$value);
 			$cookie = cookie('cart',session()->get('cart'), 60*60*7);
-			$cart->video_id = $request->id;
-			$cart->quantity   = 1;
-			$cart->price      = $request->price;
-            $cart->total      = $request->price * 1;
-			$cart->purchase_type = $request->purchase_type;
+			$cart->video_id          = $request->id;
+			$cart->quantity          = 1;
+			$cart->price             = $request->price;
+            $cart->total             = $request->price * 1;
+			$cart->purchase_type     = $request->purchase_type;
 			$cart->content_owner_id  = $content_owner_id;
-			$cart->remember_token =$cookie->getValue();
-			$cart->user_id    =  optional(auth()->user())->id;
-			$cart->rate = optional($rate)->rate;
+			$cart->remember_token    = $cookie->getValue();
+			$cart->user_id           =  optional(auth()->user())->id;
+			$cart->rate              =  optional($rate)->rate;
             $cart->save();
 			return response()->json([
 				'cart' => $cart->id

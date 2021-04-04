@@ -89,6 +89,13 @@ class Cart extends Model
 	}
 
 
+	public function user()
+	{
+	  	return $this->belongsTo('App\User');
+	}
+
+
+
 	public static function sum_items_in_cart() {   
 	   $cookie=\Cookie::get('cart'); 
        $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token',$cookie)->get();
