@@ -12,6 +12,7 @@ use App\User;
 use App\Http\Helper;
 use App\Live;
 use Illuminate\Support\Str;
+use App\Cart;
 
 
 class BrowseController extends Controller
@@ -33,7 +34,10 @@ class BrowseController extends Controller
      */
     public function index()
     {   
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
+        Cart::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
