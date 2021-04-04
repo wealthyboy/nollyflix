@@ -1,7 +1,7 @@
 <template>
     <!-- Modal -->
     <div class="modal fade"   id="apModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
-        <button type="button"  :class="{ 'pointer-events': isPaymentCompleted }" id="close-modal" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
+        <button type="button"   id="close-modal" class="close float-close-pro noselect" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -11,13 +11,10 @@
                 </div>
                 <div v-if="loading" class="modal-body-pro text-center social-login-modal-body-pro">
                      <span  v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                     {{ 'Loading...' }}
+                     
                 </div><!-- close .modal-body -->
                 <div v-else class="modal-body-pro social-login-modal-body-pro">
-                    <register title="To purchase" />
-                    <login title="To purchase" />
-                    <payment  @paymentCompleted="disableClick" />
-                </div><!-- close .modal-body -->
+                                   </div><!-- close .modal-body -->
             </div><!-- close .modal-content -->
         </div><!-- close .modal-dialog -->
     </div><!-- close .modal -->
