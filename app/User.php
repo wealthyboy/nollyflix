@@ -125,7 +125,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function movies()
     {
-        return $this->hasMany('App\Cart')->where('status','Complete')->orderBy('id','DESC');
+        return $this->hasMany('App\Cart')->orderBy('id','DESC');
     }
 	
 	/**
