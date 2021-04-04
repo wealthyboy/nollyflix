@@ -34,13 +34,13 @@ class WebHookController extends Controller
 
         Log::info($request->all());
         
-
-        
+        try {
+            
             $input =  $request->data['customer'];
             //The phone_number carries the cart id. The payment process does not allow custom data
             $cart     =   Cart::find($input['phone_number']);
 
-            $rate     =  Helper::rate();
+            //$rate     =  Helper::rate();
             $cart_ids =  $carts->pluck('id')->toArray();
             $cart = new Cart();
             $order->user_id        = $cart->user->id;
@@ -66,8 +66,12 @@ class WebHookController extends Controller
             } catch (\Throwable $th) {
                 //throw $th;
             }
-        
+        } catch (\Throwable $th) {
+            //throw $th;
 
+
+        }
+    
 
     }
 
