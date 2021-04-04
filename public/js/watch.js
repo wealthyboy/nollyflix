@@ -60852,6 +60852,7 @@ var vidjs = Object(video_js__WEBPACK_IMPORTED_MODULE_0__["default"])('video', {
   },
   autoplay: true
 });
+console.log(vidjs.getAllPlayers().length);
 vidjs.ready(function () {
   document.getElementById("video-page-title-pro").classList.add('hide');
   this.muted(false);

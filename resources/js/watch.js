@@ -22,6 +22,9 @@ const vidjs = videojs('video', {
   autoplay:true
 })
 
+console.log(vidjs.getAllPlayers().length)
+
+
 
 vidjs.ready(function() {
   document.getElementById("video-page-title-pro").classList.add('hide')
