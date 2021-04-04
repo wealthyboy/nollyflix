@@ -62,6 +62,8 @@ video[poster] {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #video {
