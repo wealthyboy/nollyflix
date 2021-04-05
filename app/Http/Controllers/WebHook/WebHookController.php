@@ -40,24 +40,14 @@ class WebHookController extends Controller
             //The phone_number carries the cart id. The payment process does not allow custom data
             $cart     =   Cart::find($input['phone_number']);
 
-            $order->user_id        = $cart->user->id;
-            $order->status         = 'Paid';
-            $order->currency       =  "NGN";
-            $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-            $order->purchase_type   = $cart->purchase_type;
-            $order->total          = $cart->user->cart_total;
-            $order->rate           = '0.00';
-            $order->ip             = $request->ip();
-            $order->content_owner_id  = $cart->content_owner_id;
-            $order->video_id  = $cart->video_id;
+            $order->user_id             = $cart->user->id;
+            $order->cart                = $cart->id;
+            $order->currency            =  "NGN";
+            $order->invoice             =  "INV-".date('Y')."-".rand(10000,39999);
+            $order->video_id            = $cart->video_id;
             $order->video_rent_expires  = now()->addDays(2);
-            $order->request_from  = $cart->request_from;
             $order->save();
-            $order->carts()->sync([$cart->id]);
-            $cart->update([
-              'status' => 'Complete',
-              'created_at' => now()
-            ]);
+            
             $admin_emails = explode(',',$this->settings->alert_email);
             Log::info("Successfull payment");
 
