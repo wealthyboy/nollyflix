@@ -11,6 +11,7 @@ use Carbon\Carbon;
 
 class Cart extends Model
 {
+	
     protected $fillable =[
         'purchase_type',
         'user_id',

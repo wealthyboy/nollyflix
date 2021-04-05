@@ -44,7 +44,7 @@ class WebHookController extends Controller
             $order->status         = 'Paid';
             $order->currency       =  "NGN";
             $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-            $order->payment_type   = $cart->purchase_type;
+            $order->purchase_type   = $cart->purchase_type;
             $order->total          = $cart->user->cart_total;
             $order->rate           = '0.00';
             $order->ip             = $request->ip();
