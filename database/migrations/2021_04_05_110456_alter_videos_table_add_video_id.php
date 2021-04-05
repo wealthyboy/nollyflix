@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterVideosAddAccessType extends Migration
+class AlterVideosTableAddVideoId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AlterVideosAddAccessType extends Migration
      */
     public function up()
     {
-        Schema::table('videos', function (Blueprint $table) {
-            $table->string('access_type')->nullable();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer("video_id")->nullable();
+            $table->string("request_from")->nullable();
+
         });
     }
 
@@ -25,8 +27,8 @@ class AlterVideosAddAccessType extends Migration
      */
     public function down()
     {
-        Schema::table('videos', function (Blueprint $table) {
-            $table->dropColumn('access_type');       
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('video_id','request_from');       
         });
     }
 }

@@ -29,7 +29,7 @@ class AlterVideosTableAddIsFree extends Migration
     public function down()
     {
         Schema::table('videos', function (Blueprint $table) {
-            Schema::dropIfExists('is_free','is_only_for_rent','is_only_for_buy','is_for_rent_and_buy');
+            $table->dropColumn('is_free','is_only_for_rent','is_only_for_buy','is_for_rent_and_buy');       
         });
     }
 }

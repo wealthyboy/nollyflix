@@ -44,10 +44,12 @@ class WebHookController extends Controller
             $order->status         = 'Paid';
             $order->currency       =  "NGN";
             $order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-            $order->payment_type   = 'online';
+            $order->payment_type   = $cart->purchase_type;
             $order->total          = $cart->user->cart_total;
             $order->rate           = '0.00';
             $order->ip             = $request->ip();
+            $order->content_owner_id  = $cart->content_owner_id;
+            $order->request_from  = $cart->request_from;
             $order->save();
             $order->carts()->sync([$cart->id]);
             $cart->update([
