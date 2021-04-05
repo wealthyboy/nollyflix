@@ -32,7 +32,8 @@ class WatchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request,Video $video)
-    {
+    {   
+        dd($video);
         if ($request->watch === 'free'){
             $video = $video;
         } else {
