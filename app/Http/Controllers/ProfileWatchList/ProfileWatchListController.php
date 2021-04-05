@@ -23,7 +23,7 @@ class ProfileWatchListController extends Controller
         $user = auth()->user();
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        dd(Cart::truncate());
+        Cart::truncate();
 
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
