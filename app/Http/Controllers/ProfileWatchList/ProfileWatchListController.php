@@ -5,6 +5,8 @@ namespace App\Http\Controllers\ProfileWatchList;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Order;
+
 
 class ProfileWatchListController extends Controller
 {
@@ -21,7 +23,13 @@ class ProfileWatchListController extends Controller
     public function index()
     {   
         $user = auth()->user();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
+        Cart::truncate();
+        Order::truncate();
+
+
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $active = "watchlists";
         $page_title = "Buy ,Rent Movies, Watchlists for {$user->fullname()}";
