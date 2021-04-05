@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\Video;
+use App\Order;
+
 
 class WatchController extends Controller
 {
@@ -29,12 +31,12 @@ class WatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id)
+    public function index(Request $request,Video $video)
     {
         if ($request->watch === 'free'){
-            $video = Video::find($id);
+            $video = $video;
         } else {
-            $video = Cart::where('video_id',$id)->firstOrFail();
+            $video = Order::where('video_id',$video->id)->firstOrFail();
             $video = $video->video;
         }
 
@@ -48,9 +50,9 @@ class WatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function expired($id)
+    public function expired(Video $video)
     {
-        $video = Cart::where('video_id',$id)->firstOrFail();
+        $video = Cart::where('video_id',$video->id)->firstOrFail();
         $video = $video->video;
         return view('watch.video_expired',compact('video'));
     }

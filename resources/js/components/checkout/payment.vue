@@ -128,7 +128,7 @@ export default {
                             x.close();
                            // context.$store.commit('setLoading',true)
                             this.statusText = "Redirecting you to your vidoe .Enjoy....."
-                            location.href='/watch/' +context.$root.video.id
+                            location.href='/watch/' +context.$root.video.slug
 
                             // axios.post('/checkout').then((res) => {
                             //     location.href='/watch/' +context.$root.video.id

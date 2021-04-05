@@ -2742,7 +2742,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               x.close(); // context.$store.commit('setLoading',true)
 
               this.statusText = "Redirecting you to your vidoe .Enjoy.....";
-              location.href = '/watch/' + context.$root.video.id; // axios.post('/checkout').then((res) => {
+              location.href = '/watch/' + context.$root.video.slug; // axios.post('/checkout').then((res) => {
               //     location.href='/watch/' +context.$root.video.id
               // }).catch((error) => {
               //     context.$store.commit('setLoading',false)

@@ -21,6 +21,11 @@ class Order extends Model
 	}
 
 
+	public function video(){
+	   return $this->belongsTo('App\Video');	
+	}
+
+
 	public function carts()
     {   
         return $this->belongsToMany('App\Cart');
@@ -34,6 +39,7 @@ class Order extends Model
 		}
 		return false;
 	}
+
 
 	public function getCouponDiscount($amount){
 		if($this->voucher()){
