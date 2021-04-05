@@ -14,9 +14,10 @@
 <meta property="og:title" content=" NollyFlix tv">
 <meta property="og:type" content="website">
 <meta property="og:description" content="Watch nollywood movies online">
-<script src='https://kit.fontawesome.com/a076d05399.js'></script> 
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="/css/app.css">
+
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
