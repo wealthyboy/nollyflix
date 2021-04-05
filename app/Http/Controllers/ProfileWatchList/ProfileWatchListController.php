@@ -22,7 +22,7 @@ class ProfileWatchListController extends Controller
     {   
         $user = auth()->user();
 
-        dd(Cart::all());
+        dd(Cart::truncate());
         $active = "watchlists";
         $page_title = "Buy ,Rent Movies, Watchlists for {$user->fullname()}";
         $page_meta_description = "Buy,Rent nollywood movies";

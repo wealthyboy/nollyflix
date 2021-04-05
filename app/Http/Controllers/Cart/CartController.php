@@ -69,7 +69,8 @@ class CartController  extends Controller {
 			);
 
             return response()->json([
-				'cart' => $result->id
+				'cart' => $result->id,
+				
 			],200);
 		}  else  {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
