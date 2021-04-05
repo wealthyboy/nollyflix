@@ -39,7 +39,7 @@ class CartController  extends Controller {
 
 
 		$this->validate($request,[
-		   'id' => 'required|exists:videos,id',
+		   'video_id' => 'required|exists:videos,id',
 		]);
 
 		$cart = new Cart;
@@ -52,44 +52,24 @@ class CartController  extends Controller {
 
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
 		
-		if (\Cookie::get('cart') !== null) {
-			$remember_token  = \Cookie::get('cart');
-			$result = $cart->updateOrCreate(
-				['remember_token' => $remember_token],
-				[
-					'video_id'   => $request->id,
-					'quantity'   => 1,
-					'price'      => $request->price,
-                    'total'      => $request->price * 1,
-					'user_id'    => optional(auth()->user())->id,
-					'content_owner_id'  => $content_owner_id,
-					'purchase_type' => $request->purchase_type,
-					'rate' => optional($rate)->rate
-				]
-			);
+		$result = $cart->updateOrCreate(
+			['id' => $request->cart_id],
+			[
+				'video_id'   => $request->video_id,
+				'quantity'   => 1,
+				'price'      => $request->price,
+				'total'      => $request->price * 1,
+				'user_id'    => optional(auth()->user())->id,
+				'content_owner_id'  => $content_owner_id,
+				'purchase_type' => $request->purchase_type,
+				'rate' => optional($rate)->rate
+			]
+		);
 
-            return response()->json([
-				'cart' => $result->id,
-				
-			],200);
-		}  else  {
-			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
-			session()->put('cart',$value);
-			$cookie = cookie('cart',session()->get('cart'), 60*60*7);
-			$cart->video_id          = $request->id;
-			$cart->quantity          = 1;
-			$cart->price             = $request->price;
-            $cart->total             = $request->price * 1;
-			$cart->purchase_type     = $request->purchase_type;
-			$cart->content_owner_id  = $content_owner_id;
-			$cart->remember_token    = $cookie->getValue();
-			$cart->user_id           =  optional(auth()->user())->id;
-			$cart->rate              =  optional($rate)->rate;
-            $cart->save();
-			return response()->json([
-				'cart' => $cart->id
-			])->withCookie($cookie);
-		}
+		return response()->json([
+			'cart' => $result->id,
+		],200);
+	
     }
 
 	public function loadCart()

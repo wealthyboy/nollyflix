@@ -67,7 +67,12 @@ export default {
             type:null,
         }
     },
-
+    computed:{
+        ...mapGetters({
+            cart_id: 'cart_id'
+        }),
+        
+    },
     methods: {
         buyOrRent(type,price){
             this.$store.commit('setBuyOrRent',type)
@@ -81,7 +86,8 @@ export default {
             this.loading = true
             var payLoad = {
                 purchase_type: this.type,
-                id: this.$root.video.id,
+                video_id: this.$root.video.id,
+                cart_id: this.cart_id,
                 price: this.price,
                 currency: this.$root.video.currency,
 		    }
