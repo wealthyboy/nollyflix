@@ -49,6 +49,8 @@ class WebHookController extends Controller
             $order->rate           = '0.00';
             $order->ip             = $request->ip();
             $order->content_owner_id  = $cart->content_owner_id;
+            $order->video_id  = $cart->video_id;
+
             $order->request_from  = $cart->request_from;
             $order->save();
             $order->carts()->sync([$cart->id]);
