@@ -14,7 +14,7 @@ class AlterOrdersTableAddContentOwnerId extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
+            $table->integer("content_owner_id")->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AlterOrdersTableAddContentOwnerId extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
+            $table->dropColumn('content_owner_id');       
         });
     }
 }
