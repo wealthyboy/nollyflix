@@ -34,8 +34,7 @@ class BrowseController extends Controller
      */
     public function index()
     {   
-        dd(\Schema::getColumnListing('orders'));
-        ;
+        
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get();
