@@ -11,6 +11,7 @@ class Order extends Model
 {
     
 	
+	protected $dates = ['video_rent_expires'];
 
 	public function ordered_movies(){
 	   return $this->hasMany('App\OrderedMovie');

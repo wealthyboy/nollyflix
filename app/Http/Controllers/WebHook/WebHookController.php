@@ -50,7 +50,7 @@ class WebHookController extends Controller
             $order->ip             = $request->ip();
             $order->content_owner_id  = $cart->content_owner_id;
             $order->video_id  = $cart->video_id;
-
+            $order->video_rent_expires  = now()->addDays(2);
             $order->request_from  = $cart->request_from;
             $order->save();
             $order->carts()->sync([$cart->id]);

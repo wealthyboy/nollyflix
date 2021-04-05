@@ -20,10 +20,10 @@ class WatchController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('CanWatchVideo',['except' => [
-        //         'expired'
-        //     ]
-        // ]);
+        $this->middleware('auth',['except' => [
+                'expired'
+            ]
+        ]);
     }
 
     /**
@@ -36,8 +36,19 @@ class WatchController extends Controller
         if ($request->watch === 'free'){
             $video = $video;
         } else {
-            $video = Order::where('video_id',$video->id)->firstOrFail();
-            $video = $video->video;
+
+            $order = Order::where('video_id',$video->id)->firstOrFail();
+
+            // if ($order->purchase_type == 'Rent') {
+
+            // }
+
+
+            // if ( $video->created_at->isFuture() ){
+            //     return redirect()->route('watch.expired',['id' => $request->id]);
+            // }
+
+            $video = $order->video;
         }
 
         $title = "You are watching " .$video->title;
