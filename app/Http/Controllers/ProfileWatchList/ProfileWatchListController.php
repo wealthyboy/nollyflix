@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ProfileWatchList;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Cart;
 
 class ProfileWatchListController extends Controller
 {
@@ -20,6 +21,8 @@ class ProfileWatchListController extends Controller
     public function index()
     {   
         $user = auth()->user();
+
+        dd(Cart::all());
         $active = "watchlists";
         $page_title = "Buy ,Rent Movies, Watchlists for {$user->fullname()}";
         $page_meta_description = "Buy,Rent nollywood movies";
