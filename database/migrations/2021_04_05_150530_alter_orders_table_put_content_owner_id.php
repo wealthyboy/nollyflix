@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterOrdersTableAddContentOwnerId extends Migration
+class AlterOrdersTablePutContentOwnerId extends Migration
 {
     /**
      * Run the migrations.
@@ -26,7 +26,7 @@ class AlterOrdersTableAddContentOwnerId extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('content_owner_id');       
+            $table->dropColumn('content_owner_id');
         });
     }
 }
