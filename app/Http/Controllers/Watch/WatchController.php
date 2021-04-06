@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Cart;
 use App\Video;
 use App\Order;
+use App\View;
 
 
 class WatchController extends Controller
