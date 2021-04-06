@@ -37,16 +37,14 @@ class WatchController extends Controller
             $video = $video;
         } else {
 
+            $video->video_rent_expires = '2020-10-27 15:55:08';
+            $video->save();
+
             $order = Order::where('video_id',$video->id)->firstOrFail();
 
-            // if ($order->purchase_type == 'Rent') {
-
-            // }
-
-
-            // if ( $video->created_at->isFuture() ){
-            //     return redirect()->route('watch.expired',['id' => $request->id]);
-            // }
+            if ($order->cart->purchase_type == 'Rent'  &&  !$video->video_rent_expires->isFuture()) {
+                return redirect()->route('watch.expired',['video' => $video->slug]);
+            }
 
             $video = $order->video;
         }
