@@ -47,6 +47,7 @@ class WatchController extends Controller
             $video = $order->video;
         }
 
+        $this->viwed($video);
         $title = "You are watching " .$video->title;
         return view('watch.index',compact('video','title'));
     }
@@ -62,6 +63,29 @@ class WatchController extends Controller
         $video = Cart::where('video_id',$video->id)->firstOrFail();
         $video = $video->video;
         return view('watch.video_expired',compact('video'));
+    }
+
+
+    protected function viwed($video){
+        /**
+         * Check if user has already viewed the video
+         */
+        $user  = auth()->user();
+
+        $view = View::where([
+            'user_id' => $user->id,
+            'video_id' => $video->id,
+        ])->first();
+
+        /**
+         * Create view if user has not viewed the video 
+         */
+        if (!$view){
+            $view = new View;
+            $view->user_id = $user->id;
+            $view->video_id = $video->id;
+            $view->save();
+        }
     }
 
    

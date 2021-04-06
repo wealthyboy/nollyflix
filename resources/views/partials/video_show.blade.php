@@ -4,14 +4,14 @@
     <a class="video-page-title-play-button afterglow play-trailer" id="play-trailer" href="#Video"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
 </div><!-- close #video-page-title-pro -->
 <div class="video-box">
-<video id="shows" class="video-js vjs-default-skin"  style="height: 85vh;width: 100%;object-fit: cover;" data-setup ='{}'
-     poster='{{ optional($video)->poster }}'
-    data-setup='{ "playbackRates": [1, 1.5, 2] }'>
-    <source src="{{ optional($video)->preview_link }}">
-    @if(optional($video->video)->track_file)
-    <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
-    @endif
-</video>
+  <video id="shows" class="video-js vjs-default-skin"  style="height: 85vh;width: 100%;object-fit: cover;" data-setup ='{}'
+      poster='{{ optional($video)->poster }}'
+      data-setup='{ "playbackRates": [1, 1.5, 2] }'>
+      <source src="{{ optional($video)->preview_link }}">
+      @if(optional($video->video)->track_file)
+      <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
+      @endif
+  </video>
 
 <div class="controls-container">
       <div class="progress-controls">
