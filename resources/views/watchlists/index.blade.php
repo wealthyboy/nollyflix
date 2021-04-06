@@ -47,7 +47,7 @@
                                                   @if ($video->video_rent_expires->isFuture())
                                                     Expires:  {{  $video->video_rent_expires->format('d/m/y')  }}
                                                   @else
-                                                    Rent Expired
+                                                    Rent Expired  
                                                   @endif
                                                 </div>
                                             @endif

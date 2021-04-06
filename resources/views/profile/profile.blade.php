@@ -26,7 +26,7 @@
         <div class="row">
             @if($user->profile_videos->count())
             @foreach($user->profile_videos as $video)
-                <div class="col item col-6 col-md-6 col-lg-3 mt-3">
+                <div class="col item col-6 col-md-6 col-lg-2 mt-3">
                     <div class="progression-studios-video-index-container">
                         <a href="/browse/{{ $video->slug }}">
 
