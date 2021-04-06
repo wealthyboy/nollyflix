@@ -62,7 +62,9 @@ class CartController  extends Controller {
 				'user_id'    => optional(auth()->user())->id,
 				'content_owner_id'  => $content_owner_id,
 				'purchase_type' => $request->purchase_type,
-				'rate' => optional($rate)->rate
+				'rate' => optional($rate)->rate,
+				'request_from' => $request->from
+
 			]
 		);
 

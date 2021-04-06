@@ -40,42 +40,32 @@ class CheckoutController extends Controller
 	}
 
     public function store(Request $request,Order $order) { 
-		
-		$rate     =  Helper::rate();
-		$user     =  auth()->user();
-		$carts    =  Cart::all_items_in_cart();
-		$cart_ids =  $carts->pluck('id')->toArray();
-		$cart = new Cart();
-		$order->user_id        = $user->id;
-		$order->status         = 'Paid';
-		$order->currency       =  $user->currency;
-		$order->invoice        =  "INV-".date('Y')."-".rand(10000,39999);
-		$order->payment_type   = 'online';
-		$order->total          = $user->cart_total;
-		$order->rate           = optional($rate)->rate;
-		$order->ip             = $request->ip();
-		$order->user_agent     = $request->server('HTTP_USER_AGENT');
-		$order->save();
-		$order->carts()->sync($cart_ids);
-		$user->carts()->update([
-		   'status' => 'Complete',
-		   'created_at' => now()
-		]);
-		$admin_emails = explode(',',$this->settings->alert_email);
-		$symbol = Helper::getCurrency();
-		
+
+
+		$cart     =   Cart::find($request->cart_id);
+
+		$order = Order::firstOrCreate(
+			['cart_id' =>  $request->cart_id],
+			[
+				'user_id'  => $cart->user->id,
+				'currency' => '₦',
+				'invoice'  => "INV-".date('Y')."-".rand(10000,39999),
+				'video_id' => $cart->video_id,
+				'video_rent_expires' => now()->addDays(2)
+			]
+		);
+
+
 		try {
 			$when = now()->addMinutes(5);
 			\Mail::to($user->email)
 				->bcc($admin_emails[0])
-				->later($when, new OrderReceipt($user, $order, $this->settings,$symbol));
+				->later($when, new OrderReceipt($cart->user, $order, $this->settings,"₦"));
 		} catch (\Throwable $th) {
 			//throw $th;
 		}
-		
 
-		\Cookie::queue(\Cookie::forget('cart'));
-		$request->session()->forget('content_owner_id');
+        
 
 		return 1;
 	}

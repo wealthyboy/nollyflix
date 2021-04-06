@@ -2393,7 +2393,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         video_id: this.$root.video.id,
         cart_id: this.cart_id,
         price: this.price,
-        currency: this.$root.video.currency
+        currency: this.$root.video.currency,
+        from: 'web'
       };
       return axios.post('/carts', payLoad).then(function (response) {
         _this.$store.commit('setCartId', response.data.cart);
@@ -2741,12 +2742,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (response.status == "successful") {
               x.close(); // context.$store.commit('setLoading',true)
 
-              this.statusText = "Redirecting you to your vidoe .Enjoy....."; //location.href='/watch/' +context.$root.video.slug
-              // axios.post('/checkout').then((res) => {
-              //     location.href='/watch/' +context.$root.video.id
-              // }).catch((error) => {
-              //     context.$store.commit('setLoading',false)
-              // })
+              context.statusText = "Redirecting you to your vidoe .Enjoy.....";
+              axios.post('/checkout', {
+                cart_id: context.cart_id
+              }).then(function (res) {
+                location.href = '/watch/' + context.$root.video.slug;
+              })["catch"](function (error) {
+                context.$store.commit('setLoading', false);
+              });
             } else {
               x.close();
               context.$store.commit('setLoading', false);

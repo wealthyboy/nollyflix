@@ -90,6 +90,8 @@ export default {
                 cart_id: this.cart_id,
                 price: this.price,
                 currency: this.$root.video.currency,
+                from: 'web',
+
 		    }
             return axios.post('/carts',payLoad).then((response) => {
                 this.$store.commit('setCartId',response.data.cart)

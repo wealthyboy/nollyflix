@@ -10,7 +10,16 @@ use App\SystemSetting;
 class Order extends Model
 {
     
-	
+	protected $fillable = [
+		'user_id',
+		'currency',
+		'invoice',
+		'video_id',
+		'video_rent_expires',
+		'cart_id'
+	];
+
+
 	protected $dates = ['video_rent_expires'];
 
 	public function ordered_movies(){

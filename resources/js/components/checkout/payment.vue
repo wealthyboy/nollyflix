@@ -127,14 +127,15 @@ export default {
                         ) {
                             x.close();
                            // context.$store.commit('setLoading',true)
-                            this.statusText = "Redirecting you to your vidoe .Enjoy....."
-                            //location.href='/watch/' +context.$root.video.slug
+                            context.statusText = "Redirecting you to your vidoe .Enjoy....."
 
-                            // axios.post('/checkout').then((res) => {
-                            //     location.href='/watch/' +context.$root.video.id
-                            // }).catch((error) => {
-                            //     context.$store.commit('setLoading',false)
-                            // })
+                            axios.post('/checkout',{
+                                cart_id: context.cart_id
+                            }).then((res) => {
+                              location.href='/watch/' +context.$root.video.slug
+                            }).catch((error) => {
+                                context.$store.commit('setLoading',false)
+                            })
 
                         } else {
                             x.close();

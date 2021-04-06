@@ -22,7 +22,9 @@ class Cart extends Model
 		'video_id',
 		'content_owner_id',
 		'rate',
-		'created_at'
+		'created_at',
+		'request_from'
+
     ];
 
 
@@ -54,6 +56,7 @@ class Cart extends Model
     {   
         return $this->belongsToMany('App\Order');
 	}
+
 
 	public function videoExpires()
 	{
