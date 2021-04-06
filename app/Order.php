@@ -36,9 +36,9 @@ class Order extends Model
 	}
 
 
-	public function carts()
+	public function cart()
     {   
-        return $this->belongsToMany('App\Cart');
+        return $this->belongsTo('App\Cart');
 	}
 
 
