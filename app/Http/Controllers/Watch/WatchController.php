@@ -44,7 +44,7 @@ class WatchController extends Controller
             $order->save();
 
 
-            if ($order->cart->purchase_type == 'Rent'  &&  !$video->video_rent_expires->isFuture()) {
+            if ($order->cart->purchase_type == 'Rent'  &&  !$order->video_rent_expires->isFuture()) {
                 return redirect()->route('watch.expired',['video' => $video->slug]);
             }
 
