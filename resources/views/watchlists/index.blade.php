@@ -34,7 +34,6 @@
                                                         <li></li>
                                                     </ul>												
                                                     <div class="clearfix"></div>
-                                        
                                                 </div><!-- close .progression-video-index-vertical-align -->
                                             </div><!-- close .progression-video-index-table -->
                                         </div><!-- close .progression-video-index-content -->
@@ -44,7 +43,13 @@
                                         </div>
                                         <div class="ml-2">
                                             @if (optional($video->cart)->purchase_type == 'Rent')
-                                               <div class="progression-video-title">Expires:  {{  $video->video_rent_expires->format('d/m/y')  }}</div>
+                                                <div class="progression-video-title">
+                                                  @if ($video->video_rent_expires->isFuture())
+                                                    Expires:  {{  $video->video_rent_expires->format('d/m/y')  }}
+                                                  @else
+                                                    Rent Expired
+                                                  @endif
+                                                </div>
                                             @endif
                                         </div>
                                        
