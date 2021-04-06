@@ -2,6 +2,13 @@ require('./bootstrap');
 
 
 require("@fancyapps/fancybox")
+require ('../../public/js/navigation.js')
+require ('../../public/js/jquery.flexslider-min.js')
+require ('../../public/js/owl.carousel.min.js')
+require ('../../public/js/scripts.js')
+
+
+
 window.Vue = require('vue');
 
 import store from './store'
