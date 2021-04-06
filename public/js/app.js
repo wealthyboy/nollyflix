@@ -22653,7 +22653,27 @@ var render = function() {
                               staticClass:
                                 "row justify-content-center text-center"
                             },
-                            [_vm._m(1)]
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "text-center col-md-9 col-12" },
+                                [
+                                  _c("span", {
+                                    staticClass:
+                                      "spinner-border spinner-border-sm",
+                                    attrs: {
+                                      role: "status",
+                                      "aria-hidden": "true"
+                                    }
+                                  }),
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(_vm.statusText) +
+                                      "\n                            "
+                                  )
+                                ]
+                              )
+                            ]
                           )
                         : _vm._e()
                     ])
@@ -22689,7 +22709,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: { click: _vm.submit }
                         },
-                        [_vm._m(2)]
+                        [_vm._m(1)]
                       )
                     ])
                   : _vm._e()
@@ -22707,20 +22727,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "aligncenter" }, [
       _c("h1", [_vm._v("CHECKOUT")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center col-md-9 col-12" }, [
-      _c("span", {
-        staticClass: "spinner-border spinner-border-sm",
-        attrs: { role: "status", "aria-hidden": "true" }
-      }),
-      _vm._v(
-        "\n                                {}\n                            "
-      )
     ])
   },
   function() {

@@ -27,7 +27,7 @@
                             <div v-if="loading" class="row justify-content-center text-center">
                                 <div class="text-center col-md-9 col-12">
                                     <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    {}
+                                    {{ statusText }}
                                 </div>
                             </div>
                         </div>
