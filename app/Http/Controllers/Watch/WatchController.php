@@ -33,7 +33,7 @@ class WatchController extends Controller
      */
     public function index(Request $request,Video $video)
     {    
-
+        dd($video->load('cart'));
         if ($request->watch === 'free'){
             $video = $video;
         } else {
