@@ -51,7 +51,7 @@
                     </div><!-- close .progression-studios-video-index-container -->
                     <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
                         <div class="mx-auto buy-rent-links">
-                        @include('partials.links')
+                           @include('partials.links')
                         </div>
                     </div><!-- close #video-post-buttons-container -->
                 </div><!-- close .col -->
@@ -59,7 +59,7 @@
              
             @else
                <div class="col col-12 col-md-6 col-lg-4">
-                     No videos for  {{ $user->fullname() }}
+                    No videos for  {{ $user->fullname() }}
                </div>
             @endif
         </div><!-- close .row -->
