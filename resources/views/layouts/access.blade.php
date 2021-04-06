@@ -72,7 +72,6 @@
 		<script src="/js/navigation.js"></script><!-- Header Navigation JS Plugin -->
 		<script src="/js/jquery.flexslider-min.js"></script><!-- FlexSlider JS Plugin -->	
 		<script src="/js/owl.carousel.min.js"></script><!-- Carousel JS Plugin -->
-		<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 		@yield('page-scripts')
 		<script src="/js/scripts.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 	</body>

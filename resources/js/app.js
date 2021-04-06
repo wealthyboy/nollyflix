@@ -1,7 +1,9 @@
 require('./bootstrap');
 
 
+require("@fancyapps/fancybox")
 window.Vue = require('vue');
+
 import store from './store'
 
 const Modal = require('./components/checkout/Index.vue').default

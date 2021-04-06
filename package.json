@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@fancyapps/fancybox": "^3.5.7",
         "@fortawesome/fontawesome-free": "^5.15.3",
         "hls.js": "^0.14.17",
         "node-forge": ">=0.10.0",
