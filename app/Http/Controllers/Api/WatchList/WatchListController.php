@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Api\ProfileWatchList;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Resources\WatchList;
+
+
+
+class WatchListController extends Controller
+{
+    
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {   
+        $user = auth()->user();
+        return WatchList::collection(
+            $user->movies->load('video')
+        );
+    }
+}
