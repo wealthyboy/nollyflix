@@ -151,7 +151,7 @@
       <div class="container" style="background: #1c1f1f">
          <reviews />
       </div>
-      <div id="video-more-like-this-details-section">
+      <div class="container" id="video-more-like-this-details-section">
          @if($video->related_videos->count())
          <h2 class="post-list-heading">More Like {{ $video->title }}<span></span></h2>
          <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
