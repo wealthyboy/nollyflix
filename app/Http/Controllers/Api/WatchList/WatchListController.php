@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\WatchList;
+namespace App\Http\Controllers\Api\WatchList;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
