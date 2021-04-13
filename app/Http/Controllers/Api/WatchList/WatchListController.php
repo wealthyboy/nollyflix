@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api\ProfileWatchList;
+namespace App\Http\Controllers\ProfileWatchList;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\WatchList;
 
 
 
 class WatchListController extends Controller
 {
-    
+    public function __construct()
+    {
+       $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
