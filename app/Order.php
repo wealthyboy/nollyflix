@@ -19,6 +19,10 @@ class Order extends Model
 		'cart_id'
 	];
 
+	public $appends = [
+        'is_rent_expired'
+	];
+
 
 	protected $dates = ['video_rent_expires'];
 
@@ -76,6 +80,11 @@ class Order extends Model
 		}
 		return number_format($this->total);
 	}
+
+
+	public function getIsRentExpiredAttribute() {
+        return null !== $this->video_rent_expires && !$this->video_rent_expires->isFuture() ? true : false;
+    }
 
 
 	

@@ -242,4 +242,7 @@ class Video extends Model
     public function getYearReleaseAttribute() {
         return null !== $this->release_date ?  $this->release_date->format('Y') : null;
     }
+
+
+    
 }

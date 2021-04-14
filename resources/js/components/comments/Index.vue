@@ -1,6 +1,6 @@
 <template>
 
-    <div class="row pt-5 ">
+    <div class="row pt-5">
         <div class="col-12 col-lg-6 mb-5">
             <div v-if="loggedIn" class="review-form-wrapper">
                 <h3 class="review-title text-uppercase ml-3 mb-3">Add a Comment</h3>
@@ -12,16 +12,16 @@
                     <div class="form-group">
                         <label>Your Comment<span class="req">*</span></label>
                         <textarea   
-                                id="comment" 
-                                v-model="form.description" 
-  
-                                name="description" 
-                                class="form-control rating_required" 
-                                cols="45" 
-                                rows="10"
-                                aria-required="true" 
-                                 @input="removeError($event)"
-                                @blur="vInput($event)" 
+                            id="comment" 
+                            v-model="form.description" 
+
+                            name="description" 
+                            class="form-control rating_required" 
+                            cols="45" 
+                            rows="10"
+                            aria-required="true" 
+                                @input="removeError($event)"
+                            @blur="vInput($event)" 
                         >
                         </textarea>
                             
