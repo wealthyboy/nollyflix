@@ -28132,7 +28132,7 @@ var render = function() {
             {
               staticClass: "invisible",
               attrs: {
-                href: "exp://wg-qka.community.nollywood.exp.direct:80",
+                href: "exp://expo.io/@wealthyboyjacky/nollywood",
                 id: "open-app"
               }
             },
