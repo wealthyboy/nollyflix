@@ -8,6 +8,7 @@
                     </div>
                     
                     <hr class="line">
+                    <a href="exp://192.168.8.105:19000" id="open-app" class="invisible">Open app</a>
                     <div>
                         <button class="btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 " @click="submit" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
                     </div>
@@ -60,7 +61,7 @@ export default {
             this.$store.commit('setLoading',true) 
             this.scriptLoaded && this.scriptLoaded.then(() => {
                 var x = FlutterwaveCheckout({
-                    public_key: "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X", //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
+                    public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X", //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
                     customer_email: 'jacob.atam@gmail.com',
                     amount: context.params.price,
                     currency:"NGN",
@@ -78,6 +79,11 @@ export default {
                         context.$store.commit('setLoading',false)
                     },
                     callback: function (response) {
+                        x.close();
+
+                        if ( response.status == "successful" ){
+                            document.getElementById("open-app").click()
+                        }
                         context.$emit('paymentCompleted', 'Completed')
                         alert("done")
                     },
