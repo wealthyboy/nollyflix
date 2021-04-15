@@ -8,7 +8,7 @@
                     </div>
                     
                     <hr class="line">
-                    <a href="exp://192.168.8.105:19000" id="open-app" class="invisible">Open app</a>
+                    <a href="exp://wg-qka.community.nollywood.exp.direct:80" id="open-app" class="invisible">Open app</a>
                     <div>
                         <button class="btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 " @click="submit" type="button"> <span>MAKE PAYMENT<i class="fa fa-long-arrow-right ml-1"></i></span></button>
                     </div>

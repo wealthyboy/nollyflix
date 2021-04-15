@@ -28131,7 +28131,10 @@ var render = function() {
             "a",
             {
               staticClass: "invisible",
-              attrs: { href: "exp://192.168.8.105:19000", id: "open-app" }
+              attrs: {
+                href: "exp://wg-qka.community.nollywood.exp.direct:80",
+                id: "open-app"
+              }
             },
             [_vm._v("Open app")]
           ),
