@@ -8,7 +8,7 @@
                 <div class="row">
                     @if( $videos->count())
                         @foreach($videos as $video)
-                        <div class="col item col-6 col-md-6 col-lg-4 mt-3">
+                        <div class="col item col-6 col-md-6 col-lg-2 mt-3">
                         <div class="progression-studios-video-index-container">
                         <a href="/browse/{{ $video->slug }}">
 
@@ -42,8 +42,6 @@
               
         <div class="clearfix"></div>
     </div><!-- close .container -->
-    
-    
     
 </div><!-- close #content-pro -->
 @else
