@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\Http\Helper;
 use App\Video;
-use App\Http\Resources\BrowseResource;
+use App\Http\Resources\WatchList;
 
 
 class SearchController extends Controller
@@ -42,7 +42,7 @@ class SearchController extends Controller
     
         }
 
-        return BrowseResource::collection(
+        return WatchList::collection(
             $videos
         );	
     }
