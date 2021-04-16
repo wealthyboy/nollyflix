@@ -43,7 +43,7 @@ class SearchController extends Controller
         }
 
         return WatchList::collection(
-            $videos
+            $videos->load('casts')
         );	
     }
     
