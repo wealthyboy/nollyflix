@@ -27739,7 +27739,7 @@ var render = function() {
             "a",
             {
               staticClass: "d-flex flex-row mb-2 rounded-0 btn-primary",
-              attrs: { href: "/watch/" + _vm.$root.video.id + "?watch=free" }
+              attrs: { href: "/watch/" + _vm.$root.video.slug + "?watch=free" }
             },
             [
               _c("span", { staticClass: "purchase-btn-icon  p-4" }, [

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a :href="'/watch/' + $root.video.id+'?watch=free'" v-if="$root.video.access_type == 'is_free'"   class="d-flex flex-row mb-2 rounded-0 btn-primary">
+        <a :href="'/watch/' + $root.video.slug+'?watch=free'" v-if="$root.video.access_type == 'is_free'"   class="d-flex flex-row mb-2 rounded-0 btn-primary">
             <span class="purchase-btn-icon  p-4"> 
                 <svg viewBox="0 0 16 16"><path d="M13.781 7.25A3.96 3.96 0 0014 6a4 4 0 00-4-4C8.247 2 6.774 3.135 6.233 4.704A2.487 2.487 0 004.5 4 2.5 2.5 0 002 6.5c0 .273.055.531.135.776A3.5 3.5 0 003.5 14h9a3.5 3.5 0 003.5-3.5c0-1.48-.921-2.738-2.219-3.25zM6 11.25v-4.5L10.5 9 6 11.25z"></path></svg>
             </span>

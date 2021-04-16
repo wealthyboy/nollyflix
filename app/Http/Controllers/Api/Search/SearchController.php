@@ -36,8 +36,7 @@ class SearchController extends Controller
             })->orWhereHas('sections', function( $query ) use ( $filtered_array ){
                 $query->where('sections.name', 'like', '%' .$filtered_array['q'] . '%');
             });
-
-
+            
             $videos = $query->get();
     
         }
