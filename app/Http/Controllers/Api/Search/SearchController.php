@@ -43,7 +43,7 @@ class SearchController extends Controller
         }
 
         return BrowseResource::collection(
-            $videos->load('casts','filmers','related_videos.video')
+            $videos->load('videos.casts','videos.filmers','videos.related_videos.video')
         );	
     }
     
