@@ -8,6 +8,8 @@ Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
 Route::get('browse/casts',    'Api\Casts\CastsController@index');
 Route::get('browse/filmers',  'Api\FilmMakers\FilmMakersController@index');
 Route::get('profile/videos',  'Api\WatchList\WatchListController@index');
+Route::get('search',          'Api\Search\SearchController@search');
+
 
 
 

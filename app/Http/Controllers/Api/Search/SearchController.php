@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Search;
+namespace App\Http\Controllers\Api\Search;
 
 use Illuminate\Http\Request;
 
@@ -11,28 +11,21 @@ use App\Video;
 
 class SearchController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-
-    }
-
+    
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-	public function  index(Request $request,Category $category)  
+	public function  search(Request $request,Category $category)  
     {    
         if($request->has('q')){
-            $filtered_array = $request->only(['q', 'field']);
+            $filtered_array = $request->only(['q']);
 
 			$filtered_array = array_filter($filtered_array);
-			$query = Video::whereHas('sections', function( $query ) use ( $filtered_array ){
+
+    
+            $query = Video::whereHas('sections', function( $query ) use ( $filtered_array ){
                 $query->where('sections.name','like','%' .$filtered_array['q'] . '%')
                     ->orWhere('video.title', 'like', '%' .$filtered_array['q'] . '%');
             })->orWhereHas('genres', function( $query ) use ( $filtered_array ){
@@ -45,10 +38,11 @@ class SearchController extends Controller
                 ->orWhere('filmers.last_name', 'like', '%' .$filtered_array['q'] . '%');
             });
 
+            $videos = $query->get();
+    
         }
 			
-        $videos = $query->groupBy('videos.id')->get();
-        return view('search.index',compact('videos')); 
+        return $videos;
     }
     
     
