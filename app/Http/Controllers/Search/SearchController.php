@@ -33,7 +33,7 @@ class SearchController extends Controller
 
 			$filtered_array = array_filter($filtered_array);
 			$query = Video::whereHas('filmers', function( $query ) use ( $filtered_array ){
-                $query->where('filmers.name', 'like', '%' .$filtered_array['q'] . '%')
+                $query->where('users.name', 'like', '%' .$filtered_array['q'] . '%')
                     ->orWhere('video.title', 'like', '%' .$filtered_array['q'] . '%');
             })->orWhereHas('genres', function( $query ) use ( $filtered_array ){
                 $query->where('genres.name', 'like', '%' .$filtered_array['q'] . '%');
