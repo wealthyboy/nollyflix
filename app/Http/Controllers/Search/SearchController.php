@@ -38,8 +38,8 @@ class SearchController extends Controller
             })->orWhereHas('genres', function( $query ) use ( $filtered_array ){
                 $query->where('genres.name', 'like', '%' .$filtered_array['q'] . '%');
             })->orWhereHas('casts', function( $query ) use ( $filtered_array ){
-                $query->where('casts.name', 'like', '%' .$filtered_array['q'] . '%')
-                ->orWhere('casts.last_name', 'like', '%' .$filtered_array['q'] . '%');
+                $query->where('users.name', 'like', '%' .$filtered_array['q'] . '%')
+                ->orWhere('users.last_name', 'like', '%' .$filtered_array['q'] . '%');
             })->orWhereHas('sections', function( $query ) use ( $filtered_array ){
                 $query->where('sections.name', 'like', '%' .$filtered_array['q'] . '%');
             });
