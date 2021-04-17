@@ -24,8 +24,7 @@ class InformationController extends Controller
 	
 	public function  index(Request $request)  {
 		$pages = Information::get(); 
-		$mobile = $request->mobile;
-	    return view('admin.information.index',compact('pages','mobile'));
+	    return view('admin.information.index',compact('pages'));
 	}
 
 	public function  create(Request $request)  {
@@ -96,7 +95,9 @@ class InformationController extends Controller
 	public function  show(Request $request,Information $information)  
 	{
 		$page_title = $information->name;
-		return view('pages.index',compact('information','page_title'));
+		$mobile = $request->mobile;
+
+		return view('pages.index',compact('information','page_title','mobile'));
 	}
 
 	public function  destroy(Request $request,$id)  
