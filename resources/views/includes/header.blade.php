@@ -1,4 +1,4 @@
-<header id="masthead-pro" class="sticky-header  {{ null !== $mobile ? '' : 'd-none'}}"><!-- Remove sticky-header class to remove sticky header -->
+<header id="masthead-pro" class="sticky-header {{  @isset($mobile)  ? 'd-none': '' }}"><!-- Remove sticky-header class to remove sticky header -->
     <div class="header-container">
         <h1><a href="/"><img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a></h1>
 
