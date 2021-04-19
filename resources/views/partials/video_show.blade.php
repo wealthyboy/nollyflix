@@ -152,7 +152,6 @@
          <reviews />
       </div>
 
-      {{ $video->related_videos }}
 
       @if($video->related_videos->count())
 
@@ -163,8 +162,9 @@
               @foreach( $video->related_videos as $video)
               <div class="item">
                   <div class="progression-studios-video-index-container">
-                    <a href="/browse/{{ $video->slug }}">
-                        <div class="progression-studios-video-feaured-image"><img src="{{ optional($video->video)->tn_poster }}" alt="{{ optional($video->video)->title }}"></div>
+                    <a href="/browse/{{ $video->video->slug }}">
+                        <div class="progression-studios-video-feaured-image">
+                        <img src="{{ optional($video->video)->tn_poster }}" alt="{{ optional($video->video)->title }}"></div>
                         <div class="progression-video-index-content">
                           <div class="progression-video-index-table">
                               <div class="progression-video-index-vertical-align">
