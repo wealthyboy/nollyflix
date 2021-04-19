@@ -152,10 +152,11 @@
          <reviews />
       </div>
 
+      {{ $video->related_videos }}
+
       @if($video->related_videos->count())
 
       <div class="container" id="video-more-like-this-details-section">
-        @if($video->related_videos->count())
         <h2 class="post-list-heading">More Like {{ $video->title }}<span></span></h2>
         <div class="progression-studios-elementor-carousel-container progression-studios-always-arrows-on">
             <div id="progression-video-carousel" class="owl-carousel progression-carousel-theme">
@@ -207,8 +208,6 @@
             <!-- close #progression-video-carousel - See /js/script.js file for options -->
         </div>
         <!-- close .progression-studios-elementor-carousel-container  -->
-        @else
-        @endif 
         <div style="height:10px;"></div>
       </div>
       <!-- close #video-more-like-this-details-section -->
