@@ -430,12 +430,14 @@
                                     <td class="">
                                           <div class="checkbox">
                                              <label>
-                                                <input type="checkbox" checked  name="related_videos[{{  $related_video->id }}]" value="{{ $related_video->video_id }}" />
+                                                <input type="checkbox" checked  name="related_videos[]" value="" />
                                              </label>
                                           </div>
                                     </td>
                                     <td class="text-left p">
                                        <a class="#" href="#"> {{ $related_video->video->title }}</a>
+                                       <input type="hidden" name="related_videos[{{ $related_product->id }}]" value="{{ $related_video->related_id }}" id="" />
+
                                     </td>
                                     <td class="text-left">
                                        <input type="number" class="d-none" name="sort_order[{{ $related_video->id }}]" value="{{  $related_video->sort_order  }}" id="" />
