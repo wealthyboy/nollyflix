@@ -180,7 +180,7 @@
                             </div><!-- close .progression-studios-video-index-container  -->
                             <div class="d-flex position-absolute links-section flex-column  justify-content-center">
                                 <div class="mx-auto buy-rent-links">
-                                   @include('partials.links')
+                                   @include('partials.links',[ 'video' => $video->video])
                                 </div>
                             </div><!-- close #video-post-buttons-container -->
                         </div><!-- close .item -->
