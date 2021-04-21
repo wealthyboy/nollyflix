@@ -436,7 +436,7 @@
                                     </td>
                                     <td class="text-left p">
                                        <a class="#" href="#"> {{ $related_video->video->title }}</a>
-                                       <input type="hidden" name="related_videos[{{ $related_product->id }}]" value="{{ $related_video->related_id }}" id="" />
+                                       <input type="hidden" name="related_videos[{{ $related_video->id }}]" value="{{ $related_video->related_id }}" id="" />
 
                                     </td>
                                     <td class="text-left">
