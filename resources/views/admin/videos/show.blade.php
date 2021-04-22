@@ -6,7 +6,7 @@
 <div class="row">
    <div class="col-md-12">
       <div class="text-right">
-         <a href="{{ route('products') }}" rel="tooltip" title="Back" class="btn btn-primary btn-simple btn-xs">
+         <a href="{{ route('videos') }}" rel="tooltip" title="Back" class="btn btn-primary btn-simple btn-xs">
          <i class="material-icons">reply</i>
          </a>
       </div>
