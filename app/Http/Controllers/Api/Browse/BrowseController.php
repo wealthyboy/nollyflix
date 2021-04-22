@@ -33,7 +33,7 @@ class BrowseController extends Controller
             $sections->load('videos','videos.casts', 'videos.filmers', 'videos.related_videos.video')
         )
         ->additional(['meta' => [
-            'slides' =>  $featured_videos->load('video.casts','video.related_videos.video')->toJson()
+            'slides' =>  $featured_videos->load('video.casts','video.filmers','video.related_videos.video')->toJson()
         ]]);
     }
 
@@ -41,7 +41,7 @@ class BrowseController extends Controller
     public function featuredVideos()
     {   
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
-        return FeaturedResource::collection( $featured_videos->load('video.casts','video.related_videos.video') );
+        return FeaturedResource::collection( $featured_videos->load('video.casts','video.flimers','video.related_videos.video') );
     }
 
     
