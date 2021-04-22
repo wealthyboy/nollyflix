@@ -304,8 +304,9 @@ class VideosController extends Controller
 
     
         if(!empty($request->related_videos)){
-            $sort_order = isset($request->sort_order[$key]) ? $request->sort_order[$key] : null;
             foreach ($request->related_videos as $key => $video_id) {
+                $sort_order = isset($request->sort_order[$key]) ? $request->sort_order[$key] : null;
+
                 $video->related_videos()->updateOrCreate(
                     [
                         'id' =>  $key
