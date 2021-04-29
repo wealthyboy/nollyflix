@@ -24,7 +24,7 @@ class WatchListController extends Controller
     {   
         $user = auth()->user();
         return WatchList::collection(
-            $user->movies->load('video.casts.cast_videos','video.filmers.filmer_videos','video.related_videos','video.related_videos.video')
+            $user->movies->load('video.casts.cast_videos','video.filmers.filmer_videos','video.related_videos.video')
         );
     }
 }
