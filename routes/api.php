@@ -20,5 +20,6 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('register', 'Api\Auth\RegisterController@action');
     Route::post('login', 'Api\Auth\LoginController@action');
     Route::get('me', 'Api\Auth\MeController@action');
+    Route::post('notifications', 'Api\Notifications\NotificationsController@store');
 });
 
