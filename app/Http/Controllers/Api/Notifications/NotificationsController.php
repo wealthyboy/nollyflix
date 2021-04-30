@@ -28,7 +28,7 @@ class NotificationsController extends Controller
         return $request->notificationStatus;
 
         $result = $user->update([
-          'allow_notifications' => $request->notificationStatus  == true ?  1 : 0,
+          'allow_notifications' => $request->notificationStatus  == false ?  1 : 0,
           'push_token' => $request->pushToken
         ]);
 
