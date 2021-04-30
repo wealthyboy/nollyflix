@@ -33,7 +33,7 @@ class NotificationsController extends Controller
 
         if ($result){
             return response()->json([
-              'status' => $result
+              'status' => $user
             ],200);
         }
 
