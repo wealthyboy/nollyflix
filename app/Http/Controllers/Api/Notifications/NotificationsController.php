@@ -24,7 +24,7 @@ class NotificationsController extends Controller
     public function store(Request $request)
     {
         //update or create
-        $user =  Auth::user();
+        $user =  \Auth::user();
 
         return $user;
 
