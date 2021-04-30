@@ -25,8 +25,7 @@ class NotificationsController extends Controller
     {
         //update or create
         $user =  \Auth::user();
-        return $request->notificationStatus;
-
+        
         $result = $user->update([
           'allow_notifications' => $request->notificationStatus  == false ?  1 : 0,
           'push_token' => $request->pushToken
