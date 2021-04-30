@@ -24,6 +24,9 @@ class NotificationsController extends Controller
     public function store(Request $request)
     {
         //update or create
+        $user =  Auth::user();
+
+        return $user;
 
         $result = $request->user()-update([
           'allow_notifications' => $request->notificationStatus ?  1 : 0,
