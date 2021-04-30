@@ -25,7 +25,7 @@ class NotificationsController extends Controller
     {
         //update or create
         $user =  \Auth::user();
-        
+
         $result = $user->update([
           'allow_notifications' => $request->notificationStatus ?  1 : 0,
           'push_token' => $request->pushToken
@@ -33,7 +33,7 @@ class NotificationsController extends Controller
 
         if ($result){
             return response()->json([
-              'status' => 'Done'
+              'status' => $result
             ],200);
         }
 
