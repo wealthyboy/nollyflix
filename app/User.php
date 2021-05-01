@@ -18,7 +18,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-	use Notifiable,Check;
+	use Check;
 	
     use SoftDeletes;
     /**
@@ -281,7 +281,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-	
+
 	public function routeNotificationForExpoPushNotifications(){
 
 	}
