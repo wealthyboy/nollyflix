@@ -35,8 +35,9 @@ class CartController  extends Controller {
 		$cart = new Cart;
 		$rate = Helper::rate();
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
+		$channel = $request->token ? ['remember_token' => $request->token] : ['id' =>$request->cart_id];
 		$result = $cart->updateOrCreate(
-			['id' => $request->cart_id],
+			[$channel],
 			[
 				'video_id'   => $request->video_id,
 				'quantity'   => 1,
@@ -46,7 +47,9 @@ class CartController  extends Controller {
 				'content_owner_id'  => $content_owner_id,
 				'purchase_type' => $request->purchase_type,
 				'rate' => optional($rate)->rate ?? 1,
-				'request_from' => $request->from
+				'request_from' => $request->from,
+				'remember_token' => $request->token
+				
 			]
 		);
 

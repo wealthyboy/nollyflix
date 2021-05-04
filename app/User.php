@@ -95,11 +95,11 @@ class User extends Authenticatable implements JWTSubject
 	}
 	
 	
-
 	public function scopeCastings(Builder $builder)
 	{
 		return $builder->where('type','casts');
 	}
+
 
 	/**
      * Get the banner's image.
@@ -136,10 +136,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->morphOne('App\Banner', 'banner');
     }
 
+
 	public function scopeFilmers(Builder $builder)
 	{
 		return $builder->where('type','filmakers');
 	}
+
 
 	public function scopeAdmin(Builder $builder)
 	{
@@ -156,8 +158,6 @@ class User extends Authenticatable implements JWTSubject
 	}
 	
 	
-	
-
     /**
      * The user's views that belong to the video.
     */
