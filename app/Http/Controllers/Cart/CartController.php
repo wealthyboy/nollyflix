@@ -33,13 +33,8 @@ class CartController  extends Controller {
 		]);
 
 		$cart = new Cart;
-
-		if (auth()->check()){
-            $user_id = auth()->user()->id;
-		}
 		$rate = Helper::rate();
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
-		
 		$result = $cart->updateOrCreate(
 			['id' => $request->cart_id],
 			[
@@ -47,14 +42,20 @@ class CartController  extends Controller {
 				'quantity'   => 1,
 				'price'      => $request->price,
 				'total'      => $request->price * 1,
-				'user_id'    => optional(auth()->user())->id,
+				'user_id'    => $request->from == 'app' ? $request->user_id : optional(auth()->user())->id,
 				'content_owner_id'  => $content_owner_id,
 				'purchase_type' => $request->purchase_type,
-				'rate' => optional($rate)->rate,
+				'rate' => optional($rate)->rate ?? 1,
 				'request_from' => $request->from
-
 			]
 		);
+
+		if ($request->from == 'app') {
+			$params = json_encode($request->all());
+			return view('checkout.index',[
+					'params' => $params
+				]);
+		}
 
 		return response()->json([
 			'cart' => $result->id,

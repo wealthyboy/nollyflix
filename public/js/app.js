@@ -8168,8 +8168,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['params'],
+  props: ["params"],
   data: function data() {
     return {
       scriptLoaded: null
@@ -8186,17 +8201,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.submit();
+    console.log(this.params);
   },
   methods: {
     loadScript: function loadScript(callback) {
-      var script = document.createElement('script');
-      script.src = 'https://checkout.flutterwave.com/v3.js';
-      document.getElementsByTagName('head')[0].appendChild(script);
+      var script = document.createElement("script");
+      script.src = "https://checkout.flutterwave.com/v3.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
 
       if (script.readyState) {
         // IE
         script.onreadystatechange = function () {
-          if (script.readyState === 'loaded' || script.readyState === 'complete') {
+          if (script.readyState === "loaded" || script.readyState === "complete") {
             script.onreadystatechange = null;
             callback();
           }
@@ -8210,12 +8226,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     submit: function submit() {
       var context = this;
-      this.$store.commit('setLoading', true);
+      this.$store.commit("setLoading", true);
       this.scriptLoaded && this.scriptLoaded.then(function () {
         var x = FlutterwaveCheckout({
           public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
           //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
-          customer_email: 'jacob.atam@gmail.com',
+          customer_email: "jacob.atam@gmail.com",
           amount: context.params.price,
           currency: "NGN",
           country: "NG",
@@ -8229,7 +8245,7 @@ __webpack_require__.r(__webpack_exports__);
             name: "Jacob Atam"
           },
           onclose: function onclose() {
-            context.$store.commit('setLoading', false);
+            context.$store.commit("setLoading", false);
           },
           callback: function callback(response) {
             x.close();
@@ -8238,7 +8254,7 @@ __webpack_require__.r(__webpack_exports__);
               document.getElementById("open-app").click();
             }
 
-            context.$emit('paymentCompleted', 'Completed');
+            context.$emit("paymentCompleted", "Completed");
             alert("done");
           }
         });
