@@ -40,10 +40,7 @@ class CheckoutController extends Controller
 	}
 
     public function store(Request $request,Order $order) { 
-
-
 		$cart     =   Cart::find($request->cart_id);
-
 		$order = Order::firstOrCreate(
 			['cart_id' =>  $request->cart_id],
 			[
@@ -55,7 +52,6 @@ class CheckoutController extends Controller
 			]
 		);
 
-
 		try {
 			$when = now()->addMinutes(5);
 			\Mail::to($user->email)
@@ -64,8 +60,6 @@ class CheckoutController extends Controller
 		} catch (\Throwable $th) {
 			//throw $th;
 		}
-
-        
 
 		return 1;
 	}

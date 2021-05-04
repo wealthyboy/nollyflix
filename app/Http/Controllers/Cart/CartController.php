@@ -21,21 +21,11 @@ class CartController  extends Controller {
 	{
 		$this->settings = SystemSetting::first();
     }
-    
 
-    public function index(Request $request) {
-        if ( $request->number ){
-           return $this->loadCart();
-        }
-
-		$page_title = "Your Cart  ";
-		$sub_total =  Cart::sum_items_in_cart();
-		$carts = Cart::all_items_in_cart();
-		return view('carts.index',compact('sub_total','carts','page_title'));
-	}
 		
 
-	public function store(Request $request) { 
+	public function store(Request $request) 
+	{ 
 
 
 		$this->validate($request,[
@@ -43,13 +33,11 @@ class CartController  extends Controller {
 		]);
 
 		$cart = new Cart;
-
+		
 		if (auth()->check()){
             $user_id = auth()->user()->id;
 		}
-
 		$rate = Helper::rate();
-
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
 		
 		$result = $cart->updateOrCreate(

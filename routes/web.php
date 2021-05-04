@@ -93,7 +93,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('watch/expired/{video}',       'Browse\BrowseController@show')->name('watch.expired');
     Route::resource('orders',          'Orders\OrdersController',['name'=>'orders']);
     Route::post('carts',               'Cart\CartController@store');
-    Route::get('carts',                'Cart\CartController@index');
+    Route::get('carts',                'Cart\CartController@store');
     Route::get('cart/delete/{id}',     'Cart\CartController@destroy');
     Route::get('thankyou',             'Thankyou\ThankYouCtrl@index');
     Route::get('pages/{information}',  'Information\InformationController@show');
