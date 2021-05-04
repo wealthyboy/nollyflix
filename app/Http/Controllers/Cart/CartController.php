@@ -27,13 +27,13 @@ class CartController  extends Controller {
 	public function store(Request $request) 
 	{ 
 
-
+        
 		$this->validate($request,[
 		   'video_id' => 'required|exists:videos,id',
 		]);
 
 		$cart = new Cart;
-		
+
 		if (auth()->check()){
             $user_id = auth()->user()->id;
 		}

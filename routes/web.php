@@ -79,8 +79,6 @@ Auth::routes();
 Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('/', 'Browse\BrowseController@index')->name('home');
     Route::get('currency',              'CurrencySwitcher\\CurrencySwitcherController@index');
-
-
     Route::get('browse',                      'Browse\BrowseController@index')->name('browse');
     Route::get('browse/{video}',              'Browse\BrowseController@show')->name('browse.show');
     Route::get('browse/{video}/user/{user}',  'Browse\BrowseController@show')->name('browse.user.show');
