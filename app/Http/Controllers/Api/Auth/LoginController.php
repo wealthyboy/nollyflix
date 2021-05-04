@@ -19,8 +19,8 @@ class LoginController extends Controller
             ], 422);
         }
 
-        $user =  Auth::user();
-        
+        $user =  \Auth::user();
+
         $user->update([
           'api_token' => $token
         ]);
