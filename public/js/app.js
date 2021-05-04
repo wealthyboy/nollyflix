@@ -8201,7 +8201,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.submit();
-    console.log(this.params);
   },
   methods: {
     loadScript: function loadScript(callback) {

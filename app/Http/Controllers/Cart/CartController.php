@@ -50,8 +50,10 @@ class CartController  extends Controller {
 			]
 		);
 
+		dd($result);
+
 		if ($request->from == 'app') {
-			$params = json_encode($request->all());
+			$params = json_encode(array_merge($request->all(),['cart_id' => 2]);
 			return view('checkout.index',[
 					'params' => $params
 				]);

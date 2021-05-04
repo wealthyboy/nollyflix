@@ -51,7 +51,6 @@ export default {
     },
     mounted() {
         this.submit();
-        console.log(this.params);
     },
     methods: {
         loadScript(callback) {
