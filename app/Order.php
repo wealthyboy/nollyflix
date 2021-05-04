@@ -83,7 +83,7 @@ class Order extends Model
 
 
 	public function getRentExpiresAtAttribute() {
-        return null !== $this->video_rent_expires ? !$this->video_rent_expires->format('d/m/y') : null;
+        return null !== $this->video_rent_expires ? $this->video_rent_expires->format('d/m/y') : null;
     }
 
 
