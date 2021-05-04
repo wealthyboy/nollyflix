@@ -20,7 +20,7 @@ class Order extends Model
 	];
 
 	public $appends = [
-        'is_rent_expired'
+        'is_rent_expired','rent_expires_at'
 	];
 
 
@@ -80,6 +80,11 @@ class Order extends Model
 		}
 		return number_format($this->total);
 	}
+
+
+	public function getRentExpiresAt() {
+        return null !== $this->video_rent_expires ? !$this->video_rent_expires->format('d/m/y') : null;
+    }
 
 
 	public function getIsRentExpiredAttribute() {
