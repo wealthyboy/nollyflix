@@ -90,7 +90,6 @@ export default {
                         tx_ref:
                             "rave-" +
                             Math.floor(Math.random() * 1000000000 + 1),
-
                         customer: {
                             phone_number: context.cart_id,
                             email: context.params.email
@@ -100,7 +99,6 @@ export default {
                         },
                         callback: function(response) {
                             x.close();
-
                             if (response.status == "successful") {
                                 document.getElementById("open-app").click();
                             }

@@ -49,13 +49,12 @@ class CartController  extends Controller {
 				'rate' => optional($rate)->rate ?? 1,
 				'request_from' => $request->from,
 				'remember_token' => $request->token
-				
 			]
 		);
 
 
 		if ($request->from == 'app') {
-			$params = json_encode(array_merge($request->all(),['cart_id' => $result->id]));
+			$params = json_encode(array_merge($request->all(),['cart_id' => $result->id], ));
 			return view('checkout.index',[
 					'params' => $params
 				]);
