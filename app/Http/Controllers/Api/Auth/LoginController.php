@@ -32,4 +32,33 @@ class LoginController extends Controller
                 ]
             ]);
     }
+
+    public function reLogin(LoginRequest $request){
+        if (!$token = \JWTAuth::tokenById($request->only('id'))) {
+            return response()->json([
+                'errors' => [
+                    'email' => ['Could not sign you in with those details.']
+                ]
+            ], 422);
+        }
+
+        $user =  \Auth::user();
+
+        $user->update([
+          'api_token' => $token
+        ]);
+
+        return (new PrivateUserResource($request->user()))
+            ->additional([
+                'meta' => [
+                    'token' => $token
+                ]
+            ]);
+
+
+    }
+
+
+
+
 }
