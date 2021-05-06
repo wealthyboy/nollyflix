@@ -28196,10 +28196,7 @@ var render = function() {
             "a",
             {
               staticClass: "invisible",
-              attrs: {
-                href: "exp://expo.io/@wealthyboyjacky/nollywood",
-                id: "open-app"
-              }
+              attrs: { href: "exp://nollywood/myvideos", id: "open-app" }
             },
             [_vm._v("Open app")]
           ),
