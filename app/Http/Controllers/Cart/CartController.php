@@ -58,8 +58,6 @@ class CartController  extends Controller {
 			return view('checkout.index',[
 					'params' => $params
 				]);
-
-				dd($params);
 		}
 
 		return response()->json([
