@@ -8,10 +8,7 @@
                     </div>
 
                     <hr class="line" />
-                    <a
-                        href="exp://nollywood/myvideos"
-                        id="open-app"
-                        class="invisible"
+                    <a href="exp://nollywood/myvideos" id="open-app" class=""
                         >Open app</a
                     >
                     <div>
