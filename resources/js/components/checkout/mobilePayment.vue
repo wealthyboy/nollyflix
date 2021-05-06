@@ -8,7 +8,10 @@
                     </div>
 
                     <hr class="line" />
-                    <a href="exp://nollywood/myvideos" id="open-app" class=""
+                    <a
+                        href="exp://192.168.43.53:19000/--/myvideos"
+                        id="open-app"
+                        class=""
                         >Open app</a
                     >
                     <div>
