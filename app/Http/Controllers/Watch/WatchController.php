@@ -33,12 +33,12 @@ class WatchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request,Video $video)
-    {    
+    {     
+
+        dd($video);
         if ($request->watch === 'free'){
             $video = $video;
         } else {
-
-            
             $order = Order::where('video_id',$video->id)->firstOrFail();
             if ($order->cart->purchase_type == 'Rent'  &&  !$order->video_rent_expires->isFuture()) {
                 return redirect()->route('watch.expired',['video' => $video->slug]);
@@ -65,7 +65,8 @@ class WatchController extends Controller
     }
 
 
-    protected function viwed($video){
+    protected function viwed($video)
+    {
         /**
          * Check if user has already viewed the video
          */
