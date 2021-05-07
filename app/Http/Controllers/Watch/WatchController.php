@@ -35,7 +35,6 @@ class WatchController extends Controller
     public function index(Request $request,Video $video)
     {     
 
-        dd($video);
         if ($request->watch === 'free'){
             $video = $video;
         } else {
