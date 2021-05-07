@@ -21,10 +21,10 @@ class WatchController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except' => [
-                'expired'
-            ]
-        ]);
+        // $this->middleware('auth',['except' => [
+        //         'expired'
+        //     ]
+        // ]);
     }
 
     /**
