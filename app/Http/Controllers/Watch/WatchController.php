@@ -72,7 +72,7 @@ class WatchController extends Controller
         $user  = auth()->user();
 
         $view = View::where([
-            'user_id' => $user->id,
+            'user_id' => 1,
             'video_id' => $video->id,
         ])->first();
 
@@ -81,7 +81,7 @@ class WatchController extends Controller
          */
         if (!$view){
             $view = new View;
-            $view->user_id = $user->id;
+            $view->user_id = 1;
             $view->video_id = $video->id;
             $view->save();
         }
