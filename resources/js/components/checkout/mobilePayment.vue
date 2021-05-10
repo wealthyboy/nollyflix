@@ -9,7 +9,7 @@
 
                     <hr class="line" />
                     <a
-                        href="exp://192.168.43.53:19000/--/myvideos"
+                        href="exp://expo.io/@wealthyboyjacky/projects/nollywood"
                         id="open-app"
                         class=""
                         >Open app</a
