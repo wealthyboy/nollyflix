@@ -8180,6 +8180,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["params"],
   data: function data() {
@@ -28191,7 +28194,9 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            { attrs: { href: "exp://192.168.43.53:19000", id: "open-app" } },
+            {
+              attrs: { href: "exp://192.168.43.53:19000/--/", id: "open-app" }
+            },
             [_vm._v("Open app")]
           ),
           _vm._v(" "),
