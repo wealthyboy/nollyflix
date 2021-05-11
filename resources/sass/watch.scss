@@ -302,3 +302,10 @@ a.video-page-title-play-button {
         width: 85%;
     }
 }
+
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-panel-container,
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
