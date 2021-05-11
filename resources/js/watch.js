@@ -20,7 +20,7 @@ window.onload = event => {
     const vidjs = videojs("video", {
         html5: {
             hls: {
-                overrideNative: !videojs.browser.IS_SAFAR
+                overrideNative: !videojs.browser.IS_SAFARI
             }
         },
         autoplay: true,
@@ -31,6 +31,5 @@ window.onload = event => {
         document.getElementById("video-page-title-pro").classList.add("hide");
         this.muted(false);
         console.log("Video loaded");
-        //this.setControls(false);
     });
 };

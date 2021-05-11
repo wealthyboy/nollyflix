@@ -60851,7 +60851,7 @@ window.onload = function (event) {
   var vidjs = Object(video_js__WEBPACK_IMPORTED_MODULE_0__["default"])("video", {
     html5: {
       hls: {
-        overrideNative: !video_js__WEBPACK_IMPORTED_MODULE_0__["default"].browser.IS_SAFAR
+        overrideNative: !video_js__WEBPACK_IMPORTED_MODULE_0__["default"].browser.IS_SAFARI
       }
     },
     autoplay: true,
@@ -60860,7 +60860,7 @@ window.onload = function (event) {
   vidjs.ready(function () {
     document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
-    console.log("Video loaded"); //this.setControls(false);
+    console.log("Video loaded");
   });
 };
 
