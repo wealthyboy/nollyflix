@@ -60857,6 +60857,9 @@ window.onload = function (event) {
     autoplay: true,
     nativeControlsForTouch: false
   });
+  vidjs.src({
+    overrideNative: true
+  });
   vidjs.ready(function () {
     document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
