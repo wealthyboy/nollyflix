@@ -30230,10 +30230,10 @@ var Html5 = /*#__PURE__*/function (_Tech) {
     // controls on touch enabled laptops like the Chrome Pixel
 
 
-    if ((TOUCH_ENABLED || IS_IPHONE || IS_NATIVE_ANDROID) && options.nativeControlsForTouch === true) {
-      _this.setControls(true);
-    } // on iOS, we want to proxy `webkitbeginfullscreen` and `webkitendfullscreen`
-    // into a `fullscreenchange` event
+    // if ((TOUCH_ENABLED || IS_IPHONE || IS_NATIVE_ANDROID) && options.nativeControlsForTouch === true) {
+    //   _this.setControls(true);
+    // } // on iOS, we want to proxy `webkitbeginfullscreen` and `webkitendfullscreen`
+    // // into a `fullscreenchange` event
 
 
     _this.proxyWebkitFullscreen_();
