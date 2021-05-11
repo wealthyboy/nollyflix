@@ -55,6 +55,10 @@ video[poster] {
   background-size: cover;
 }
 
+video::-webkit-media-controls-panel-container {
+  display: none !important;
+}
+
 .vjs-poster {
   background-size: cover;
   background-position: inherit;
