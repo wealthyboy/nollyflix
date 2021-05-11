@@ -60834,30 +60834,31 @@ exports.XMLReader = XMLReader;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var video_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! video.js */ "./node_modules/video.js/dist/video.es.js");
 
-var bV = document.querySelector('.background_video');
-var bK = document.querySelector('.back');
-bV.addEventListener('mouseenter', function (e) {
+var bV = document.querySelector(".background_video");
+var bK = document.querySelector(".back");
+bV.addEventListener("mouseenter", function (e) {
   bK.style.display = "block";
   bK.style.opacity = "1";
 });
-bV.addEventListener('mouseleave', function (e) {
+bV.addEventListener("mouseleave", function (e) {
   bK.style.display = "none";
   bK.style.opacity = "0";
 });
 
 window.onload = function (event) {
-  var bGv = document.querySelector('.background_video');
-  bGv.classList.remove('hide');
-  var vidjs = Object(video_js__WEBPACK_IMPORTED_MODULE_0__["default"])('video', {
+  var bGv = document.querySelector(".background_video");
+  bGv.classList.remove("hide");
+  var vidjs = Object(video_js__WEBPACK_IMPORTED_MODULE_0__["default"])("video", {
     html5: {
       hls: {
         overrideNative: !video_js__WEBPACK_IMPORTED_MODULE_0__["default"].browser.IS_SAFAR
       }
     },
-    autoplay: true
+    autoplay: true,
+    overrideNative: true
   });
   vidjs.ready(function () {
-    document.getElementById("video-page-title-pro").classList.add('hide');
+    document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
     console.log("Video loaded");
   });
