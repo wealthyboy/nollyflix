@@ -30232,6 +30232,7 @@ var Html5 = /*#__PURE__*/function (_Tech) {
 
     // if ((TOUCH_ENABLED || IS_IPHONE || IS_NATIVE_ANDROID) && options.nativeControlsForTouch === true) {
     //   _this.setControls(true);
+    ///console.log("Na him")
     // } // on iOS, we want to proxy `webkitbeginfullscreen` and `webkitendfullscreen`
     // // into a `fullscreenchange` event
 
