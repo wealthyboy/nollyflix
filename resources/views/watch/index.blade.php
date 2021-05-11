@@ -13,8 +13,8 @@
     </div>
     <video  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin"   
          
-        playsinline>
-        <source src="{{ optional($video)->link }}" type="application/x-mpegURL">       
+        >
+        <source src="{{ optional($video)->preview_link }}" type="application/x-mpegURL">       
          @if($video->track_file)
         <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
         @endif
