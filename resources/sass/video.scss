@@ -1,9 +1,2 @@
 @import "~video.js/src/css/video-js.scss";
 @import "./watch.scss";
-
-video::-webkit-media-controls-panel,
-video::-webkit-media-controls-panel-container,
-video::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none;
-}
