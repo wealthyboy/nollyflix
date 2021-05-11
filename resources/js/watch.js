@@ -21,17 +21,16 @@ window.onload = event => {
         html5: {
             hls: {
                 overrideNative: !videojs.browser.IS_SAFAR
-            }
+            },
+            nativeControlsForTouch: false
         },
-        overrideNative: true,
-        autoplay: true,
-        nativeControlsForTouch: false
+        autoplay: true
     });
 
     vidjs.ready(function() {
         document.getElementById("video-page-title-pro").classList.add("hide");
         this.muted(false);
         console.log("Video loaded");
-        this.setControls(false);
+        //this.setControls(false);
     });
 };

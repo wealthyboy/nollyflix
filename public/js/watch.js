@@ -60852,17 +60852,15 @@ window.onload = function (event) {
     html5: {
       hls: {
         overrideNative: !video_js__WEBPACK_IMPORTED_MODULE_0__["default"].browser.IS_SAFAR
-      }
+      },
+      nativeControlsForTouch: false
     },
-    overrideNative: true,
-    autoplay: true,
-    nativeControlsForTouch: false
+    autoplay: true
   });
   vidjs.ready(function () {
     document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
-    console.log("Video loaded");
-    this.setControls(false);
+    console.log("Video loaded"); //this.setControls(false);
   });
 };
 
