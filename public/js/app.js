@@ -45249,7 +45249,7 @@ var Reviews = __webpack_require__(/*! ./components/comments/Index.vue */ "./reso
 var ProfilePicture = __webpack_require__(/*! ./components/profile/ProfilePicture.vue */ "./resources/js/components/profile/ProfilePicture.vue")["default"];
 
 var app = new Vue({
-  el: '#app',
+  el: "#app",
   store: _store__WEBPACK_IMPORTED_MODULE_0__["default"],
   data: Window.user || {},
   components: {
@@ -45261,12 +45261,12 @@ var app = new Vue({
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (app); //This code helps  browser like safari that caches
-//javascript Back/Forward cache (the cache pulled from when a visitor presses the Back or Forward browser buttons) 
+//javascript Back/Forward cache (the cache pulled from when a visitor presses the Back or Forward browser buttons)
 
 window.onpageshow = function (event) {
   if (event.persisted) {
-    _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit('setLoading', false);
-    $('#close-modal').removeClass('pointer-events').trigger('click');
+    _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoading", false);
+    $("#close-modal").removeClass("pointer-events").trigger("click");
   }
 };
 
