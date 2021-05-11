@@ -30229,6 +30229,7 @@ var Html5 = /*#__PURE__*/function (_Tech) {
     // so we can remove this all together. Right now this will block custom
     // controls on touch enabled laptops like the Chrome Pixel
 
+     _this.setControls(false);
 
     // if ((TOUCH_ENABLED || IS_IPHONE || IS_NATIVE_ANDROID) && options.nativeControlsForTouch === true) {
     //   _this.setControls(true);
