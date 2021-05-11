@@ -6,10 +6,8 @@
 </style>
 
 @section('content')
-<div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
-    <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="70" height="70">
-</div><!-- close #video-page-title-pro -->
-<div  class="background_video hide">
+
+<div  class="background_video ">
     <div class="back">
         <a href="/"> <i class="fas fa-long-arrow-alt-left"></i></a>
     </div>
