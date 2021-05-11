@@ -3,6 +3,12 @@
 
 <style>
 
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-panel-container,
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
 </style>
 
 @section('content')
