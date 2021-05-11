@@ -20,7 +20,7 @@ window.onload = event => {
     const vidjs = videojs("video", {
         html5: {
             hls: {
-                overrideNative: !videojs.browser.IS_IOS
+                overrideNative: videojs.browser.IS_IOS
             }
         },
         autoplay: true,
