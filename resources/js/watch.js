@@ -21,10 +21,11 @@ window.onload = event => {
         html5: {
             hls: {
                 overrideNative: !videojs.browser.IS_SAFAR
-            }
+            },
+            nativeControlsForTouch: false
         },
         autoplay: true,
-        overrideNative: true
+        nativeControlsForTouch: false
     });
 
     vidjs.ready(function() {

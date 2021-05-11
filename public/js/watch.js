@@ -60852,10 +60852,11 @@ window.onload = function (event) {
     html5: {
       hls: {
         overrideNative: !video_js__WEBPACK_IMPORTED_MODULE_0__["default"].browser.IS_SAFAR
-      }
+      },
+      nativeControlsForTouch: false
     },
     autoplay: true,
-    overrideNative: true
+    nativeControlsForTouch: false
   });
   vidjs.ready(function () {
     document.getElementById("video-page-title-pro").classList.add("hide");
