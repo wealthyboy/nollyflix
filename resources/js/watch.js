@@ -20,13 +20,12 @@ window.onload = event => {
     const vidjs = videojs("video", {
         html5: {
             hls: {
-                overrideNative: !videojs.browser.IS_SAFAR
+                overrideNative: !videojs.browser.IS_IOS
             }
         },
         autoplay: true,
         nativeControlsForTouch: false
     });
-    vidjs.src({ overrideNative: true });
 
     vidjs.ready(function() {
         document.getElementById("video-page-title-pro").classList.add("hide");
