@@ -3,6 +3,11 @@
 
 <style>
 
+body{ background-color: "red"}
+video::-webkit-media-controls {
+    display:none !important;
+}
+
 video::-webkit-media-controls-panel,
 video::-webkit-media-controls-panel-container,
 video::-webkit-media-controls-start-playback-button {
