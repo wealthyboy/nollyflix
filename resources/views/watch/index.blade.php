@@ -14,6 +14,10 @@ video::-webkit-media-controls-start-playback-button {
     display: none !important;
     -webkit-appearance: none;
 }
+
+video {
+    width: 200px;
+}
 </style>
 
 @section('content')
