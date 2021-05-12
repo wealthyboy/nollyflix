@@ -1,24 +1,6 @@
 
 @extends('layouts.watch')
 
-<style>
-
-body{ background-color: "red"}
-video::-webkit-media-controls {
-    display:none !important;
-}
-
-video::-webkit-media-controls-panel,
-video::-webkit-media-controls-panel-container,
-video::-webkit-media-controls-start-playback-button {
-    display: none !important;
-    -webkit-appearance: none;
-}
-
-video {
-    width: 200px;
-}
-</style>
 
 @section('content')
 
