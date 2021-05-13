@@ -30,7 +30,7 @@ window.onload = event => {
     vidjs.ready(function() {
         document.getElementById("video-page-title-pro").classList.add("hide");
         this.muted(false);
-        this.playsinline(true);
+        this.playsinline(false);
     });
 
     $.ajax({

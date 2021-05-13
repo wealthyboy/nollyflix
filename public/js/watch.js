@@ -60860,7 +60860,7 @@ window.onload = function (event) {
   vidjs.ready(function () {
     document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
-    this.playsinline(true);
+    this.playsinline(false);
   });
   $.ajax({
     url: "/watch/log/dom?dom" + document.getElementsByTagName("*"),
