@@ -9,14 +9,14 @@
     <div class="back">
         <a href="/"> <i class="fas fa-long-arrow-alt-left"></i></a>
     </div>
-    <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin" playsinline>
+    <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin"   
+        controls 
+        >
         <source src="{{ optional($video)->link }}" type="application/x-mpegURL">       
          @if($video->track_file)
         <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
         @endif
     </video>
-
-    {{ \Log::info("Test ") }}
 </div><!-- close #content-pro -->
 <!-- type="application/x-mpegURL" -->
 @endsection
