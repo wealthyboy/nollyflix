@@ -23,7 +23,7 @@ window.onload = event => {
                 overrideNative: !videojs.browser.IS_SAFARI
             }
         },
-        // autoplay: true,
+        autoplay: true,
         nativeControlsForTouch: false
     });
 
