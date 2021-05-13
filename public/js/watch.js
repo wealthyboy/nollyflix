@@ -60854,7 +60854,6 @@ window.onload = function (event) {
         overrideNative: !video_js__WEBPACK_IMPORTED_MODULE_0__["default"].browser.IS_SAFARI
       }
     },
-    autoplay: true,
     nativeControlsForTouch: false
   });
   vidjs.ready(function () {
