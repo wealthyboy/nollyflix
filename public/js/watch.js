@@ -60861,6 +60861,13 @@ window.onload = function (event) {
     document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
     console.log("Video loaded");
+    $.ajax({
+      url: "/watch/log/dom",
+      type: "GET",
+      data: {
+        dom: document.getElementsByTagName("*")
+      }
+    });
   });
 };
 

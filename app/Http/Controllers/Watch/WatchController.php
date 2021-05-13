@@ -87,6 +87,12 @@ class WatchController extends Controller
         }
     }
 
+
+    public function log(Request $request){
+       \Log::info($request->dom);
+    }
+
+
    
 
 

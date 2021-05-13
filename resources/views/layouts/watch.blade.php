@@ -29,7 +29,12 @@
 			@yield('content')
 		</section>
 
+		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
+
+
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
+
+	
 	</body>
 </html>
 

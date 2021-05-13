@@ -88,6 +88,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('profile/videos',              'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{video}',               'Watch\WatchController@index')->name('watch');
+    Route::get('watch/log/dom',               'Watch\WatchController@log');
+
     Route::get('watch/expired/{video}',       'Browse\BrowseController@show')->name('watch.expired');
     Route::resource('orders',          'Orders\OrdersController',['name'=>'orders']);
     Route::post('carts',               'Cart\CartController@store');
@@ -109,6 +111,8 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::post('/me',              'Auth\LoginController@me');
     Route::get('comments/{video}',  'Api\Comments\CommentsController@index');
     Route::post('comments/store',   'Api\Comments\CommentsController@store');
+    Route::post('comments/store',   'Api\Comments\CommentsController@store');
+
 });
 
 
