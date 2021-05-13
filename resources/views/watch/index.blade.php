@@ -15,6 +15,8 @@
         <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
         @endif
     </video>
+
+    {{ \Log::info("Test ") }}
 </div><!-- close #content-pro -->
 <!-- type="application/x-mpegURL" -->
 @endsection
