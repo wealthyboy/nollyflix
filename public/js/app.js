@@ -8149,6 +8149,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -8178,13 +8185,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["params"],
   data: function data() {
     return {
-      scriptLoaded: null
+      scriptLoaded: null,
+      statusText: ""
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    loading: "loading"
+  })),
   created: function created() {
     var _this = this;
 
@@ -8221,6 +8247,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var context = this;
       this.$store.commit("setLoading", true);
+      this.statusText = "Payment is processing.....";
       this.scriptLoaded && this.scriptLoaded.then(function () {
         var x = FlutterwaveCheckout({
           public_key: "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X",
@@ -8238,7 +8265,6 @@ __webpack_require__.r(__webpack_exports__);
             context.$store.commit("setLoading", false);
           },
           callback: function callback(response) {
-            x.close();
             context.$emit("paymentCompleted", "Completed");
 
             if (response.status == "successful") {
@@ -28196,6 +28222,26 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("hr", { staticClass: "line" }),
+          _vm._v(" "),
+          _vm.loading
+            ? _c(
+                "div",
+                { staticClass: "row justify-content-center text-center" },
+                [
+                  _c("div", { staticClass: "text-center col-md-9 col-12" }, [
+                    _c("span", {
+                      staticClass: "spinner-border spinner-border-sm",
+                      attrs: { role: "status", "aria-hidden": "true" }
+                    }),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.statusText) +
+                        "\n                    "
+                    )
+                  ])
+                ]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("div", [
             _c(
