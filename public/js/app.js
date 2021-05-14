@@ -8261,11 +8261,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             phone_number: context.cart_id,
             email: context.params.email
           },
-          onclose: function onclose() {
-            context.$store.commit("setLoading", false);
+          onclose: function onclose() {// context.$store.commit("setLoading", false);
           },
           callback: function callback(response) {
             context.$emit("paymentCompleted", "Completed");
+            alert("34");
             $("#apModal").on("hide.bs.modal", function (e) {
               e.preventDefault();
               e.stopPropagation();
@@ -8274,7 +8274,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             if (response.status == "successful") {
               x.close();
-              context.$store.commit("setLoading", true);
               context.statusText = "Redirecting you to your vidoe .Enjoy.....";
               axios.post("/checkout", {
                 cart_id: context.params.cart_id
