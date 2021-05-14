@@ -133,11 +133,14 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
+                                        alert("Cool");
+
                                         location.href =
                                             "/watch/" +
                                             context.$root.video.slug;
                                     })
                                     .catch(error => {
+                                        alert("Something went wrong");
                                         context.$store.commit(
                                             "setLoading",
                                             false
