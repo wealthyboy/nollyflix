@@ -117,6 +117,11 @@ export default {
                         },
                         callback: function(response) {
                             context.$emit("paymentCompleted", "Completed");
+                            $("#apModal").on("hide.bs.modal", function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                return false;
+                            });
 
                             if (response.status == "successful") {
                                 x.close();
