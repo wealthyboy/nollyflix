@@ -3,7 +3,7 @@
 
 @section('content')
 <div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
-    <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="70" height="70">
+    <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="50" height="50">
 </div><!-- close #video-page-title-pro -->
 <div  class="background_video hide">
     <div class="back">

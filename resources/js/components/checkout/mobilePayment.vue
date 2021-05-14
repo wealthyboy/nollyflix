@@ -8,12 +8,7 @@
                     </div>
 
                     <hr class="line" />
-                    <a
-                        href="exp://192.168.43.53:19000/--/"
-                        id="open-app"
-                        class=""
-                        >Open app</a
-                    >
+
                     <div>
                         <button
                             class="btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 "
@@ -99,11 +94,33 @@ export default {
                         },
                         callback: function(response) {
                             x.close();
-                            if (response.status == "successful") {
-                                document.getElementById("open-app").click();
-                            }
+
                             context.$emit("paymentCompleted", "Completed");
-                            alert("done");
+
+                            if (response.status == "successful") {
+                                x.close();
+                                // context.$store.commit('setLoading',true)
+                                context.statusText =
+                                    "Redirecting you to your vidoe .Enjoy.....";
+                                axios
+                                    .post("/checkout", {
+                                        cart_id: context.params.cart_id
+                                    })
+                                    .then(res => {
+                                        location.href =
+                                            "/watch/" +
+                                            context.$root.video.slug;
+                                    })
+                                    .catch(error => {
+                                        context.$store.commit(
+                                            "setLoading",
+                                            false
+                                        );
+                                    });
+                            } else {
+                                x.close();
+                                context.$store.commit("setLoading", false);
+                            }
                         }
                     });
                 });

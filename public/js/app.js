@@ -8178,11 +8178,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["params"],
   data: function data() {
@@ -8244,13 +8239,23 @@ __webpack_require__.r(__webpack_exports__);
           },
           callback: function callback(response) {
             x.close();
+            context.$emit("paymentCompleted", "Completed");
 
             if (response.status == "successful") {
-              document.getElementById("open-app").click();
-            }
+              x.close(); // context.$store.commit('setLoading',true)
 
-            context.$emit("paymentCompleted", "Completed");
-            alert("done");
+              context.statusText = "Redirecting you to your vidoe .Enjoy.....";
+              axios.post("/checkout", {
+                cart_id: context.params.cart_id
+              }).then(function (res) {
+                location.href = "/watch/" + context.$root.video.slug;
+              })["catch"](function (error) {
+                context.$store.commit("setLoading", false);
+              });
+            } else {
+              x.close();
+              context.$store.commit("setLoading", false);
+            }
           }
         });
       });
@@ -28191,14 +28196,6 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("hr", { staticClass: "line" }),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              attrs: { href: "exp://192.168.43.53:19000/--/", id: "open-app" }
-            },
-            [_vm._v("Open app")]
-          ),
           _vm._v(" "),
           _c("div", [
             _c(
