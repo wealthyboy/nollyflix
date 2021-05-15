@@ -26,6 +26,13 @@
 		
 		
 	</head>
+
+
+	<script>
+		Window.user = {
+			video: {!! isset($video) ? $video : 0 !!},
+		}
+	</script>
 	<body>
 		
 	
