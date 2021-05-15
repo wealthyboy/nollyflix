@@ -9,6 +9,7 @@
 body {
   margin: 0;
   padding: 0;
+  -webkit-transform: rotate(90deg);
 }
 
 .hide {
@@ -29,7 +30,6 @@ body {
 .background_video {
   position: relative;
   z-index: 1;
-  -webkit-transform: rotate(90deg);
 }
 
 .background_video .back {
