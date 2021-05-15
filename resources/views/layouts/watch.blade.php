@@ -24,11 +24,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	</head>
 
-	<script>
-		document.documentElement.requestFullScreen();
-        screen.orientation.lock("landscape-primary"); 
-		alert(screen.orientation.angle)    
-	</script>
+	
 	
 	<body>
 		<section>
@@ -39,7 +35,11 @@
 
 
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
-
+		<script>
+		document.documentElement.requestFullScreen();
+        screen.orientation.lock("landscape-primary"); 
+		alert(screen.orientation.angle)    
+	</script>
 	
 	</body>
 </html>
