@@ -8279,10 +8279,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 cart_id: context.params.cart_id
               }).then(function (res) {
                 alert("Cool");
+                console.log(res);
                 location.href = "/watch/" + context.$root.video.slug;
                 return;
               })["catch"](function (error) {
-                alert("Something went wrong");
+                console.log(error);
                 context.$store.commit("setLoading", false);
                 return;
               });

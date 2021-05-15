@@ -134,6 +134,7 @@ export default {
                                     })
                                     .then(res => {
                                         alert("Cool");
+                                        console.log(res);
 
                                         location.href =
                                             "/watch/" +
@@ -141,7 +142,8 @@ export default {
                                         return;
                                     })
                                     .catch(error => {
-                                        alert("Something went wrong");
+                                        console.log(error);
+
                                         context.$store.commit(
                                             "setLoading",
                                             false
