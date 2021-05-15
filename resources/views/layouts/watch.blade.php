@@ -39,6 +39,8 @@ document.body
     .then(res => alert(res).catch(err => alert(err)));
 				alert(2222) 
 			});
+			screen.orientation.lock('landscape').then(res=>console.log(res)).catch(err=>console.log(err))
+
 	   </script>
 	
 	</body>
