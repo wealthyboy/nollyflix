@@ -25,7 +25,8 @@
 	</head>
 
 	<script>
-		screen.orientation.lock("landscape-secondary");
+		document.documentElement.requestFullScreen();
+        screen.orientation.lock("landscape-primary");     
 	</script>
 	
 	<body>
