@@ -38,7 +38,7 @@ class CartController  extends Controller {
 		$result = $cart->updateOrCreate(
 			$channel,
 			[
-				'video_id'   => $request->video_id,
+				'video_id'   => $request->video_id,		
 				'quantity'   => 1,
 				'price'      => $request->price,
 				'total'      => $request->price * 1,
@@ -50,10 +50,6 @@ class CartController  extends Controller {
 				'remember_token' => $request->token
 			]
 		);
-
-
-		dd($result);
-
 
 		if ($request->from == 'app') {
 			$params = json_encode(array_merge($request->all(),['cart_id' => $result->id], ));
