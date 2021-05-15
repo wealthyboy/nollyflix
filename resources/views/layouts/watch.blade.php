@@ -36,11 +36,11 @@
 
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 		<script>
-              if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    $('body').css({
-        "-webkit-transform": "rotate(90deg)"
-    }); 
-}
+//               if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+//     $('body').css({
+//         "-webkit-transform": "rotate(90deg)"
+//     }); 
+// }
 
    
 	</script>
