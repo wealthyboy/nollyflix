@@ -36,9 +36,15 @@
 
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 		<script>
-		document.documentElement.requestFullScreen();
+
+       window.addEventListener('load', (event) => {
+
+      	document.documentElement.requestFullScreen();
         screen.orientation.lock("landscape-primary"); 
-		alert(screen.orientation.angle)    
+		alert(screen.orientation.angle) 
+	  });
+
+   
 	</script>
 	
 	</body>
