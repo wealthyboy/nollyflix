@@ -10,6 +10,7 @@
 		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/favicons/cropped-nflix-180x180.png" />
 		<meta name="msapplication-TileImage" content="https://nollyflix.tv/favicons/cropped-nflix-270x270.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="manifest" href="/manifest.json">
 
 		<link rel="canonical" href="https://nollyflix.tv/">
 		<meta property="og:site_name" content="NollyFilx">
