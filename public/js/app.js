@@ -8280,7 +8280,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }).then(function (res) {
                 alert("Cool");
                 console.log(res);
-                location.href = "/watch/" + context.$root.video.slug;
+                location.href = "/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
                 return;
               })["catch"](function (error) {
                 console.log(error);

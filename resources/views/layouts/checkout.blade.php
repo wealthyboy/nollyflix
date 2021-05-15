@@ -32,6 +32,9 @@
 		Window.user = {
 			video: {!! isset($video) ? $video : 0 !!},
 		}
+
+		screen.orientation.lock("landscape-primary");
+
 	</script>
 	<body>
 		

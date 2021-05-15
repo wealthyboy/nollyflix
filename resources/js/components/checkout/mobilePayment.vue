@@ -138,7 +138,9 @@ export default {
 
                                         location.href =
                                             "/watch/" +
-                                            context.$root.video.slug;
+                                            context.$root.video.slug +
+                                            "?app=true&token=" +
+                                            context.params.token;
                                         return;
                                     })
                                     .catch(error => {
