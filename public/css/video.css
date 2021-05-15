@@ -1822,7 +1822,6 @@ video::-webkit-media-text-track-display {
 body {
   margin: 0;
   padding: 0;
-  -webkit-transform: rotate(90deg);
 }
 
 .hide {
@@ -1883,7 +1882,6 @@ video[poster] {
 #video {
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   -o-object-fit: cover;
      object-fit: cover;
   height: 100%;
@@ -1891,6 +1889,13 @@ video[poster] {
   min-width: 100%;
   min-height: 100%;
   background-color: #222222;
+  transform-origin: left top;
+  width: 100vh;
+  height: 100vw;
+  overflow-x: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
 
 .video-js .vjs-tech {
