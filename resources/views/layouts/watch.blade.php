@@ -25,10 +25,7 @@
 	</head>
 
 	<script>
-		
-
-		screen.orientation.lock("landscape-primary");
-
+		screen.orientation.lock("landscape-secondary");
 	</script>
 	
 	<body>
