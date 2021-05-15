@@ -30,18 +30,20 @@
 		<section>
 			@yield('content')
 		</section>
+
+		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
+
+
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 		<script>
-			window.addEventListener('load', (event) => {
+              if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    $('body').css({
+        "-webkit-transform": "rotate(90deg)"
+    }); 
+}
 
-document.body
-    .requestFullscreen()
-    .then(res => alert(res).catch(err => alert(err)));
-				alert(2222) 
-			});
-			screen.orientation.lock('landscape').then(res=>console.log(res)).catch(err=>console.log(err))
-
-	   </script>
+   
+	</script>
 	
 	</body>
 </html>
