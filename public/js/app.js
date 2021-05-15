@@ -8280,9 +8280,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }).then(function (res) {
                 alert("Cool");
                 location.href = "/watch/" + context.$root.video.slug;
+                return;
               })["catch"](function (error) {
                 alert("Something went wrong");
                 context.$store.commit("setLoading", false);
+                return;
               });
             } else {
               x.close();

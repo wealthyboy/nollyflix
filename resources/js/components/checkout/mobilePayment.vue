@@ -138,6 +138,7 @@ export default {
                                         location.href =
                                             "/watch/" +
                                             context.$root.video.slug;
+                                        return;
                                     })
                                     .catch(error => {
                                         alert("Something went wrong");
@@ -145,6 +146,7 @@ export default {
                                             "setLoading",
                                             false
                                         );
+                                        return;
                                     });
                             } else {
                                 x.close();
