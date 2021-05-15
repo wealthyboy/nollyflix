@@ -30,22 +30,12 @@
 		<section>
 			@yield('content')
 		</section>
-
-		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
-
-
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 		<script>
-
-       window.addEventListener('load', (event) => {
-
-      	document.documentElement.requestFullScreen();
-        screen.orientation.lock("landscape-primary"); 
-		alert(screen.orientation.angle) 
-	  });
-
-   
-	</script>
+			window.addEventListener('load', (event) => {
+				alert(2222) 
+			});
+	   </script>
 	
 	</body>
 </html>
