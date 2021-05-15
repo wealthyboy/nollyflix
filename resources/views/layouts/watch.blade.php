@@ -33,8 +33,10 @@
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
 		<script>
 			window.addEventListener('load', (event) => {
-				document.body.requestFullscreen().then(res=>alert(res).catch(err=>alert(err);
 
+document.body
+    .requestFullscreen()
+    .then(res => alert(res).catch(err => alert(err)));
 				alert(2222) 
 			});
 	   </script>
