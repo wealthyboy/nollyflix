@@ -43,7 +43,7 @@ class CartController  extends Controller {
 				'quantity'   => 1,
 				'price'      => $request->price,
 				'total'      => $request->price * 1,
-				'user_id'    => $request->from == 'app' ? $request->user_id : optional(auth()->user())->id,
+				'user_id'    => $request->from == 'app' ? $request->userid : optional(auth()->user())->id,
 				'content_owner_id'  => $content_owner_id,
 				'purchase_type' => $request->purchase_type,
 				'rate' => optional($rate)->rate ?? 1,
