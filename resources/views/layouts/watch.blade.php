@@ -26,7 +26,8 @@
 
 	<script>
 		document.documentElement.requestFullScreen();
-        screen.orientation.lock("landscape-primary");     
+        screen.orientation.lock("landscape-primary"); 
+		alert(screen.orientation.angle)    
 	</script>
 	
 	<body>
