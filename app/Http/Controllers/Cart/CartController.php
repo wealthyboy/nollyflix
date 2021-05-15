@@ -27,7 +27,6 @@ class CartController  extends Controller {
 	public function store(Request $request) 
 	{ 
 
-        
 		$this->validate($request,[
 		   'video_id' => 'required|exists:videos,id',
 		]);
@@ -51,6 +50,9 @@ class CartController  extends Controller {
 				'remember_token' => $request->token
 			]
 		);
+
+
+		dd($result);
 
 
 		if ($request->from == 'app') {
