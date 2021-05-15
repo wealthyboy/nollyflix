@@ -60862,10 +60862,6 @@ window.onload = function (event) {
     this.muted(false);
     this.playsinline(false);
   });
-  $.ajax({
-    url: "/watch/log/dom?dom" + document.getElementsByTagName("*"),
-    type: "GET"
-  });
 };
 
 /***/ }),
