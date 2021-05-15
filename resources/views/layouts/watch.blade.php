@@ -23,6 +23,13 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	</head>
+
+	<script>
+		
+
+		screen.orientation.lock("landscape-primary");
+
+	</script>
 	
 	<body>
 		<section>
