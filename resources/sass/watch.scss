@@ -56,6 +56,7 @@ body {
 .background_video {
     position: relative;
     z-index: 1;
+    -webkit-transform: rotate(90deg);
 }
 
 .background_video .back {
@@ -81,10 +82,6 @@ video[poster] {
     background-size: cover;
 }
 
-body {
-    background-color: "red";
-}
-
 .vjs-poster {
     background-size: cover;
     background-position: inherit;
@@ -105,7 +102,6 @@ body {
     min-width: 100%;
     min-height: 100%;
     background-color: #222222;
-    -webkit-transform: rotate(90deg);
 }
 
 .video-js .vjs-tech {
