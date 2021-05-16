@@ -134,10 +134,11 @@ export default {
                                     })
                                     .then(res => {
                                         location.href =
-                                            "/watch/" +
-                                            context.$root.video.slug +
-                                            "?app=true&token=" +
-                                            context.params.token;
+                                            "exp://192.168.8.102:19000/--/ModalWebView";
+                                        // "/watch/" +
+                                        // context.$root.video.slug +
+                                        // "?app=true&token=" +
+                                        // context.params.token;
                                         return;
                                     })
                                     .catch(error => {
