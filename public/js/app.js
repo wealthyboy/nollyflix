@@ -8278,12 +8278,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               axios.post("/checkout", {
                 cart_id: context.params.cart_id
               }).then(function (res) {
-                alert("Cool");
-                console.log(res);
                 location.href = "/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
                 return;
               })["catch"](function (error) {
-                console.log(error);
+                alert("Something went wrong");
                 context.$store.commit("setLoading", false);
                 return;
               });
@@ -28252,18 +28250,20 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c("div", [
-            _c(
-              "button",
-              {
-                staticClass:
-                  "btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 ",
-                attrs: { type: "button" },
-                on: { click: _vm.submit }
-              },
-              [_vm._m(1)]
-            )
-          ])
+          !_vm.loading
+            ? _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 ",
+                    attrs: { type: "button" },
+                    on: { click: _vm.submit }
+                  },
+                  [_vm._m(1)]
+                )
+              ])
+            : _vm._e()
         ])
       ])
     ])

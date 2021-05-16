@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div v-if="!loading">
                         <button
                             class="btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 "
                             @click="submit"
@@ -133,9 +133,6 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
-                                        alert("Cool");
-                                        console.log(res);
-
                                         location.href =
                                             "/watch/" +
                                             context.$root.video.slug +
@@ -144,8 +141,7 @@ export default {
                                         return;
                                     })
                                     .catch(error => {
-                                        console.log(error);
-
+                                        alert("Something went wrong");
                                         context.$store.commit(
                                             "setLoading",
                                             false

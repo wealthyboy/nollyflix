@@ -10,7 +10,6 @@
 		<link rel="apple-touch-icon-precomposed" href="https://nollyflix.tv/favicons/cropped-nflix-180x180.png" />
 		<meta name="msapplication-TileImage" content="https://nollyflix.tv/favicons/cropped-nflix-270x270.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="manifest" href="/manifest.json">
 
 		<link rel="canonical" href="https://nollyflix.tv/">
 		<meta property="og:site_name" content="NollyFilx">
@@ -34,19 +33,7 @@
 		</section>
 
 		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
-
-
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
-		<script>
-//               if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-//     $('body').css({
-//         "-webkit-transform": "rotate(90deg)"
-//     }); 
-// }
-
-   
-	</script>
-	
 	</body>
 </html>
 
