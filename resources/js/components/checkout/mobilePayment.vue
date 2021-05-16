@@ -134,7 +134,7 @@ export default {
                                     })
                                     .then(res => {
                                         window.location =
-                                            "exp://192.168.8.102:19000/--/ModalWebView";
+                                            "exp://exp.host/@wealthyboyjacky/nollywood/--/ModalWebView";
                                         // "/watch/" +
                                         // context.$root.video.slug +
                                         // "?app=true&token=" +
