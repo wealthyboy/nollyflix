@@ -8199,6 +8199,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["params"],
@@ -28233,6 +28235,12 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("hr", { staticClass: "line" }),
+          _vm._v(" "),
+          _c(
+            "a",
+            { attrs: { href: "exp://exp.host/@wealthyboyjacky/nollywood" } },
+            [_vm._v("Open app")]
+          ),
           _vm._v(" "),
           _vm.loading
             ? _c(

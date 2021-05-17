@@ -8,7 +8,9 @@
                     </div>
 
                     <hr class="line" />
-
+                    <a href="exp://exp.host/@wealthyboyjacky/nollywood"
+                        >Open app</a
+                    >
                     <div
                         v-if="loading"
                         class="row justify-content-center text-center"
