@@ -137,7 +137,7 @@ export default {
                                         return;
                                     })
                                     .catch(error => {
-                                        alert(error);
+                                        alert("Something went wrong");
 
                                         context.$store.commit(
                                             "setLoading",
