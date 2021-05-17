@@ -129,7 +129,7 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
-                                        window.location =
+                                        location.href =
                                             "/watch/" +
                                             context.$root.video.slug +
                                             "?app=true&token=" +

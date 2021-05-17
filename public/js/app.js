@@ -8274,7 +8274,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               axios.post("/checkout", {
                 cart_id: context.params.cart_id
               }).then(function (res) {
-                window.location = "/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
+                location.href = "/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
                 return;
               })["catch"](function (error) {
                 alert(error);
