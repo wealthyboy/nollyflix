@@ -8,9 +8,7 @@
                     </div>
 
                     <hr class="line" />
-                    <a href="exp://exp.host/@wealthyboyjacky/nollyflix"
-                        >Open app</a
-                    >
+
                     <div
                         v-if="loading"
                         class="row justify-content-center text-center"
@@ -139,7 +137,8 @@ export default {
                                         return;
                                     })
                                     .catch(error => {
-                                        alert("Something went wrong");
+                                        alert(error);
+
                                         context.$store.commit(
                                             "setLoading",
                                             false

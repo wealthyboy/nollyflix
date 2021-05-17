@@ -8199,8 +8199,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["params"],
@@ -8279,7 +8277,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 window.location = "/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
                 return;
               })["catch"](function (error) {
-                alert("Something went wrong");
+                alert(error);
                 context.$store.commit("setLoading", false);
                 return;
               });
@@ -28227,12 +28225,6 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("hr", { staticClass: "line" }),
-          _vm._v(" "),
-          _c(
-            "a",
-            { attrs: { href: "exp://exp.host/@wealthyboyjacky/nollyflix" } },
-            [_vm._v("Open app")]
-          ),
           _vm._v(" "),
           _vm.loading
             ? _c(
