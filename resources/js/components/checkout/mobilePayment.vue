@@ -8,7 +8,7 @@
                     </div>
 
                     <hr class="line" />
-                    <a href="exp://exp.host/@wealthyboyjacky/nollywood"
+                    <a href="exp://exp.host/@wealthyboyjacky/nollyflix"
                         >Open app</a
                     >
                     <div
@@ -115,19 +115,15 @@ export default {
                             email: context.params.email
                         },
                         onclose: function() {
-                            // context.$store.commit("setLoading", false);
+                            context.$store.commit("setLoading", false);
                         },
                         callback: function(response) {
                             context.$emit("paymentCompleted", "Completed");
-                            alert("34");
-                            $("#apModal").on("hide.bs.modal", function(e) {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                return false;
-                            });
 
                             if (response.status == "successful") {
                                 x.close();
+                                context.$store.commit("setLoading", true);
+
                                 context.statusText =
                                     "Redirecting you to your vidoe .Enjoy.....";
                                 axios
