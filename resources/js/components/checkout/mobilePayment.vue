@@ -132,11 +132,10 @@ export default {
                                     })
                                     .then(res => {
                                         window.location =
-                                            "exp://exp.host/@wealthyboyjacky/nollyflix";
-                                        // "/watch/" +
-                                        // context.$root.video.slug +
-                                        // "?app=true&token=" +
-                                        // context.params.token;
+                                            "/watch/" +
+                                            context.$root.video.slug +
+                                            "?app=true&token=" +
+                                            context.params.token;
                                         return;
                                     })
                                     .catch(error => {
