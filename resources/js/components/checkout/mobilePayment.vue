@@ -132,7 +132,7 @@ export default {
                                     })
                                     .then(res => {
                                         window.location =
-                                            "exp://exp.host/@wealthyboyjacky/nollyflix/--/ModalWebView";
+                                            "exp://exp.host/@wealthyboyjacky/nollyflix";
                                         // "/watch/" +
                                         // context.$root.video.slug +
                                         // "?app=true&token=" +
