@@ -136,7 +136,7 @@ export default {
                                     })
                                     .then(res => {
                                         window.location =
-                                            "exp://exp.host/@wealthyboyjacky/nollywood/--/ModalWebView";
+                                            "exp://exp.host/@wealthyboyjacky/nollyflix/--/ModalWebView";
                                         // "/watch/" +
                                         // context.$root.video.slug +
                                         // "?app=true&token=" +

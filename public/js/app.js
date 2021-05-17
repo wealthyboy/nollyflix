@@ -8280,7 +8280,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               axios.post("/checkout", {
                 cart_id: context.params.cart_id
               }).then(function (res) {
-                window.location = "exp://exp.host/@wealthyboyjacky/nollywood/--/ModalWebView"; // "/watch/" +
+                window.location = "exp://exp.host/@wealthyboyjacky/nollyflix/--/ModalWebView"; // "/watch/" +
                 // context.$root.video.slug +
                 // "?app=true&token=" +
                 // context.params.token;
