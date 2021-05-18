@@ -11,14 +11,22 @@ class SendResetPasswordCode extends Notification
 {
     use Queueable;
 
+    public $user;
+
+
+    public $code;
+
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user ,$code)
     {
-        //
+        $this->user = $user;
+
+        $this->code = $code;
     }
 
     /**
@@ -41,9 +49,11 @@ class SendResetPasswordCode extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Verification needed')
+                    ->line('Hi,')
+                    ->line('Please use code below to reset your password')
+                    ->action($this->code, url('#'))
+                    ->line('Thank you for choosing nollyflix!');
     }
 
     /**
