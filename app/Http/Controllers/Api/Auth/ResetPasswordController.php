@@ -39,9 +39,7 @@ class ResetPasswordController extends Controller
         Notification::route('mail', $user->email)
         ->notify(new SendResetPasswordCode($user, $random_number));
 
-        return response()->json([
-            'status' => "Please enter code sent to your email"
-        ],200);
+        return $password_reset;
     }
 
 
