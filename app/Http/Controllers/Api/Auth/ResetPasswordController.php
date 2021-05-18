@@ -8,7 +8,7 @@ use App\Http\Resources\PrivateUserResource;
 use App\User;
 use App\PasswordReset;
 use App\Notifications\SendResetPasswordCode;
-use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification;
 
 
 use Illuminate\Http\Request;
