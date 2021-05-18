@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
 
         return response()->json([
             'status' => "Please enter code sent to your email"
-        ],200)
+        ],200);
     }
 
 
