@@ -64,7 +64,7 @@ class ResetPasswordController extends Controller
 
 
 
-        $user = User::find($user->id);
+        $user = User::find($code->user_id);
         $user->password =  bcrypt($request->password);
         $user->save();
         return response()->json([
