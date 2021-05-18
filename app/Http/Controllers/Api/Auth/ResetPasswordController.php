@@ -29,13 +29,12 @@ class ResetPasswordController extends Controller
         }
 
         $random_number = mt_rand(100000, 999999);
-
         $password_reset = new PasswordReset;
         $password_reset->email = $user->email;
         $password_reset->user_id  = $user->id;
         $password_reset->token  = $random_number;
         $password_reset->token_expires_at = now()->addMinutes(10);
-        $password_reset->save()
+        $password_reset->save();
 
         Notification::route('mail', $user->email)
         ->notify(new SendResetPasswordCode($password_reset));
