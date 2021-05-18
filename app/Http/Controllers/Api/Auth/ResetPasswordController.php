@@ -44,7 +44,7 @@ class ResetPasswordController extends Controller
 
 
     public function reset(Request $request){
-        $code = PasswordReset::where("code",$request->code)->first();
+        $code = PasswordReset::where("token",$request->code)->first();
 
         if (!$code){
             return response()->json([
