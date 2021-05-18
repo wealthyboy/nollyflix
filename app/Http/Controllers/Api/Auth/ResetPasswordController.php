@@ -45,7 +45,7 @@ class ResetPasswordController extends Controller
     }
 
 
-    public function forgot(Request $request){
+    public function reset(Request $request){
 
     }
 
