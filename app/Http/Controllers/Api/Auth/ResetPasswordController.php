@@ -45,7 +45,6 @@ class ResetPasswordController extends Controller
 
     public function reset(Request $request){
         $code = PasswordReset::where("token",$request->code)->first();
-
         if (!$code){
             return response()->json([
                 'errors' => [
@@ -62,8 +61,6 @@ class ResetPasswordController extends Controller
             ], 422);
         }
 
-
-
         $user = User::find($code->user_id);
         $user->password =  bcrypt($request->password);
         $user->save();
@@ -72,7 +69,5 @@ class ResetPasswordController extends Controller
         ],200);
 
     }
-
-
 
 }
