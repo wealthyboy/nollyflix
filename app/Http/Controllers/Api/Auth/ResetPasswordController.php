@@ -37,7 +37,7 @@ class ResetPasswordController extends Controller
         $password_reset->save();
 
         Notification::route('mail', $user->email)
-        ->notify(new SendResetPasswordCode($password_reset));
+        ->notify(new SendResetPasswordCode($user, $random_number));
 
         return response()->json([
             'status' => "Please enter code sent to your email"
