@@ -20,7 +20,7 @@ class ResetPasswordController extends Controller
         //
         $user   = User::where('email',$request->email)->first();
 
-        if (!user){
+        if (!$user){
             return response()->json([
                 'errors' => [
                     'email' => ['Could not find your email.']
