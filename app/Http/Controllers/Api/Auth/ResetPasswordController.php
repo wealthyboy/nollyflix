@@ -54,7 +54,7 @@ class ResetPasswordController extends Controller
             ], 422);
         }
 
-        if (!$code->token_expires_at->isFuture()){
+        if ($code->token_expires_at->diffInMinutes() > 10){
             return response()->json([
                 'errors' => [
                     'code' => ['Code is invalid']
