@@ -46,6 +46,32 @@ class ResetPasswordController extends Controller
 
 
     public function reset(Request $request){
+        $code = PasswordReset::where("code",$request->code)->first();
+
+        if (!$code){
+            return response()->json([
+                'errors' => [
+                    'code' => ['Code is invalid']
+                ]
+            ], 422);
+        }
+
+        if (!$code->token_expires_at->isFuture()){
+            return response()->json([
+                'errors' => [
+                    'code' => ['Code is invalid']
+                ]
+            ], 422);
+        }
+
+
+
+        $user = User::find($user->id);
+        $user->password =  bcrypt($request->password);
+        $user->save();
+        return response()->json([
+            'status' => "Password updated"
+        ],200);
 
     }
 
