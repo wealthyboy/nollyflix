@@ -10,8 +10,8 @@ Route::get('browse/filmers',  'Api\FilmMakers\FilmMakersController@index');
 Route::get('profile/videos',  'Api\WatchList\WatchListController@index');
 Route::get('search',          'Api\Search\SearchController@search');
 
-Route::get('forgot/password',  'Api\Auth\ResetPasswordController@forgot');
-Route::get('reset/password',  'Api\Auth\ResetPasswordController@reset');
+Route::post('forgot/password',  'Api\Auth\ResetPasswordController@forgot');
+Route::post('reset/password',  'Api\Auth\ResetPasswordController@reset');
 
 
 
