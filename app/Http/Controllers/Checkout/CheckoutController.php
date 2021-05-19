@@ -62,7 +62,7 @@ class CheckoutController extends Controller
 			//throw $th;
 		}
 
-		return 1;
+		return $order;
 	}
 
 
