@@ -128,29 +128,29 @@ export default {
                                     "https://nollyflix.tv/watch"
                                 );
 
-                                context.statusText =
-                                    "Redirecting you to your vidoe .Enjoy.....";
-                                axios
-                                    .post("/checkout", {
-                                        cart_id: context.params.cart_id
-                                    })
-                                    .then(res => {
-                                        // location.href =
-                                        //     "/watch/" +
-                                        //     context.$root.video.slug +
-                                        //     "?app=true&token=" +
-                                        //     context.params.token;
-                                        // return;
-                                    })
-                                    .catch(error => {
-                                        alert("Something went wrong");
+                                // context.statusText =
+                                //     "Redirecting you to your vidoe .Enjoy.....";
+                                // axios
+                                //     .post("/checkout", {
+                                //         cart_id: context.params.cart_id
+                                //     })
+                                //     .then(res => {
+                                //         // location.href =
+                                //         //     "/watch/" +
+                                //         //     context.$root.video.slug +
+                                //         //     "?app=true&token=" +
+                                //         //     context.params.token;
+                                //         // return;
+                                //     })
+                                //     .catch(error => {
+                                //         alert("Something went wrong");
 
-                                        context.$store.commit(
-                                            "setLoading",
-                                            false
-                                        );
-                                        return;
-                                    });
+                                //         context.$store.commit(
+                                //             "setLoading",
+                                //             false
+                                //         );
+                                //         return;
+                                //     });
                             } else {
                                 x.close();
                                 context.$store.commit("setLoading", false);
