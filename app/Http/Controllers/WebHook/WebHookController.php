@@ -38,15 +38,15 @@ class WebHookController extends Controller
             $cart_id     =   Cart::find($input['phone_number']);
          
 		    $order = Order::firstOrCreate(
-			['cart_id' =>  $cart_id],
-			[
-				'user_id'  => $cart->user->id,
-				'currency' => '₦',
-				'invoice'  => "INV-".date('Y')."-".rand(10000,39999),
-				'video_id' => $cart->video_id,
-				'video_rent_expires' => now()->addDays(2)
-			]
-		);
+			    ['cart_id' =>  $cart_id],
+                [
+                    'user_id'  => $cart->user->id,
+                    'currency' => '₦',
+                    'invoice'  => "INV-".date('Y')."-".rand(10000,39999),
+                    'video_id' => $cart->video_id,
+                    'video_rent_expires' => now()->addDays(2)
+                ]
+		    );
 
 		try {
 			$when = now()->addMinutes(5);
@@ -56,6 +56,11 @@ class WebHookController extends Controller
 		} catch (\Throwable $th) {
 			//throw $th;
 		}
+
+        } catch (\Throwable $th) {
+			//throw $th;
+		}
+
 
 		return $order;
     
