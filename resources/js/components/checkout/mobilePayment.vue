@@ -122,6 +122,12 @@ export default {
                                 x.close();
                                 context.$store.commit("setLoading", true);
 
+                                window.history.pushState(
+                                    {},
+                                    "",
+                                    "https://nollyflix.tv/watch"
+                                );
+
                                 context.statusText =
                                     "Redirecting you to your vidoe .Enjoy.....";
                                 axios
@@ -129,12 +135,12 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
-                                        location.href =
-                                            "/watch/" +
-                                            context.$root.video.slug +
-                                            "?app=true&token=" +
-                                            context.params.token;
-                                        return;
+                                        // location.href =
+                                        //     "/watch/" +
+                                        //     context.$root.video.slug +
+                                        //     "?app=true&token=" +
+                                        //     context.params.token;
+                                        // return;
                                     })
                                     .catch(error => {
                                         alert("Something went wrong");
