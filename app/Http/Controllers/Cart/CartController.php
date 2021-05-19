@@ -53,6 +53,8 @@ class CartController  extends Controller {
 			]
 		);
 
+		return $result;
+
 		if ($request->from == 'app') {
 			$params = json_encode(
 				          array_merge($request->all(),['cart_id' => $result->id , 'email' => $user->email])
