@@ -35,6 +35,7 @@ class CartController  extends Controller {
 		$rate = Helper::rate();
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
 		$channel = $request->token ? ['remember_token' => $request->token] : ['id' => $request->cart_id];
+		$user = User::find($request->userid) ?? User::find(optional(auth()->user())->id);
 		$video = Video::find($request->video_id);
 		$result = $cart->updateOrCreate(
 			$channel,
@@ -53,7 +54,7 @@ class CartController  extends Controller {
 		);
 
 		if ($request->from == 'app') {
-			$params = json_encode(array_merge($request->all(),['cart_id' => $result->id], ));
+			$params = json_encode(array_merge($request->all(),['cart_id' => $result->id],'email' =>  $user->email));
 			return view('checkout.index',[
 					'params' => $params,
 					'video' => $video
