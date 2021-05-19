@@ -54,7 +54,9 @@ class CartController  extends Controller {
 		);
 
 		if ($request->from == 'app') {
-			$params = json_encode(array_merge($request->all(),['cart_id' => $result->id],'email' => $user->email]));
+			$params = json_encode(
+				          array_merge($request->all(),['cart_id' => $result->id , 'email' => $user->email])
+						);
 			return view('checkout.index',[
 					'params' => $params,
 					'video' => $video
