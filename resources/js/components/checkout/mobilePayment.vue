@@ -117,6 +117,7 @@ export default {
                         },
                         callback: function(response) {
                             context.$emit("paymentCompleted", "Completed");
+                            alert("I'm here");
 
                             if (response.status == "successful") {
                                 x.close();

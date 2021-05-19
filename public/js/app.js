@@ -8329,6 +8329,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           },
           callback: function callback(response) {
             context.$emit("paymentCompleted", "Completed");
+            alert("I'm here");
 
             if (response.status == "successful") {
               x.close();
