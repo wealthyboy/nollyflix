@@ -190,7 +190,7 @@ export default {
                                 x.close();
                                 // context.$store.commit('setLoading',true)
                                 context.statusText =
-                                    "Redirecting you to your vidoe .Enjoy.....";
+                                    "Redirecting you to your vidoe .Enjoyu.....";
 
                                 axios
                                     .post("/checkout", {

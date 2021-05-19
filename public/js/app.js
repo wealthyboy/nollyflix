@@ -8564,7 +8564,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (response.status == "successful") {
               x.close(); // context.$store.commit('setLoading',true)
 
-              context.statusText = "Redirecting you to your vidoe .Enjoy.....";
+              context.statusText = "Redirecting you to your vidoe .Enjoyu.....";
               axios.post("/checkout", {
                 cart_id: context.cart_id
               }).then(function (res) {
