@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Notifications;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\PrivateUserResource;
+
 use App\User;
 
 class NotificationsController extends Controller
@@ -32,10 +34,7 @@ class NotificationsController extends Controller
         ]);
 
         if ($result){
-            $user =  \Auth::user();
-            return response()->json([
-              'status' => $user
-            ],200);
+            return new PrivateUserResource($request->user());
         }
 
         return response()->json([
