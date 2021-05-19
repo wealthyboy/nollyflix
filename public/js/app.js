@@ -8329,33 +8329,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           },
           callback: function callback(response) {
             context.$emit("paymentCompleted", "Completed");
-            alert("I'm here");
 
             if (response.status == "successful") {
               x.close();
               context.$store.commit("setLoading", true);
-              window.history.pushState({}, "", "https://nollyflix.tv/watch"); // context.statusText =
-              //     "Redirecting you to your vidoe .Enjoy.....";
-              // axios
-              //     .post("/checkout", {
-              //         cart_id: context.params.cart_id
-              //     })
-              //     .then(res => {
-              //         // location.href =
-              //         //     "/watch/" +
-              //         //     context.$root.video.slug +
-              //         //     "?app=true&token=" +
-              //         //     context.params.token;
-              //         // return;
-              //     })
-              //     .catch(error => {
-              //         alert("Something went wrong");
-              //         context.$store.commit(
-              //             "setLoading",
-              //             false
-              //         );
-              //         return;
-              //     });
+              context.statusText = "Redirecting you to your vidoe .Enjoy.....";
+              axios.post("/checkout", {
+                cart_id: context.params.cart_id
+              }).then(function (res) {
+                location.href = "/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
+                return;
+              })["catch"](function (error) {
+                alert("Something went wrong");
+                context.$store.commit("setLoading", false);
+                return;
+              });
             } else {
               x.close();
               context.$store.commit("setLoading", false);
@@ -8565,12 +8553,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (response.status == "successful") {
               x.close(); // context.$store.commit('setLoading',true)
 
-              context.statusText = "Redirecting you to your vidoe .Enjoyu.....";
+              context.statusText = "Redirecting you to your vidoe .Enjoy.....";
               axios.post("/checkout", {
                 cart_id: context.cart_id
-              }).then(function (res) {// location.href =
-                //     "/watch/" +
-                //     context.$root.video.slug;
+              }).then(function (res) {
+                location.href = "/watch/" + context.$root.video.slug;
               })["catch"](function (error) {
                 context.$store.commit("setLoading", false);
               });

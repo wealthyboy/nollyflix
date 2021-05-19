@@ -190,16 +190,16 @@ export default {
                                 x.close();
                                 // context.$store.commit('setLoading',true)
                                 context.statusText =
-                                    "Redirecting you to your vidoe .Enjoyu.....";
+                                    "Redirecting you to your vidoe .Enjoy.....";
 
                                 axios
                                     .post("/checkout", {
                                         cart_id: context.cart_id
                                     })
                                     .then(res => {
-                                        // location.href =
-                                        //     "/watch/" +
-                                        //     context.$root.video.slug;
+                                        location.href =
+                                            "/watch/" +
+                                            context.$root.video.slug;
                                     })
                                     .catch(error => {
                                         context.$store.commit(
