@@ -8567,8 +8567,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               context.statusText = "Redirecting you to your vidoe .Enjoyu.....";
               axios.post("/checkout", {
                 cart_id: context.cart_id
-              }).then(function (res) {
-                location.href = "/watch/" + context.$root.video.slug;
+              }).then(function (res) {// location.href =
+                //     "/watch/" +
+                //     context.$root.video.slug;
               })["catch"](function (error) {
                 context.$store.commit("setLoading", false);
               });
