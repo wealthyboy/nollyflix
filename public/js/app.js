@@ -8337,11 +8337,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               axios.post("/checkout", {
                 cart_id: context.params.cart_id
               }).then(function (res) {
-                console.log(res); // location.href =
-                //     "/watch/" +
-                //     context.$root.video.slug +
-                //     "?user_id=" +
-                //     context.params.userid;
+                location.href = "/watch/" + context.$root.video.slug + "?user_id=" + context.params.userid;
               })["catch"](function (error) {
                 context.$store.commit("setLoading", false);
               });
