@@ -8556,6 +8556,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }).then(function (res) {
                 location.href = "/watch/" + context.$root.video.slug;
               })["catch"](function (error) {
+                alert("Something went wrong");
                 context.$store.commit("setLoading", false);
               });
             } else {

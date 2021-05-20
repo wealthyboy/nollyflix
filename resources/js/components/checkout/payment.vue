@@ -202,6 +202,7 @@ export default {
                                             context.$root.video.slug;
                                     })
                                     .catch(error => {
+                                        alert("Something went wrong");
                                         context.$store.commit(
                                             "setLoading",
                                             false
