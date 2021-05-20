@@ -38,7 +38,6 @@ class CartController  extends Controller {
 		$user = User::find($request->userid) ?? User::find(optional(auth()->user())->id);
 		$video = Video::find($request->video_id);
 
-		dd($request->video_id);
 		$result = $cart->updateOrCreate(
 			$channel,
 			[
@@ -54,6 +53,9 @@ class CartController  extends Controller {
 				'remember_token' => $request->token
 			]
 		);
+
+		dd($result);
+
 
 		if ($request->from == 'app') {
 			$params = json_encode(
