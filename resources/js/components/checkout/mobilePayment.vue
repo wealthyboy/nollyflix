@@ -125,11 +125,23 @@ export default {
                                 context.statusText =
                                     "Redirecting you to your vidoe .Enjoy.....";
 
-                                location.href =
-                                    "/watch/" +
-                                    context.$root.video.slug +
-                                    "?app=true&token=" +
-                                    context.params.token;
+                                axios
+                                    .post("/checkout", {
+                                        cart_id: context.params.cart_id
+                                    })
+                                    .then(res => {
+                                        location.href =
+                                            "/watch/" +
+                                            context.$root.video.slug +
+                                            "?user_id=" +
+                                            context.params.userid;
+                                    })
+                                    .catch(error => {
+                                        context.$store.commit(
+                                            "setLoading",
+                                            false
+                                        );
+                                    });
                             } else {
                                 x.close();
                                 context.$store.commit("setLoading", false);

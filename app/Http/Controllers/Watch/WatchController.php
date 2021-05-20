@@ -19,12 +19,17 @@ class WatchController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        // $this->middleware('auth',['except' => [
-        //         'expired'
-        //     ]
-        // ]);
+    public function __construct(Request $request)
+    {   
+
+        if ($request->user_id) {
+            \Auth::loginUsingId($request->user_id);
+        }
+
+        $this->middleware('auth',['except' => [
+                'expired'
+            ]
+        ]);
     }
 
     /**
@@ -34,11 +39,11 @@ class WatchController extends Controller
      */
     public function index(Request $request,Video $video)
     {     
-
+        
         if ($request->watch === 'free'){
             $video = $video;
         } else {
-            $order = Order::where('video_id',$video->id)->firstOrFail();
+            $order = Order::where(['video_id'=>$video->id , 'user_id' => $request->user_id])->firstOrFail();
             if ($order->cart->purchase_type == 'Rent'  &&  !$order->video_rent_expires->isFuture()) {
                 return redirect()->route('watch.expired',['video' => $video->slug]);
             }
