@@ -37,6 +37,8 @@ class CartController  extends Controller {
 		$channel = $request->token ? ['remember_token' => $request->token] : ['id' => $request->cart_id];
 		$user = User::find($request->userid) ?? User::find(optional(auth()->user())->id);
 		$video = Video::find($request->video_id);
+
+		dd($request->video_id);
 		$result = $cart->updateOrCreate(
 			$channel,
 			[
