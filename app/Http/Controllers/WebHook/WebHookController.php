@@ -37,7 +37,7 @@ class WebHookController extends Controller
             //The phone_number carries the cart id. The payment process does not allow custom data
             $cart_id     =   Cart::find($input['phone_number']);
          
-		    $order = Order::firstOrCreate(
+		    $order = Order::updateOrCreate(
 			    ['cart_id' =>  $cart_id],
                 [
                     'user_id'  => $cart->user->id,
