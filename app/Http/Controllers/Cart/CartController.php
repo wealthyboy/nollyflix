@@ -54,7 +54,6 @@ class CartController  extends Controller {
 			]
 		);
 
-		dd($result);
 
 
 		if ($request->from == 'app') {
