@@ -26,10 +26,10 @@ class WatchController extends Controller
             \Auth::loginUsingId($request->user_id);
         }
 
-        // $this->middleware('auth',['except' => [
-        //         'expired'
-        //     ]
-        // ]);
+        $this->middleware('auth',['except' => [
+                'expired'
+            ]
+        ]);
     }
 
     /**
