@@ -48,14 +48,14 @@ class WebHookController extends Controller
                 ]
 		    );
 
-		try {
-			$when = now()->addMinutes(5);
-			\Mail::to($user->email)
-				->bcc($admin_emails[0])
-				->later($when, new OrderReceipt($cart->user, $order, $this->settings,"₦"));
-		} catch (\Throwable $th) {
-			//throw $th;
-		}
+            try {
+                $when = now()->addMinutes(5);
+                \Mail::to($user->email)
+                    ->bcc($admin_emails[0])
+                    ->later($when, new OrderReceipt($cart->user, $order, $this->settings,"₦"));
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
 
         } catch (\Throwable $th) {
 			//throw $th;

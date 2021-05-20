@@ -61,12 +61,9 @@ class CheckoutController extends Controller
 		} catch (\Throwable $th) {
 			//throw $th;
 		}
-
-		return $order;
+        
+		
+		return $result;
 	}
-
-
-
-
 		
 }

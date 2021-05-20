@@ -99,7 +99,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('pages/{information}',  'Information\InformationController@show');
 
     Route::get('checkout',             'Checkout\CheckoutController@index');
-    Route::post('checkout',            'Checkout\CheckoutController@store');
+    Route::post('checkout/watch/{video}',  'Checkout\CheckoutController@store');
     Route::post('payment/successful',  'Checkout\CheckoutController@paymentSuccessful');
     Route::get('search',               'Search\SearchController@index');
     Route::get('browse/a/{types}',     'Affliates\AffliatesController@index');
