@@ -130,11 +130,12 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
-                                        location.href =
-                                            "/watch/" +
-                                            context.$root.video.slug +
-                                            "?user_id=" +
-                                            context.params.userid;
+                                        console.log(res);
+                                        // location.href =
+                                        //     "/watch/" +
+                                        //     context.$root.video.slug +
+                                        //     "?user_id=" +
+                                        //     context.params.userid;
                                     })
                                     .catch(error => {
                                         context.$store.commit(
