@@ -42,7 +42,6 @@ class CheckoutController extends Controller
     public function store(Request $request,Order $order) { 
 		$cart     =   Cart::find($request->cart_id);
 
-		dd($cart);
 
 		$order = Order::firstOrCreate(
 			['cart_id' =>  $request->cart_id],
