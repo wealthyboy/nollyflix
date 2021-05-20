@@ -8334,7 +8334,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               x.close();
               context.$store.commit("setLoading", true);
               context.statusText = "Redirecting you to your vidoe .Enjoy.....";
-              location.href = "/checkout/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
+              location.href = "/watch/" + context.$root.video.slug + "?app=true&token=" + context.params.token;
             } else {
               x.close();
               context.$store.commit("setLoading", false);

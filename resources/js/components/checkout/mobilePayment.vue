@@ -126,7 +126,7 @@ export default {
                                     "Redirecting you to your vidoe .Enjoy.....";
 
                                 location.href =
-                                    "/checkout/watch/" +
+                                    "/watch/" +
                                     context.$root.video.slug +
                                     "?app=true&token=" +
                                     context.params.token;
