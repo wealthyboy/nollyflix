@@ -60864,14 +60864,13 @@ window.onload = function (event) {
     this.playsinline(false);
 
     if (!this.paused()) {
-      console.log("Video is playing");
+      p.classList.add("hide");
     } else {
       p.classList.remove("hide");
       var self = this;
 
-      p.onclick = function () {
+      p.onclick = function (e) {
         self.play();
-        p.classList.add("hide");
       };
     }
   });
