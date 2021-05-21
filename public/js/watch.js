@@ -60865,7 +60865,7 @@ window.onload = function (event) {
     if (!this.paused()) {
       console.log("Video is playing");
     } else {
-      var p = document.getElementById("#play");
+      var p = document.getElementById("play");
       p.classList.remove("hide");
     }
   });
