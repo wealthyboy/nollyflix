@@ -21,16 +21,7 @@ class WatchController extends Controller
      */
     public function __construct(Video $video,Request $request)
     {   
-        dd($video);
-        if ($video->access_type != 'is_free') {
-            if ($request->user_id) {
-                \Auth::loginUsingId($request->user_id);
-            }
-            $this->middleware('auth',['except' => [
-                    'expired'
-                ]
-            ]);
-        }
+        
         
     }
 
@@ -41,6 +32,16 @@ class WatchController extends Controller
      */
     public function index(Request $request,Video $video)
     {     
+        if ($video->access_type != 'is_free') {
+            if ($request->user_id) {
+                \Auth::loginUsingId($request->user_id);
+            }
+            $this->middleware('auth',['except' => [
+                    'expired'
+                ]
+            ]);
+        }
+
         
         if ($video->access_type !== 'is_free') {
             $video = $video;
