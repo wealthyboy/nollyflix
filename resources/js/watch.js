@@ -34,7 +34,8 @@ window.onload = event => {
         if (!this.paused()) {
             console.log("Video is playing");
         } else {
-            document.getElementById("#play").classList.remove("hide");
+            let p = document.getElementById("#play");
+            p.classList.remove("hide");
         }
     });
 };
