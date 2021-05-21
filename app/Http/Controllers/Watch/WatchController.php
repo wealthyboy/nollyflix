@@ -43,8 +43,8 @@ class WatchController extends Controller
         if ($request->watch === 'free'){
             $video = $video;
         } else {
-            $order = Order::where(['video_id'=>$video->id , 'user_id' => $request->user_id])->firstOrFail();
-            if ($order->cart->purchase_type == 'Rent'  &&  !$order->video_rent_expires->isFuture()) {
+            $order = Order::where(['video_id'=>$video->id , 'user_id' => $request->user_id])->latest()->firstOrFail();
+            if ($order->cart->purchase_type === 'Rent' &&  !$order->video_rent_expires->isFuture()) {
                 return redirect()->route('watch.expired',['video' => $video->slug]);
             }
             $video = $order->video;
