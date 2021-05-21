@@ -60863,14 +60863,13 @@ window.onload = function (event) {
     this.muted(false);
     this.playsinline(false);
 
-    if (!this.paused()) {
-      p.classList.add("hide");
-    } else {
+    if (!this.paused()) {} else {
       p.classList.remove("hide");
       var self = this;
 
       p.onclick = function (e) {
         self.play();
+        e.classList.add("hide");
       };
     }
   });

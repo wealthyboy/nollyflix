@@ -34,12 +34,12 @@ window.onload = event => {
         this.muted(false);
         this.playsinline(false);
         if (!this.paused()) {
-            p.classList.add("hide");
         } else {
             p.classList.remove("hide");
             let self = this;
             p.onclick = function(e) {
                 self.play();
+                e.classList.add("hide");
             };
         }
     });
