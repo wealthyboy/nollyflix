@@ -60866,10 +60866,11 @@ window.onload = function (event) {
     if (!this.paused()) {} else {
       p.classList.remove("hide");
       var self = this;
+      var play = p;
 
       p.onclick = function (e) {
         self.play();
-        e.classList.add("hide");
+        play.classList.add("hide");
       };
     }
   });

@@ -37,9 +37,10 @@ window.onload = event => {
         } else {
             p.classList.remove("hide");
             let self = this;
+            let play = p;
             p.onclick = function(e) {
                 self.play();
-                e.classList.add("hide");
+                play.classList.add("hide");
             };
         }
     });
