@@ -19,17 +19,20 @@ class WatchController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct(Video $video,Request $request)
     {   
 
-        if ($request->user_id) {
-            \Auth::loginUsingId($request->user_id);
+        if (!$video->access_type == 'is_free') {
+            if ($request->user_id) {
+                \Auth::loginUsingId($request->user_id);
+            }
+    
+            $this->middleware('auth',['except' => [
+                    'expired'
+                ]
+            ]);
         }
-
-        $this->middleware('auth',['except' => [
-                'expired'
-            ]
-        ]);
+        
     }
 
     /**
@@ -40,7 +43,7 @@ class WatchController extends Controller
     public function index(Request $request,Video $video)
     {     
         
-        if ($request->watch === 'free'){
+        if ($video->access_type === 'is_free') {
             $video = $video;
         } else {
             $order = Order::where(['video_id'=>$video->id , 'user_id' => $request->user_id])->latest()->firstOrFail();
