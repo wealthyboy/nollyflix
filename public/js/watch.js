@@ -60861,6 +60861,12 @@ window.onload = function (event) {
     document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
     this.playsinline(false);
+
+    if (!this.paused()) {
+      console.log("Video is playing");
+    } else {
+      console.log("Video is paused");
+    }
   });
 };
 
