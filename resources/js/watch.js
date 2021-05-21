@@ -27,6 +27,8 @@ window.onload = event => {
         nativeControlsForTouch: false
     });
 
+    let p = document.getElementById("play");
+
     vidjs.ready(function() {
         document.getElementById("video-page-title-pro").classList.add("hide");
         this.muted(false);
@@ -34,8 +36,11 @@ window.onload = event => {
         if (!this.paused()) {
             console.log("Video is playing");
         } else {
-            let p = document.getElementById("play");
             p.classList.remove("hide");
+            let self = this;
+            p.onclick = function() {
+                self.play();
+            };
         }
     });
 };

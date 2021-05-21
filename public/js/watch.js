@@ -60857,6 +60857,7 @@ window.onload = function (event) {
     autoplay: true,
     nativeControlsForTouch: false
   });
+  var p = document.getElementById("play");
   vidjs.ready(function () {
     document.getElementById("video-page-title-pro").classList.add("hide");
     this.muted(false);
@@ -60865,8 +60866,12 @@ window.onload = function (event) {
     if (!this.paused()) {
       console.log("Video is playing");
     } else {
-      var p = document.getElementById("play");
       p.classList.remove("hide");
+      var self = this;
+
+      p.onclick = function () {
+        self.play();
+      };
     }
   });
 };
