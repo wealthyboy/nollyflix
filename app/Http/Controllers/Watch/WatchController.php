@@ -21,8 +21,8 @@ class WatchController extends Controller
      */
     public function __construct(Video $video,Request $request)
     {   
-
-        if ($video->access_type !== 'is_free') {
+        dd($video);
+        if ($video->access_type != 'is_free') {
 
             if ($request->user_id) {
                 \Auth::loginUsingId($request->user_id);
