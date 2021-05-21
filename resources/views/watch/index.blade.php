@@ -9,6 +9,8 @@
     <div class="back">
         <a href="/"> <i class="fas fa-long-arrow-alt-left"></i></a>
     </div>
+    <a class="video-page-title-play-button afterglow play-trailer" id="play-trailer" href="#Video"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
+
     <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin"   
         controls 
         playsinline webkit-playsinline>
