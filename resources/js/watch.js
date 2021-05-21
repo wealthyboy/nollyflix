@@ -35,12 +35,12 @@ window.onload = event => {
         this.playsinline(false);
         if (!this.paused()) {
         } else {
-            p.classList.remove("hide");
+            p.classList.remove("d-none");
             let self = this;
             let play = p;
             p.onclick = function(e) {
                 self.play();
-                play.classList.add("hide");
+                play.classList.add("d-none");
             };
         }
     });
