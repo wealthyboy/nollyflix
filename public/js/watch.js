@@ -60871,6 +60871,7 @@ window.onload = function (event) {
 
       p.onclick = function () {
         self.play();
+        p.classList.add("hide");
       };
     }
   });

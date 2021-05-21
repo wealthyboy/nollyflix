@@ -40,6 +40,7 @@ window.onload = event => {
             let self = this;
             p.onclick = function() {
                 self.play();
+                p.classList.add("hide");
             };
         }
     });
