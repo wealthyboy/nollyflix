@@ -19,8 +19,6 @@
 		<meta property="og:description" content="Watch nollywood movies online">
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
-		<link rel="stylesheet" href="/css/app.css">
-
 
 		<link href="/css/video.css?version={{ str_random(6) }}" rel="stylesheet" />
 		<!-- CSRF Token -->

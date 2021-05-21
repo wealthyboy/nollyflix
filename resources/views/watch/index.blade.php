@@ -5,7 +5,7 @@
 <div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
     <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="50" height="50">
 </div><!-- close #video-page-title-pro -->
-<a class="video-page-title-play-button afterglow play-trailer" id="play-trailer" href="#Video"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
+<a class="video-page-title-play-button afterglow play-trailer hide" id="play" href="#"><i class="fas fa-play"></i></a>
 
 <div  class="background_video hide">
     <div class="back">
