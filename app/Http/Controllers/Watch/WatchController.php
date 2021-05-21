@@ -32,7 +32,7 @@ class WatchController extends Controller
      */
     public function index(Request $request,Video $video)
     {     
-        if ($video->access_type != 'is_free') {
+        if ($video->access_type !== 'is_free') {
             if ($request->user_id) {
                 \Auth::loginUsingId($request->user_id);
             }
@@ -42,8 +42,8 @@ class WatchController extends Controller
             ]);
         }
 
-        
-        if ($video->access_type !== 'is_free') {
+
+        if ($video->access_type == 'is_free') {
             $video = $video;
         } else {
             $order = Order::where(['video_id'=>$video->id , 'user_id' => $request->user_id])->latest()->firstOrFail();
