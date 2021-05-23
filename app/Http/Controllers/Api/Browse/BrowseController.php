@@ -43,7 +43,7 @@ class BrowseController extends Controller
     {   
         $video =  Video::find($id); 
         return new VideoIndexResource(
-            $video->load('video.cast_videos', 'video.filmer_videos', 'video.related_videos.video')
+            $video->load('casts.cast_videos', 'filmers.filmer_videos', 'related_videos.video')
         );
     }
 
