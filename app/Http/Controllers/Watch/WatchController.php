@@ -42,7 +42,7 @@ class WatchController extends Controller
             ]);
         }
 
-        dd($video)
+        dd($video);
         if ($video->access_type == 'is_free') {
             $video = $video;
         } else {
