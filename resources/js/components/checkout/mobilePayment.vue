@@ -133,7 +133,7 @@ export default {
                                             "/watch/" +
                                             context.$root.video.slug +
                                             "?user_id=" +
-                                            context.params.userid;
+                                            context.params.user_id;
                                     })
                                     .catch(error => {
                                         context.$store.commit(
