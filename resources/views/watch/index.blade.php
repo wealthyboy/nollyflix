@@ -3,7 +3,7 @@
 
 @section('content')
 <div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
-    <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="50" height="50">
+    <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="30" height="30">
 </div><!-- close #video-page-title-pro -->
 <a class="video-page-title-play-button afterglow play-trailer d-none" id="play" href="#"><i class="fas fa-play"></i></a>
 

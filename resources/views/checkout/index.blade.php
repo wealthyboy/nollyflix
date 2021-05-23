@@ -2,7 +2,11 @@
 
 @section('content')
 
-<div id="content-pro">
+<div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
+    <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="30" height="30">
+</div><!-- close #video-page-title-pro -->
+
+<div id="content-pro d-none">
     <section class="pb-4 mt-1">
        <mobile-payment :params={{ $params }} />
     </div>
