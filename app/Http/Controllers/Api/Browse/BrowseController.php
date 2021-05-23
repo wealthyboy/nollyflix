@@ -30,11 +30,20 @@ class BrowseController extends Controller
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
         $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
         return BrowseResource::collection(
-            $sections->load('videos','videos.casts.cast_videos', 'videos.filmers.filmer_videos', 'videos.related_videos.video','videos.related_videos.video.casts.cast_videos','videos.related_videos.video.filmers.filmer_videos','videos.related_videos.video.related_videos.video')
+            $sections->load('videos','videos.casts.cast_videos', 'videos.filmers.filmer_videos', 'videos.related_videos.video')
         )
         ->additional(['meta' => [
-            'slides' =>  $featured_videos->load('video.casts.cast_videos','video.filmers.filmer_videos','video.related_videos.video','video.related_videos.video.casts.cast_videos','video.related_videos.video.filmers.filmer_videos')->toJson()
+            'slides' =>  $featured_videos->load('video.casts.cast_videos','video.filmers.filmer_videos','video.related_videos.video')->toJson()
         ]]);
+    }
+
+
+    public function show($id)
+    {   
+        $video =  Video::find($id); 
+        return new BrowseResource(
+            $video->load('video.casts.cast_videos', 'video.filmers.filmer_videos', 'video.related_videos.video')
+        )
     }
 
 
