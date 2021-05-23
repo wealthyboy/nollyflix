@@ -36,6 +36,7 @@ class CartController  extends Controller {
 		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
 		$channel = $request->token ? ['remember_token' => $request->token] : ['id' => $request->cart_id];
 		$user_id = $request->user_id ?? optional(auth()->user())->id;
+		dd($user_id);
 		$video = Video::find($request->video_id);
 
 		$result = $cart->updateOrCreate(
