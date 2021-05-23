@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('browse',          'Api\Browse\BrowseController@index');
 Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
-Route::post('video/{id}',      'Api\Browse\BrowseController@show');
+Route::get('video/{id}',      'Api\Browse\BrowseController@show');
 
 Route::get('browse/casts',    'Api\Casts\CastsController@index');
 Route::get('browse/filmers',  'Api\FilmMakers\FilmMakersController@index');
