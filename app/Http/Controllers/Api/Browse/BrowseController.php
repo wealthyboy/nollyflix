@@ -10,6 +10,7 @@ use App\DefaultBanner;
 use App\Video;
 use App\Live;
 use App\Http\Resources\BrowseResource;
+use App\Http\Resources\VideoIndexResource;
 use App\Http\Resources\FeaturedResource;
 
 
@@ -41,10 +42,8 @@ class BrowseController extends Controller
     public function show($id)
     {   
         $video =  Video::find($id); 
-
-        return $video;
-        return new BrowseResource(
-            $video->load('video','video.casts.cast_videos', 'video.filmers.filmer_videos', 'video.related_videos.video')
+        return new VideoIndexResource(
+            $video->load('video.casts.cast_videos', 'video.filmers.filmer_videos', 'video.related_videos.video')
         );
     }
 
