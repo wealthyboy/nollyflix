@@ -5573,8 +5573,8 @@ a.video-page-title-play-button span {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   margin: -60px 0 0 -60px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;

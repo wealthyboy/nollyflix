@@ -129,6 +129,12 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
+                                        document
+                                            .getElementById(
+                                                "video-page-title-pro"
+                                            )
+                                            .classList.remove("d-none");
+
                                         location.href =
                                             "/watch/" +
                                             context.$root.video.slug +
