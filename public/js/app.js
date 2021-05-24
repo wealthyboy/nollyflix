@@ -8331,13 +8331,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             context.$emit("paymentCompleted", "Completed");
 
             if (response.status == "successful") {
+              document.getElementById("video-page-title-pro").classList.remove("d-none");
+              document.getElementById("payment-section").classList.add("d-none");
               x.close();
               context.$store.commit("setLoading", true);
               context.statusText = "Redirecting you to your vidoe .Enjoy.....";
               axios.post("/checkout", {
                 cart_id: context.params.cart_id
               }).then(function (res) {
-                document.getElementById("video-page-title-pro").classList.remove("d-none");
                 location.href = "/watch/" + context.$root.video.slug + "?user_id=" + context.params.user_id;
               })["catch"](function (error) {
                 context.$store.commit("setLoading", false);
@@ -28288,52 +28289,67 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-5 rounded pb-3" }, [
-    _c("div", { staticClass: "row no-gutters d-flex justify-content-center" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "payment-info" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("hr", { staticClass: "line" }),
-          _vm._v(" "),
-          _vm.loading
-            ? _c(
-                "div",
-                { staticClass: "row justify-content-center text-center" },
-                [
-                  _c("div", { staticClass: "text-center col-md-9 col-12" }, [
-                    _c("span", {
-                      staticClass: "spinner-border spinner-border-sm",
-                      attrs: { role: "status", "aria-hidden": "true" }
-                    }),
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.statusText) +
-                        "\n                    "
+  return _c(
+    "div",
+    {
+      staticClass: "container mt-5 rounded pb-3",
+      attrs: { id: "payment-section" }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "row no-gutters d-flex justify-content-center" },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "payment-info" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("hr", { staticClass: "line" }),
+              _vm._v(" "),
+              _vm.loading
+                ? _c(
+                    "div",
+                    { staticClass: "row justify-content-center text-center" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "text-center col-md-9 col-12" },
+                        [
+                          _c("span", {
+                            staticClass: "spinner-border spinner-border-sm",
+                            attrs: { role: "status", "aria-hidden": "true" }
+                          }),
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.statusText) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.loading
+                ? _c("div", [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 ",
+                        attrs: { type: "button" },
+                        on: { click: _vm.submit }
+                      },
+                      [_vm._m(1)]
                     )
                   ])
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.loading
-            ? _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-primary btn-block d-flex justify-content-center mt-3 mt-sm-3 mt-md-2  mb-sm-3 mb-md-3 ",
-                    attrs: { type: "button" },
-                    on: { click: _vm.submit }
-                  },
-                  [_vm._m(1)]
-                )
-              ])
-            : _vm._e()
-        ])
-      ])
-    ])
-  ])
+                : _vm._e()
+            ])
+          ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

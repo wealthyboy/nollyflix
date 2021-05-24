@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5 rounded pb-3">
+    <div id="payment-section" class="container mt-5 rounded pb-3">
         <div class="row no-gutters d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="payment-info">
@@ -119,6 +119,12 @@ export default {
                             context.$emit("paymentCompleted", "Completed");
 
                             if (response.status == "successful") {
+                                document
+                                    .getElementById("video-page-title-pro")
+                                    .classList.remove("d-none");
+                                document
+                                    .getElementById("payment-section")
+                                    .classList.add("d-none");
                                 x.close();
                                 context.$store.commit("setLoading", true);
                                 context.statusText =
@@ -129,12 +135,6 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
-                                        document
-                                            .getElementById(
-                                                "video-page-title-pro"
-                                            )
-                                            .classList.remove("d-none");
-
                                         location.href =
                                             "/watch/" +
                                             context.$root.video.slug +
