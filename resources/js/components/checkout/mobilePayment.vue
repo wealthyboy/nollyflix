@@ -100,7 +100,7 @@ export default {
                 this.scriptLoaded.then(() => {
                     var x = FlutterwaveCheckout({
                         public_key:
-                            "FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X", //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
+                            "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X", //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
                         customer_email: context.params.email,
                         amount: context.params.price,
                         currency: "NGN",
