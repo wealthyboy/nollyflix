@@ -80,7 +80,7 @@ class FilmersController extends Controller
             Notification::route('mail', $request->email)
                 ->notify(new FilmerEmailNotification($data));
         } catch (\Throwable $th) {
-            return bac()->with('error','Failed to add filmers');
+            return back()->with('error','Failed to add filmers');
         }
 
         
