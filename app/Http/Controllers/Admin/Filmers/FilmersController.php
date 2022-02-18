@@ -62,8 +62,6 @@ class FilmersController extends Controller
             'description'  => 'required|min:1|max:1000',
         ]);
 
-
-
         try {
             $data  = collect($request->except('uimage'));
             $password = str_random(8);
@@ -71,7 +69,7 @@ class FilmersController extends Controller
             $user->name         =  $request->first_name;
             $user->last_name    =  $request->last_name;
             $user->email        =  $request->email;
-            $user->slug=str_slug($request->first_name.' '.$request->last_name);
+            $user->slug         =  str_slug($request->first_name.' '.$request->last_name);
             $user->description  =  $request->description;
             $user->username     =  $request->username;
             $user->image        =  $request->image;
@@ -83,7 +81,6 @@ class FilmersController extends Controller
                 ->notify(new FilmerEmailNotification($data));
         } catch (\Throwable $th) {
             return bac()->with('error','Failed to add filmers');
-
         }
 
         
