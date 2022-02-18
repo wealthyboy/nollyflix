@@ -65,10 +65,8 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {   
-		$this->validator($request->all())->validate();
-
-
 		
+		$this->validator($request->all())->validate();
 		event(new Registered($user = $this->create($request->all())));
 		
 	    if ( $request->is ('admin/*') ) { 
@@ -206,9 +204,9 @@ class RegisterController extends Controller
 			return $user;
 		}
 
-		// Newsletter::create([
-		// 	'email'=> $request->email
-		// ]);
+		if (R){
+
+		}
 
 		$user->name=$data['first_name'];
 		$user->last_name=$data['last_name'];

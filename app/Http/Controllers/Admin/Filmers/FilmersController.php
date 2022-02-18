@@ -29,7 +29,9 @@ class FilmersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {    
+
+        User::where('email','david@sidomexuniversal.com')->forcedelete();
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
@@ -53,7 +55,7 @@ class FilmersController extends Controller
     public function store(Request $request)
     {   
 
-        
+
         Validator::make($request->all(), [
             'first_name'   => 'required|min:1|max:100',
             'email'    => 'required|email|max:255|unique:users',
@@ -62,26 +64,32 @@ class FilmersController extends Controller
             'description'  => 'required|min:1|max:1000',
         ]);
 
-        $data  = collect($request->except('uimage'));
-        $password = str_random(8);
-        $user = new User;
-        $user->name         =  $request->first_name;
-        $user->last_name    =  $request->last_name;
-        $user->email        =  $request->email;
-        $user->slug=str_slug($request->first_name.' '.$request->last_name);
-        $user->description  =  $request->description;
-        $user->username  =     $request->username;
-        $user->image        =  $request->image;
-        $user->type         =  'filmakers';
-        $user->password= bcrypt($password); 
-        $user->save();
-        $data['password'] = $password;
+        try {
+            $data  = collect($request->except('uimage'));
+            $password = str_random(8);
+            $user = new User;
+            $user->name         =  $request->first_name;
+            $user->last_name    =  $request->last_name;
+            $user->email        =  $request->email;
+            $user->slug=str_slug($request->first_name.' '.$request->last_name);
+            $user->description  =  $request->description;
+            $user->username  =     $request->username;
+            $user->image        =  $request->image;
+            $user->type         =  'filmakers';
+            $user->password= bcrypt($password); 
+            $user->save();
+            $data['password'] = $password;
+            Notification::route('mail', $request->email)
+                ->notify(new FilmerEmailNotification($data));
+        } catch (\Throwable $th) {
+            throw $th->getMessage();
+        }
 
+        
         /**
          * Send  Email Notification 
          */
-        // Notification::route('mail', $request->email)
-        //    ->notify(new FilmerEmailNotification($data));
+        
         
         return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
     }
