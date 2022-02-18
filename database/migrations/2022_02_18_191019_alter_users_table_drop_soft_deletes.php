@@ -14,7 +14,7 @@ class AlterUsersTableDropSoftDeletes extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $this->dropColumn('deleted_at');
+            $table->dropColumn('deleted_at');
         });
     }
 
