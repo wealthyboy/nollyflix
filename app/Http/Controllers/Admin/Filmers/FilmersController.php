@@ -32,7 +32,7 @@ class FilmersController extends Controller
     {    
         dd(User::all());
         $filmers = (new User())->filmers()->latest()->get();
-        return   view('admin.filmers.index', compact('filmers'));  
+       // return   view('admin.filmers.index', compact('filmers'));  
     }
 
     /**
