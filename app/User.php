@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Traits\Check;
 use App\Http\Helper;
 use App\Cart;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
@@ -20,7 +19,6 @@ class User extends Authenticatable implements JWTSubject
 {
 	use Check;
 	
-    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
