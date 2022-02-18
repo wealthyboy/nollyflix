@@ -72,7 +72,7 @@ class FilmersController extends Controller
             $user->email        =  $request->email;
             $user->slug=str_slug($request->first_name.' '.$request->last_name);
             $user->description  =  $request->description;
-            $user->username  =     $request->username;
+            $user->username     =  $request->username;
             $user->image        =  $request->image;
             $user->type         =  'filmakers';
             $user->password= bcrypt($password); 
@@ -133,7 +133,7 @@ class FilmersController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+    */
     
 
    
