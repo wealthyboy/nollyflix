@@ -30,7 +30,7 @@ class FilmersController extends Controller
      */
     public function index()
     {    
-        
+
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
@@ -54,14 +54,15 @@ class FilmersController extends Controller
     public function store(Request $request)
     {   
 
-
-        Validator::make($request->all(), [
+        $this->validate($request,[           
             'first_name'   => 'required|min:1|max:100',
             'email'    => 'required|email|max:255|unique:users',
             'username'    => 'required|string|max:255|unique:users',
             'last_name'    => 'required|min:1|max:200',
             'description'  => 'required|min:1|max:1000',
         ]);
+
+
 
         try {
             $data  = collect($request->except('uimage'));
@@ -81,7 +82,8 @@ class FilmersController extends Controller
             Notification::route('mail', $request->email)
                 ->notify(new FilmerEmailNotification($data));
         } catch (\Throwable $th) {
-            throw $th->getMessage();
+            return bac()->with('error','Failed to add filmers');
+
         }
 
         
