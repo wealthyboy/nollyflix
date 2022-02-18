@@ -31,7 +31,8 @@ class FilmersController extends Controller
     public function index()
     {    
 
-        User::where('email','david@sidomexuniversal.com')->forcedelete();
+       // User::where('email','david@sidomexuniversal.com')->forcedelete();
+
         $filmers = (new User())->filmers()->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
