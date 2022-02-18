@@ -33,7 +33,6 @@ class FilmersController extends Controller
 
         $filmers = (new User())->filmers()->latest()->get();
 
-        dd(User::where('email','david@sidomexuniversal.com')->first());
         return   view('admin.filmers.index', compact('filmers'));  
     }
 
