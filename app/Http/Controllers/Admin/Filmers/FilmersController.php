@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Filmers
-;
+namespace App\Http\Controllers\Admin\Filmers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -30,9 +29,7 @@ class FilmersController extends Controller
      */
     public function index()
     {    
-
         $filmers = (new User())->filmers()->latest()->get();
-
         return   view('admin.filmers.index', compact('filmers'));  
     }
 

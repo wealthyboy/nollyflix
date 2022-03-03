@@ -204,9 +204,6 @@ class RegisterController extends Controller
 			return $user;
 		}
 
-		if (R){
-
-		}
 
 		$user->name=$data['first_name'];
 		$user->last_name=$data['last_name'];
