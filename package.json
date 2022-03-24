@@ -27,7 +27,7 @@
         "@fortawesome/fontawesome-free": "^5.15.3",
         "flexslider": "^2.7.2",
         "hls.js": "^0.14.17",
-        "node-forge": ">=0.10.0",
+        "node-forge": ">=1.3.0",
         "owl.carousel": "^2.3.4",
         "video.js": "^7.8.4",
         "vue": "^2.6.12",
