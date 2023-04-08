@@ -51,15 +51,15 @@ class OrdersController extends Controller
 
 	public function show($id)
 	{
-		$order       =  Order::find($id);
-		$sub_total   = null !== $order->cart ? $order->cart->sum('total') : 0;
-		$statuses    =  static::order_status();
+		$order = Order::find($id);
+		$sub_total = null !== $order->cart ? $order->cart->sum('total') : 0;
+		$statuses = static::order_status();
 		return view('admin.orders.show', compact('statuses', 'order', 'sub_total'));
 	}
 
 	public function update(Request $request, $cart_id)
 	{
-		$cart         = Cart::findOrFail($cart_id);
+		$cart = Cart::findOrFail($cart_id);
 		$cart->status = $request->status;
 		$cart->save();
 		return $cart;
@@ -68,7 +68,7 @@ class OrdersController extends Controller
 	public function dispatchNote(Request $request, $id)
 	{
 		$page_title = 'Dispatch Note';
-		$order      =  Order::find($id);
+		$order = Order::find($id);
 		return view('admin.dispatch.index', compact('order', 'page_title'));
 	}
 }
