@@ -36,7 +36,7 @@ class OrdersController extends Controller
 	public function invoice($id)
 	{
 		$order     =  Order::find($id);
-		$sub_total   =  $order->cart->sum('total');
+		$sub_total   = null !== $order->cart ? $order->cart->sum('total') : 0;
 		$system_settings = SystemSetting::first();
 		return view('admin.orders.invoice', compact('sub_total', 'order', 'system_settings'));
 	}
@@ -52,7 +52,7 @@ class OrdersController extends Controller
 	public function show($id)
 	{
 		$order       =  Order::find($id);
-		$sub_total   =  $order->cart->sum('total');
+		$sub_total   = null !== $order->cart ? $order->cart->sum('total') : 0;
 		$statuses    =  static::order_status();
 		return view('admin.orders.show', compact('statuses', 'order', 'sub_total'));
 	}
