@@ -140,19 +140,7 @@
                   </tr>
                </tbody>
             </table>
-            <table class="table ">
-               <tfoot>
-                  <tr>
-                     <td colspan="6" class="text-right">Sub-Total</td>
-                     <td class="text-right"><small>{{ $order->currency }}</small>{{ $order->get_total() }}</td>
-                  </tr>
 
-                  <tr>
-                     <td colspan="6" class="text-right">Total</td>
-                     <td class="text-right">{{ $order->currency }}{{ $order->get_total() }}</td>
-                  </tr>
-               </tfoot>
-            </table>
          </div>
       </div>
    </div>
