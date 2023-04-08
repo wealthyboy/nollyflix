@@ -41,6 +41,7 @@ class WebHookController extends Controller
                 ['cart_id' =>  $cart->id],
                 [
                     'user_id'  => $cart->user->id,
+                    'cart_id'  => $cart->id,
                     'currency' => '₦',
                     'invoice'  => "INV-" . date('Y') . "-" . rand(10000, 39999),
                     'video_id' => $cart->video_id,
