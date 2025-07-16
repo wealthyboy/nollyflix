@@ -179,6 +179,8 @@ export default {
                             context.$store.commit("setLoading", false);
                         },
                         callback: function(response) {
+                            console.log(response)
+                            return
                             context.$emit("paymentCompleted", "Completed");
                             $("#apModal").on("hide.bs.modal", function(e) {
                                 e.preventDefault();
