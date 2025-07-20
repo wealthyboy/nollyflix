@@ -15,17 +15,27 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 
+
 class User extends Authenticatable implements JWTSubject
 {
-	use Check;
-	
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+	use Check, Notifiable;
+
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
 	protected $fillable = [
-		'api_token','name','last_name', 'email','phone_number','password','permission','type','allow_notifications','push_token'
+		'api_token',
+		'name',
+		'last_name',
+		'email',
+		'phone_number',
+		'password',
+		'permission',
+		'type',
+		'allow_notifications',
+		'push_token'
 	];
 
 	public $appends = [
@@ -41,143 +51,145 @@ class User extends Authenticatable implements JWTSubject
 	 * @var array
 	 */
 	protected $hidden = [
-		'password', 'remember_token',
+		'password',
+		'remember_token',
 	];
 
 	protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+		'email_verified_at' => 'datetime',
+	];
 
 
-	public function activities(){
-		return $this->hasMany('App\Activity');	
+	public function activities()
+	{
+		return $this->hasMany('App\Activity');
 	}
 
 	public function hasSocialLinked($service)
 	{
 		return (bool) $this->social->where('service', $service)->count();
 	}
-		
-	public function fullname() 
-	{ 
-		return ucfirst($this->name) . ' '. ucfirst($this->last_name);
+
+	public function fullname()
+	{
+		return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
 	}
 
 	public function users_permission()
 	{
 		return $this->hasOne("App\UserPermission");
 	}
-	
+
 	public function scopeCustomers(Builder $builder)
 	{
-		return $builder->where('type','subscriber');
+		return $builder->where('type', 'subscriber');
 	}
 
 	public function profile_videos()
-    {   
-		if ($this->type == 'casts'){
-			return $this->belongsToMany('App\Video','cast_video');
-		} 
-        return $this->belongsToMany('App\Video','filmer_video');
+	{
+		if ($this->type == 'casts') {
+			return $this->belongsToMany('App\Video', 'cast_video');
+		}
+		return $this->belongsToMany('App\Video', 'filmer_video');
 	}
-	
+
 
 	public function cast_videos()
-    {
-        return $this->belongsToMany('App\Video','cast_video');
-    }
+	{
+		return $this->belongsToMany('App\Video', 'cast_video');
+	}
 
 	public function filmer_videos()
-    {
-        return $this->belongsToMany('App\Video','filmer_video');
+	{
+		return $this->belongsToMany('App\Video', 'filmer_video');
 	}
-	
-	
+
+
 	public function scopeCastings(Builder $builder)
 	{
-		return $builder->where('type','casts');
+		return $builder->where('type', 'casts');
 	}
 
 
 	/**
-     * Get the banner's image.
-     */
-    public function cast_banner()
-    {
-        return $this->morphOne('App\Banner', 'banner');
+	 * Get the banner's image.
+	 */
+	public function cast_banner()
+	{
+		return $this->morphOne('App\Banner', 'banner');
 	}
 
 
 	/**
-     * Get all of the carts for the user.
-    */
-    public function carts()
-    {    
-		$cookie=\Cookie::get('cart'); 
-        return $this->hasMany('App\Cart')->where('remember_token',$cookie);
+	 * Get all of the carts for the user.
+	 */
+	public function carts()
+	{
+		$cookie = \Cookie::get('cart');
+		return $this->hasMany('App\Cart')->where('remember_token', $cookie);
 	}
-	
+
 
 	/**
-     * Get all of the movies.
-     */
-    public function movies()
-    {
-        return $this->hasMany('App\Order')->orderBy('id','DESC');
-    }
-	
+	 * Get all of the movies.
+	 */
+	public function movies()
+	{
+		return $this->hasMany('App\Order')->orderBy('id', 'DESC');
+	}
+
 	/**
-     * Get the banner's image.
-     */
-    public function filmer_banner()
-    {
-        return $this->morphOne('App\Banner', 'banner');
-    }
+	 * Get the banner's image.
+	 */
+	public function filmer_banner()
+	{
+		return $this->morphOne('App\Banner', 'banner');
+	}
 
 
 	public function scopeFilmers(Builder $builder)
 	{
-		return $builder->where('type','filmakers');
+		return $builder->where('type', 'filmakers');
 	}
 
 
 	public function scopeAdmin(Builder $builder)
 	{
-		return $builder->where('type','admin');
+		return $builder->where('type', 'admin');
 	}
 
 
 	/**
-     * The user's views that belong to the video.
-    */
-    public function views()
-    {
-        return $this->hasMany('App\View');
+	 * The user's views that belong to the video.
+	 */
+	public function views()
+	{
+		return $this->hasMany('App\View');
 	}
-	
-	
-    /**
-     * The user's views that belong to the video.
-    */
-    public function view()
-    {
-        return $this->hasOne('App\View');
-    }
+
+
+	/**
+	 * The user's views that belong to the video.
+	 */
+	public function view()
+	{
+		return $this->hasOne('App\View');
+	}
 
 
 	public function getCartTotalAttribute()
-	{   
+	{
 		return Cart::sum_items_in_cart();
 	}
 
 	public function getCurrencyAttribute()
 	{
-	    return Helper::getCurrency();   
+		return Helper::getCurrency();
 	}
 
 	public function getIsoCodeAttribute()
 	{
-	    return Helper::getIsoCode();   
+		return Helper::getIsoCode();
 	}
 
 	public static function userHasPermission($num)
@@ -188,8 +200,8 @@ class User extends Authenticatable implements JWTSubject
 
 	public static function canTakeAction($num)
 	{
-		if(!User::userHasPermission($num)){
-			dd('You dont have access,Permission Denied.'); 	
+		if (!User::userHasPermission($num)) {
+			dd('You dont have access,Permission Denied.');
 		}
 	}
 
@@ -199,22 +211,22 @@ class User extends Authenticatable implements JWTSubject
 	}
 
 
-	 /**
-     * The user's views that belong to the video.
-    */
-    public function hasWatchedVideo()
-    {
-        //return null !== $this->view ? 
+	/**
+	 * The user's views that belong to the video.
+	 */
+	public function hasWatchedVideo()
+	{
+		//return null !== $this->view ? 
 	}
-	
 
-	 /**
-     * The user's views that belong to the video.
-    */
-    public function getProfilePictureAttribute()
-    {
-        return $this->m_path();
-    }
+
+	/**
+	 * The user's views that belong to the video.
+	 */
+	public function getProfilePictureAttribute()
+	{
+		return $this->m_path();
+	}
 
 
 	public function isSubscriber()
@@ -230,57 +242,58 @@ class User extends Authenticatable implements JWTSubject
 	}
 
 
-	public function activity(){
+	public function activity()
+	{
 		return $this->hasMany('App\Activity');
 	}
 
-		
-	public function hasVerified() {
-		$this->verified=true;
+
+	public function hasVerified()
+	{
+		$this->verified = true;
 		$this->token = null;
-		$this->save(); 
+		$this->save();
 	}
 
 
-	public function getRouteKeyName(){
-        return 'slug';
+	public function getRouteKeyName()
+	{
+		return 'slug';
 	}
-	
+
 
 	public function m_path()
 	{
 		$image = basename($this->image);
-		return !empty(trim($image)) ?  asset('images/users/m/'.$image) : asset('images/users/default/default_image.png');
+		return !empty(trim($image)) ?  asset('images/users/m/' . $image) : asset('images/users/default/default_image.png');
 	}
-	
-	
+
+
 	public function tn_path()
 	{
 		$image = basename($this->image);
-		return !empty(trim($image)) ?  asset('images/users/tn/'.$image) : asset('images/users/default/default_image.png');
+		return !empty(trim($image)) ?  asset('images/users/tn/' . $image) : asset('images/users/default/default_image.png');
 	}
 
 
 	/**
-     * [getJWTIdentifier description]
-     * @return [type] [description]
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->id;
-    }
-
-    /**
-     * [getJWTCustomClaims description]
-     * @return [type] [description]
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
-
-	public function routeNotificationForExpoPushNotifications(){
-
+	 * [getJWTIdentifier description]
+	 * @return [type] [description]
+	 */
+	public function getJWTIdentifier()
+	{
+		return $this->id;
 	}
+
+	/**
+	 * [getJWTCustomClaims description]
+	 * @return [type] [description]
+	 */
+	public function getJWTCustomClaims()
+	{
+		return [];
+	}
+
+
+	public function routeNotificationForExpoPushNotifications() {}
 }
