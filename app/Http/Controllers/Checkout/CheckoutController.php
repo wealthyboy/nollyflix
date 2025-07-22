@@ -55,6 +55,8 @@ class CheckoutController extends Controller
 		);
 
 		try {
+		    $admin_emails = explode(',', $this->settings->alert_email);
+
 			$when = now()->addMinutes(5);
 			\Mail::to($user->email)
 				->bcc($admin_emails[0])
