@@ -60,7 +60,7 @@ class CheckoutController extends Controller
 				->bcc($admin_emails[0])
 				->later($when, new OrderReceipt($cart->user, $order, $this->settings,"₦"));
 		} catch (\Throwable $th) {
-			//throw $th;
+			dd($th);
 		}
         
 		
