@@ -41,14 +41,12 @@ class CheckoutController extends Controller
 
     public function store(Request $request,Order $order) { 
 		$cart = Cart::find($request->cart_id);
-
-		dd($cart);
-
+		$user = auth()->user();
 
 		$order = Order::updateOrCreate(
 			['cart_id' =>  $request->cart_id],
 			[
-				'user_id'  => $cart->user->id,
+				'user_id'  => $user->id,
 				'currency' => '₦',
 				'invoice'  => "INV-".date('Y')."-".rand(10000,39999),
 				'video_id' => $cart->video_id,
