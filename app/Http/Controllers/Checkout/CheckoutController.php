@@ -43,8 +43,6 @@ class CheckoutController extends Controller
 		$cart = Cart::find($request->cart_id);
 		$user = auth()->user();
 
-		dd($user);
-
 		$order = Order::updateOrCreate(
 			['cart_id' =>  $request->cart_id],
 			[
