@@ -156,6 +156,26 @@ export default {
             var context = this;
             this.$store.commit("setLoading", true);
             this.statusText = "Payment is processing.....";
+
+             axios
+                                    .post("/checkout", {
+                                        cart_id: context.cart_id
+                                    })
+                                    .then(res => {
+                                        location.href =
+                                            "/watch/" +
+                                            context.$root.video.slug;
+                                    })
+                                    .catch(error => {
+                                        alert("Something went wrong");
+                                        context.$store.commit(
+                                            "setLoading",
+                                            false
+                                        );
+                                    });
+
+
+                                    return;
             this.scriptLoaded &&
                 this.scriptLoaded.then(() => {
                     var x = FlutterwaveCheckout({
