@@ -36,8 +36,6 @@ class ForgotPasswordController extends Controller
             $this->credentials($request)
         );
 
-        dd($response);
-
 
 
         return $response == Password::RESET_LINK_SENT
