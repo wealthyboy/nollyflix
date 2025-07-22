@@ -45,8 +45,8 @@ class CartController  extends Controller {
 				'video_id'   => $request->video_id,		
 				'quantity'   => 1,
 				'price'      => $request->price,
-				'total'      => $request->price * 1,
-				'user_id'    => $request->from == 'app' ? $request->user_id : optional(auth()->user())->id,
+				'total' => $request->price * 1,
+				'user_id' => $request->from === 'app' ? $request->user_id : optional(auth()->user())->id,
 				'content_owner_id'  => $content_owner_id,
 				'purchase_type' => $request->type,
 				'rate' => optional($rate)->rate ?? 1,
@@ -68,7 +68,7 @@ class CartController  extends Controller {
 		}
 
 		return response()->json([
-			'cart' => $result->id,
+			'cart' => $result,
 		],200);
 	
     }
