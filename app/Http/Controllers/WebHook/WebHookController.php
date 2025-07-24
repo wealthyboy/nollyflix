@@ -37,6 +37,10 @@ class WebHookController extends Controller
             //The phone_number carries the cart id. The payment process does not allow custom data
             $cart = Cart::find($input['phone_number']);
 
+            $isDone = Order::where(['cart_id' =>  $cart->id])->first();
+
+            
+
             $order = Order::updateOrCreate(
                 ['cart_id' =>  $cart->id],
                 [
@@ -50,12 +54,17 @@ class WebHookController extends Controller
             );
 
             try {
-                $when = now()->addMinutes(5);
+
+                if (null ===  $isDone ) {
+                   $when = now()->addMinutes(5);
                 $admin_emails = explode(',', $this->settings->alert_email);
 
                 \Mail::to($user->email)
                     ->bcc($admin_emails[0])
                     ->send( new OrderReceipt($cart->user, $order,   $cart , $this->settings, "₦"));
+                }
+                
+                     
             } catch (\Throwable $th) {
                 //throw $th;
             }
