@@ -14,7 +14,8 @@ class AlterRelatedVideosTableAddNull extends Migration
     public function up()
     {
         Schema::table('related_videos', function (Blueprint $table) {
-           $table->integer("related_id")->nullable()->change();
+            $table->unsignedBigInteger('related_id')->nullable();
+$table->foreign('related_id')->references('id')->on('videos')->onDelete('cascade');
 
         });
     }
