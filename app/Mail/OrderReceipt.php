@@ -19,11 +19,16 @@ class OrderReceipt extends Mailable
 
     public $user;
 
+    public $cart;
 
 
-    public function __construct($user,$order,$settings,$symbol)
+
+
+    public function __construct($user,$order,$cart,$settings,$symbol)
     {
         $this->order = $order;
+
+         $this->cart = $cart;
         
         $this->settings = $settings;
 

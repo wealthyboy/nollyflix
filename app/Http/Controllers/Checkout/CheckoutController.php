@@ -60,7 +60,7 @@ class CheckoutController extends Controller
 			$when = now()->addMinutes(5);
 			\Mail::to($user->email)
 				->bcc($admin_emails[0])
-				->later($when, new OrderReceipt($user, $order, $this->settings,"₦"));
+				->later($when, new OrderReceipt($user, $order, $cart, $this->settings,"₦"));
 		} catch (\Throwable $th) {
 			dd($th);
 		}
