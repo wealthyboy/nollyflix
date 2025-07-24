@@ -156,27 +156,68 @@ export default {
             var context = this;
             this.$store.commit("setLoading", true);
             this.statusText = "Payment is processing.....";
+            this.scriptLoaded &&
+                this.scriptLoaded.then(() => {
+                    var x = FlutterwaveCheckout({
+                        public_key:
+                            "FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X", //test pbkey FLWPUBK_TEST-d8c9813bd0912d597cc6fddacc11e45f-X,//live  FLWPUBK-3c3bd76ddea8a8bc289651bfd883b970-X
+                        customer_email: context.user.email,
+                        amount: context.price,
+                        currency: context.user.iso_code,
+                        country: "NG",
+                        tx_ref:
+                            "rave-" +
+                            Math.floor(Math.random() * 1000000000 + 1),
 
-             axios
-                    .post("/checkout", {
-                        cart_id: context.cart_id
-                    })
-                    .then(res => {
-                        // location.href =
-                        //     "/watch/" +
-                        //     context.$root.video.slug;
-                    })
-                    .catch(error => {
-                        alert("Something went wrong");
-                        // context.$store.commit(
-                        //     "setLoading",
-                        //     false
-                        // );
+                        customer: {
+                            email: context.user.email,
+                            phone_number: context.cart_id,
+                            name:
+                                context.user.name + " " + context.user.last_name
+                        },
+                        onclose: function() {
+                            context.$store.commit("setLoading", false);
+                        },
+                        callback: function(response) {
+                            
+                           // context.$emit("paymentCompleted", "Completed");
+                            $("#apModal").on("hide.bs.modal", function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                return false;
+                            });
+
+                            if (response.status == "successful") {
+                                x.close();
+                                //context.$store.commit('setLoading',true)
+                                context.statusText =
+                                    "Redirecting to your movie .Enjoy...";
+
+                                axios
+                                    .post("/checkout", {
+                                        cart_id: context.cart_id
+                                    })
+                                    .then(res => {
+                                        location.href =
+                                            "/watch/" +
+                                            context.$root.video.slug;
+                                    })
+                                    .catch(error => {
+                                        alert("Something went wrong");
+                                        context.$store.commit(
+                                            "setLoading",
+                                            false
+                                        );
+                                    });
+                            } else {
+                                x.close();
+                                context.$store.commit("setLoading", false);
+                            }
+
+                            //x.close(); // use this to close the modal immediately after payment.
+                        }
                     });
-
-
-             return;
-         
+                });
         }
     }
 };

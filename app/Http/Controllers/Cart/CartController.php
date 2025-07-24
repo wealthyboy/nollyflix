@@ -41,7 +41,7 @@ class CartController  extends Controller {
 
 		$result = $cart->updateOrCreate(
 			$channel,
-			[
+			[ 
 				'video_id' => $request->video_id,		
 				'quantity' => 1,
 				'price' => $request->price,
