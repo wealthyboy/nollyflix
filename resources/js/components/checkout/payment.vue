@@ -198,9 +198,9 @@ export default {
                                         cart_id: context.cart_id
                                     })
                                     .then(res => {
-                                        location.href =
-                                            "/watch/" +
-                                            context.$root.video.slug;
+                                        // location.href =
+                                        //     "/watch/" +
+                                        //     context.$root.video.slug;
                                     })
                                     .catch(error => {
                                         alert("Something went wrong");
