@@ -517,7 +517,7 @@
                                    
                                     <tr>
                                       																																																				                                                                  
-                                       <td class="catd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="FooterCaptionLink" data-color="FooterCaptionTXT" style="color: rgb(12, 13, 13); font-family: sans-serif; font-size: 13px; text-align: center; font-weight: bold; line-height: 190%;"> <a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="FooterCaptionLink"></a>Thanks for shopping with us</td>
+                                       <td class="catd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="FooterCaptionLink" data-color="FooterCaptionTXT" style="color: rgb(12, 13, 13); font-family: sans-serif; font-size: 13px; text-align: center; font-weight: bold; line-height: 190%;"> <a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="FooterCaptionLink"></a>Thanks for using our  service </td>
                                     </tr>
 
                                     
