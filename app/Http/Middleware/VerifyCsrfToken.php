@@ -14,5 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'payment/successful',
         'webhook/*',
+        'emailapi-service'
     ];
 }

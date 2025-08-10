@@ -45,6 +45,16 @@ return [
             'timeout' => null,
             'auth_mode' => null,
         ],
+        'zeptomail' => [
+            'transport' => 'smtp',
+            'host' => env('ZEPTO_HOST', 'smtp.zeptomail.com'),
+            'port' => env('ZEPTO_PORT', 587),
+            'username' => env('ZEPTO_USERNAME'),
+            'password' => env('ZEPTO_PASSWORD'),
+            'encryption' => env('ZEPTO_ENCRYPTION', 'tls'),
+            'timeout' => null,
+            'auth_mode' => null,
+        ],
 
         'ses' => [
             'transport' => 'ses',
