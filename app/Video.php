@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Helper;
 use App\Traits\FormatPrice;
 use Carbon\Carbon;
+use App\Traits\ColumnFillable;
+
 
 
 class Video extends Model
 {
     
-    use FormatPrice;//,SoftDeletes,CascadeSoftDeletes;
+    use FormatPrice, ColumnFillable;//,SoftDeletes,CascadeSoftDeletes;
 
     public $appends = [
 		'url',
@@ -241,6 +243,19 @@ class Video extends Model
 
     public function getYearReleaseAttribute() {
         return null !== $this->release_date ?  $this->release_date->format('Y') : null;
+    }
+
+
+     public static function excludes() {
+        return $map = [
+            'AF' => 'Africa',
+            'EU' => 'Europe',
+            'AS' => 'Asia',
+            'NA' => 'North America',
+            'SA' => 'South America',
+            'OC' => 'Oceania',
+            'AN' => 'Antarctica',
+        ];
     }
 
 

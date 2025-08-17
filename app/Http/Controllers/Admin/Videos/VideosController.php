@@ -43,7 +43,7 @@ class VideosController extends Controller
     public function index()
     {   
         $videos = Video::orderBy('created_at','desc')->paginate(30);
-        $system_settings =  SystemSetting::first();
+        $system_settings = SystemSetting::first();
         return view('admin.videos.index',compact('system_settings','videos'));
     }
 
@@ -59,10 +59,10 @@ class VideosController extends Controller
         $categories = Category::parents()->get();
         $genres  = Genre::latest()->get();
         $sections = Section::latest()->get();
-
         $filmers = (new User())->filmers()->latest()->get();
-        $casts   = (new User())->castings()->latest()->get();
-        return view('admin.videos.create',compact('genres','sections','filmers','casts','categories'));
+        $casts = (new User())->castings()->latest()->get();
+        $excludes = Video::excludes();
+        return view('admin.videos.create',compact('excludes','genres','sections','filmers','casts','categories'));
     }
 
     /**
@@ -79,7 +79,7 @@ class VideosController extends Controller
             'buy_price'  =>  'required',
             'rent_price' =>  'required',
             "cast_id"    =>  "required|array",
-            "genre_id"    =>  "required|array",
+            "genre_id"  =>  "required|array",
             "filmer_id"  =>  "required|array",
             'poster'     =>  'required',
             'tn_poster'  =>  'required',
@@ -97,23 +97,24 @@ class VideosController extends Controller
             $video->track_file = asset($path);
         }
 
-        $video->title           = $request->title;
-        $video->slug            = str_slug($request->title . '-'.$request->description);
-        $video->preview_link    = $request->preview_link;
-        $video->duration        = $request->duration;
-        $video->poster          = $request->poster;
-        $video->tn_poster       = $request->tn_poster;
-        $video->duration        = $request->duration;
-        $video->buy_price       = $request->buy_price;
-        $video->rent_price      = $request->rent_price;
-        $video->film_rating     = $request->film_rating;
-        $video->description     = $request->description;
-        $video->resolution      = $request->resolution;
-        $video->release_date        =  Helper::getFormatedDate($request->release_date);//Format data
-        $video->link                =  $request->link;
-        $video->iframe              =  $request->iframe;
-        $video->featured            =  $request->featured_video ? 1 : 0;
-        $video->access_type         =  $request->access_type;
+        $video->title  = $request->title;
+        $video->slug = str_slug($request->title . '-'.$request->description);
+        $video->preview_link = $request->preview_link;
+        $video->duration = $request->duration;
+        $video->poster  = $request->poster;
+        $video->tn_poster = $request->tn_poster;
+        $video->duration = $request->duration;
+        $video->buy_price = $request->buy_price;
+        $video->rent_price = $request->rent_price;
+        $video->film_rating = $request->film_rating;
+        $video->description = $request->description;
+        $video->resolution = $request->resolution;
+        $video->release_date = Helper::getFormatedDate($request->release_date);//Format data
+        $video->link = $request->link;
+        $video->iframe = $request->iframe;
+        $video->blocked_continents = json_encode($request->excludes);
+        $video->featured = $request->featured_video ? 1 : 0;
+        $video->access_type = $request->access_type;
         $video->save();
 
         if(!empty($request->category_id)){
@@ -221,12 +222,14 @@ class VideosController extends Controller
     {
         User::canTakeAction(3);
         $categories = Category::parents()->get();
-        $genres     = Genre::latest()->get();
-        $sections   = Section::latest()->get();
-        $filmers    = (new User())->filmers()->latest()->get();
-        $casts      = (new User())->castings()->latest()->get();
-        $video      = Video::find($id);
-        return view('admin.videos.edit',compact('genres','filmers','sections','casts','categories','video'));
+        $genres = Genre::latest()->get();
+        $sections = Section::latest()->get();
+        $filmers = (new User())->filmers()->latest()->get();
+        $casts = (new User())->castings()->latest()->get();
+        $video = Video::find($id);
+        $excludes = Video::excludes();
+
+        return view('admin.videos.edit',compact('excludes','genres','filmers','sections','casts','categories','video'));
     }
 
     /**

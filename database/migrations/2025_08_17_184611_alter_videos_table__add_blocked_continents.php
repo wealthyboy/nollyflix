@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterOrdersTablePutContentOwnerId extends Migration
+class AlterVideosTableAddBlockedContinents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AlterOrdersTablePutContentOwnerId extends Migration
      */
     public function up()
     {
-        // Schema::table('orders', function (Blueprint $table) {
-        //   $table->integer("content_owner_id")->nullable();
-        // });
+        Schema::table('videos', function (Blueprint $table) {
+           $table->json('blocked_continents')->nullable();
+        });
     }
 
     /**
@@ -25,8 +25,8 @@ class AlterOrdersTablePutContentOwnerId extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('content_owner_id');
+        Schema::table('videos', function (Blueprint $table) {
+            //
         });
     }
 }

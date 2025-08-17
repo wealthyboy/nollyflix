@@ -84,12 +84,10 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('browse/{video}/user/{user}',  'Browse\BrowseController@show')->name('browse.user.show');
     Route::get('browse/category/{category}',  'Category\CategoryController@index');
     Route::get('browse/genre/{genre}',        'Genre\GenreController@index')->name('browse.genres');
-
     Route::get('profile/videos',              'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{video}',               'Watch\WatchController@index')->name('watch');
     Route::get('watch/log/dom',               'Watch\WatchController@log');
-
     Route::get('watch/expired/{video}',       'Browse\BrowseController@show')->name('watch.expired');
     Route::resource('orders',          'Orders\OrdersController',['name'=>'orders']);
     Route::post('carts',               'Cart\CartController@store');
@@ -114,8 +112,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
 
 
 
-    Route::post('/emailapi-service', 'EmailApiController@sendEmail');
-
+    Route::post('/emailapi-service', 'EmailApiController@sendReceiptEmail');
 
 });
 

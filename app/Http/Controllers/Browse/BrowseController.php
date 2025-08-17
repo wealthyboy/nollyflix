@@ -39,9 +39,11 @@ class BrowseController extends Controller
         
         $site_status =Live::first();
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
-        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get();
+        $featured_videos = DefaultBanner::orderBy('id','DESC')->get();
         $page_title = "Welcome to NollyFlix";
         $page_meta_description = "Buy nollywood movies, african movies, rent movies, rent nollywood movies";
+
+   
 
 
         if ( empty($site_status->make_live) ) {

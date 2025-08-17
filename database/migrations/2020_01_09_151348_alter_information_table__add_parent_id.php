@@ -13,9 +13,9 @@ class AlterInformationTableAddParentId extends Migration
      */
     public function up()
     {
-        Schema::table('information', function (Blueprint $table) {
-            $table->integer('parent_id')->unsigned()->nullable();
-        });
+        // Schema::table('information', function (Blueprint $table) {
+        //     $table->integer('parent_id')->unsigned()->nullable();
+        // });
     }
 
     /**

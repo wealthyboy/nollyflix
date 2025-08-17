@@ -29,18 +29,18 @@ class BrowseController extends Controller
     public function index()
     {   
         $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
-        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
+        $featured_videos = DefaultBanner::orderBy('id','DESC')->get(); 
         return BrowseResource::collection(
             $sections->load('videos','videos.casts.cast_videos', 'videos.filmers.filmer_videos', 'videos.related_videos.video')
         )
         ->additional(['meta' => [
-            'slides' =>  $featured_videos->load('video.casts.cast_videos','video.filmers.filmer_videos','video.related_videos.video')->toJson()
+            'slides' =>  $featured_videos->load('video.casts.c ast_videos','video.filmers.filmer_videos','video.related_videos.video')->toJson()
         ]]);
     }
 
 
     public function show($id)
-    {   
+    {     
         $video =  Video::find($id); 
         return new VideoIndexResource(
             $video->load('casts.cast_videos', 'filmers.filmer_videos', 'related_videos.video')

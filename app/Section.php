@@ -4,13 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Check;
+use App\Traits\ColumnFillable;
+
 
 
 class Section extends Model
 {
     
 
-    use Check;
+    use Check, ColumnFillable;
+
+    
     
     /**
      * The casts that belong to the user.
