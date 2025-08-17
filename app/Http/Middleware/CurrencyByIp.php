@@ -26,10 +26,8 @@ class CurrencyByIp
 
         $rate = [];
         $position = '';
-
-        if ($request->debug === 1) {
             dd( $position = (new Location())->get(request()->ip()));
-        } 
+        
 
         $settings = SystemSetting::first();
         if ($settings->allow_multi_currency){
