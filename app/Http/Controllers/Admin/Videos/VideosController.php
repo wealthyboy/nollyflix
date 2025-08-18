@@ -274,7 +274,7 @@ class VideosController extends Controller
         $video->film_rating     = $request->film_rating;
         $video->description     = $request->description;
         $video->resolution      = $request->resolution;
-        $video->blocked_continents = json_encode($request->excludes)
+        $video->blocked_continents = json_encode($request->excludes);
         $video->release_date    =  $request->filled('release_date') ?  Helper::getFormatedDate($request->release_date) : $video->release_date;//Format data
         $video->link            =  $request->link;
         $video->iframe          =  $request->iframe;
