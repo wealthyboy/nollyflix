@@ -18,13 +18,13 @@ class Helper{
         return in_array($link, $url) ? 'active' : false;
     }
 
-    public  static function getFormatedDate($date)
+    public static function getFormatedDate($date)
     {
-        if($date) {
+        if ($date) {
             $exp_date = explode('/', $date);
-            //year month day
-            $expiry_date = Carbon::createFromDate($exp_date[2], $exp_date[0], $exp_date[1]);//
-        }else{
+            // day/month/year
+            $expiry_date = Carbon::createFromDate($exp_date[2], $exp_date[1], $exp_date[0]);
+        } else {
             $expiry_date = null;
         }
         return $expiry_date;
