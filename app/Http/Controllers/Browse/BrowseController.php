@@ -43,8 +43,6 @@ class BrowseController extends Controller
         $page_title = "Welcome to NollyFlix";
         $page_meta_description = "Buy nollywood movies, african movies, rent movies, rent nollywood movies";
 
-   
-
 
         if ( empty($site_status->make_live) ) {
             return view('browse.index',compact('sections','featured_videos','page_title','page_meta_description')); 

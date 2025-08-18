@@ -261,7 +261,7 @@ class VideosController extends Controller
         }
 
 
-       // dd(Helper::getFormatedDate($request->release_date));
+        dd(Helper::getFormatedDate($request->release_date));
         $video->title           = $request->title;
         $video->slug            = str_slug($request->title . '-'.$request->description);
         $video->preview_link    = $request->preview_link;
