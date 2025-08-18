@@ -7,6 +7,8 @@ use App\Http\Helper;
 use App\Traits\FormatPrice;
 use Carbon\Carbon;
 use App\Traits\ColumnFillable;
+use Stevebauman\Location\Location;
+
 
 
 
@@ -113,9 +115,6 @@ class Video extends Model
     {
         return $this->belongsToMany('App\User','cast_video','video_id','user_id');
     }
-
-
-    
 
     /**
      * The filmers that belong to the user.
@@ -258,6 +257,23 @@ class Video extends Model
         ];
     }
 
-
+    public static function countryToContinent()
+    {
+        return json_decode(file_get_contents(storage_path('app/continents.json')), true);
+    }
     
+
+    public static function detectContinentCode()
+    {
+        $position = (new Location())->get(request()->ip());
+
+        if ($position && $position->countryCode) {
+
+            $map = self::countryToContinent();
+
+            return $map[$position->countryCode];
+        }
+
+        return null;
+    }
 }

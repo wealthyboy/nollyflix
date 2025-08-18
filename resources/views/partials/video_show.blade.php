@@ -79,8 +79,16 @@
 </div>
 <div id="content-pro">
    <div class="container custom-gutters-pro">
+
+      
       <div class="row">
-         <div class="col-lg-8">
+
+         @if($blocked)
+            <div class="alert alert-warning p-3 rounded">
+               Sorry, this video is not available in your region.
+            </div>
+         @else
+             <div class="col-lg-8">
             <div id="">
                <h1 class="video-post-heading-title">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
                <div class="clearfix"></div>
@@ -147,7 +155,12 @@
                <buttons />
             </div>
          </div>
+         @endif
+       
       </div>
+
+
+
       <div class="container" style="background: #1c1f1f">
          <reviews />
       </div>

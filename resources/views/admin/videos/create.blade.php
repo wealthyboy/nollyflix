@@ -327,12 +327,12 @@
                               <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
                                  <div class="panel-body scroll">
                                     <ul>
-                                       @foreach($excludes as $exclude)
+                                       @foreach($excludes as $key => $exclude)
                                           <li data-caption="Documents">
                                              <div class="checkbox">
                                                 <label>
-                                                   <input name="excludes[]" value="{{ $exclude  }}" type="checkbox">
-                                                   {{ $exclude }}
+                                                   <input name="excludes[]" value="{{ $key  }}" type="checkbox">
+                                                   {{ $key }}
                                                 </label>
                                              </div>
                                           </li>
