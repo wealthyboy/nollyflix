@@ -84,7 +84,7 @@
       <div class="row">
 
          @if($blocked)
-            <div class="alert alert-warning p-3 rounded">
+            <div class="alert alert-warning p-3 rounded mb-5">
                Sorry, this video is not available in your region.
             </div>
          @else
