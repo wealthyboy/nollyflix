@@ -65,7 +65,7 @@ class BrowseController extends Controller
         $page_meta_description = "Buy nollywood movies, $video->description";
         $continentCode = Video::detectContinentCode();
         $blocked = in_array($continentCode, json_decode($video->blocked_continents, true) ?? []);
-        return view('browse.show',compact('video','page_title','user','page_meta_description'));   
+        return view('browse.show',compact('blocked','video','page_title','user','page_meta_description'));   
     }
     
 }
