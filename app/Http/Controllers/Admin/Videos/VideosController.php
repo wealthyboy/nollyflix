@@ -261,24 +261,24 @@ class VideosController extends Controller
         }
 
 
-        $video->title           = $request->title;
-        $video->slug            = str_slug($request->title . '-'.$request->description);
-        $video->preview_link    = $request->preview_link;
-        $video->duration        = $request->duration;
-        $video->poster          = $request->poster;
-        $video->tn_poster       = $request->tn_poster;
-        $video->duration        = $request->duration;
-        $video->buy_price       = $request->buy_price;
-        $video->rent_price      = $request->rent_price;
-        $video->film_rating     = $request->film_rating;
-        $video->description     = $request->description;
-        $video->resolution      = $request->resolution;
+        $video->title = $request->title;
+        $video->slug = str_slug($request->title . '-'.$request->description);
+        $video->preview_link = $request->preview_link;
+        $video->duration = $request->duration;
+        $video->poster = $request->poster;
+        $video->tn_poster = $request->tn_poster;
+        $video->duration = $request->duration;
+        $video->buy_price = $request->buy_price;
+        $video->rent_price = $request->rent_price;
+        $video->film_rating = $request->film_rating;
+        $video->description = $request->description;
+        $video->resolution = $request->resolution;
         $video->blocked_continents = json_encode($request->excludes);
-        $video->release_date    =  $request->filled('release_date') ?  Helper::getFormatedDate($request->release_date) : $video->release_date;//Format data
-        $video->link            =  $request->link;
-        $video->iframe          =  $request->iframe;
-        $video->featured        =  $request->featured_video ? 1 : 0;
-        $video->access_type     =  $request->access_type;
+        $video->release_date = $request->filled('release_date') ?  Helper::getFormatedDate($request->release_date) : $video->release_date;//Format data
+        $video->link = $request->link;
+        $video->iframe = $request->iframe;
+        $video->featured = $request->featured_video ? 1 : 0;
+        $video->access_type = $request->access_type;
         $video->save();
 
         if(!empty($request->category_id)){
