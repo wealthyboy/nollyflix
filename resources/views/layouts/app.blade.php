@@ -12,7 +12,9 @@
 	<body>
 		<header id="masthead-pro" class="sticky-header"><!-- Remove sticky-header class to remove sticky header -->
 			<div class="header-container">
-				<h1><a href="/"><img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a></h1>
+				<h1><a href="/">
+					<img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a>
+				</h1>
 				<nav id="site-navigation-pro"></nav>
 				<div class="clearfix"></div>
 			</div><!-- close .header-container -->

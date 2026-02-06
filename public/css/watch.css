@@ -1,1 +1,313 @@
-@font-face{font-family:nf-icon;src:url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.eot);src:url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.eot#iefix) format("embedded-opentype"),url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.woff) format("woff"),url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.ttf) format("truetype"),url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.svg#nf-icon-v1-86) format("svg");font-weight:400;font-style:normal}body{margin:0;padding:0}.hide{display:none}.video-js{font-size:1.1em;color:#fff;border:none!important;outline:none!important}.background_video{position:absolute;top:0;bottom:0;width:100%;height:100%;overflow:hidden}.background_video .back{position:relative;z-index:100;opacity:0;display:none;font-size:3em;background:transparent;top:0;transition:opacity .5s linear}.background_video .back a{color:#fff}video[poster]{background-position:50%}.vjs-poster,video[poster]{-o-object-fit:cover;object-fit:cover;z-index:-1;background-repeat:no-repeat;background-size:cover}.vjs-poster{background-position:inherit;background-position:50%}#video{width:auto;height:auto;position:absolute;transform:translate(-50%,-50%)}#video,.video-js .vjs-tech{min-width:100%;min-height:100%;top:50%;left:50%}.video-js .vjs-tech{width:100%;height:100%;position:fixed;width:auto;height:auto;z-index:-100;transform:translateX(-50%) translateY(-50%);transition:opacity 1s;border:none!important;outline:none!important;overflow:hidden}.video-js .vjs-big-play-button{display:none!important}.video-js .vjs-control-bar{background:linear-gradient(transparent,rgba(0,0,0,.9));transition:opacity .5s linear}.video-js .vjs-progress-control{position:absolute;bottom:45px}.vjs-progress-control.vjs-control{width:95%}.video-js .vjs-time-control{right:0;bottom:45px;position:absolute}.vjs-text-track-display{bottom:4em}.vjs-subs-caps-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button{position:absolute;right:70px}.vjs-fullscreen-control.vjs-control.vjs-button{position:absolute;right:0}.vjs-chapters-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button{position:absolute;right:150px}.video-js .vjs-progress-holder{height:.2em}.video-js .vjs-play-progress:before{font-size:.7em;position:absolute;right:-.5em;top:-.3em;z-index:1;color:red}.video-js button{outline:none}.video-js .vjs-play-progress{background-color:red}.video-js .vjs-time-control{font-size:.6em;line-height:4.9em}#video{position:fixed}#video-page-title-pro{height:100vh;background-color:#303030;position:relative;background-repeat:no-repeat;background-position:50%;background-size:cover}.spinner-image{position:absolute;top:50%;left:50%;width:100px;height:100px;margin:-60px 0 0 -60px;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite}@-webkit-keyframes spin{to{-webkit-transform:rotate(1turn)}}@keyframes spin{to{transform:rotate(1turn)}}.vjs-loading-spinner{border:none;opacity:0;visibility:hidden;-webkit-animation:vjs-spinner-fade-out 2s linear 1;animation:vjs-spinner-fade-out 2s linear 1;-webkit-animation-delay:2s;animation-delay:2s}.vjs-loading-spinner:after,.vjs-loading-spinner:before{border:none}.vjs-loading-spinner:after{background-image:url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);background-repeat:no-repeat;background-position-x:50%;background-position-y:50%;background-size:100%}.vjs-seeking .vjs-loading-spinner:after,.vjs-waiting .vjs-loading-spinner:after{-webkit-animation:vjs-spinner-spin 1.1s linear infinite,vjs-spinner-fade 1.1s linear 1!important;animation:vjs-spinner-spin 1.1s linear infinite,vjs-spinner-fade 1.1s linear 1!important;-webkit-animation-delay:2s;animation-delay:2s}.vjs-seeking .vjs-loading-spinner,.vjs-waiting .vjs-loading-spinner{opacity:1;visibility:visible;-webkit-animation:vjs-spinner-fade-in 2s linear 1;animation:vjs-spinner-fade-in 2s linear 1;-webkit-animation-delay:2s;animation-delay:2s}@-webkit-keyframes vjs-spinner-fade-in{0%{opacity:0;visibility:visible}to{opacity:1;visibility:visible}}@keyframes vjs-spinner-fade-in{0%{opacity:0;visibility:visible}to{opacity:1;visibility:visible}}@-webkit-keyframes vjs-spinner-fade-out{0%{opacity:1;visibility:visible}to{opacity:0;visibility:visible}}@keyframes vjs-spinner-fade-out{0%{opacity:1;visibility:visible}to{opacity:0;visibility:visible}}a.video-page-title-play-button{display:block;position:absolute;width:100%;height:100%;text-align:center;z-index:1}@media only screen and (max-width:575px){.vjs-progress-control.vjs-control{width:85%}}
+@font-face {
+  font-family: nf-icon;
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.eot);
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.eot?#iefix) format("embedded-opentype"), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.woff) format("woff"), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.ttf) format("truetype"), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-86.svg#nf-icon-v1-86) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.video-js {
+  /* The base font size controls the size of everything, not just text.
+   All dimensions use em-based sizes so that the scale along with the font size.
+   Try increasing it to 15px and see what happens. */
+  font-size: 1.1em;
+  /* The main font color changes the ICON COLORS as well as the text */
+  color: #ffffff;
+  border: none !important;
+  outline: none !important;
+}
+
+.background_video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background_video .back {
+  position: relative;
+  z-index: 100;
+  opacity: 0;
+  display: none;
+  font-size: 3em;
+  background: transparent;
+  top: 0px;
+  transition: opacity 0.5s linear;
+}
+
+.background_video .back a {
+  color: #ffffff;
+}
+
+video[poster] {
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.vjs-poster {
+  background-size: cover;
+  background-position: inherit;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#video {
+  /* Make video to at least 100% wide and tall */
+  min-width: 100%;
+  min-height: 100%;
+  /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+  width: auto;
+  height: auto;
+  /* Center the video */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-js .vjs-tech {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  transition: 1s opacity;
+  border: none !important;
+  outline: none !important;
+  overflow: hidden;
+}
+
+.video-js .vjs-big-play-button {
+  display: none !important;
+}
+
+.video-js .vjs-control-bar {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+  transition: opacity 0.5s linear;
+}
+
+.video-js .vjs-progress-control {
+  position: absolute;
+  bottom: 45px;
+}
+
+.vjs-progress-control.vjs-control {
+  width: 95%;
+}
+
+.video-js .vjs-time-control {
+  right: 0px;
+  bottom: 45px;
+  position: absolute;
+}
+
+.vjs-text-track-display {
+  bottom: 4em;
+}
+
+.vjs-subs-caps-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button {
+  position: absolute;
+  right: 70px;
+}
+
+.vjs-fullscreen-control.vjs-control.vjs-button {
+  position: absolute;
+  right: 0px;
+}
+
+.vjs-chapters-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button {
+  position: absolute;
+  right: 150px;
+}
+
+.video-js .vjs-progress-holder {
+  height: 0.2em;
+}
+
+.video-js .vjs-play-progress::before {
+  font-size: 0.7em;
+  position: absolute;
+  right: -0.5em;
+  top: -0.3em;
+  z-index: 1;
+  color: red;
+}
+
+.video-js button {
+  outline: none;
+}
+
+.video-js .vjs-play-progress {
+  background-color: red;
+}
+
+.video-js .vjs-time-control {
+  font-size: 0.6em;
+  line-height: 4.9em;
+}
+
+#video {
+  position: fixed;
+}
+
+#video-page-title-pro {
+  height: 100vh;
+  background-color: #303030;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.spinner-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin: -60px 0 0 -60px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.vjs-loading-spinner {
+  border: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-animation: vjs-spinner-fade-out 2s linear 1;
+          animation: vjs-spinner-fade-out 2s linear 1;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.vjs-loading-spinner:before,
+.vjs-loading-spinner:after {
+  border: none;
+}
+
+.vjs-loading-spinner:after {
+  background-image: url(https://assets.nflxext.com/en_us/pages/wiplayer/site-spinner.png);
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-size: 100%;
+}
+
+.vjs-seeking .vjs-loading-spinner:after,
+.vjs-waiting .vjs-loading-spinner:after {
+  -webkit-animation: vjs-spinner-spin 1.1s linear infinite, vjs-spinner-fade 1.1s linear 1 !important;
+          animation: vjs-spinner-spin 1.1s linear infinite, vjs-spinner-fade 1.1s linear 1 !important;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.vjs-seeking .vjs-loading-spinner,
+.vjs-waiting .vjs-loading-spinner {
+  opacity: 1;
+  visibility: visible;
+  -webkit-animation: vjs-spinner-fade-in 2s linear 1;
+          animation: vjs-spinner-fade-in 2s linear 1;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+@-webkit-keyframes vjs-spinner-fade-in {
+  0% {
+    opacity: 0;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes vjs-spinner-fade-in {
+  0% {
+    opacity: 0;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes vjs-spinner-fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: visible;
+  }
+}
+
+@keyframes vjs-spinner-fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: visible;
+  }
+}
+
+a.video-page-title-play-button {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 575px) {
+  .vjs-progress-control.vjs-control {
+    width: 85%;
+  }
+}
+
