@@ -187,8 +187,6 @@ export default {
                                 return false;
                             });
 
-                            charge_response_message;
-
                             if (
                                 response.status == "successful" ||
                                 response.charge_response_message ==
