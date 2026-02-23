@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 class BrowseController extends Controller
 {
-    
+
 
     /**
      * Show the application dashboard.
@@ -27,21 +27,21 @@ class BrowseController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
-        $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
-        $featured_videos = DefaultBanner::orderBy('id','DESC')->get(); 
+    {
+        $sections = Section::has('videos')->orderBy('sort_order', 'asc')->get();
+        $featured_videos = DefaultBanner::orderBy('id', 'DESC')->get();
         return BrowseResource::collection(
-            $sections->load('videos','videos.casts.cast_videos', 'videos.filmers.filmer_videos', 'videos.related_videos.video')
+            $sections->load('videos', 'videos.casts.cast_videos', 'videos.filmers.filmer_videos', 'videos.related_videos.video')
         )
-        ->additional(['meta' => [
-            'slides' =>  $featured_videos->load('video.casts.c ast_videos','video.filmers.filmer_videos','video.related_videos.video')->toJson()
-        ]]);
+            ->additional(['meta' => [
+                'slides' =>  $featured_videos->load('video.casts.cast_videos', 'video.filmers.filmer_videos', 'video.related_videos.video')->toJson()
+            ]]);
     }
 
 
     public function show($id)
-    {     
-        $video =  Video::find($id); 
+    {
+        $video =  Video::find($id);
         return new VideoIndexResource(
             $video->load('casts.cast_videos', 'filmers.filmer_videos', 'related_videos.video')
         );
@@ -49,10 +49,8 @@ class BrowseController extends Controller
 
 
     public function featuredVideos()
-    {   
-        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
-        return FeaturedResource::collection( $featured_videos->load('video.casts','video.flimers','video.related_videos.video') );
+    {
+        $featured_videos =  DefaultBanner::orderBy('id', 'DESC')->get();
+        return FeaturedResource::collection($featured_videos->load('video.casts', 'video.flimers', 'video.related_videos.video'));
     }
-
-    
 }
