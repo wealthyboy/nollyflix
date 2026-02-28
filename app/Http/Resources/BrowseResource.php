@@ -16,15 +16,6 @@ class BrowseResource extends JsonResource
      */
     public function toArray($request)
     {
-        $featured_videos =  DefaultBanner::orderBy('id','DESC')->get(); 
-        return array_merge(parent::toArray($request), [
-            'slides' => FeaturedResource::collection(
-                $featured_videos->load('video')  
-            )
-        ]);
-
+        return parent::toArray($request);
     }
-
-
-    
 }
