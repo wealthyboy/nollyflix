@@ -16,12 +16,11 @@ class CastsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $users =  User::where('type','casts')->orderBy('name','ASC')->get();
+    {
+        $users =  User::where('type', 'casts')->orderBy('name', 'ASC')->get();
+
         return CastsResource::collection(
             $users->load('cast_videos')
         );
     }
-
-
 }
