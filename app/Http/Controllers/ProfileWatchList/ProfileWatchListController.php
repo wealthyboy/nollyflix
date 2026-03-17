@@ -23,6 +23,8 @@ class ProfileWatchListController extends Controller
     public function index()
     {   
         $user = auth()->user();
+
+        
         
         $active = "watchlists";
         $page_title = "Buy ,Rent Movies, Watchlists for {$user->fullname()}";
