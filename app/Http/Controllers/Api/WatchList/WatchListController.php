@@ -21,10 +21,10 @@ class WatchListController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         $user = auth()->user();
         return WatchList::collection(
-            $user->movies->load('cart','video.casts.cast_videos','video.filmers.filmer_videos','video.related_videos.video')
+            $user->movies->load('cart')
         );
     }
 }
