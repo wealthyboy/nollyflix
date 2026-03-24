@@ -20,11 +20,16 @@ class WatchListController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
-        return WatchList::collection(
-            $user->movies->load('cart.video')
-        );
+
+        $perPage = (int) $request->query('per_page', 10);
+
+        $query = $user->movies()->with('cart.video');
+
+        $videos = $query->paginate($perPage);
+
+        return WatchList::collection($videos);
     }
 }

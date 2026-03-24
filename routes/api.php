@@ -25,3 +25,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('notifications', 'Api\Notifications\NotificationsController@store');
 });
 
+// Protected routes (require JWT)
+Route::middleware(['auth:api'])->group(function () {
+    Route::post('checkout', 'Api\Checkout\CheckoutController@store');
+});
