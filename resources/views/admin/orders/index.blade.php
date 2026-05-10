@@ -50,13 +50,13 @@
                            <td class="text-left">{{ $order->invoice }}</td>
                            <td class="text-left">{{ $order->user->fullname() }}</td>
                            <td>{{ $order->created_at }}</td>
-                           <td class="text-left">{{ $order->currency  ?? '₦'}}{{ $order->cart->price }}</td>
+                           <td class="text-left">{{ $order->currency  ?? '₦'}}{{ optional($order->cart)->price }}</td>
                            <td class="td-actions text-center">
-
-
-                              <span><a href="{{ route('admin.orders.show',['order'=>$order->id]) }}" rel="tooltip" class="btn btn-success btn-simple" data-original-title="" title="View">
+                              <span>
+                                 <a href="{{ route('admin.orders.show',['order'=>$order->id]) }}" rel="tooltip" class="btn btn-success btn-simple" data-original-title="" title="View">
                                     <i class="fa fa-eye"></i>
-                                 </a></span>
+                                 </a>
+                              </span>
                            </td>
                            @endforeach
 

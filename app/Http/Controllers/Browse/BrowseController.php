@@ -59,6 +59,7 @@ class BrowseController extends Controller
 
     public function show(Video $video,User $user)
     {   
+        $video->load('episodes');
         $page_title = "Buy ,Rent , {$video->title}";
         $page_meta_description = "Buy nollywood movies, $video->description";
         $continentCode = Video::detectContinentCode();

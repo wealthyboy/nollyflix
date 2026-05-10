@@ -7,17 +7,20 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\PrivateUserResource;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
     public function action(RegisterRequest $request)
     {
         $user   = User::create([
-                        'name'      =>  $request->first_name,
-                        'last_name' =>  $request->last_name,
-                        'email'     =>  $request->email,
-                        'password'  =>  bcrypt($request->password)
-                    ]);
+            'name'  =>  $request->first_name,
+            'last_name' =>  $request->last_name,
+            'email'     =>  $request->email,
+            'password'  =>  bcrypt($request->password)
+        ]);
+
+        Log::info($user);
 
         return new PrivateUserResource($user);
     }

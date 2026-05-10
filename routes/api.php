@@ -3,29 +3,30 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('browse',          'Api\Browse\BrowseController@index');
-Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
-Route::get('video/{id}',      'Api\Browse\BrowseController@show');
+Route::middleware(['currencyByIp'])->group(function () {
+    Route::get('browse',          'Api\Browse\BrowseController@index');
+    Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
+    Route::get('video/{id}',      'Api\Browse\BrowseController@show');
 
-Route::get('browse/casts',    'Api\Casts\CastsController@index');
-Route::get('browse/filmers',  'Api\FilmMakers\FilmMakersController@index');
-Route::get('profile/videos',  'Api\WatchList\WatchListController@index');
-Route::get('search',          'Api\Search\SearchController@search');
+    Route::get('browse/casts',    'Api\Casts\CastsController@index');
+    Route::get('browse/filmers',  'Api\FilmMakers\FilmMakersController@index');
+    Route::get('profile/videos',  'Api\WatchList\WatchListController@index');
+    Route::get('search',          'Api\Search\SearchController@search');
 
-Route::post('forgot/password',  'Api\Auth\ResetPasswordController@forgot');
-Route::post('reset/password',  'Api\Auth\ResetPasswordController@reset');
+    Route::post('forgot/password',  'Api\Auth\ResetPasswordController@forgot');
+    Route::post('reset/password',  'Api\Auth\ResetPasswordController@reset');
 
+    Route::group(['prefix' => 'auth'], function () {
+        Route::post('register', 'Api\Auth\RegisterController@action');
+        Route::post('login', 'Api\Auth\LoginController@action');
+        Route::get('me', 'Api\Auth\MeController@action');
+        Route::post('notifications', 'Api\Notifications\NotificationsController@store');
+    });
 
-
-
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('register', 'Api\Auth\RegisterController@action');
-    Route::post('login', 'Api\Auth\LoginController@action');
-    Route::get('me', 'Api\Auth\MeController@action');
-    Route::post('notifications', 'Api\Notifications\NotificationsController@store');
-});
-
-// Protected routes (require JWT)
-Route::middleware(['auth:api'])->group(function () {
-    Route::post('checkout', 'Api\Checkout\CheckoutController@store');
+    // Protected routes (require JWT)
+    Route::middleware(['auth:api'])->group(function () {
+        Route::post('checkout', 'Api\Checkout\CheckoutController@store');
+        Route::put('profile', 'Api\Profile\ProfileController@update');
+        Route::post('profile/change-password', 'Api\Profile\ProfileController@changePassword');
+    });
 });

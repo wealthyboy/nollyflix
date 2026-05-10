@@ -76,6 +76,7 @@
                                         </th>
                                         <th>Poster</th>
                                         <th>Title</th>
+                                        <th>Type</th>
                                         <th>Buy Price</th>
                                         <th>Rent Price</th>
                                         <th class="disabled-sorting text-right">Actions</th>
@@ -99,6 +100,13 @@
                                             </div>
                                         </td>
                                         <td><a target="_blank" href="/video/{{ isset($video->categories[0]) ?  $video->categories[0]->slug : '' }}/{{ $video->slug }}">{{ $video->title }}</a></td>
+                                        <td>
+                                            @if(($video->content_type ?? 'movie') == 'series')
+                                                Series ({{ $video->episodes_count }} episodes)
+                                            @else
+                                                Movie
+                                            @endif
+                                        </td>
                                         <td>
                                             <span class="amount">
                                             {{ $system_settings->default_currency->symbol }}{{ $video->buy_price }}

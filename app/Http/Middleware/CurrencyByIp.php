@@ -25,12 +25,13 @@ class CurrencyByIp
 
         $rate = [];
         $position = '';
-        $position = Location::get('169.197.85.171');
+        $position = Location::get('130.195.212.66');
+
         $request->session()->put('country_name', optional($position)->countryName);
         $settings = SystemSetting::first();
         $nigeria = Currency::where('country', 'Nigeria')->first();
         $usa = Currency::where('country', 'United States')->first();
-        $position = Location::get('169.197.85.171');
+        $position = Location::get('130.195.212.66');
         $query = request()->all();
         $currentDate = Carbon::now();
         $startDate = Carbon::createFromDate(null, 12, 1);

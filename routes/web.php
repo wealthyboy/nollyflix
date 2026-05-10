@@ -88,7 +88,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{video}',               'Watch\WatchController@index')->name('watch');
     Route::get('watch/log/dom',               'Watch\WatchController@log');
-    Route::get('watch/expired/{video}',       'Browse\BrowseController@show')->name('watch.expired');
+    Route::get('watch/expired/{video}',       'Watch\WatchController@expired')->name('watch.expired');
     Route::resource('orders',          'Orders\OrdersController',['name'=>'orders']);
     Route::post('carts',               'Cart\CartController@store');
     Route::get('carts',                'Cart\CartController@store');
@@ -116,13 +116,13 @@ Route::group(['middleware' => 'currencyByIp'], function(){
 
 });
 
+Route::get('watch/hls/video/{video}',     'Watch\WatchController@videoHls')->name('watch.hls.video');
+Route::get('watch/hls/episode/{episode}', 'Watch\WatchController@episodeHls')->name('watch.hls.episode');
+
 
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
-
-
-
 
 
 

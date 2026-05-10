@@ -23,6 +23,7 @@
 
 
 		<link href="/css/video.css?version={{ str_random(6) }}" rel="stylesheet" />
+		@yield('page-css')
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 	</head>
@@ -36,6 +37,7 @@
 
 		<script src="/js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
 		<script src="/js/watch.js?version={{ str_random(6) }}"></script><!-- Custom Document Ready JS -->
+		@yield('page-scripts')
 	</body>
 </html>
 

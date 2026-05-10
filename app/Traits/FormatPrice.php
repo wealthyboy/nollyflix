@@ -52,12 +52,20 @@ trait FormatPrice
 
   public function getConvertedBuyPriceAttribute()
   {
-    return $this->ConvertCurrencyRate($this->buy_price);
+    $switch = session('switch', 'NGN'); // Default to NGN if not set
+    if ($switch === 'USD' && $this->buy_price_usd) {
+      return round($this->buy_price_usd, 0);
+    }
+    return $this->buy_price;
   }
 
   public function getConvertedRentPriceAttribute()
   {
-    return $this->ConvertCurrencyRate($this->rent_price);
+    $switch = session('switch', 'NGN');
+    if ($switch === 'USD' && $this->rent_price_usd) {
+      return round($this->rent_price_usd, 0);
+    }
+    return $this->rent_price;
   }
 
   public function ConvertCurrencyRate($price)

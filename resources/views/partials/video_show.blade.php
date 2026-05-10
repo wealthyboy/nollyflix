@@ -92,9 +92,16 @@
             <div id="">
                <h1 class="video-post-heading-title">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
                <div class="clearfix"></div>
+               @php
+                  $seasonCount = $video->episodes->pluck('season_number')->filter()->unique()->count();
+                  $rating = $video->film_rating ?: 'PG';
+               @endphp
                <ul id="video-post-meta-list">
                   <li id="video-post-meta-year">{{ optional($video->release_date)->format('Y') }}</li>
-                  <li id="video-post-meta-rating"><span>{{ $video->film_rating }}</span></li>
+                  <li id="video-post-meta-rating"><span>{{ $rating }}</span></li>
+                  @if($seasonCount)
+                     <li id="video-post-meta-seasons"><span>{{ $seasonCount }} {{ $seasonCount > 1 ? 'Seasons' : 'Season' }}</span></li>
+                  @endif
                   <li id=""><span>{{ $video->duration }}</span></li>
                </ul>
                <div class="clearfix"></div>

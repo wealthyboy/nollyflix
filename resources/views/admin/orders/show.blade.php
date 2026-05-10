@@ -128,13 +128,13 @@
                         {{ $cart->purchase_type }}
                      </td>
                      <td class="td-number text-right">
-                        {{ $order->currency }}{{ $cart->customer_price }}
+                        {{ $order->currency }}{{ $cart->price }}
                      </td>
                      <td class="td-number">
                         {{ $cart->quantity }}
                      </td>
                      <td class="td-number">
-                        <small>{{ $order->currency }}</small>{{ $cart->customer_total }}
+                        <small>{{ $order->currency }}</small>{{ $cart->total }}
                      </td>
 
                   </tr>

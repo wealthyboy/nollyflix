@@ -176,6 +176,20 @@ class Video extends Model
     }
 
 
+    public function episodes()
+    {
+        return $this->hasMany('App\VideoEpisode')
+            ->orderBy('season_number')
+            ->orderBy('episode_number')
+            ->orderBy('sort_order')
+            ->orderBy('id');
+    }
+
+    public function isSeries()
+    {
+        return $this->content_type === 'series';
+    }
+
     public function related_videos()
     {
         return $this->hasMany(RelatedVideo::class);

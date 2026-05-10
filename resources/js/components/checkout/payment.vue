@@ -154,6 +154,8 @@ export default {
         },
         submit: function() {
             var context = this;
+            console.log(context.user?.iso_code);
+            console.log(context.price);
             this.$store.commit("setLoading", true);
             this.statusText = "Payment is processing.....";
             this.scriptLoaded &&
@@ -199,38 +201,8 @@ export default {
 
                                 axios
                                     .post("/checkout", {
-                                        cart_id: context.cart_id
-                                    })
-                                    .then(res => {
-                                        location.href =
-                                            "/watch/" +
-                                            context.$root.video.slug;
-                                    })
-                                    .catch(error => {
-                                        alert("Something went wrong");
-                                        context.$store.commit(
-                                            "setLoading",
-                                            false
-                                        );
-                                    });
-                            } else {
-                                x.close();
-                                context.$store.commit("setLoading", false);
-                            }
-
-                            if (
-                                response.status == "successful" ||
-                                response.charge_response_message ==
-                                    "Approved Successful"
-                            ) {
-                                x.close();
-                                //context.$store.commit('setLoading',true)
-                                context.statusText =
-                                    "Redirecting to your movie .Enjoy...";
-
-                                axios
-                                    .post("/checkout", {
-                                        cart_id: context.cart_id
+                                        cart_id: context.cart_id,
+                                        currency: context.user.iso_code
                                     })
                                     .then(res => {
                                         location.href =

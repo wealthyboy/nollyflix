@@ -35,25 +35,19 @@ return [
     */
 
     'mailers' => [
+        'zeptomail' => [
+            'transport' => 'zeptomail',
+            'key' => env('ZEPTO_API_KEY'),
+            'url' => env('ZEPTO_API_URL'),
+        ],
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST', 'smtp.zeptomail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
-            'auth_mode' => null,
-        ],
-        'zeptomail' => [
-            'transport' => 'smtp',
-            'host' => env('ZEPTO_HOST', 'smtp.zeptomail.com'),
-            'port' => env('ZEPTO_PORT', 587),
-            'username' => env('ZEPTO_USERNAME'),
-            'password' => env('ZEPTO_PASSWORD'),
-            'encryption' => env('ZEPTO_ENCRYPTION', 'tls'),
-            'timeout' => null,
-            'auth_mode' => null,
         ],
 
         'ses' => [

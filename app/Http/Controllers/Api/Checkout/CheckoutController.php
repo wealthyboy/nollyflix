@@ -9,6 +9,8 @@ use App\Cart;
 use App\Video;
 use App\SystemSetting;
 use App\Mail\OrderReceipt;
+use App\Http\Helper;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -33,10 +35,16 @@ class CheckoutController extends Controller
             'type'     => 'required|in:buy,rent,Buy,Rent',
         ]);
 
+
         $user    = auth()->user();
         $video   = Video::findOrFail($request->video_id);
         $type    = strtolower($request->type);
         $amount  = $type === 'rent' ? $video->converted_rent_price : $video->converted_buy_price;
+
+        Log::info("Processing checkout for {$amount} user_id={$user->id}, video_id={$video->id}, type={$type}, amount={$amount}");
+
+        $content_owner_id = null;
+
 
         // Prevent duplicate orders for the same tx_ref
         $existing = Order::where('invoice', $request->tx_ref)->first();
@@ -48,33 +56,43 @@ class CheckoutController extends Controller
             ]);
         }
 
+
+        $cart = Cart::create(
+            [
+                'video_id' => $request->video_id,
+                'quantity' => 1,
+                'price' => $amount,
+                'total' => $amount * 1,
+                'user_id' => $request->from === 'app' ? $request->user_id : optional(auth()->user())->id,
+                'content_owner_id' => $content_owner_id,
+                'purchase_type' => $request->type,
+                'rate' => 1,
+                'request_from' => 'mobile_app',
+                'remember_token' => uniqid()
+            ]
+        );
+
         $order = Order::create([
             'user_id'            => $user->id,
-            'currency'           => '₦',
+            'currency'           => Helper::getCurrency(),
             'invoice'            => $request->tx_ref,
             'video_id'           => $video->id,
             'video_rent_expires' => $type === 'rent' ? now()->addDays(2) : null,
+            'cart_id'            => $cart->id,
         ]);
+
+
 
         // Send receipt email (non-blocking)
         try {
             // Find or create a cart record so the receipt mailer has what it needs
-            $cart = Cart::firstOrCreate(
-                ['user_id' => $user->id, 'video_id' => $video->id],
-                [
-                    'purchase_type'    => $type,
-                    'total'            => $amount,
-                    'price'            => $amount,
-                    'quantity'         => 1,
-                    'request_from'     => 'mobile',
-                ]
-            );
+
 
             if ($this->settings && $this->settings->alert_email) {
                 $admin_emails = explode(',', $this->settings->alert_email);
-                \Mail::to($user->email)
-                    ->bcc($admin_emails[0])
-                    ->later(now()->addMinutes(5), new OrderReceipt($user, $order, $cart, $this->settings, '₦'));
+                // \Mail::to($user->email)
+                //     ->bcc($admin_emails[0])
+                //     ->later(now()->addMinutes(5), new OrderReceipt($user, $order, $cart, $this->settings, '₦'));
             }
         } catch (\Throwable $th) {
             // Don't fail the request if email sending throws
