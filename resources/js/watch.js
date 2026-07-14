@@ -43,6 +43,45 @@ window.onload = () => {
     let speedButton = document.querySelector("[data-watch-speed]");
     let playbackRates = [1, 1.25, 1.5, 0.75];
 
+    function setupSecurePlaybackLayer() {
+        if (video) {
+            video.setAttribute("controlsList", "nodownload noplaybackrate noremoteplayback");
+            video.setAttribute("disablePictureInPicture", "");
+            video.setAttribute("draggable", "false");
+        }
+
+        [document, container, video].forEach(function(target) {
+            if (!target) {
+                return;
+            }
+
+            target.addEventListener("contextmenu", function(event) {
+                event.preventDefault();
+            });
+            target.addEventListener("dragstart", function(event) {
+                event.preventDefault();
+            });
+        });
+
+        document.addEventListener("keydown", function(event) {
+            let key = String(event.key || "").toLowerCase();
+            let blockedShortcut = (event.ctrlKey || event.metaKey) && ["s", "u", "p"].indexOf(key) !== -1;
+
+            if (blockedShortcut || key === "printscreen") {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        }, true);
+
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden && video && !video.paused) {
+                video.pause();
+            }
+        });
+    }
+
+    setupSecurePlaybackLayer();
+
     if (container) {
         container.classList.remove("hide");
         container.addEventListener("mouseenter", function() {

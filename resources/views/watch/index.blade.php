@@ -258,13 +258,14 @@
         <img src="/images/loaders/spinner.png" alt="" width="72" height="72">
     </div>
 
-    <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture nodownload  class="video-js vjs-default-skin" data-auth-required="{{ $video->access_type === 'is_free' ? '0' : '1' }}" data-watch-video-id="{{ $video->id }}"
-        playsinline webkit-playsinline>
+    <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture controlsList="nodownload noplaybackrate noremoteplayback" nodownload  class="video-js vjs-default-skin" data-auth-required="{{ $video->access_type === 'is_free' ? '0' : '1' }}" data-watch-video-id="{{ $video->id }}"
+        playsinline webkit-playsinline oncontextmenu="return false">
         <source src="{{ $initialSource }}" type="application/x-mpegURL">
          @if($video->track_file)
         <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
         @endif
     </video>
+
 
     <button type="button" class="watch-center-play" data-watch-center-play aria-label="Play">
         <svg viewBox="0 0 24 24" aria-hidden="true">
