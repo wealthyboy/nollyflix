@@ -373,14 +373,14 @@
                                  <div class="panel-heading" role="tab" id="heading2">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionGenres" href="panels.html#collapse2" aria-expanded="false" aria-controls="collapse2">
                                        <h4 class="panel-title">
-                                          Videos Genres
+                                          Videos Genres <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="genre"><i class="material-icons">add_circle</i> Add</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>
                                  </div>
                                  <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
                                     <div class="panel-body scroll">
-                                       <ul>
+                                       <ul data-metadata-list="genre">
                                           @foreach($genres as $genre)
                                           <li data-caption="Documents">
                                              <div class="checkbox">
@@ -401,14 +401,14 @@
                                  <div class="panel-heading" role="tab" id="heading2">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionGenres" href="panels.html#collapse2" aria-expanded="false" aria-controls="collapse2">
                                        <h4 class="panel-title">
-                                          Videos Sections
+                                          Videos Sections <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="section"><i class="material-icons">add_circle</i> Add</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>
                                  </div>
                                  <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
                                     <div class="panel-body scroll">
-                                       <ul>
+                                       <ul data-metadata-list="section">
                                           @foreach($sections as $section)
                                           <li data-caption="Documents">
                                              <div class="checkbox">
@@ -457,14 +457,14 @@
                                  <div class="panel-heading" role="tab" id="heading4">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionCasts" href="panels.html#collapse3" aria-expanded="false" aria-controls="collapse3">
                                        <h4 class="panel-title">
-                                          Casts
+                                          Casts <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="cast"><i class="material-icons">add_circle</i> Add</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>
                                  </div>
                                  <div id="collapse3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
                                     <div class="panel-body scroll">
-                                       <ul>
+                                       <ul data-metadata-list="cast">
                                           @foreach($casts as $cast)
                                           <li data-caption="Documents">
                                              <div class="checkbox">
@@ -485,14 +485,14 @@
                                  <div class="panel-heading" role="tab" id="heading4">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionFilmer" href="panels.html#collapseFilmer" aria-expanded="false" aria-controls="collapseFilmer">
                                        <h4 class="panel-title">
-                                          Film makers
+                                          Film makers <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="filmer"><i class="material-icons">add_circle</i> Add</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>
                                  </div>
                                  <div id="collapseFilmer" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading4" aria-expanded="false">
                                     <div class="panel-body scroll">
-                                       <ul>
+                                       <ul data-metadata-list="filmer">
                                           @foreach($filmers as $filmer)
                                           <li data-caption="Documents">
                                              <div class="checkbox">
@@ -557,6 +557,18 @@
       <!-- wizard container -->
    </div>
 </div>
+<div class="modal fade" id="quickMetadataModal" tabindex="-1" role="dialog" aria-labelledby="quickMetadataTitle">
+   <div class="modal-dialog" role="document"><div class="modal-content">
+      <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="quickMetadataTitle">Add item</h4></div>
+      <div class="modal-body">
+         <div class="alert alert-danger quick-metadata-error" style="display:none"></div>
+         <input type="hidden" id="quickMetadataType">
+         <div class="form-group"><label for="quickMetadataName" class="control-label">Name</label><input type="text" id="quickMetadataName" class="form-control" maxlength="100" autocomplete="off"></div>
+         <div class="form-group quick-metadata-last-name" style="display:none"><label for="quickMetadataLastName" class="control-label">Last name</label><input type="text" id="quickMetadataLastName" class="form-control" maxlength="100" autocomplete="off"></div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-default btn-round" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-rose btn-round" id="saveQuickMetadata"><span class="quick-save-label">Add and select</span><i class="fa fa-spinner fa-spin quick-save-spinner" style="display:none"></i></button></div>
+   </div></div>
+</div>
 @endsection
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
@@ -567,6 +579,57 @@
 
 @section('inline-scripts')
 $(document).ready(function() {
+
+var quickMetadataNames = { genre: 'genre', section: 'section', cast: 'cast member', filmer: 'film maker' };
+
+$(document).on('click', '.quick-add-metadata', function(event) {
+event.preventDefault();
+event.stopPropagation();
+var type = $(this).data('type');
+$('#quickMetadataType').val(type);
+$('#quickMetadataTitle').text('Add ' + quickMetadataNames[type]);
+$('#quickMetadataName').val('');
+$('#quickMetadataLastName').val('');
+$('.quick-metadata-last-name').toggle(type === 'cast' || type === 'filmer');
+$('.quick-metadata-error').hide().empty();
+$('#quickMetadataModal').modal('show');
+setTimeout(function() { $('#quickMetadataName').focus(); }, 300);
+});
+
+$('#saveQuickMetadata').on('click', function() {
+var button = $(this);
+var type = $('#quickMetadataType').val();
+button.prop('disabled', true);
+button.find('.quick-save-label').text('Adding...');
+button.find('.quick-save-spinner').show();
+$('.quick-metadata-error').hide().empty();
+
+$.ajax({
+url: '{{ route('videos.metadata.store') }}',
+method: 'POST',
+headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+data: { type: type, name: $('#quickMetadataName').val(), last_name: $('#quickMetadataLastName').val() }
+}).done(function(response) {
+var inputNames = { genre: 'genre_id[]', section: 'section_id[]', cast: 'cast_id[]', filmer: 'filmer_id[]' };
+var item = $('<li data-caption="Documents"><div class="checkbox"><label><input type="checkbox" checked> <span></span></label></div></li>');
+item.find('input').attr('name', inputNames[type]).val(response.item.id);
+item.find('span').text(response.item.label);
+$('[data-metadata-list="' + type + '"]').prepend(item);
+$('#quickMetadataModal').modal('hide');
+}).fail(function(xhr) {
+var errors = xhr.responseJSON && xhr.responseJSON.errors ? xhr.responseJSON.errors : null;
+var message = errors ? Object.keys(errors).map(function(key) { return errors[key][0]; }).join('<br>') : 'The item could not be created. Please try again.';
+$('.quick-metadata-error').html(message).show();
+}).always(function() {
+button.prop('disabled', false);
+button.find('.quick-save-label').text('Add and select');
+button.find('.quick-save-spinner').hide();
+});
+});
+
+$('#quickMetadataName, #quickMetadataLastName').on('keydown', function(event) {
+if (event.keyCode === 13) { event.preventDefault(); $('#saveQuickMetadata').click(); }
+});
 
 let activateFileExplorer = 'a.activate-file';
 let delete_image = 'a.delete_image';

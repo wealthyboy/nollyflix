@@ -29,6 +29,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
     Route::resource('rates','Admin\CurrencyRates\CurrencyRatesController',['name'=>'rates']);
     Route::get('videos/search','Admin\Videos\VideosController@search')->name('search.videos');
+    Route::post('videos/metadata', 'Admin\Videos\VideoMetadataController@store')->name('videos.metadata.store');
 
     Route::resource('videos','Admin\Videos\VideosController',['names' => 'videos']);
     Route::resource('activity','Admin\Activity\ActivityController',['names' => 'activity']);
@@ -123,7 +124,6 @@ Route::get('watch/hls/episode/{episode}', 'Watch\WatchController@episodeHls')->n
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
-
 
 
 
