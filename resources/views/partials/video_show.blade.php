@@ -6,7 +6,7 @@
    <video id="shows" class="video-js vjs-default-skin"  style="height: 85vh;width: 100%;object-fit: cover;" data-setup ='{}'
       poster='{{ optional($video)->poster }}'
       data-setup='{ "playbackRates": [1, 1.5, 2] }'>
-      <source src="{{ optional($video)->preview_link }}">
+      <source src="{{ $video->playablePreviewLink() }}" type="video/mp4">
       @if(optional($video->video)->track_file)
       <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
       @endif

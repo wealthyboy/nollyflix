@@ -298,4 +298,32 @@ class Video extends Model
 
         return null;
     }
+
+    /**
+     * Clean Vimeo progressive MP4 links copied from a browser/download dialog.
+     *
+     * Some copied links contain a second encoded filename after the real
+     * `file.mp4`, for example `file.mp4%20%281080p%29.mp4`. Vimeo does not
+     * recognise that path, so keep the signed query string but remove the
+     * accidental filename suffix.
+     */
+    public static function normalizePreviewLink($url)
+    {
+        $url = trim((string) $url);
+
+        if ($url === '' || stripos($url, 'player.vimeo.com/progressive_redirect/') === false) {
+            return $url;
+        }
+
+        return preg_replace(
+            '/file\.mp4(?:%20|\s)+(?:%28|\()[^?]+?(?:%29|\))\.mp4(?=\?|$)/i',
+            'file.mp4',
+            $url
+        );
+    }
+
+    public function playablePreviewLink()
+    {
+        return static::normalizePreviewLink($this->preview_link);
+    }
 }

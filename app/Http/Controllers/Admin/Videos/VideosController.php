@@ -107,7 +107,7 @@ class VideosController extends Controller
         $video->title  = $request->title;
         $video->content_type = $contentType;
         $video->slug = str_slug($request->title . '-' . $request->description);
-        $video->preview_link = $request->preview_link;
+        $video->preview_link = Video::normalizePreviewLink($request->preview_link);
         $video->duration = $request->duration;
         $video->poster  = $request->poster;
         $video->tn_poster = $request->tn_poster;
@@ -281,7 +281,7 @@ class VideosController extends Controller
         $video->title = $request->title;
         $video->content_type = $contentType;
         $video->slug = str_slug($request->title . '-' . $request->description);
-        $video->preview_link = $request->preview_link;
+        $video->preview_link = Video::normalizePreviewLink($request->preview_link);
         $video->duration = $request->duration;
         $video->poster = $request->poster;
         $video->tn_poster = $request->tn_poster;
@@ -399,7 +399,9 @@ class VideosController extends Controller
             $episode->title = isset($episodeData['title']) ? $episodeData['title'] : null;
             $episode->duration = isset($episodeData['duration']) ? $episodeData['duration'] : null;
             $episode->link = $episodeData['link'];
-            $episode->preview_link = isset($episodeData['preview_link']) ? $episodeData['preview_link'] : null;
+            $episode->preview_link = isset($episodeData['preview_link'])
+                ? Video::normalizePreviewLink($episodeData['preview_link'])
+                : null;
             $episode->iframe = isset($episodeData['iframe']) ? $episodeData['iframe'] : null;
             $episode->track_file = isset($episodeData['track_file']) ? $episodeData['track_file'] : null;
             $episode->sort_order = isset($episodeData['sort_order']) ? (int) $episodeData['sort_order'] : $index;
