@@ -615,6 +615,9 @@ var item = $('<li data-caption="Documents"><div class="checkbox"><label><input t
 item.find('input').attr('name', inputNames[type]).val(response.item.id);
 item.find('span').text(response.item.label);
 $('[data-metadata-list="' + type + '"]').prepend(item);
+if ($.material && $.material.checkbox) {
+$.material.checkbox(item.find('input[type="checkbox"]'));
+}
 $('#quickMetadataModal').modal('hide');
 }).fail(function(xhr) {
 var errors = xhr.responseJSON && xhr.responseJSON.errors ? xhr.responseJSON.errors : null;
