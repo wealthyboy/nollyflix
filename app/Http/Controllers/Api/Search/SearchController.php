@@ -9,6 +9,7 @@ use App\Category;
 use App\Http\Helper;
 use App\Video;
 use App\Http\Resources\WatchList;
+use App\Http\Resources\VideoSummaryResource;
 
 
 class SearchController extends Controller
@@ -21,7 +22,8 @@ class SearchController extends Controller
      */
 	public function  search(Request $request,Category $category)  
     {    
-        if($request->has('q')){
+        $videos = collect();
+        if($request->filled('q')){
             $filtered_array = $request->only(['q']);
 
 			$filtered_array = array_filter($filtered_array);
@@ -41,9 +43,7 @@ class SearchController extends Controller
     
         }
 
-        return WatchList::collection(
-            $videos->load('casts','filmers','related_videos.video')
-        );	
+        return VideoSummaryResource::collection($videos);
     }
     
     

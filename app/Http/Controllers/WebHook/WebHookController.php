@@ -12,6 +12,8 @@ use App\Currency;
 use App\Voucher;
 use App\Mail\OrderReceipt;
 use App\SystemSetting;
+use App\PaymentTransaction;
+use Illuminate\Support\Facades\Http;
 
 
 
@@ -28,52 +30,51 @@ class WebHookController extends Controller
 
     public function payment(Request $request, Order $order)
     {
-        // if ( !array_key_exists('x-paystack-signature', $_SERVER) ) {
-        //     return;
-        // }         
-        try {
+        abort_unless($this->validFlutterwaveSignature($request), 401, 'Invalid webhook signature.');
 
-            $input =  $request->data['customer'];
-            //The phone_number carries the cart id. The payment process does not allow custom data
-            $cart = Cart::find($input['phone_number']);
+        $transactionId = data_get($request->all(), 'data.id');
+        abort_unless($transactionId, 422, 'Missing transaction ID.');
 
-            $isDone = Order::where(['cart_id' =>  $cart->id])->first();
+        $response = Http::withToken(config('services.flutterwave.secret_key'))
+            ->acceptJson()
+            ->timeout(20)
+            ->retry(2, 250)
+            ->get('https://api.flutterwave.com/v3/transactions/'.$transactionId.'/verify');
+        $verified = $response->json('data', []);
+        $payment = PaymentTransaction::where('tx_ref', $verified['tx_ref'] ?? '')->first();
 
-            
+        abort_unless(
+            $response->successful()
+            && $payment
+            && ($verified['status'] ?? null) === 'successful'
+            && strtoupper($verified['currency'] ?? '') === $payment->currency
+            && (float) ($verified['charged_amount'] ?? $verified['amount'] ?? 0) >= (float) $payment->amount,
+            422,
+            'Payment verification failed.'
+        );
 
-            $order = Order::updateOrCreate(
-                ['cart_id' =>  $cart->id],
-                [
-                    'user_id'  => $cart->user_id,
-                    'cart_id'  => $cart->id,
-                    'currency' => '₦',
-                    'invoice'  => "INV-" . date('Y') . "-" . rand(10000, 39999),
-                    'video_id' => $cart->video_id,
-                    'video_rent_expires' => now()->addDays(2)
-                ]
-            );
+        // Persist the verified payload. The authenticated checkout confirmation
+        // endpoint performs the idempotent order/entitlement creation.
+        $payment->update(['verification_payload' => $verified]);
 
-            try {
+        return response()->json(['received' => true]);
+    }
 
-                if (null ===  $isDone ) {
-                   $when = now()->addMinutes(5);
-                $admin_emails = explode(',', $this->settings->alert_email);
-
-                \Mail::to($user->email)
-                    ->bcc($admin_emails[0])
-                    ->send( new OrderReceipt($cart->user, $order,   $cart , $this->settings, "₦"));
-                }
-                
-                     
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-        } catch (\Throwable $th) {
-            //throw $th;
+    private function validFlutterwaveSignature(Request $request)
+    {
+        $secretHash = (string) config('services.flutterwave.secret_hash');
+        if ($secretHash === '') {
+            return false;
         }
 
+        $hmacSignature = (string) $request->header('flutterwave-signature');
+        if ($hmacSignature !== '') {
+            $expected = base64_encode(hash_hmac('sha256', $request->getContent(), $secretHash, true));
+            return hash_equals($expected, $hmacSignature);
+        }
 
-        return $order;
+        $legacySignature = (string) $request->header('verif-hash');
+        return $legacySignature !== '' && hash_equals($secretHash, $legacySignature);
     }
 
     public function gitHub()

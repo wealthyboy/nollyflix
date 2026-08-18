@@ -29,28 +29,29 @@ class BrowseController extends Controller
     public function index()
     {
         $sections = Section::has('videos')->orderBy('sort_order', 'asc')->get();
-        $featured_videos = DefaultBanner::orderBy('id', 'DESC')->get();
+        $featured_videos = DefaultBanner::whereHas('video')->with('video')->orderBy('id', 'DESC')->get();
+        $slides = FeaturedResource::collection($featured_videos)->resolve(request());
         return BrowseResource::collection(
-            $sections->load('videos', 'videos.episodes', 'videos.casts.cast_videos', 'videos.filmers.filmer_videos', 'videos.related_videos.video')
+            $sections->load('videos')
         )
             ->additional(['meta' => [
-                'slides' =>  $featured_videos->load('video.episodes', 'video.casts.cast_videos', 'video.filmers.filmer_videos', 'video.related_videos.video')->toArray()
+                'slides' => $slides,
             ]]);
     }
 
 
     public function show($id)
     {
-        $video =  Video::find($id);
+        $video = Video::findOrFail($id);
         return new VideoIndexResource(
-            $video->load('episodes', 'casts.cast_videos', 'filmers.filmer_videos', 'related_videos.video')
+            $video->load('episodes', 'genres', 'casts', 'filmers', 'related_videos.video')
         );
     }
 
 
     public function featuredVideos()
     {
-        $featured_videos =  DefaultBanner::orderBy('id', 'DESC')->get();
-        return FeaturedResource::collection($featured_videos->load('video.casts', 'video.flimers', 'video.related_videos.video'));
+        $featured_videos = DefaultBanner::whereHas('video')->with('video')->orderBy('id', 'DESC')->get();
+        return FeaturedResource::collection($featured_videos);
     }
 }

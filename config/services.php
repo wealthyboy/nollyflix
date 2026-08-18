@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'flutterwave' => [
+        'public_key' => env('FLW_PUBLIC_KEY'),
+        'secret_key' => env('FLW_SECRET_KEY'),
+        'secret_hash' => env('FLW_SECRET_HASH'),
+        'redirect_url' => env('FLW_REDIRECT_URL', 'nollyflix://payment-callback'),
+    ],
+
 ];

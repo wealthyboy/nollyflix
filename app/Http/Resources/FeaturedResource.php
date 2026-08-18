@@ -14,6 +14,6 @@ class FeaturedResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return (new VideoSummaryResource($this->video))->toArray($request);
     }
 }

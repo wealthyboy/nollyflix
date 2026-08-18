@@ -22,6 +22,11 @@ class RegisterController extends Controller
 
         Log::info($user);
 
-        return new PrivateUserResource($user);
+        $token = \JWTAuth::fromUser($user);
+        $user->update(['api_token' => $token]);
+
+        return (new PrivateUserResource($user))->additional([
+            'meta' => ['token' => $token],
+        ]);
     }
 }

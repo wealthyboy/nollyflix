@@ -3,9 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\DefaultBanner;
-
-
 class BrowseResource extends JsonResource
 {
     /**
@@ -16,6 +13,11 @@ class BrowseResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'videos' => VideoSummaryResource::collection($this->whenLoaded('videos')),
+        ];
     }
 }

@@ -16,7 +16,16 @@ class Order extends Model
 		'invoice',
 		'video_id',
 		'video_rent_expires',
-		'cart_id'
+		'cart_id',
+		'status',
+		'transaction_id',
+		'payment_type',
+		'purchase_type',
+		'total',
+		'currency_id',
+		'request_from',
+		'ip',
+		'user_agent'
 	];
 
 	public $appends = [

@@ -22,7 +22,6 @@ class CurrencyByIp
      */
     public function handle($request, Closure $next)
     {
-
         $rate = [];
         $position = '';
         $position = Location::get('130.195.212.66');
