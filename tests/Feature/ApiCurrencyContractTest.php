@@ -25,16 +25,16 @@ class ApiCurrencyContractTest extends TestCase
         $this->assertSame(1500.0, $data['rent_price']);
     }
 
-    public function test_non_nigerian_requests_use_stored_usd_prices()
+    public function test_non_nigerian_requests_currently_default_to_naira_prices()
     {
         $request = $this->currencyRequest('US');
         $video = $this->video();
         $data = (new VideoSummaryResource($video))->toArray($request);
 
-        $this->assertSame('USD', $data['iso_code']);
-        $this->assertSame('$', $data['currency']);
-        $this->assertSame(12.99, $data['buy_price']);
-        $this->assertSame(3.99, $data['rent_price']);
+        $this->assertSame('NGN', $data['iso_code']);
+        $this->assertSame('₦', $data['currency']);
+        $this->assertSame(5000.0, $data['buy_price']);
+        $this->assertSame(1500.0, $data['rent_price']);
     }
 
     public function test_public_video_summary_does_not_expose_paid_stream_url()

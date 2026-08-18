@@ -35,13 +35,10 @@ php artisan route:clear
 
 ## Catalogue pricing
 
-- Nigerian requests use `videos.buy_price` and `videos.rent_price` as NGN.
-- Requests outside Nigeria use `videos.buy_price_usd` and
-  `videos.rent_price_usd` as USD.
-- There is no exchange-rate conversion. Populate both price pairs for every
-  title that can be bought or rented.
-- `CF-IPCountry` is preferred when the production proxy supplies it. The API
-  falls back to a cached IP location lookup.
+- All mobile API requests currently use `videos.buy_price` and
+  `videos.rent_price` as NGN, regardless of country.
+- There is no exchange-rate conversion.
+- The USD columns remain available for restoring regional pricing later.
 
 ## Smoke checks
 
@@ -50,8 +47,7 @@ curl -H 'Accept: application/json' -H 'CF-IPCountry: NG' https://nollyflix.tv/ap
 curl -H 'Accept: application/json' -H 'CF-IPCountry: US' https://nollyflix.tv/api/browse
 ```
 
-The first response must show `iso_code: NGN`; the second must show
-`iso_code: USD`. Public catalogue responses must not contain `link` or
+Both responses must show `iso_code: NGN`. Public catalogue responses must not contain `link` or
 `stream_url`. Authenticated playback is obtained from:
 
 ```text
