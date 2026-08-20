@@ -38,4 +38,11 @@ class VideoPreviewLinkTest extends TestCase
         $this->assertStringContainsString("video.webkitEnterFullscreen", $script);
         $this->assertStringContainsString(".nollyflix-player.is-playing [data-play-button] [data-icon='pause']", $styles);
     }
+
+    public function test_movie_hls_link_migration_uses_a_text_column()
+    {
+        $migration = file_get_contents(database_path('migrations/2026_08_20_000001_change_link_to_text_on_videos_table.php'));
+
+        $this->assertStringContainsString("\$table->text('link')->nullable()->change();", $migration);
+    }
 }
