@@ -1,150 +1,482 @@
-.video-box {
+.nollyflix-player[hidden],
+.nollyflix-player [hidden] {
+    display: none !important;
+}
+
+.nollyflix-player {
+    --nollyflix-red: #e50914;
+    --progress-position: 0%;
+    --volume-position: 100%;
+    position: relative;
+    width: 100%;
+    height: 56.25vw;
+    max-height: 85vh;
+    min-height: 300px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #000;
+    color: #fff;
+    outline: none;
+}
+
+.nollyflix-player:fullscreen,
+.nollyflix-player:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+}
+
+.nollyflix-player__video {
+    display: block;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    display:none;
-  }
-  
-  
-  .video-box .controls-container {
+    background: #000;
+    object-fit: contain;
+}
+
+.nollyflix-player.is-enhanced::after {
     position: absolute;
-    bottom: 0px;
-    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 48%;
+    pointer-events: none;
+    content: '';
+    opacity: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
+    transition: opacity .22s ease;
+}
+
+.nollyflix-player.is-enhanced.is-controls-visible::after,
+.nollyflix-player.is-enhanced:not(.is-playing)::after,
+.nollyflix-player.is-enhanced.has-error::after {
+    opacity: 1;
+}
+
+.nollyflix-player__topbar,
+.nollyflix-player__controls {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 4;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.nollyflix-player__topbar {
+    top: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 40vh;
-    /* Thanks to theArtifacts */
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.9)); 
-    transition: opacity 0.5s linear;
-  }
-  
-  .video-box .progress-controls {
-    width: 100%;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    color: white;
-  }
-  
-  .video-box .progress-controls .time-remaining {
-    margin: 1vw;
-    width: 4vw;
-  }
-  
-  .video-box .progress-controls .p-bar {
-    width: 90vw;
-    height: 1vw;
-    max-height: 7px;
-    background: #5B5B5B;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .video-box .progress-controls .p-bar .watched-bar,
-  .video-box .progress-controls .p-bar .playhead {
-    background: #E31221;
-    display: inline-block;
-    transition: all 0.2s;
-  }
-  
-  .video-box .progress-controls .p-bar .watched-bar {
-    height: 110%;
-    width: 20%;
-  }
-  
-  .video-box .progress-controls .p-bar .playhead {
-    height: 3vw;
-    width: 3vw;
-    max-height: 25px;
-    max-width: 25px;
-    border-radius: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .video-box .controls {
-    width: 100%;
-    display: flex;
     justify-content: space-between;
+    padding: 18px 24px 42px;
+    transform: translateY(-8px);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .82), rgba(0, 0, 0, 0));
+}
+
+.nollyflix-player__controls {
+    bottom: 0;
+    padding: 50px 24px 20px;
+    transform: translateY(8px);
+}
+
+.nollyflix-player.is-controls-visible .nollyflix-player__topbar,
+.nollyflix-player.is-controls-visible .nollyflix-player__controls,
+.nollyflix-player:not(.is-playing) .nollyflix-player__topbar,
+.nollyflix-player:not(.is-playing) .nollyflix-player__controls,
+.nollyflix-player.has-error .nollyflix-player__topbar,
+.nollyflix-player.has-error .nollyflix-player__controls {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.nollyflix-player.is-playing:not(.is-controls-visible) {
+    cursor: none;
+}
+
+.nollyflix-player__brand {
+    color: var(--nollyflix-red);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, .7);
+}
+
+.nollyflix-player__button,
+.nollyflix-player__center-play {
+    display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
-  }
-  
-  .video-box .controls button {
-    background: none;
+    justify-content: center;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nollyflix-player__button {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border-radius: 50%;
+    outline: 0;
+    background: transparent;
+    transition: color .18s ease, background-color .18s ease, transform .18s ease;
+}
+
+.nollyflix-player__button:hover,
+.nollyflix-player__button:focus-visible,
+.nollyflix-player__button.is-active {
+    color: #fff;
+    background: rgba(229, 9, 20, .88);
+    transform: scale(1.06);
+}
+
+.nollyflix-player__button:focus-visible,
+.nollyflix-player__center-play:focus-visible,
+.nollyflix-player input[type='range']:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, .96);
+    outline-offset: 2px;
+}
+
+.nollyflix-player__button:focus:not(:focus-visible),
+.nollyflix-player__center-play:focus:not(:focus-visible),
+.nollyflix-player input[type='range']:focus:not(:focus-visible) {
     outline: none;
     box-shadow: none;
-    border: none;
-    width: 5vw;
-    height: 5vw;
-    min-width: 50px;
-    min-height: 50px;
-    margin: 0px 1vw;
-    opacity: 0.4;
-    transform: scale(0.9);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-  
-  .video-box .controls button:hover {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  
-  .video-box .controls button svg {
-    fill: white;
-    stroke: white;
-    stroke-width: 2;
+}
+
+.nollyflix-player__button svg,
+.nollyflix-player__center-play svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    fill: currentColor;
+}
+
+.nollyflix-player [data-play-button] [data-icon='pause'] {
+    display: none;
+}
+
+.nollyflix-player.is-playing [data-play-button] [data-icon='play'] {
+    display: none !important;
+}
+
+.nollyflix-player.is-playing [data-play-button] [data-icon='pause'] {
+    display: block !important;
+}
+
+.nollyflix-player__button[data-player-action='toggle-mute'] svg,
+.nollyflix-player__button[data-player-action='fullscreen'] svg,
+.nollyflix-player__button[data-player-action='captions'] svg,
+.nollyflix-player__close svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+.nollyflix-player__skip svg text {
+    fill: #000;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    text-anchor: middle;
+}
+
+.nollyflix-player__close {
+    background: rgba(0, 0, 0, .48);
+}
+
+.nollyflix-player__center-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    width: 88px;
+    height: 88px;
+    padding: 26px;
+    border: 2px solid rgba(255, 255, 255, .9);
+    border-radius: 50%;
+    outline: 0;
+    background: rgba(229, 9, 20, .92);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, .45);
+    transform: translate(-50%, -50%);
+    transition: opacity .18s ease, transform .18s ease, background-color .18s ease;
+}
+
+.nollyflix-player__center-play:hover,
+.nollyflix-player__center-play:focus-visible {
+    background: #f20b17;
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.nollyflix-player.is-playing .nollyflix-player__center-play,
+.nollyflix-player.is-loading .nollyflix-player__center-play,
+.nollyflix-player.has-error .nollyflix-player__center-play {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.nollyflix-player__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 5;
+    width: 58px;
+    height: 58px;
+    padding: 8px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .52);
+    transform: translate(-50%, -50%);
+}
+
+.nollyflix-player__loader span {
+    display: block;
     width: 100%;
     height: 100%;
-  }
-  
-  .video-box .controls button.volume svg path,
-  .video-box .controls button.help svg,
-  .video-box .controls button.episodes svg,
-  .video-box .controls button.full-screen svg,
-  .video-box .controls button.volume svg path,
-  .video-box .controls button.cast svg {
-    fill: none;
-  }
-  
-  .video-box .controls button.rewind svg,
-  .video-box .controls button.fast-forward svg {
-    stroke: none;
-  }
-  
-  .video-box .controls button.captions svg {
-    stroke: none;
-  }
-  
-  .video-box .controls .title {
-    font-size: 2vw;
+    border: 4px solid rgba(255, 255, 255, .35);
+    border-top-color: var(--nollyflix-red);
+    border-radius: 50%;
+    animation: nollyflix-player-spin .8s linear infinite;
+}
+
+.nollyflix-player__error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 6;
+    width: calc(100% - 40px);
+    max-width: 520px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 12px;
+    background: rgba(8, 7, 14, .94);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .55);
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+.nollyflix-player__error strong,
+.nollyflix-player__error span {
+    display: block;
+}
+
+.nollyflix-player__error strong {
+    margin-bottom: 6px;
+    font-size: 20px;
+}
+
+.nollyflix-player__error span {
+    color: rgba(255, 255, 255, .72);
+}
+
+.nollyflix-player__error a {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 18px;
+    border-radius: 24px;
+    color: #fff;
+    background: var(--nollyflix-red);
+    font-weight: 700;
+}
+
+.nollyflix-player__progress,
+.nollyflix-player__volume {
+    height: 6px;
+    border: 0;
+    border-radius: 999px;
+    outline: 0;
+    background: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.nollyflix-player__progress {
+    display: block;
     width: 100%;
-    height: 100%;
+    margin: 0 0 8px;
+}
+
+.nollyflix-player__progress::-webkit-slider-runnable-track {
+    height: 5px;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--nollyflix-red) 0, var(--nollyflix-red) var(--progress-position), rgba(255, 255, 255, .38) var(--progress-position), rgba(255, 255, 255, .38) 100%);
+}
+
+.nollyflix-player__progress::-moz-range-track {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .38);
+}
+
+.nollyflix-player__progress::-moz-range-progress {
+    height: 5px;
+    border-radius: 999px;
+    background: var(--nollyflix-red);
+}
+
+.nollyflix-player__progress::-webkit-slider-thumb,
+.nollyflix-player__volume::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .5);
+    -webkit-appearance: none;
+}
+
+.nollyflix-player__progress::-moz-range-thumb,
+.nollyflix-player__volume::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .5);
+}
+
+.nollyflix-player__control-row {
     display: flex;
-    justify-content: flex-start;
+    min-width: 0;
     align-items: center;
-  }
-  
-  @media only screen and (max-width: 768px) {
-    .video-box .controls .title {
-      display: none;
+    gap: 2px;
+}
+
+.nollyflix-player__time {
+    flex: 0 0 auto;
+    margin-left: 8px;
+    color: rgba(255, 255, 255, .88);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.nollyflix-player__title {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0 18px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nollyflix-player__volume-control {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+}
+
+.nollyflix-player__volume {
+    width: 86px;
+}
+
+.nollyflix-player__volume::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(to right, #fff 0, #fff var(--volume-position), rgba(255, 255, 255, .35) var(--volume-position), rgba(255, 255, 255, .35) 100%);
+}
+
+.nollyflix-player__volume::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .35);
+}
+
+.nollyflix-player__volume::-moz-range-progress {
+    height: 4px;
+    border-radius: 999px;
+    background: #fff;
+}
+
+.nollyflix-player__volume::-webkit-slider-thumb {
+    width: 13px;
+    height: 13px;
+    margin-top: -4px;
+}
+
+.nollyflix-player__volume::-moz-range-thumb {
+    width: 13px;
+    height: 13px;
+}
+
+@keyframes nollyflix-player-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+    .nollyflix-player {
+        height: 56.25vw;
+        min-height: 230px;
     }
-  }
-  
-  .video-box .controls .title .series {
-    color: #FEFEFE;
-    font-weight: bold;
-    font-size: .6em;
-  }
-  
-  .video-box .controls .title .episode {
-    color: #A1A1A1;
-    font-size: 0.75em;
-    padding-left: 1vw;
-  }
+
+    .nollyflix-player__topbar {
+        padding: 12px 12px 32px;
+    }
+
+    .nollyflix-player__controls {
+        padding: 38px 10px 8px;
+    }
+
+    .nollyflix-player__brand {
+        font-size: 14px;
+    }
+
+    .nollyflix-player__button {
+        width: 42px;
+        height: 42px;
+        padding: 10px;
+    }
+
+    .nollyflix-player__center-play {
+        width: 68px;
+        height: 68px;
+        padding: 20px;
+    }
+
+    .nollyflix-player__title,
+    .nollyflix-player__volume,
+    .nollyflix-player__skip {
+        display: none;
+    }
+
+    .nollyflix-player__time {
+        flex: 1 1 auto;
+        margin-left: 4px;
+    }
+
+    .nollyflix-player__error {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .nollyflix-player__time {
+        font-size: 12px;
+    }
+
+    .nollyflix-player__button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nollyflix-player *,
+    .nollyflix-player::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

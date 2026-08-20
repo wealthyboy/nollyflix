@@ -1,6 +1,6 @@
 @extends('layouts.access')
 @section('page-css')
-<link rel="stylesheet" href="/css/trailer.css">
+<link rel="stylesheet" href="/css/trailer.css?version={{ filemtime(public_path('css/trailer.css')) }}">
 @stop
 
 @section('content')
@@ -8,5 +8,5 @@
 @endsection
 
 @section('page-scripts')
-<script src="/js/trailer.js?version={{ str_random(6) }}"></script><!---->
+<script src="/js/trailer.js?version={{ filemtime(public_path('js/trailer.js')) }}"></script>
 @stop

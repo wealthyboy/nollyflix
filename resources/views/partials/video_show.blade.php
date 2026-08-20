@@ -1,82 +1,90 @@
 <div id="video-page-title-pro" style="background-image:url({{ $video->poster }});">
-   <a class="video-page-title-play-button afterglow play-trailer" id="play-trailer" href="#Video"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
+   @if(!empty($video->preview_link))
+   <a class="video-page-title-play-button" data-trailer-trigger href="{{ $video->preview_link }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
+   @endif
 </div>
 <!-- close #video-page-title-pro -->
-<div class="video-box">
-   <video id="shows" class="video-js vjs-default-skin"  style="height: 85vh;width: 100%;object-fit: cover;" data-setup ='{}'
-      poster='{{ optional($video)->poster }}'
-      data-setup='{ "playbackRates": [1, 1.5, 2] }'>
-      <source src="{{ $video->playablePreviewLink() }}" type="video/mp4">
-      @if(optional($video->video)->track_file)
+@if(!empty($video->preview_link))
+<div id="nollyflix-trailer-player" class="nollyflix-player" data-nollyflix-player tabindex="-1" hidden>
+   <video class="nollyflix-player__video" data-player-video controls playsinline webkit-playsinline preload="metadata"
+      poster="{{ optional($video)->poster }}">
+      <source src="{{ $video->preview_link }}" type="video/mp4">
+      @if($video->track_file)
       <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
       @endif
+      Your browser does not support HTML video.
    </video>
-   <div class="controls-container">
-      <div class="progress-controls">
-         <div class="p-bar">
-            <div class="watched-bar"></div>
-            <div class="playhead"></div>
+
+   <div class="nollyflix-player__topbar" data-player-chrome>
+      <span class="nollyflix-player__brand" aria-hidden="true">NOLLYFLIX</span>
+      <button class="nollyflix-player__button nollyflix-player__close" type="button" data-player-action="close" aria-label="Close trailer">
+         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </button>
+   </div>
+
+   <button class="nollyflix-player__center-play" type="button" data-player-action="toggle-play" aria-label="Play trailer" data-center-play>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+   </button>
+
+   <div class="nollyflix-player__loader" data-player-loader role="status" aria-label="Loading video" hidden>
+      <span></span>
+   </div>
+
+   <div class="nollyflix-player__error" data-player-error role="alert" hidden>
+      <strong>We could not play this trailer.</strong>
+      <span>Check your connection or open the original video.</span>
+      <a href="{{ $video->preview_link }}" target="_blank" rel="noopener noreferrer">Open video</a>
+   </div>
+
+   <div class="nollyflix-player__controls" data-player-controls data-player-chrome>
+      <label class="sr-only" for="trailer-progress">Trailer progress</label>
+      <input id="trailer-progress" class="nollyflix-player__progress" data-player-progress type="range" min="0" max="100" step="0.1" value="0" aria-label="Trailer progress">
+
+      <div class="nollyflix-player__control-row">
+         <button class="nollyflix-player__button" type="button" data-player-action="toggle-play" aria-label="Play trailer" data-play-button>
+            <svg data-icon="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            <svg data-icon="pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M7 5h4v14H7zM13 5h4v14h-4z"></path></svg>
+         </button>
+
+         <button class="nollyflix-player__button nollyflix-player__skip" type="button" data-player-action="rewind" aria-label="Rewind 10 seconds">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 8V5l-5 4 5 4v-3a6 6 0 1 1-5.65 8H3.26A8 8 0 1 0 11 8z"></path><text x="8.5" y="18" font-size="7">10</text></svg>
+         </button>
+
+         <button class="nollyflix-player__button nollyflix-player__skip" type="button" data-player-action="forward" aria-label="Forward 10 seconds">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 8V5l5 4-5 4v-3a6 6 0 1 0 5.65 8h2.09A8 8 0 1 1 13 8z"></path><text x="8.5" y="18" font-size="7">10</text></svg>
+         </button>
+
+         <span class="nollyflix-player__time" aria-live="off">
+            <span data-player-current-time>0:00</span>
+            <span aria-hidden="true"> / </span>
+            <span data-player-duration>0:00</span>
+         </span>
+
+         <span class="nollyflix-player__title">{{ optional($video)->title }}</span>
+
+         <div class="nollyflix-player__volume-control">
+            <button class="nollyflix-player__button" type="button" data-player-action="toggle-mute" aria-label="Mute trailer" data-volume-button>
+               <svg data-icon="volume" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm11.5-.5a5 5 0 0 1 0 7M18 6a9 9 0 0 1 0 12"></path></svg>
+               <svg data-icon="muted" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M4 9v6h4l5 4V5L8 9H4zM16 9l5 6M21 9l-5 6"></path></svg>
+            </button>
+            <label class="sr-only" for="trailer-volume">Trailer volume</label>
+            <input id="trailer-volume" class="nollyflix-player__volume" data-player-volume type="range" min="0" max="1" step="0.05" value="1" aria-label="Trailer volume">
          </div>
-         <div class="time-remaining">
-            00:00
-         </div>
-      </div>
-      <div class="controls">
-         <button class="play-pause">
-            <svg class="playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-               <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            <svg class="paused" viewBox="0 0 24 24">
-               <rect x="6" y="4" width="4" height="16"></rect>
-               <rect x="14" y="4" width="4" height="16"></rect>
-            </svg>
+
+         @if($video->track_file)
+         <button class="nollyflix-player__button nollyflix-player__captions" type="button" data-player-action="captions" aria-label="Turn captions on" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM6 10h5M6 14h5M14 10h4M14 14h4"></path></svg>
          </button>
-         <button class="rewind">
-            <svg viewBox="0 0 24 24">
-               <path fill="#ffffff"
-                  d="M12.5,3C17.15,3 21.08,6.03 22.47,10.22L20.1,11C19.05,7.81 16.04,5.5 12.5,5.5C10.54,5.5 8.77,6.22 7.38,7.38L10,10H3V3L5.6,5.6C7.45,4 9.85,3 12.5,3M10,12V22H8V14H6V12H10M18,14V20C18,21.11 17.11,22 16,22H14A2,2 0 0,1 12,20V14A2,2 0 0,1 14,12H16C17.11,12 18,12.9 18,14M14,14V20H16V14H14Z" />
-            </svg>
-         </button>
-         <button class="fast-forward">
-            <svg viewBox="0 0 24 24">
-               <path fill="#ffffff"
-                  d="M10,12V22H8V14H6V12H10M18,14V20C18,21.11 17.11,22 16,22H14A2,2 0 0,1 12,20V14A2,2 0 0,1 14,12H16C17.11,12 18,12.9 18,14M14,14V20H16V14H14M11.5,3C14.15,3 16.55,4 18.4,5.6L21,3V10H14L16.62,7.38C15.23,6.22 13.46,5.5 11.5,5.5C7.96,5.5 4.95,7.81 3.9,11L1.53,10.22C2.92,6.03 6.85,3 11.5,3Z" />
-            </svg>
-         </button>
-         <button class="volume">
-            <svg class="full-volume" viewBox="0 0 24 24">
-               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-               <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-            <svg class="muted" viewBox="0 0 24 24">
-               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-               <line x1="23" y1="9" x2="17" y2="15"></line>
-               <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-         </button>
-         <p class="title mt-4">
-            <span class="series">{{  optional($video)->title  }}</span>
-         </p>
-         <!-- <button class="help">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-            </button> -->
-         <button class="full-screen">
-            <svg class="maximize" viewBox="0 0 24 24">
-               <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
-               </path>
-            </svg>
-            <svg class="minimize" viewBox="0 0 24 24">
-               <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3">
-               </path>
-            </svg>
+         @endif
+
+         <button class="nollyflix-player__button" type="button" data-player-action="fullscreen" aria-label="Enter fullscreen" data-fullscreen-button>
+            <svg data-icon="maximize" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"></path></svg>
+            <svg data-icon="minimize" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M8 3v5H3M16 3v5h5M21 16h-5v5M8 21v-5H3"></path></svg>
          </button>
       </div>
    </div>
 </div>
+@endif
 <div id="content-pro">
    <div class="container custom-gutters-pro">
 
