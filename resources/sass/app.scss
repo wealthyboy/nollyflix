@@ -45,3 +45,30 @@
     height: 361px;
     overflow: hidden;
 }
+
+/* Mobile movie rows: keep section posters at a consistent 2:3 portrait ratio. */
+@media only screen and (max-width: 767px) {
+    .progression-video-carousel .progression-studios-video-index-container {
+        min-height: 0;
+    }
+
+    .progression-video-carousel .progression-studios-video-feaured-image {
+        position: relative;
+        height: 0;
+        padding-bottom: 150%;
+        overflow: hidden;
+    }
+
+    .progression-video-carousel .progression-studios-video-feaured-image img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
