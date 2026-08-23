@@ -42,7 +42,8 @@ class CheckoutController extends Controller
 
 	public function store(Request $request, Order $order)
 	{
-		$cart = Cart::find($request->cart_id);
+		$cart = Cart::with('video')->findOrFail($request->cart_id);
+		abort_if(!$cart->video || $cart->video->isBlockedInCurrentRegion(), 404);
 		$user = auth()->user();
 
 		$order = Order::updateOrCreate(

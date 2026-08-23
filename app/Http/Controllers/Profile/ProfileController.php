@@ -46,6 +46,8 @@ class ProfileController extends Controller
     public function ActorsAndFilMakers($username)
     {   
         $user = User::where('username',$username)->firstOrFail();
+        $user->setRelation('profile_videos', $user->profile_videos()->visibleInCurrentRegion()->get());
+
         if ($user){
             session(['content_owner_id' => $user->id]);
         }

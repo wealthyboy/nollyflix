@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Helper;
 use App\Traits\FormatPrice;
 use Carbon\Carbon;
@@ -29,6 +30,24 @@ class Video extends Model
     protected $dates = [
         'release_date',
     ];
+
+    protected $casts = [
+        'blocked_continents' => 'array',
+    ];
+
+    public function setBlockedContinentsAttribute($value)
+    {
+        if (is_string($value)) {
+            $decoded = json_decode($value, true);
+
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $value = $decoded;
+            }
+        }
+
+        $value = array_values(array_filter((array) $value));
+        $this->attributes['blocked_continents'] = $value ? json_encode($value) : null;
+    }
 
     /**
      * The casts that belong to the user.
@@ -281,22 +300,70 @@ class Video extends Model
 
     public static function countryToContinent()
     {
-        return json_decode(file_get_contents(storage_path('app/continents.json')), true);
-    }
+        $map = config('continents.country_to_continent', []);
+        $legacyPath = storage_path('app/continents.json');
 
+        if (file_exists($legacyPath)) {
+            $legacyMap = json_decode(file_get_contents($legacyPath), true);
+
+            if (is_array($legacyMap)) {
+                $map = array_merge($map, $legacyMap);
+            }
+        }
+
+        return $map;
+    }
 
     public static function detectContinentCode()
     {
-        $position = (new Location())->get(request()->ip());
+        $request = request();
 
-        if ($position && $position->countryCode) {
-
-            $map = self::countryToContinent();
-
-            return $map[$position->countryCode];
+        if ($request->attributes->has('continent_code')) {
+            return $request->attributes->get('continent_code');
         }
 
-        return null;
+        $continentCode = null;
+
+        try {
+            $position = (new Location())->get($request->ip());
+            $countryCode = strtoupper((string) optional($position)->countryCode);
+
+            if ($countryCode) {
+                $continentCode = static::countryToContinent()[$countryCode] ?? null;
+            }
+        } catch (\Throwable $exception) {
+            // If geo lookup is unavailable, keep the catalogue available instead
+            // of accidentally blocking every title.
+        }
+
+        $request->attributes->set('continent_code', $continentCode);
+
+        return $continentCode;
+    }
+
+    public function scopeVisibleInCurrentRegion(Builder $query, $continentCode = null)
+    {
+        $continentCode = $continentCode ?: static::detectContinentCode();
+
+        if (!$continentCode) {
+            return $query;
+        }
+
+        return $query->where(function (Builder $query) use ($continentCode) {
+            $query->whereNull('videos.blocked_continents')
+                ->orWhereJsonDoesntContain('videos.blocked_continents', $continentCode);
+        });
+    }
+
+    public function isBlockedInCurrentRegion($continentCode = null)
+    {
+        $continentCode = $continentCode ?: static::detectContinentCode();
+
+        if (!$continentCode) {
+            return false;
+        }
+
+        return in_array($continentCode, $this->blocked_continents ?: [], true);
     }
 
     /**

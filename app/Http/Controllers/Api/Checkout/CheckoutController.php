@@ -27,7 +27,7 @@ class CheckoutController extends Controller
             'type' => 'required|in:buy,rent',
         ]);
 
-        $video = Video::findOrFail($data['video_id']);
+        $video = Video::visibleInCurrentRegion()->findOrFail($data['video_id']);
         $currency = $request->attributes->get('currency_code', 'NGN');
         $amount = $this->priceFor($video, $data['type'], $currency);
 

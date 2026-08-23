@@ -34,6 +34,8 @@ class WatchController extends Controller
      */
     public function index(Request $request,Video $video)
     {     
+        abort_if($video->isBlockedInCurrentRegion(), 404);
+
         if ($video->access_type !== 'is_free') {
             if ($request->user_id) {
                 \Auth::loginUsingId($request->user_id);
@@ -126,6 +128,8 @@ class WatchController extends Controller
 
     protected function authorizePlayback(Request $request, Video $video)
     {
+        abort_if($video->isBlockedInCurrentRegion(), 404);
+
         if ($video->access_type === 'is_free') {
             return;
         }
@@ -160,6 +164,7 @@ class WatchController extends Controller
             ->filter(function ($candidate) use ($video) {
                 return $candidate &&
                     $candidate->id !== $video->id &&
+                    !$candidate->isBlockedInCurrentRegion() &&
                     $this->hasPlayableSource($candidate);
             })
             ->first();
@@ -185,7 +190,7 @@ class WatchController extends Controller
 
     protected function nextVideoQuery()
     {
-        return Video::where(function ($query) {
+        return Video::visibleInCurrentRegion()->where(function ($query) {
             $query->whereNotNull('link')
                 ->orWhereHas('episodes');
         });
@@ -207,6 +212,10 @@ class WatchController extends Controller
 
     protected function canWatchVideo(Video $video, $user = null)
     {
+        if ($video->isBlockedInCurrentRegion()) {
+            return false;
+        }
+
         if ($video->access_type === 'is_free') {
             return true;
         }

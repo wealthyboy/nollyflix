@@ -1,3 +1,4 @@
+@if(empty($blocked))
 <div id="video-page-title-pro" style="background-image:url({{ $video->poster }});">
    @if(!empty($video->preview_link))
    <a class="video-page-title-play-button" data-trailer-trigger href="{{ $video->preview_link }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
@@ -85,13 +86,14 @@
    </div>
 </div>
 @endif
+@endif
 <div id="content-pro">
    <div class="container custom-gutters-pro">
 
       
       <div class="row">
 
-         @if($blocked)
+         @if(!empty($blocked))
             <div class="alert alert-warning p-3 rounded mb-5">
                Sorry, this video is not available in your region.
             </div>

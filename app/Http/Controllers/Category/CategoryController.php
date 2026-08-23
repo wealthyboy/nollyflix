@@ -27,6 +27,14 @@ class CategoryController extends Controller
      */
 	public function  index(Request $request,Category $category)  
     {   
+        $category->load(['sections' => function ($query) {
+            $query->whereHas('videos', function ($videoQuery) {
+                $videoQuery->visibleInCurrentRegion();
+            })->with(['videos' => function ($videoQuery) {
+                $videoQuery->visibleInCurrentRegion();
+            }]);
+        }]);
+
         $page_title = "Buy ,Rent Movies, {$category->name}";
         $page_meta_description = "Buy nollywood movies, $category->name";
         return view('category.index',compact('category'));   

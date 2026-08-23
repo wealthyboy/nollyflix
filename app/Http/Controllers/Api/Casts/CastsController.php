@@ -17,10 +17,13 @@ class CastsController extends Controller
      */
     public function index()
     {
-        $users =  User::where('type', 'casts')->orderBy('name', 'ASC')->get();
+        $users = User::where('type', 'casts')
+            ->whereHas('cast_videos', function ($query) {
+                $query->visibleInCurrentRegion();
+            })->with(['cast_videos' => function ($query) {
+                $query->visibleInCurrentRegion();
+            }])->orderBy('name', 'ASC')->get();
 
-        return CastsResource::collection(
-            $users->load('cast_videos')
-        );
+        return CastsResource::collection($users);
     }
 }

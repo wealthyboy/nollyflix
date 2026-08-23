@@ -23,9 +23,11 @@ class ProfileWatchListController extends Controller
     public function index()
     {   
         $user = auth()->user();
+        $user->setRelation('movies', $user->movies()
+            ->whereHas('video', function ($videoQuery) {
+                $videoQuery->visibleInCurrentRegion();
+            })->with('video', 'cart')->get());
 
-        
-        
         $active = "watchlists";
         $page_title = "Buy ,Rent Movies, Watchlists for {$user->fullname()}";
         $page_meta_description = "Buy,Rent nollywood movies";

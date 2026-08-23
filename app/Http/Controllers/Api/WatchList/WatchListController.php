@@ -26,7 +26,17 @@ class WatchListController extends Controller
 
         $perPage = (int) $request->query('per_page', 10);
 
-        $query = $user->movies()->with('cart.video');
+        $query = $user->movies()
+            ->whereHas('video', function ($videoQuery) {
+                $videoQuery->visibleInCurrentRegion();
+            })->with([
+                'video' => function ($videoQuery) {
+                    $videoQuery->visibleInCurrentRegion();
+                },
+                'cart.video' => function ($videoQuery) {
+                    $videoQuery->visibleInCurrentRegion();
+                },
+            ]);
 
         $videos = $query->paginate($perPage);
 

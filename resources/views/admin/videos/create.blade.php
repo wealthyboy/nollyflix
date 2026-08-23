@@ -1,5 +1,59 @@
 @extends('admin.layouts.app')
 @section('pagespecificstyles')
+<style>
+.quick-add-metadata {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: -5px 0 -5px 10px !important;
+    padding: 6px 12px !important;
+    min-width: 92px;
+    border: 0 !important;
+    border-radius: 18px !important;
+    background: #e91e63 !important;
+    color: #fff !important;
+    box-shadow: 0 3px 8px rgba(233, 30, 99, .28) !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    text-transform: none !important;
+    transition: all .2s ease;
+}
+.quick-add-metadata:hover,
+.quick-add-metadata:focus {
+    background: #c2185b !important;
+    color: #fff !important;
+    box-shadow: 0 5px 12px rgba(233, 30, 99, .35) !important;
+    transform: translateY(-1px);
+}
+.quick-add-metadata .material-icons {
+    margin: 0 !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+}
+#quickMetadataModal .modal-content {
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .2);
+}
+#quickMetadataModal .modal-header {
+    padding: 18px 22px 12px;
+}
+#quickMetadataModal .modal-body {
+    padding: 12px 22px 6px;
+}
+#quickMetadataModal .modal-footer {
+    padding: 12px 22px 18px;
+}
+@media (max-width: 767px) {
+    .quick-add-metadata {
+        min-width: auto;
+        padding: 6px 9px !important;
+    }
+}
+</style>
 @stop
 @section('content')
 <div class="row">
@@ -373,7 +427,7 @@
                                  <div class="panel-heading" role="tab" id="heading2">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionGenres" href="panels.html#collapse2" aria-expanded="false" aria-controls="collapse2">
                                        <h4 class="panel-title">
-                                          Videos Genres <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="genre"><i class="material-icons">add_circle</i> Add</button>
+                                          Videos Genres <button type="button" class="btn btn-rose btn-round btn-xs pull-right quick-add-metadata" data-type="genre"><i class="material-icons">add</i> Add new</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>
@@ -401,7 +455,7 @@
                                  <div class="panel-heading" role="tab" id="heading2">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionGenres" href="panels.html#collapse2" aria-expanded="false" aria-controls="collapse2">
                                        <h4 class="panel-title">
-                                          Videos Sections <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="section"><i class="material-icons">add_circle</i> Add</button>
+                                          Videos Sections <button type="button" class="btn btn-rose btn-round btn-xs pull-right quick-add-metadata" data-type="section"><i class="material-icons">add</i> Add new</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>
@@ -436,13 +490,14 @@
                                  </div>
                                  <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
                                     <div class="panel-body scroll">
+                                       <p class="text-muted" style="margin:0 0 12px;">Selected regions will not see this title on the website or mobile app.</p>
                                        <ul>
                                           @foreach($excludes as $key => $exclude)
                                           <li data-caption="Documents">
                                              <div class="checkbox">
                                                 <label>
                                                    <input name="excludes[]" value="{{ $key  }}" type="checkbox">
-                                                   {{ $key }}
+                                                   {{ $exclude }} <small>({{ $key }})</small>
                                                 </label>
                                              </div>
                                           </li>
@@ -457,7 +512,7 @@
                                  <div class="panel-heading" role="tab" id="heading4">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionCasts" href="panels.html#collapse3" aria-expanded="false" aria-controls="collapse3">
                                        <h4 class="panel-title">
-                                          Casts <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="cast"><i class="material-icons">add_circle</i> Add</button>
+                                          Casts <button type="button" class="btn btn-rose btn-round btn-xs pull-right quick-add-metadata" data-type="cast"><i class="material-icons">add</i> Add new</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>
@@ -485,7 +540,7 @@
                                  <div class="panel-heading" role="tab" id="heading4">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionFilmer" href="panels.html#collapseFilmer" aria-expanded="false" aria-controls="collapseFilmer">
                                        <h4 class="panel-title">
-                                          Film makers <button type="button" class="btn btn-rose btn-simple btn-xs pull-right quick-add-metadata" data-type="filmer"><i class="material-icons">add_circle</i> Add</button>
+                                          Film makers <button type="button" class="btn btn-rose btn-round btn-xs pull-right quick-add-metadata" data-type="filmer"><i class="material-icons">add</i> Add new</button>
                                           <i class="material-icons">keyboard_arrow_down</i>
                                        </h4>
                                     </a>

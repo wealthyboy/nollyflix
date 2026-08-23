@@ -38,8 +38,17 @@ class BrowseController extends Controller
         //dd(     \Schema::getColumnListing("orders")    );
         
         $site_status =Live::first();
-        $sections = Section::has('videos')->orderBy('sort_order','asc')->get();
-        $featured_videos = DefaultBanner::orderBy('id','DESC')->get();
+        $sections = Section::whereHas('videos', function ($query) {
+            $query->visibleInCurrentRegion();
+        })->with(['videos' => function ($query) {
+            $query->visibleInCurrentRegion();
+        }])->orderBy('sort_order', 'asc')->get();
+
+        $featured_videos = DefaultBanner::whereHas('video', function ($query) {
+            $query->visibleInCurrentRegion();
+        })->with(['video' => function ($query) {
+            $query->visibleInCurrentRegion();
+        }])->orderBy('id', 'DESC')->get();
         $page_title = "Welcome to NollyFlix";
         $page_meta_description = "Buy nollywood movies, african movies, rent movies, rent nollywood movies";
 
@@ -59,11 +68,14 @@ class BrowseController extends Controller
 
     public function show(Video $video,User $user)
     {   
-        $video->load('episodes');
+        $video->load('episodes', 'related_videos.video');
+        $video->setRelation('related_videos', $video->related_videos->filter(function ($related) {
+            return $related->video && !$related->video->isBlockedInCurrentRegion();
+        })->values());
+
         $page_title = "Buy ,Rent , {$video->title}";
         $page_meta_description = "Buy nollywood movies, $video->description";
-        $continentCode = Video::detectContinentCode();
-        $blocked = in_array($continentCode, json_decode($video->blocked_continents, true) ?? []);
+        $blocked = $video->isBlockedInCurrentRegion();
         return view('browse.show',compact('blocked','video','page_title','user','page_meta_description'));   
     }
     
