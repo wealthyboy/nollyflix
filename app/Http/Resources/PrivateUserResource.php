@@ -18,9 +18,12 @@ class PrivateUserResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'name' => $this->name,
-            'notificationStatus' => $this->allow_notifications,
+            'last_name' => $this->last_name,
+            'full_name' => trim($this->name.' '.$this->last_name),
+            'phone_number' => $this->phone_number,
+            'notificationStatus' => (bool) $this->allow_notifications,
             'videos' => $this->movies->count(),
-            'token' => $this->api_token
+            'token' => $this->api_token,
         ];
     }
 }

@@ -22,7 +22,7 @@ class WatchListController extends Controller
      */
     public function index(Request $request)
     {
-        $user = auth()->user();
+        $user = auth('api')->user();
 
         $perPage = (int) $request->query('per_page', 10);
 
