@@ -17,7 +17,7 @@
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/app.css?version={{ filemtime(public_path('css/app.css')) }}">
 
 @yield('page-css')
 
