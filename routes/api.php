@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['apiCurrencyByIp'])->group(function () {
+    Route::get('config',          'Api\AppConfigController@show');
     Route::get('browse',          'Api\Browse\BrowseController@index');
     Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
     Route::get('video/{id}',      'Api\Browse\BrowseController@show');

@@ -20,6 +20,11 @@ class CheckoutController extends Controller
         $this->middleware(['auth:api']);
     }
 
+    /**
+     * Kept for backwards compatibility with older app builds.
+     * New mobile builds open Flutterwave through the official React Native SDK and only call store()
+     * after Flutterwave returns a completed transaction.
+     */
     public function initialize(Request $request)
     {
         $data = $request->validate([
@@ -34,11 +39,8 @@ class CheckoutController extends Controller
         abort_if($amount === null || $amount <= 0, 422, 'This purchase option is unavailable.');
         abort_if($data['type'] === 'buy' && ! $video->allow_buy, 422, 'This title is not available to buy.');
         abort_if($data['type'] === 'rent' && ! $video->allow_rent, 422, 'This title is not available to rent.');
-        abort_if(! config('services.flutterwave.secret_key'), 503, 'Payments are not configured on the server.');
+        abort_if(! config('services.flutterwave.public_key'), 503, 'Flutterwave public key is not configured.');
 
-        // Flutterwave Standard is initialized server-side so the mobile app never
-        // receives or stores the secret key. The React Native app only displays
-        // the hosted checkout link with Flutterwave's official checkout dialog.
         $txRef = 'nollyflix-'.Str::uuid();
         $payment = PaymentTransaction::create([
             'user_id' => $request->user()->id,
@@ -53,98 +55,151 @@ class CheckoutController extends Controller
         $user = $request->user();
         $customerName = trim(($user->name ?? '').' '.($user->last_name ?? ''));
 
-        $response = Http::withToken(config('services.flutterwave.secret_key'))
-            ->acceptJson()
-            ->timeout(20)
-            ->retry(2, 250)
-            ->post('https://api.flutterwave.com/v3/payments', [
-                'tx_ref' => $txRef,
-                'amount' => number_format($amount, 2, '.', ''),
-                'currency' => $currency,
-                'redirect_url' => config('services.flutterwave.mobile_redirect_url'),
+        return response()->json([
+            'data' => [
+                'payment_id' => $payment->id,
+                'tx_ref' => $payment->tx_ref,
+                'public_key' => config('services.flutterwave.public_key'),
+                'amount' => (float) $payment->amount,
+                'currency' => $payment->currency,
                 'payment_options' => $currency === 'NGN'
-                    ? 'card,ussd,banktransfer'
+                    ? 'card,banktransfer,ussd'
                     : 'card',
                 'customer' => [
                     'email' => $user->email,
                     'name' => $customerName ?: $user->email,
                     'phonenumber' => $user->phone_number ?? $user->phone ?? null,
                 ],
-                'customizations' => [
-                    'title' => 'NollyFlix',
-                    'description' => ucfirst($data['type']).' '.$video->title,
-                ],
-                'meta' => [
-                    'payment_id' => $payment->id,
-                    'video_id' => $video->id,
-                    'purchase_type' => $data['type'],
-                    'user_id' => $user->id,
-                ],
-            ]);
-
-        if (! $response->successful() || $response->json('status') !== 'success') {
-            $payment->update([
-                'status' => 'failed',
-                'verification_payload' => $response->json(),
-            ]);
-
-            return response()->json([
-                'message' => $response->json('message') ?: 'Unable to start payment. Please try again.',
-            ], 502);
-        }
-
-        $checkoutUrl = $response->json('data.link');
-        $payment->update(['checkout_url' => $checkoutUrl]);
-
-        return response()->json([
-            'data' => [
-                'payment_id' => $payment->id,
-                'tx_ref' => $payment->tx_ref,
-                'checkout_url' => $checkoutUrl,
-                'amount' => (float) $payment->amount,
-                'currency' => $payment->currency,
             ],
         ], 201);
     }
 
+    /**
+     * Verify a completed Flutterwave React Native checkout transaction and grant access.
+     *
+     * New app builds send video_id/type because they do not pre-create a
+     * payment intent in PHP. Older builds can still send only tx_ref because
+     * initialize() already created the PaymentTransaction row for them.
+     */
     public function store(Request $request)
     {
         $data = $request->validate([
             'transaction_id' => 'required|integer',
-            'tx_ref' => 'required|string',
+            'tx_ref' => 'required|string|max:191',
+            'video_id' => 'nullable|integer|exists:videos,id',
+            'type' => 'nullable|in:buy,rent',
         ]);
 
-        $payment = PaymentTransaction::where('tx_ref', $data['tx_ref'])
-            ->where('user_id', $request->user()->id)
-            ->firstOrFail();
+        $user = $request->user();
+        $transactionId = (string) $data['transaction_id'];
 
-        if ($payment->status === 'successful') {
+        $existingOrder = Order::where('transaction_id', $transactionId)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($existingOrder) {
             return response()->json([
                 'success' => true,
                 'message' => 'Payment already processed.',
-                'order' => Order::where('transaction_id', $payment->flutterwave_transaction_id)->first(),
+                'order' => $existingOrder,
             ]);
         }
+
+        $payment = PaymentTransaction::where('tx_ref', $data['tx_ref'])
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($payment) {
+            $video = Video::visibleInCurrentRegion()->findOrFail($payment->video_id);
+            $purchaseType = $payment->purchase_type;
+            $currency = $payment->currency;
+            $amount = (float) $payment->amount;
+        } else {
+            abort_if(empty($data['video_id']) || empty($data['type']), 422, 'Video and purchase type are required for this payment.');
+
+            $video = Video::visibleInCurrentRegion()->findOrFail($data['video_id']);
+            $purchaseType = $data['type'];
+            $currency = $request->attributes->get('currency_code', 'NGN');
+            $amount = $this->priceFor($video, $purchaseType, $currency);
+
+            abort_if($amount === null || $amount <= 0, 422, 'This purchase option is unavailable.');
+            abort_if($purchaseType === 'buy' && ! $video->allow_buy, 422, 'This title is not available to buy.');
+            abort_if($purchaseType === 'rent' && ! $video->allow_rent, 422, 'This title is not available to rent.');
+        }
+
+        abort_if(! config('services.flutterwave.secret_key'), 503, 'Payment verification is not configured on the server.');
 
         $response = Http::withToken(config('services.flutterwave.secret_key'))
             ->acceptJson()
             ->timeout(20)
             ->retry(2, 250)
             ->get('https://api.flutterwave.com/v3/transactions/'.$data['transaction_id'].'/verify');
+
         $verified = $response->json('data', []);
 
-        if (! $response->successful() || ! $this->matches($payment, $verified, $request->user()->email)) {
-            $payment->update([
-                'status' => 'failed',
-                'verification_payload' => $response->json(),
-            ]);
+        if (! $response->successful() || ! $this->matchesValues(
+            $data['tx_ref'],
+            $amount,
+            $currency,
+            $user->email,
+            $verified
+        )) {
+            if ($payment) {
+                $payment->update([
+                    'status' => 'failed',
+                    'verification_payload' => $response->json(),
+                ]);
+            }
+
             return response()->json(['message' => 'Payment could not be verified.'], 422);
         }
 
-        $order = DB::transaction(function () use ($payment, $verified, $request) {
-            $locked = PaymentTransaction::whereKey($payment->id)->lockForUpdate()->first();
+        $order = DB::transaction(function () use (
+            $payment,
+            $video,
+            $purchaseType,
+            $currency,
+            $amount,
+            $verified,
+            $request,
+            $data,
+            $transactionId
+        ) {
+            $locked = $payment
+                ? PaymentTransaction::whereKey($payment->id)->lockForUpdate()->first()
+                : PaymentTransaction::where('tx_ref', $data['tx_ref'])->lockForUpdate()->first();
+
+            if (! $locked) {
+                $locked = PaymentTransaction::create([
+                    'user_id' => $request->user()->id,
+                    'video_id' => $video->id,
+                    'tx_ref' => $data['tx_ref'],
+                    'purchase_type' => $purchaseType,
+                    'currency' => $currency,
+                    'amount' => $amount,
+                    'status' => 'pending',
+                ]);
+            }
+
             if ($locked->status === 'successful') {
-                return Order::where('transaction_id', $locked->flutterwave_transaction_id)->first();
+                return Order::where('transaction_id', $locked->flutterwave_transaction_id)
+                    ->where('user_id', $locked->user_id)
+                    ->first();
+            }
+
+            $alreadyProcessed = Order::where('transaction_id', $transactionId)
+                ->where('user_id', $locked->user_id)
+                ->first();
+
+            if ($alreadyProcessed) {
+                $locked->update([
+                    'status' => 'successful',
+                    'flutterwave_transaction_id' => $transactionId,
+                    'verification_payload' => $verified,
+                    'verified_at' => now(),
+                ]);
+
+                return $alreadyProcessed;
             }
 
             $cart = Cart::create([
@@ -159,17 +214,17 @@ class CheckoutController extends Controller
                 'remember_token' => (string) Str::uuid(),
             ]);
 
-            $currency = Currency::where('iso_code3', $locked->currency)->first();
+            $orderCurrency = Currency::where('iso_code3', $locked->currency)->first();
             $order = Order::create([
                 'user_id' => $locked->user_id,
-                'currency_id' => optional($currency)->id ?: 0,
+                'currency_id' => optional($orderCurrency)->id ?: 0,
                 'currency' => $locked->currency,
                 'invoice' => $locked->tx_ref,
                 'video_id' => $locked->video_id,
                 'video_rent_expires' => $locked->purchase_type === 'rent' ? now()->addDays(2) : null,
                 'cart_id' => $cart->id,
                 'status' => 'Complete',
-                'transaction_id' => (string) $verified['id'],
+                'transaction_id' => $transactionId,
                 'payment_type' => $verified['payment_type'] ?? 'flutterwave',
                 'purchase_type' => $locked->purchase_type,
                 'total' => $locked->amount,
@@ -180,7 +235,7 @@ class CheckoutController extends Controller
 
             $locked->update([
                 'status' => 'successful',
-                'flutterwave_transaction_id' => (string) $verified['id'],
+                'flutterwave_transaction_id' => $transactionId,
                 'verification_payload' => $verified,
                 'verified_at' => now(),
             ]);
@@ -204,12 +259,12 @@ class CheckoutController extends Controller
         return $type === 'rent' ? $video->rent_price : $video->buy_price;
     }
 
-    private function matches(PaymentTransaction $payment, array $verified, $email)
+    private function matchesValues($txRef, $amount, $currency, $email, array $verified)
     {
         return ($verified['status'] ?? null) === 'successful'
-            && ($verified['tx_ref'] ?? null) === $payment->tx_ref
-            && strtoupper($verified['currency'] ?? '') === $payment->currency
-            && (float) ($verified['charged_amount'] ?? $verified['amount'] ?? 0) >= (float) $payment->amount
+            && ($verified['tx_ref'] ?? null) === $txRef
+            && strtoupper($verified['currency'] ?? '') === strtoupper($currency)
+            && (float) ($verified['charged_amount'] ?? $verified['amount'] ?? 0) >= (float) $amount
             && strtolower($verified['customer']['email'] ?? '') === strtolower($email);
     }
 }
