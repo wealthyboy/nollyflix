@@ -52,6 +52,7 @@ class VideoIndexResource extends JsonResource
                 return $this->related_videos
                     ->pluck('video')
                     ->filter()
+                    ->unique('id')
                     ->map(function ($video) use ($request) {
                         return (new VideoSummaryResource($video))->toArray($request);
                     })

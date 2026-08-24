@@ -34,8 +34,11 @@ class CheckoutController extends Controller
         abort_if($amount === null || $amount <= 0, 422, 'This purchase option is unavailable.');
         abort_if($data['type'] === 'buy' && ! $video->allow_buy, 422, 'This title is not available to buy.');
         abort_if($data['type'] === 'rent' && ! $video->allow_rent, 422, 'This title is not available to rent.');
-        abort_if(! config('services.flutterwave.secret_key'), 503, 'Payments are not configured.');
+        abort_if(! config('services.flutterwave.secret_key'), 503, 'Payments are not configured on the server.');
 
+        // Flutterwave Standard is initialized server-side so the mobile app never
+        // receives or stores the secret key. The React Native app only displays
+        // the hosted checkout link with Flutterwave's official checkout dialog.
         $txRef = 'nollyflix-'.Str::uuid();
         $payment = PaymentTransaction::create([
             'user_id' => $request->user()->id,
@@ -47,6 +50,9 @@ class CheckoutController extends Controller
             'status' => 'pending',
         ]);
 
+        $user = $request->user();
+        $customerName = trim(($user->name ?? '').' '.($user->last_name ?? ''));
+
         $response = Http::withToken(config('services.flutterwave.secret_key'))
             ->acceptJson()
             ->timeout(20)
@@ -55,10 +61,14 @@ class CheckoutController extends Controller
                 'tx_ref' => $txRef,
                 'amount' => number_format($amount, 2, '.', ''),
                 'currency' => $currency,
-                'redirect_url' => config('services.flutterwave.redirect_url'),
+                'redirect_url' => config('services.flutterwave.mobile_redirect_url'),
+                'payment_options' => $currency === 'NGN'
+                    ? 'card,ussd,banktransfer'
+                    : 'card',
                 'customer' => [
-                    'email' => $request->user()->email,
-                    'name' => trim($request->user()->name.' '.$request->user()->last_name),
+                    'email' => $user->email,
+                    'name' => $customerName ?: $user->email,
+                    'phonenumber' => $user->phone_number ?? $user->phone ?? null,
                 ],
                 'customizations' => [
                     'title' => 'NollyFlix',
@@ -68,21 +78,29 @@ class CheckoutController extends Controller
                     'payment_id' => $payment->id,
                     'video_id' => $video->id,
                     'purchase_type' => $data['type'],
-                    'user_id' => $request->user()->id,
+                    'user_id' => $user->id,
                 ],
             ]);
 
         if (! $response->successful() || $response->json('status') !== 'success') {
-            $payment->update(['status' => 'failed']);
-            return response()->json(['message' => 'Unable to start payment. Please try again.'], 502);
+            $payment->update([
+                'status' => 'failed',
+                'verification_payload' => $response->json(),
+            ]);
+
+            return response()->json([
+                'message' => $response->json('message') ?: 'Unable to start payment. Please try again.',
+            ], 502);
         }
 
-        $payment->update(['checkout_url' => $response->json('data.link')]);
+        $checkoutUrl = $response->json('data.link');
+        $payment->update(['checkout_url' => $checkoutUrl]);
 
         return response()->json([
             'data' => [
+                'payment_id' => $payment->id,
                 'tx_ref' => $payment->tx_ref,
-                'checkout_url' => $payment->checkout_url,
+                'checkout_url' => $checkoutUrl,
                 'amount' => (float) $payment->amount,
                 'currency' => $payment->currency,
             ],
