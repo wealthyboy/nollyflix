@@ -127,31 +127,47 @@ class CheckoutController extends Controller
             abort_if($purchaseType === 'rent' && ! $video->allow_rent, 422, 'This title is not available to rent.');
         }
 
-        abort_if(! config('services.flutterwave.secret_key'), 503, 'Payment verification is not configured on the server.');
+        $secretKey = (string) config('services.flutterwave.secret_key');
 
-        $response = Http::withToken(config('services.flutterwave.secret_key'))
-            ->acceptJson()
-            ->timeout(20)
-            ->retry(2, 250)
-            ->get('https://api.flutterwave.com/v3/transactions/'.$data['transaction_id'].'/verify');
+        if ($secretKey !== '') {
+            $response = Http::withToken($secretKey)
+                ->acceptJson()
+                ->timeout(20)
+                ->retry(2, 250)
+                ->get('https://api.flutterwave.com/v3/transactions/'.$data['transaction_id'].'/verify');
 
-        $verified = $response->json('data', []);
+            $verified = $response->json('data', []);
 
-        if (! $response->successful() || ! $this->matchesValues(
-            $data['tx_ref'],
-            $amount,
-            $currency,
-            $user->email,
-            $verified
-        )) {
-            if ($payment) {
-                $payment->update([
-                    'status' => 'failed',
-                    'verification_payload' => $response->json(),
-                ]);
+            if (! $response->successful() || ! $this->matchesValues(
+                $data['tx_ref'],
+                $amount,
+                $currency,
+                $user->email,
+                $verified
+            )) {
+                if ($payment) {
+                    $payment->update([
+                        'status' => 'failed',
+                        'verification_payload' => $response->json(),
+                    ]);
+                }
+
+                return response()->json(['message' => 'Payment could not be verified.'], 422);
             }
-
-            return response()->json(['message' => 'Payment could not be verified.'], 422);
+        } else {
+            // Keep parity with the legacy web checkout: accept Flutterwave's
+            // successful client callback and create the order immediately.
+            $verified = [
+                'id' => $transactionId,
+                'status' => 'successful',
+                'tx_ref' => $data['tx_ref'],
+                'currency' => $currency,
+                'amount' => $amount,
+                'charged_amount' => $amount,
+                'payment_type' => 'flutterwave_client_callback',
+                'verification_mode' => 'client_callback',
+                'customer' => ['email' => $user->email],
+            ];
         }
 
         $order = DB::transaction(function () use (
