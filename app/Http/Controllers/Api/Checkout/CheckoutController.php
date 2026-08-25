@@ -6,11 +6,15 @@ use App\Cart;
 use App\Currency;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Mail\OrderReceipt;
 use App\PaymentTransaction;
+use App\SystemSetting;
 use App\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
@@ -98,6 +102,8 @@ class CheckoutController extends Controller
             ->first();
 
         if ($existingOrder) {
+            $this->sendOrderReceipt($existingOrder, $user);
+
             return response()->json([
                 'success' => true,
                 'message' => 'Payment already processed.',
@@ -259,6 +265,8 @@ class CheckoutController extends Controller
             return $order;
         });
 
+        $this->sendOrderReceipt($order, $user);
+
         return response()->json([
             'success' => true,
             'message' => 'Payment verified successfully.',
@@ -273,6 +281,48 @@ class CheckoutController extends Controller
         }
 
         return $type === 'rent' ? $video->rent_price : $video->buy_price;
+    }
+
+    private function sendOrderReceipt(Order $order, $user)
+    {
+        $claimed = Order::whereKey($order->id)
+            ->whereNull('receipt_sent_at')
+            ->update(['receipt_sent_at' => now()]);
+
+        if (! $claimed) {
+            return;
+        }
+
+        try {
+            $cart = Cart::with('video')->findOrFail($order->cart_id);
+            $settings = SystemSetting::first();
+            $currency = Currency::where('iso_code3', $order->currency)->first();
+            $mail = Mail::to($user->email);
+            $adminEmail = optional($settings)->alert_email
+                ? trim(explode(',', $settings->alert_email)[0])
+                : null;
+
+            if ($adminEmail) {
+                $mail->bcc($adminEmail);
+            }
+
+            $mail->send(new OrderReceipt(
+                $user,
+                $order,
+                $cart,
+                $settings,
+                optional($currency)->symbol ?: ($order->currency === 'NGN' ? '₦' : $order->currency.' ')
+            ));
+
+        } catch (\Throwable $exception) {
+            Order::whereKey($order->id)->update(['receipt_sent_at' => null]);
+            Log::channel('mobile_api')->error('Mobile order receipt could not be sent', [
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+                'email' => $user->email,
+                'error' => $exception->getMessage(),
+            ]);
+        }
     }
 
     private function matchesValues($txRef, $amount, $currency, $email, array $verified)

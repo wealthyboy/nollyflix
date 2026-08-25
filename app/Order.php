@@ -26,6 +26,7 @@ class Order extends Model
 		'request_from',
 		'ip',
 		'user_agent'
+		,'receipt_sent_at'
 	];
 
 	public $appends = [
@@ -33,7 +34,7 @@ class Order extends Model
 	];
 
 
-	protected $dates = ['video_rent_expires'];
+	protected $dates = ['video_rent_expires', 'receipt_sent_at'];
 
 	public function ordered_movies(){
 	   return $this->hasMany('App\OrderedMovie');
