@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+@section('pagespecificstyles')
+   @include('admin.orders._table_styles')
+@endsection
 @section('content')
 <div class="row">
    <div class="col-md-12">
@@ -13,7 +16,7 @@
                <div class="panel-heading">
                   <h3 class="panel-title"><i class="fa fa-shopping-cart"></i> Order Details</h3>
                </div>
-               <table class="table">
+               <table class="table orders-table">
                   <tbody>
                      <tr>
                         <td style="width: 1%;"><button data-toggle="tooltip" title="" class="btn btn-info btn-xs" data-original-title="Store"><i class="fa fa-shopping-cart fa-fw"></i></button></td>
@@ -41,7 +44,7 @@
                <div class="panel-heading">
                   <h3 class="panel-title"><i class="fa fa-user"></i> Customer Details</h3>
                </div>
-               <table class="table">
+               <table class="table orders-table">
                   <tbody>
                      <tr>
                         <td style="width: 1%;"><button data-toggle="tooltip" title="Customer" class="btn btn-info btn-xs"><i class="fa fa-user fa-fw"></i></button></td>
@@ -65,7 +68,7 @@
                <div class="panel-heading">
                   <h3 class="panel-title"><i class="fa fa-cog"></i> Options</h3>
                </div>
-               <table class="table">
+               <table class="table orders-table">
                   <tbody>
                      <tr>
                         <td>Invoice</td>
@@ -80,14 +83,15 @@
       </div>
    </div>
    <div class="col-md-12">
-      <div class="card">
+      <div class="card orders-card">
          <div class="card-header card-header-icon" data-background-color="rose">
             <i class="material-icons">assignment</i>
          </div>
          <div class="card-content">
 
             <h2>Items</h2>
-            <table class="table table-shopping">
+            <div class="orders-table-wrap">
+            <table class="table table-shopping orders-table">
                <thead>
                   <tr>
                      <th>Poster</th>
@@ -140,6 +144,7 @@
                   </tr>
                </tbody>
             </table>
+            </div>
 
          </div>
       </div>

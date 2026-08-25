@@ -1,14 +1,17 @@
 @extends('admin.layouts.app')
+@section('pagespecificstyles')
+   @include('admin.orders._table_styles')
+@endsection
 @section('content')
 
 
 <div class="row">
    <div class="col-md-12">
-      <div class="card">
+      <div class="card orders-card">
          <div class="card-content">
             <div class="col-md-12">
                <div class="text-left">
-                  <h4 class="card-title">Orders</h4>
+                  <h3 class="card-title orders-title">Orders</h3>
                </div>
                <div class="text-right">
 
@@ -17,10 +20,10 @@
             <div class="toolbar">
                <!-- Here you can write extra buttons/actions for the toolbar  -->
             </div>
-            <div class="material-datatables">
+            <div class="material-datatables orders-table-wrap">
                <form action="" method="post" enctype="multipart/form-data" id="form-orders">
 
-                  <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                  <table id="datatables" class="table table-shopping table-hover orders-table" cellspacing="0" width="100%" style="width:100%">
                      <thead>
                         <tr>
                            <th>
@@ -47,10 +50,10 @@
                                  </label>
                               </div>
                            </td>
-                           <td class="text-left">{{ $order->invoice }}</td>
-                           <td class="text-left">{{ $order->user->fullname() }}</td>
-                           <td>{{ $order->created_at }}</td>
-                           <td class="text-left">{{ $order->currency  ?? '₦'}}{{ optional($order->cart)->price }}</td>
+                           <td class="text-left order-invoice">{{ $order->invoice }}</td>
+                           <td class="text-left">{{ optional($order->user)->fullname() ?: 'Unknown customer' }}</td>
+                           <td>{{ optional($order->created_at)->format('d M Y, H:i') }}</td>
+                           <td class="text-left order-total">{{ $order->currency ?? '₦' }}{{ number_format((float) ($order->total ?? optional($order->cart)->total ?? 0), 2) }}</td>
                            <td class="td-actions text-center">
                               <span>
                                  <a href="{{ route('admin.orders.show',['order'=>$order->id]) }}" rel="tooltip" class="btn btn-success btn-simple" data-original-title="" title="View">
@@ -58,7 +61,13 @@
                                  </a>
                               </span>
                            </td>
-                           @endforeach
+                        </tr>
+                        @endforeach
+                        @if($orders->isEmpty())
+                        <tr>
+                           <td colspan="6" class="orders-empty">No orders have been placed yet.</td>
+                        </tr>
+                        @endif
 
                      </tbody>
                   </table>
