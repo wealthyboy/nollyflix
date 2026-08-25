@@ -54,6 +54,13 @@ return [
             'days' => 14,
         ],
 
+        'mobile_api' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/mobile-api.log'),
+            'level' => env('MOBILE_API_LOG_LEVEL', 'info'),
+            'days' => env('MOBILE_API_LOG_DAYS', 30),
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
