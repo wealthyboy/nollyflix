@@ -338,7 +338,7 @@
             "require": {
                 "doctrine/cache": "^1.0",
                 "doctrine/event-manager": "^1.0",
-                "ext-pdo": "*",
+                "ext-pdo": "*", 
                 "php": "^7.2"
             },
             "require-dev": {
