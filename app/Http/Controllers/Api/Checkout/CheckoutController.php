@@ -102,12 +102,13 @@ class CheckoutController extends Controller
             ->first();
 
         if ($existingOrder) {
-            $this->sendOrderReceipt($existingOrder, $user);
+            $receiptSent = $this->sendOrderReceipt($existingOrder, $user);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Payment already processed.',
                 'order' => $existingOrder,
+                'receipt_sent' => $receiptSent,
             ]);
         }
 
@@ -134,8 +135,9 @@ class CheckoutController extends Controller
         }
 
         $secretKey = (string) config('services.flutterwave.secret_key');
+        $trustMobileCallback = (bool) config('services.flutterwave.trust_mobile_callback', false);
 
-        if ($secretKey !== '') {
+        if (! $trustMobileCallback && $secretKey !== '') {
             $response = Http::withToken($secretKey)
                 ->acceptJson()
                 ->timeout(20)
@@ -160,9 +162,10 @@ class CheckoutController extends Controller
 
                 return response()->json(['message' => 'Payment could not be verified.'], 422);
             }
-        } else {
-            // Keep parity with the legacy web checkout: accept Flutterwave's
-            // successful client callback and create the order immediately.
+        } elseif ($trustMobileCallback) {
+            // DEVELOPMENT ONLY: accept the official mobile SDK's successful
+            // callback so the existing order, entitlement and receipt flow can
+            // be tested before server-side Flutterwave verification is enabled.
             $verified = [
                 'id' => $transactionId,
                 'status' => 'successful',
@@ -171,9 +174,13 @@ class CheckoutController extends Controller
                 'amount' => $amount,
                 'charged_amount' => $amount,
                 'payment_type' => 'flutterwave_client_callback',
-                'verification_mode' => 'client_callback',
+                'verification_mode' => 'development_client_callback',
                 'customer' => ['email' => $user->email],
             ];
+        } else {
+            return response()->json([
+                'message' => 'Payment verification is not configured on the server.',
+            ], 503);
         }
 
         $order = DB::transaction(function () use (
@@ -265,12 +272,13 @@ class CheckoutController extends Controller
             return $order;
         });
 
-        $this->sendOrderReceipt($order, $user);
+        $receiptSent = $this->sendOrderReceipt($order, $user);
 
         return response()->json([
             'success' => true,
             'message' => 'Payment verified successfully.',
             'order' => $order,
+            'receipt_sent' => $receiptSent,
         ]);
     }
 
@@ -290,7 +298,7 @@ class CheckoutController extends Controller
             ->update(['receipt_sent_at' => now()]);
 
         if (! $claimed) {
-            return;
+            return (bool) optional($order->fresh())->receipt_sent_at;
         }
 
         try {
@@ -314,6 +322,8 @@ class CheckoutController extends Controller
                 optional($currency)->symbol ?: ($order->currency === 'NGN' ? '₦' : $order->currency.' ')
             ));
 
+            return true;
+
         } catch (\Throwable $exception) {
             Order::whereKey($order->id)->update(['receipt_sent_at' => null]);
             Log::channel('mobile_api')->error('Mobile order receipt could not be sent', [
@@ -322,6 +332,8 @@ class CheckoutController extends Controller
                 'email' => $user->email,
                 'error' => $exception->getMessage(),
             ]);
+
+            return false;
         }
     }
 

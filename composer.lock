@@ -243,7 +243,7 @@
             "name": "doctrine/cache",
             "version": "1.10.2",
             "source": {
-                "type": "git",
+                "type": "git", 
                 "url": "https://github.com/doctrine/cache.git",
                 "reference": "13e3381b25847283a91948d04640543941309727"
             },
@@ -253,7 +253,7 @@
                 "reference": "13e3381b25847283a91948d04640543941309727",
                 "shasum": ""
             },
-            "require": {
+            "require": { 
                 "php": "~7.1 || ^8.0"
             },
             "conflict": {

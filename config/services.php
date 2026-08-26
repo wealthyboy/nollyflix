@@ -34,6 +34,7 @@ return [
         'public_key' => env('FLW_PUBLIC_KEY'),
         'secret_key' => env('FLW_SECRET_KEY'),
         'secret_hash' => env('FLW_SECRET_HASH'),
+        'trust_mobile_callback' => env('FLW_TRUST_MOBILE_CALLBACK', false),
         'redirect_url' => env('FLW_REDIRECT_URL', 'nollyflix://payment-callback'),
         'mobile_redirect_url' => env('FLW_MOBILE_REDIRECT_URL', 'https://flutterwave.com/rn-redirect'),
     ],
