@@ -94,6 +94,13 @@
                 </a>
             </li>
 
+            <li class="{{ request()->is('admin/mobile-api*') ? 'active' : '' }}">
+                <a href="{{ route('admin.mobile-api.index') }}">
+                    <i class="fa fa-mobile"></i>
+                    <p> Mobile API Monitor</p>
+                </a>
+            </li>
+
             <li class="{{ $helper->active_link(['orders']) }} ">
                 <a data-toggle="collapse" href="dashboard.html#video-orders">
                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>   

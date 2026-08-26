@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::get('/','Admin\HomeCtrl@index')->name('admin_home');
+    Route::get('mobile-api', 'Admin\MobileApi\MobileApiLogsController@index')->name('admin.mobile-api.index');
+    Route::get('mobile-api/{id}', 'Admin\MobileApi\MobileApiLogsController@show')->name('admin.mobile-api.show');
     Route::get('/maintainance/mode', 'Live\LiveController@index')->name('maintainance');
     Route::get('live', 'Live\LiveController@activate');
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
@@ -124,7 +126,6 @@ Route::get('watch/hls/episode/{episode}', 'Watch\WatchController@episodeHls')->n
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
-
 
 
 
