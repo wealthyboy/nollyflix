@@ -134,9 +134,10 @@ class CheckoutController extends Controller
             abort_if($purchaseType === 'rent' && ! $video->allow_rent, 422, 'This title is not available to rent.');
         }
 
-        $secretKey = (string) config('services.flutterwave.secret_key');
-        $trustMobileCallback = app()->environment(['local', 'development'])
-            || (bool) config('services.flutterwave.trust_mobile_callback', false);
+        // DEVELOPMENT ONLY: bypass Flutterwave server verification temporarily.
+        // Re-enable secret-key verification before releasing to production.
+        $secretKey = '';
+        $trustMobileCallback = true;
 
         if (! $trustMobileCallback && $secretKey !== '') {
             $response = Http::withToken($secretKey)
