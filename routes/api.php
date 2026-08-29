@@ -8,6 +8,7 @@ Route::middleware(['apiCurrencyByIp'])->group(function () {
     Route::get('browse',          'Api\Browse\BrowseController@index');
     Route::get('featured_videos', 'Api\Browse\BrowseController@featuredVideos');
     Route::get('video/{id}',      'Api\Browse\BrowseController@show');
+    Route::get('video/{id}/play', 'Api\Playback\PlaybackController@show');
 
     Route::get('browse/casts',    'Api\Casts\CastsController@index');
     Route::get('browse/filmers',  'Api\FilmMakers\FilmMakersController@index');
@@ -28,7 +29,6 @@ Route::middleware(['apiCurrencyByIp'])->group(function () {
     Route::middleware(['auth:api'])->group(function () {
         Route::post('checkout/initialize', 'Api\Checkout\CheckoutController@initialize');
         Route::post('checkout', 'Api\Checkout\CheckoutController@store');
-        Route::get('video/{id}/play', 'Api\Playback\PlaybackController@show');
         Route::put('profile', 'Api\Profile\ProfileController@update');
         Route::post('profile/change-password', 'Api\Profile\ProfileController@changePassword');
     });

@@ -7,7 +7,7 @@ use App\Video;
 
 class VideoEntitlementService
 {
-    public function access(User $user, Video $video)
+    public function access(?User $user, Video $video)
     {
         if ((bool) $video->is_free) {
             return [
@@ -15,6 +15,10 @@ class VideoEntitlementService
                 'type' => 'free',
                 'order' => null,
             ];
+        }
+
+        if (! $user) {
+            return ['allowed' => false, 'type' => null, 'order' => null];
         }
 
         $orders = $user->movies()

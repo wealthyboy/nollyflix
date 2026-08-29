@@ -12,7 +12,15 @@ class PlaybackController extends Controller
     public function show(Request $request, VideoEntitlementService $entitlements, $id)
     {
         $video = Video::visibleInCurrentRegion()->with('episodes')->findOrFail($id);
-        $access = $entitlements->access($request->user(), $video);
+        $user = null;
+        if ($request->bearerToken()) {
+            try {
+                $user = auth('api')->user();
+            } catch (\Throwable $exception) {
+                $user = null;
+            }
+        }
+        $access = $entitlements->access($user, $video);
 
         abort_unless($access['allowed'], 403, 'Buy or rent this title to watch it.');
 

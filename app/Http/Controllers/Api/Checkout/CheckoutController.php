@@ -135,7 +135,8 @@ class CheckoutController extends Controller
         }
 
         $secretKey = (string) config('services.flutterwave.secret_key');
-        $trustMobileCallback = (bool) config('services.flutterwave.trust_mobile_callback', false);
+        $trustMobileCallback = app()->environment(['local', 'development'])
+            || (bool) config('services.flutterwave.trust_mobile_callback', false);
 
         if (! $trustMobileCallback && $secretKey !== '') {
             $response = Http::withToken($secretKey)
