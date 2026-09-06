@@ -47,6 +47,37 @@
 #quickMetadataModal .modal-footer {
     padding: 12px 22px 18px;
 }
+#quickMetadataModal .form-group {
+    margin: 0 0 18px;
+    padding-bottom: 0;
+}
+#quickMetadataModal .form-group .control-label {
+    display: block;
+    position: static;
+    margin: 0 0 7px;
+    color: #3c4858;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    pointer-events: auto;
+}
+#quickMetadataModal .form-control,
+#quickMetadataModal .form-group .form-control {
+    width: 100%;
+    height: 42px;
+    padding: 9px 12px;
+    border: 1px solid #cfd4da !important;
+    border-radius: 6px !important;
+    background: #fff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+#quickMetadataModal .form-group.is-focused .form-control,
+#quickMetadataModal .form-control:focus {
+    border-color: #e91e63 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
 @media (max-width: 767px) {
     .quick-add-metadata {
         min-width: auto;
