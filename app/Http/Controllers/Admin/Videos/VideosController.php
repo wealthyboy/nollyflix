@@ -85,6 +85,8 @@ class VideosController extends Controller
             "cast_id"    =>  "required|array",
             "genre_id"  =>  "required|array",
             "filmer_id"  =>  "required|array",
+            "section_id" =>  "required|array|min:1",
+            "section_id.*" => "integer|exists:sections,id",
             "excludes"   =>  "nullable|array",
             "excludes.*" =>  [Rule::in(array_keys(Video::excludes()))],
             'poster'     =>  'required',
@@ -142,9 +144,8 @@ class VideosController extends Controller
             $video->casts()->sync($request->cast_id);
         }
 
-        if (!empty($request->section_id)) {
-            $video->sections()->sync($request->section_id);
-        }
+        // A homepage section is required. Browse only renders videos attached to sections.
+        $video->sections()->sync($request->section_id);
 
         if (!empty($request->genre_id)) {
             $video->genres()->sync($request->genre_id);
@@ -263,6 +264,8 @@ class VideosController extends Controller
             "cast_id"    =>  "required|array",
             "genre_id"    =>  "required|array",
             "filmer_id"  =>  "required|array",
+            "section_id" =>  "required|array|min:1",
+            "section_id.*" => "integer|exists:sections,id",
             "excludes"   =>  "nullable|array",
             "excludes.*" =>  [Rule::in(array_keys(Video::excludes()))],
             'poster'     =>  'required',
@@ -318,9 +321,8 @@ class VideosController extends Controller
             $video->casts()->sync($request->cast_id);
         }
 
-        if (!empty($request->section_id)) {
-            $video->sections()->sync($request->section_id);
-        }
+        // A homepage section is required. Browse only renders videos attached to sections.
+        $video->sections()->sync($request->section_id);
 
         if (!empty($request->genre_id)) {
             $video->genres()->sync($request->genre_id);

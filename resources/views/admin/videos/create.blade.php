@@ -493,6 +493,7 @@
                                  </div>
                                  <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
                                     <div class="panel-body scroll">
+                                       <p class="text-muted" style="margin:0 0 12px;"><strong>Required:</strong> select at least one section. Titles without a section cannot appear in the Browse rows.</p>
                                        <ul data-metadata-list="section">
                                           @foreach($sections as $section)
                                           <li data-caption="Documents">
