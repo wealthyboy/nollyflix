@@ -11,6 +11,12 @@
     $initialTitle = $firstEpisode
         ? ($firstEpisode->title ?: 'Episode ' . ($firstEpisode->episode_number ?: 1))
         : $video->title;
+    $initialTrack = $firstEpisode
+        ? ($firstEpisode->track_file ?: $video->track_file)
+        : $video->track_file;
+    $hasAnySubtitles = !empty($video->track_file) || $seriesEpisodes->contains(function ($episode) {
+        return !empty($episode->track_file);
+    });
     $fallbackDescription = trim(strip_tags($video->description));
 @endphp
 
@@ -261,8 +267,8 @@
     <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture controlsList="nodownload noplaybackrate noremoteplayback" nodownload  class="video-js vjs-default-skin" data-auth-required="{{ $video->access_type === 'is_free' ? '0' : '1' }}" data-watch-video-id="{{ $video->id }}"
         playsinline webkit-playsinline oncontextmenu="return false">
         <source src="{{ $initialSource }}" type="application/x-mpegURL">
-         @if($video->track_file)
-        <track src="{{ optional($video)->track_file }}" kind="subtitles" srclang="en" label="English">
+        @if($initialTrack)
+        <track src="{{ $initialTrack }}" kind="subtitles" srclang="en" label="English" data-watch-subtitle-track>
         @endif
     </video>
 
@@ -368,6 +374,7 @@
                                         class="watch-episode-item {{ $loop->parent->first && $loop->first ? 'active' : '' }}"
                                         data-episode-id="{{ $episode->id }}"
                                         data-episode-source="{{ route('watch.hls.episode', ['episode' => $episode->id, 'playback_token' => $playbackToken]) }}"
+                                        data-episode-track="{{ $episode->track_file ?: $video->track_file }}"
                                         data-episode-title="{{ $episodeTitle }}">
                                         <span class="watch-episode-number">{{ $episodeNumber }}</span>
                                         <span class="watch-episode-copy">
@@ -386,7 +393,7 @@
                     @endif
                 </div>
                 @endif
-                @if($video->track_file)
+                @if($hasAnySubtitles)
                 <button type="button" class="watch-control-button" data-watch-captions aria-label="Captions">
                     <span class="watch-cc-label">CC</span>
                 </button>
@@ -491,6 +498,64 @@
             }
         }
 
+        function setEpisodeSubtitle(button) {
+            if (!video || !button) {
+                return;
+            }
+
+            var trackUrl = button.getAttribute('data-episode-track') || '';
+            var captionsButton = document.querySelector('[data-watch-captions]');
+            var currentTrackElement = video.querySelector('track[data-watch-subtitle-track]');
+            var currentTrackUrl = currentTrackElement ? (currentTrackElement.getAttribute('src') || '') : '';
+
+            if (currentTrackUrl === trackUrl) {
+                if (captionsButton) {
+                    captionsButton.hidden = !trackUrl;
+                    captionsButton.disabled = !trackUrl;
+                }
+                return;
+            }
+
+            var wasShowing = Array.prototype.slice.call(video.textTracks || []).some(function (track) {
+                return track.kind === 'subtitles' && track.mode === 'showing';
+            });
+
+            Array.prototype.slice.call(video.querySelectorAll('track[data-watch-subtitle-track]')).forEach(function (trackElement) {
+                if (trackElement.track) {
+                    trackElement.track.mode = 'disabled';
+                }
+                trackElement.remove();
+            });
+
+            if (!trackUrl) {
+                if (captionsButton) {
+                    captionsButton.hidden = true;
+                    captionsButton.disabled = true;
+                    captionsButton.classList.remove('is-active');
+                }
+                return;
+            }
+
+            var trackElement = document.createElement('track');
+            trackElement.kind = 'subtitles';
+            trackElement.srclang = 'en';
+            trackElement.label = 'English';
+            trackElement.setAttribute('data-watch-subtitle-track', '1');
+            trackElement.addEventListener('load', function () {
+                if (wasShowing && trackElement.track) {
+                    trackElement.track.mode = 'showing';
+                }
+            });
+            trackElement.src = trackUrl;
+            video.appendChild(trackElement);
+
+            if (captionsButton) {
+                captionsButton.hidden = false;
+                captionsButton.disabled = false;
+                captionsButton.classList.toggle('is-active', wasShowing);
+            }
+        }
+
         function selectEpisode(button) {
             var source = button.getAttribute('data-episode-source');
             var episodeTitle = button.getAttribute('data-episode-title');
@@ -512,6 +577,7 @@
                 });
             }
             updateNextButton();
+            setEpisodeSubtitle(button);
 
             player.src({
                 src: source,
@@ -588,6 +654,10 @@
                     window.location.href = nextVideoUrl;
                 }
             });
+        }
+
+        if (isSeries && episodeButtons[currentIndex]) {
+            setEpisodeSubtitle(episodeButtons[currentIndex]);
         }
 
         if (isSeries) {

@@ -54,3 +54,21 @@ Both responses must show `iso_code: NGN`. Public catalogue responses must not co
 GET /api/video/{video}/play
 GET /api/video/{video}/play?episode_id={episode}
 ```
+
+Playback responses now include subtitle metadata when a movie or episode has an uploaded subtitle file:
+
+```json
+{
+  "subtitle_url": "https://nollyflix.tv/videos/subtitles/episodes/example.vtt",
+  "subtitles": [
+    {
+      "label": "English",
+      "language": "en",
+      "format": "webvtt",
+      "url": "https://nollyflix.tv/videos/subtitles/episodes/example.vtt"
+    }
+  ]
+}
+```
+
+`GET /api/video/{video}` also exposes `subtitle_url` / `has_subtitles` for the title and for every episode. Episode subtitles override the title-level subtitle; the title-level file remains a fallback for older series records.

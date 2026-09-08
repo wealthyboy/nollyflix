@@ -272,11 +272,12 @@
                                      'link' => $episode->link,
                                      'preview_link' => $episode->preview_link,
                                      'iframe' => $episode->iframe,
+                                     'track_file' => $episode->track_file,
                                      'sort_order' => $episode->sort_order,
                                   ];
                                })->toArray();
                                $oldEpisodes = old('episodes', count($savedEpisodes) ? $savedEpisodes : [
-                                  ['id' => '', 'season_number' => 1, 'episode_number' => 1, 'title' => '', 'duration' => '', 'link' => '', 'preview_link' => '', 'iframe' => '', 'sort_order' => 0]
+                                  ['id' => '', 'season_number' => 1, 'episode_number' => 1, 'title' => '', 'duration' => '', 'link' => '', 'preview_link' => '', 'iframe' => '', 'track_file' => '', 'sort_order' => 0]
                                ]);
                             @endphp
                             <div class="series-episodes-panel" style="display:none;">
@@ -337,6 +338,19 @@
                                               </div>
                                            </div>
                                         </div>
+                                        <div class="row">
+                                           <div class="col-md-12">
+                                              <div class="form-group is-empty no-file-input-style">
+                                                 <label class="control-label">Episode subtitle file (.vtt or .srt)</label>
+                                                 <input name="episodes[{{ $index }}][track_file]" type="file" accept=".vtt,.srt,text/vtt,application/x-subrip,text/plain" class="form-control">
+                                              </div>
+                                              @if(!empty($episode['track_file']))
+                                                 <span class="material-input">Current: <a href="{{ $episode['track_file'] }}" target="_blank" rel="noopener noreferrer">view subtitle file</a>. Upload a new file to replace it.</span>
+                                              @else
+                                                 <span class="material-input">Upload subtitles for this episode. SRT files are converted to WebVTT automatically.</span>
+                                              @endif
+                                           </div>
+                                        </div>
                                         <input name="episodes[{{ $index }}][sort_order]" type="hidden" value="{{ $episode['sort_order'] ?? $index }}">
                                      </div>
                                   </div>
@@ -347,8 +361,8 @@
                             <div class="row">
                                <div class="col-md-12">
                                   <div class="form-group  is-empty no-file-input-style">
-                                     <label class="control-label">Subtile file</label>
-                                     <input name="track_file" type="file" class="form-control">
+                                     <label class="control-label">Default subtitle file (.vtt or .srt)</label>
+                                     <input name="track_file" type="file" accept=".vtt,.srt,text/vtt,application/x-subrip,text/plain" class="form-control">
                                   </div>
                                   <span class="material-input">{{ $video->track_file }}</span>
                                </div>
@@ -811,6 +825,7 @@
  '</div>' +
  '<div class="row"><div class="col-md-12"><div class="form-group label-floating"><label class="control-label">Episode Vimeo HLS Link</label><input name="episodes[' + index + '][link]" data-series-required="true" type="text" class="form-control episode-link-input"></div></div></div>' +
  '<div class="row"><div class="col-md-6"><div class="form-group label-floating"><label class="control-label">Episode preview link</label><input name="episodes[' + index + '][preview_link]" type="text" class="form-control"></div></div><div class="col-md-6"><div class="form-group label-floating"><label class="control-label">Episode iframe</label><input name="episodes[' + index + '][iframe]" type="text" class="form-control"></div></div></div>' +
+ '<div class="row"><div class="col-md-12"><div class="form-group is-empty no-file-input-style"><label class="control-label">Episode subtitle file (.vtt or .srt)</label><input name="episodes[' + index + '][track_file]" type="file" accept=".vtt,.srt,text/vtt,application/x-subrip,text/plain" class="form-control"></div><span class="material-input">Upload subtitles for this episode. SRT files are converted to WebVTT automatically.</span></div></div>' +
  '<input name="episodes[' + index + '][sort_order]" type="hidden" value="' + index + '">' +
  '</div>' +
  '</div>';

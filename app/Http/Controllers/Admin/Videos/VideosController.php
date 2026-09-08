@@ -91,6 +91,7 @@ class VideosController extends Controller
             "excludes.*" =>  [Rule::in(array_keys(Video::excludes()))],
             'poster'     =>  'required',
             'tn_poster'  =>  'required',
+            'track_file' => $this->subtitleFileRules(),
             'title' => [
                 'required',
                 Rule::unique('videos')->where(function ($query) use ($request) {
@@ -103,9 +104,7 @@ class VideosController extends Controller
         $this->validateVideoContent($request, $contentType);
 
         if ($request->hasFile('track_file')) {
-            $file = $request->file('track_file');
-            $path = $request->file('track_file')->storeAs('videos/subtitles', Str::random(40) . '.' . $file->getClientOriginalExtension());
-            $video->track_file = asset($path);
+            $video->track_file = $this->storeSubtitleFile($request->file('track_file'));
         }
 
         $video->title  = $request->title;
@@ -270,6 +269,7 @@ class VideosController extends Controller
             "excludes.*" =>  [Rule::in(array_keys(Video::excludes()))],
             'poster'     =>  'required',
             'tn_poster'  =>  'required',
+            'track_file' => $this->subtitleFileRules(),
             'title' =>  'required|unique:videos,title,' . $id,
         ]);
 
@@ -279,9 +279,7 @@ class VideosController extends Controller
         $video = Video::find($id);
 
         if ($request->hasFile('track_file')) {
-            $file = $request->file('track_file');
-            $path = $request->file('track_file')->storeAs('videos/subtitles', Str::random(40) . '.' . $file->getClientOriginalExtension());
-            $video->track_file = asset($path);
+            $video->track_file = $this->storeSubtitleFile($request->file('track_file'));
         }
 
 
@@ -368,6 +366,7 @@ class VideosController extends Controller
                 'episodes.*.link' => 'required',
                 'episodes.*.season_number' => 'nullable|integer|min:1',
                 'episodes.*.episode_number' => 'nullable|integer|min:1',
+                'episodes.*.track_file' => $this->subtitleFileRules(),
             ]);
             return;
         }
@@ -409,7 +408,12 @@ class VideosController extends Controller
                 ? Video::normalizePreviewLink($episodeData['preview_link'])
                 : null;
             $episode->iframe = isset($episodeData['iframe']) ? $episodeData['iframe'] : null;
-            $episode->track_file = isset($episodeData['track_file']) ? $episodeData['track_file'] : null;
+
+            $episodeTrackFile = $request->file('episodes.' . $index . '.track_file');
+            if ($episodeTrackFile) {
+                $episode->track_file = $this->storeSubtitleFile($episodeTrackFile, 'videos/subtitles/episodes');
+            }
+
             $episode->sort_order = isset($episodeData['sort_order']) ? (int) $episodeData['sort_order'] : $index;
 
             $video->episodes()->save($episode);
@@ -419,6 +423,47 @@ class VideosController extends Controller
         if (!empty($episodeIds)) {
             $video->episodes()->whereNotIn('id', $episodeIds)->delete();
         }
+    }
+
+    protected function subtitleFileRules()
+    {
+        return [
+            'nullable',
+            'file',
+            'max:5120',
+            function ($attribute, $value, $fail) {
+                $extension = strtolower($value->getClientOriginalExtension());
+
+                if (!in_array($extension, ['vtt', 'srt'], true)) {
+                    $fail('Subtitle files must be WebVTT (.vtt) or SubRip (.srt) files.');
+                }
+            },
+        ];
+    }
+
+    protected function storeSubtitleFile($file, $directory = 'videos/subtitles')
+    {
+        $extension = strtolower($file->getClientOriginalExtension());
+        $contents = File::get($file->getRealPath());
+        $contents = preg_replace('/^\xEF\xBB\xBF/', '', $contents);
+        $contents = str_replace(["\r\n", "\r"], "\n", $contents);
+
+        if ($extension === 'srt') {
+            $contents = preg_replace(
+                '/(\d{2}:\d{2}:\d{2}),(\d{3})/',
+                '$1.$2',
+                $contents
+            );
+            $contents = "WEBVTT\n\n" . trim($contents) . "\n";
+        } elseif (stripos(ltrim($contents), 'WEBVTT') !== 0) {
+            $contents = "WEBVTT\n\n" . trim($contents) . "\n";
+        }
+
+        $directory = trim($directory, '/');
+        $path = $directory . '/' . Str::random(40) . '.vtt';
+        Storage::disk('local')->put($path, $contents);
+
+        return asset($path);
     }
 
     /**

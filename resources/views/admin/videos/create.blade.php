@@ -253,7 +253,7 @@
                            </div>
                            @php
                               $oldEpisodes = old('episodes', [
-                                 ['season_number' => 1, 'episode_number' => 1, 'title' => '', 'duration' => '', 'link' => '', 'preview_link' => '', 'iframe' => '', 'sort_order' => 0]
+                                 ['season_number' => 1, 'episode_number' => 1, 'title' => '', 'duration' => '', 'link' => '', 'preview_link' => '', 'iframe' => '', 'track_file' => '', 'sort_order' => 0]
                               ]);
                            @endphp
                            <div class="series-episodes-panel" style="display:none;">
@@ -313,6 +313,15 @@
                                              </div>
                                           </div>
                                        </div>
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <div class="form-group is-empty no-file-input-style">
+                                                <label class="control-label">Episode subtitle file (.vtt or .srt)</label>
+                                                <input name="episodes[{{ $index }}][track_file]" type="file" accept=".vtt,.srt,text/vtt,application/x-subrip,text/plain" class="form-control">
+                                             </div>
+                                             <span class="material-input">Upload subtitles for this episode. SRT files are converted to WebVTT automatically.</span>
+                                          </div>
+                                       </div>
                                        <input name="episodes[{{ $index }}][sort_order]" type="hidden" value="{{ $episode['sort_order'] ?? $index }}">
                                     </div>
                                  </div>
@@ -323,10 +332,10 @@
                            <div class="row">
                               <div class="col-md-12">
                                  <div class="form-group  is-empty no-file-input-style">
-                                    <label class="control-label">Subtile file</label>
-                                    <input name="track_file" type="file" class="form-control">
+                                    <label class="control-label">Default subtitle file (.vtt or .srt)</label>
+                                    <input name="track_file" type="file" accept=".vtt,.srt,text/vtt,application/x-subrip,text/plain" class="form-control">
                                  </div>
-                                 <span class="material-input">Upload track file</span>
+                                 <span class="material-input">Used for movies and as a fallback when an episode has no subtitle file.</span>
 
                               </div>
                            </div>
@@ -748,6 +757,7 @@ return '<div class="panel panel-default episode-row">' +
 '</div>' +
 '<div class="row"><div class="col-md-12"><div class="form-group label-floating is-empty"><label class="control-label">Episode Vimeo HLS Link</label><input name="episodes[' + index + '][link]" data-series-required="true" type="text" class="form-control episode-link-input"></div></div></div>' +
 '<div class="row"><div class="col-md-6"><div class="form-group label-floating is-empty"><label class="control-label">Episode preview link</label><input name="episodes[' + index + '][preview_link]" type="text" class="form-control"></div></div><div class="col-md-6"><div class="form-group label-floating is-empty"><label class="control-label">Episode iframe</label><input name="episodes[' + index + '][iframe]" type="text" class="form-control"></div></div></div>' +
+'<div class="row"><div class="col-md-12"><div class="form-group is-empty no-file-input-style"><label class="control-label">Episode subtitle file (.vtt or .srt)</label><input name="episodes[' + index + '][track_file]" type="file" accept=".vtt,.srt,text/vtt,application/x-subrip,text/plain" class="form-control"></div><span class="material-input">Upload subtitles for this episode. SRT files are converted to WebVTT automatically.</span></div></div>' +
 '<input name="episodes[' + index + '][sort_order]" type="hidden" value="' + index + '">' +
 '</div>' +
 '</div>';

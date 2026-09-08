@@ -20,6 +20,10 @@ class VideoIndexResource extends JsonResource
         $isPurchased = $order && $purchaseType === 'buy';
         $isRented = $order && $purchaseType === 'rent'
             && optional($order->video_rent_expires)->isFuture();
+        $hasEpisodeSubtitles = $this->relationLoaded('episodes')
+            && $this->episodes->contains(function ($episode) {
+                return !empty($episode->track_file);
+            });
 
         return array_merge($data, [
             'is_purchased' => (bool) $isPurchased,
@@ -28,6 +32,8 @@ class VideoIndexResource extends JsonResource
             'rent_expires_at' => $isRented
                 ? optional($order->video_rent_expires)->toIso8601String()
                 : null,
+            'subtitle_url' => $this->track_file ?: null,
+            'has_subtitles' => !empty($this->track_file) || $hasEpisodeSubtitles,
             'genres' => $this->whenLoaded('genres', function () {
                 return $this->genres->map->only(['id', 'name', 'slug']);
             }),
@@ -45,6 +51,8 @@ class VideoIndexResource extends JsonResource
                         'season_number' => (int) $episode->season_number,
                         'episode_number' => (int) $episode->episode_number,
                         'duration' => $episode->duration,
+                        'subtitle_url' => $episode->track_file ?: ($this->track_file ?: null),
+                        'has_subtitles' => !empty($episode->track_file ?: $this->track_file),
                     ];
                 });
             }),

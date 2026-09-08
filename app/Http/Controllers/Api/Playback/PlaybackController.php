@@ -29,6 +29,7 @@ class PlaybackController extends Controller
         abort_if($episodeId && ! $episode, 404, 'Episode not found.');
 
         $streamUrl = optional($episode)->link ?: $video->link;
+        $subtitleUrl = optional($episode)->track_file ?: $video->track_file;
         abort_if(! $streamUrl, 404, 'This video is not available for playback.');
 
         return response()->json([
@@ -38,6 +39,13 @@ class PlaybackController extends Controller
                 'title' => optional($episode)->title ?: $video->title,
                 'stream_url' => $streamUrl,
                 'content_type' => stripos($streamUrl, '.m3u8') !== false ? 'hls' : 'progressive',
+                'subtitle_url' => $subtitleUrl ?: null,
+                'subtitles' => $subtitleUrl ? [[
+                    'label' => 'English',
+                    'language' => 'en',
+                    'format' => 'webvtt',
+                    'url' => $subtitleUrl,
+                ]] : [],
                 'access_type' => $access['type'],
                 'rent_expires_at' => optional($access['order'])->video_rent_expires
                     ? $access['order']->video_rent_expires->toIso8601String()
