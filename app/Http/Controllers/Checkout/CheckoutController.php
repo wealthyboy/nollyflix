@@ -50,9 +50,13 @@ class CheckoutController extends Controller
 			['cart_id' =>  $request->cart_id],
 			[
 				'user_id'  => $user->id,
+				'content_owner_id' => $cart->content_owner_id,
 				'currency' => $request->currency,
 				'invoice'  => "INV-" . date('Y') . "-" . rand(10000, 39999),
 				'video_id' => $cart->video_id,
+				'purchase_type' => $cart->purchase_type,
+				'total' => $cart->total,
+				'request_from' => $cart->request_from ?: 'web',
 				'video_rent_expires' => now()->addDays(2)
 			]
 		);

@@ -12,6 +12,7 @@ class Order extends Model
     
 	protected $fillable = [
 		'user_id',
+		'content_owner_id',
 		'currency',
 		'invoice',
 		'video_id',
@@ -42,6 +43,10 @@ class Order extends Model
 
 	public function user(){
 	   return $this->belongsTo('App\User');	
+	}
+
+	public function content_owner(){
+	   return $this->belongsTo('App\User', 'content_owner_id');
 	}
 
 

@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notification;
 use App\Notifications\CastsEmailNotification;
+use App\Services\ContentAttributionStats;
 
 
 
@@ -28,7 +29,7 @@ class CastsController extends Controller
      */
     public function index()
     {    
-        $casts = (new User())->castings()->latest()->get();
+        $casts = (new User())->castings()->withCount('attributed_orders')->latest()->get();
         return  view('admin.casts.index', compact('casts'));  
     }
 
@@ -89,10 +90,14 @@ class CastsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, ContentAttributionStats $attributionStats)
     {   
-        $cast = User::find($id);
-        return  view('admin.casts.show',compact('cast'));  
+        $cast = User::with('cast_videos')->findOrFail($id);
+        $attribution = $attributionStats->forCast($cast);
+        $attributedOrders = $attribution['orders'];
+        $stats = $attribution['stats'];
+
+        return view('admin.casts.show', compact('cast', 'attributedOrders', 'stats'));  
     }
 
     /**

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Notifications\FilmerEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
+use App\Services\ContentAttributionStats;
 
 
 
@@ -29,7 +30,7 @@ class FilmersController extends Controller
      */
     public function index()
     {    
-        $filmers = (new User())->filmers()->latest()->get();
+        $filmers = (new User())->filmers()->withCount('attributed_orders')->latest()->get();
         return   view('admin.filmers.index', compact('filmers'));  
     }
 
@@ -96,10 +97,14 @@ class FilmersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, ContentAttributionStats $attributionStats)
     {
-        $filmer = User::find($id);
-        return  view('admin.filmers.show',compact('filmer'));  
+        $filmer = User::with('filmer_videos')->findOrFail($id);
+        $attribution = $attributionStats->forFilmer($filmer);
+        $attributedOrders = $attribution['orders'];
+        $stats = $attribution['stats'];
+
+        return view('admin.filmers.show', compact('filmer', 'attributedOrders', 'stats'));  
     }
 
     /**

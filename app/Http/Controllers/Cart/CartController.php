@@ -33,11 +33,28 @@ class CartController  extends Controller {
 
 		$cart = new Cart;
 		$rate = Helper::rate();
-		$content_owner_id = $request->session()->has('content_owner_id') ? session('content_owner_id') : null;
 		$channel = $request->token ? ['remember_token' => $request->token] : ['id' => $request->cart_id];
 		$user_id = $request->user_id ?? optional(auth()->user())->id;
 		$user = User::find($user_id);
 		$video = Video::visibleInCurrentRegion()->findOrFail($request->video_id);
+
+		$content_owner_id = null;
+		$sessionOwnerId = $request->session()->get('content_owner_id');
+		$sessionVideoId = $request->session()->get('content_owner_video_id');
+
+		if ($sessionOwnerId && (int) $sessionVideoId === (int) $video->id) {
+			$contentOwner = User::find($sessionOwnerId);
+
+			if ($contentOwner && in_array($contentOwner->type, ['casts', 'filmakers'], true)) {
+				$belongsToVideo = $contentOwner->type === 'casts'
+					? $video->casts()->where('users.id', $contentOwner->id)->exists()
+					: $video->filmers()->where('users.id', $contentOwner->id)->exists();
+
+				if ($belongsToVideo) {
+					$content_owner_id = $contentOwner->id;
+				}
+			}
+		}
 
 		$result = $cart->updateOrCreate(
 			$channel,
@@ -55,6 +72,13 @@ class CartController  extends Controller {
 			]
 		);
 
+		if ($content_owner_id) {
+			$request->session()->forget([
+				'content_owner_id',
+				'content_owner_video_id',
+				'content_owner_attributed_at',
+			]);
+		}
 
 
 		if ($request->from == 'app') {

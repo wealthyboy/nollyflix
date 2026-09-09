@@ -138,6 +138,11 @@ class User extends Authenticatable implements JWTSubject
 		return $this->hasMany('App\Order')->orderBy('id', 'DESC');
 	}
 
+	public function attributed_orders()
+	{
+		return $this->hasMany('App\Order', 'content_owner_id');
+	}
+
 	/**
 	 * Get the banner's image.
 	 */

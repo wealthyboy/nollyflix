@@ -28,7 +28,7 @@
             @foreach($user->profile_videos as $video)
                 <div class="col item col-6 col-md-6 col-lg-2 mt-3">
                     <div class="progression-studios-video-index-container">
-                        <a href="/browse/{{ $video->slug }}">
+                        <a href="{{ route('browse.user.show', ['video' => $video, 'user' => $user]) }}">
 
                             <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
                         
@@ -51,7 +51,7 @@
                     </div><!-- close .progression-studios-video-index-container -->
                     <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
                         <div class="mx-auto buy-rent-links">
-                           @include('partials.links')
+                           @include('partials.links', ['profile_user' => $user])
                         </div>
                     </div><!-- close #video-post-buttons-container -->
                 </div><!-- close .col -->

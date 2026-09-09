@@ -44,6 +44,7 @@
                                     <th>Full name</th>
                                     <th>Email</th>
                                     <th>Movies</th>
+                                    <th>Attributed sales</th>
                                     <th class="disabled-sorting text-right">Date</th>
                                 </tr>
                             </thead>
@@ -61,6 +62,7 @@
                                         <td><a href="{{ route('filmers.show',['filmer'=>$filmer->id]) }}">{{ $filmer->fullname() }}</a></td>
                                         <td class="text-left">{{ $filmer->email }}</td>
                                         <td class="text-left">{{ $filmer->filmer_videos->count() }}</td>
+                                        <td class="text-left"><strong>{{ $filmer->attributed_orders_count }}</strong></td>
                                         <td class="text-right">
                                            {{ $filmer->created_at }}
                                         </td>

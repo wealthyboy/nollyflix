@@ -44,6 +44,7 @@
                                     <th>Full name</th>
                                     <th>Email</th>
                                     <th>Movies</th>
+                                    <th>Attributed sales</th>
                                     <th class="disabled-sorting text-right">Date</th>
                                 </tr>
                             </thead>
@@ -61,6 +62,7 @@
                                         <td><a href="{{ route('casts.show',['cast'=>$cast->id]) }}">{{ $cast->fullname() }}</a></td>
                                         <td class="text-left">{{ $cast->email }}</td>
                                         <td class="text-left">{{ $cast->cast_videos->count() }}</td>
+                                        <td class="text-left"><strong>{{ $cast->attributed_orders_count }}</strong></td>
                                         </td>
                                         <td class="text-right">
                                            {{ $cast->created_at }}

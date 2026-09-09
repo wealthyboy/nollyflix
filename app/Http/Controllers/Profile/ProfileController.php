@@ -48,9 +48,6 @@ class ProfileController extends Controller
         $user = User::where('username',$username)->firstOrFail();
         $user->setRelation('profile_videos', $user->profile_videos()->visibleInCurrentRegion()->get());
 
-        if ($user){
-            session(['content_owner_id' => $user->id]);
-        }
 
         $page_title = "Buy ,Rent Movies, Profile for {$user->fullname()}";
         $page_meta_description = "Buy nollywood movies, {$user->fullname()}";
