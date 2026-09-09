@@ -95,9 +95,10 @@ class CastsController extends Controller
         $cast = User::with('cast_videos')->findOrFail($id);
         $attribution = $attributionStats->forCast($cast);
         $attributedOrders = $attribution['orders'];
+        $movieBreakdown = $attribution['movieBreakdown'];
         $stats = $attribution['stats'];
 
-        return view('admin.casts.show', compact('cast', 'attributedOrders', 'stats'));  
+        return view('admin.casts.show', compact('cast', 'attributedOrders', 'movieBreakdown', 'stats'));  
     }
 
     /**

@@ -102,9 +102,10 @@ class FilmersController extends Controller
         $filmer = User::with('filmer_videos')->findOrFail($id);
         $attribution = $attributionStats->forFilmer($filmer);
         $attributedOrders = $attribution['orders'];
+        $movieBreakdown = $attribution['movieBreakdown'];
         $stats = $attribution['stats'];
 
-        return view('admin.filmers.show', compact('filmer', 'attributedOrders', 'stats'));  
+        return view('admin.filmers.show', compact('filmer', 'attributedOrders', 'movieBreakdown', 'stats'));  
     }
 
     /**

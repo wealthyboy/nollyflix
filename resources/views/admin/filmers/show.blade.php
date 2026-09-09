@@ -24,7 +24,7 @@
             <ul class="nav nav-pills nav-pills-warning">
                 <li class="active"><a href="panels.html#pill1" data-toggle="tab">General</a></li>
                 <li class=""><a href="panels.html#videos" data-toggle="tab">Videos</a></li>
-                <li class=""><a href="panels.html#sales" data-toggle="tab">Sales stats</a></li>
+                <li class=""><a href="panels.html#sales" data-toggle="tab">Stats</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="pill1">
