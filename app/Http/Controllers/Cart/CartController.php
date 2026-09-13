@@ -38,6 +38,7 @@ class CartController  extends Controller {
 		$user_id = $request->user_id ?? optional(auth()->user())->id;
 		$user = User::find($user_id);
 		$video = Video::findOrFail($request->video_id);
+		abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available to buy or rent in your region.');
 
 		$result = $cart->updateOrCreate(
 			$channel,

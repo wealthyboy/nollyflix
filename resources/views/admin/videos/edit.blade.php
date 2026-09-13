@@ -536,7 +536,7 @@
                                   </div>
                                   <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
                                      <div class="panel-body scroll">
-                                        <p class="text-muted" style="margin:0 0 12px;">Selected regions will not see this title on the website or mobile app.</p>
+                                        <p class="text-muted" style="margin:0 0 12px;">Users in selected regions can still see this title, poster, preview and details, but cannot buy, rent or play the full movie.</p>
                                         <ul>
                                            @foreach($excludes as $key => $exclude)
                                            <li data-caption="Documents">

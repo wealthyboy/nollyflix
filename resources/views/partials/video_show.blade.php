@@ -91,14 +91,6 @@
       
       <div class="row">
 
-         @if(!empty($blocked))
-            <div class="col-12">
-               <div class="alert alert-warning p-3 rounded mb-4" role="alert">
-                  <strong>This movie is not available in your region.</strong>
-                  <div class="mt-1">You can still watch the preview, view the movie details and purchase or rent it.</div>
-               </div>
-            </div>
-         @endif
          <div class="col-lg-8">
             <div id="">
                <h1 class="video-post-heading-title">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
@@ -150,7 +142,7 @@
             </div>
          </div>
          <div class="col-lg-4 mb-5">
-            @if( $system_settings->allow_multi_currency)
+            @if(!$blocked && $system_settings->allow_multi_currency)
             <div class="">
                <div class="dotted-dividers-pro">
                   <h5>Switch Currency: {{ $video->currency }}</h5>
@@ -170,7 +162,14 @@
             </div>
             @endif
             <div class="mt-3" id="">
-               <buttons />
+               @if($blocked)
+                  <div class="alert alert-warning p-4 rounded mb-4" role="alert">
+                     <strong class="d-block mb-2">This movie is not available in your region.</strong>
+                     <div>You can still watch the preview and view the movie details.</div>
+                  </div>
+               @else
+                  <buttons />
+               @endif
             </div>
          </div>
        

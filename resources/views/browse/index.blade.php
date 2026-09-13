@@ -27,8 +27,12 @@
                                         <?php  $read_more =  "<a href='/browse/'>Read More</a>" ?>
 <div class="progression-studios-slider-excerpt"><?php echo  str_limit(html_entity_decode($video->video->description), $limit = 200, $end = '...') ?>  <?php  if (strlen($video->video->description)  > 200 ) {?>  <a href="{{ route('browse.show',['video' => $video->video->slug ]) }}">Read More</a>  <?php } ?></div>
                                         <a class="btn btn-slider-pro" data-fancybox href="{{ optional($video->video)->playablePreviewLink() }}"><i class="far fa-play-circle"></i>Play Trailer</a>
-                                        <a class="btn btn-slider-pro"  data-type="buy" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Buy {{ $video->video->currency }}{{ number_format($video->video->converted_buy_price) }} </a>
-                                        <a class="btn btn-slider-pro"   data-type="rent"  href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Rent {{ $video->video->currency }}{{ number_format($video->video->converted_rent_price) }} </a>
+                                        @if($video->video->isBlockedInCurrentRegion())
+                                            <a class="btn btn-slider-pro" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-info-circle"></i>View Details</a>
+                                        @else
+                                            <a class="btn btn-slider-pro"  data-type="buy" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Buy {{ $video->video->currency }}{{ number_format($video->video->converted_buy_price) }} </a>
+                                            <a class="btn btn-slider-pro"   data-type="rent"  href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Rent {{ $video->video->currency }}{{ number_format($video->video->converted_rent_price) }} </a>
+                                        @endif
                                     </div><!-- close .progression-studios-slider-caption-align -->
                                 </div><!-- close .progression-studios-slider-caption-width -->
     

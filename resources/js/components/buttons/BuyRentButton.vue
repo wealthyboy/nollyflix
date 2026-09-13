@@ -145,6 +145,9 @@ export default {
     },
     methods: {
         buyOrRent(type, price) {
+            if (this.$root.video.region_blocked) {
+                return;
+            }
             this.$store.commit("setBuyOrRent", type);
             this.$store.commit("setTitle", "To purchase");
             this.$store.commit("setFormErrors", {});
