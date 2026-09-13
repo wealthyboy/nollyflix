@@ -1,4 +1,3 @@
-@if(empty($blocked))
 <div id="video-page-title-pro" style="background-image:url({{ $video->poster }});">
    @if(!empty($video->preview_link))
    <a class="video-page-title-play-button" data-trailer-trigger href="{{ $video->preview_link }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
@@ -86,7 +85,6 @@
    </div>
 </div>
 @endif
-@endif
 <div id="content-pro">
    <div class="container custom-gutters-pro">
 
@@ -94,11 +92,14 @@
       <div class="row">
 
          @if(!empty($blocked))
-            <div class="alert alert-warning p-3 rounded mb-5">
-               Sorry, this video is not available in your region.
+            <div class="col-12">
+               <div class="alert alert-warning p-3 rounded mb-4" role="alert">
+                  <strong>This movie is not available in your region.</strong>
+                  <div class="mt-1">You can still watch the preview, view the movie details and purchase or rent it.</div>
+               </div>
             </div>
-         @else
-             <div class="col-lg-8">
+         @endif
+         <div class="col-lg-8">
             <div id="">
                <h1 class="video-post-heading-title">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
                <div class="clearfix"></div>
@@ -148,8 +149,8 @@
                <!-- #vayvo-video-post-content -->
             </div>
          </div>
-         @if( $system_settings->allow_multi_currency)
          <div class="col-lg-4 mb-5">
+            @if( $system_settings->allow_multi_currency)
             <div class="">
                <div class="dotted-dividers-pro">
                   <h5>Switch Currency: {{ $video->currency }}</h5>
@@ -168,11 +169,10 @@
                <!-- close .dotted-dividers-pro -->
             </div>
             @endif
-            <div  class="mt-3" id="">
+            <div class="mt-3" id="">
                <buttons />
             </div>
          </div>
-         @endif
        
       </div>
 

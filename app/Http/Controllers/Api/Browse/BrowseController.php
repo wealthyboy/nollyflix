@@ -28,17 +28,15 @@ class BrowseController extends Controller
      */
     public function index()
     {
-        $sections = Section::whereHas('videos', function ($query) {
-            $query->visibleInCurrentRegion();
-        })->with(['videos' => function ($query) {
-            $query->visibleInCurrentRegion();
-        }])->orderBy('sort_order', 'asc')->get();
+        $sections = Section::whereHas('videos')
+            ->with('videos')
+            ->orderBy('sort_order', 'asc')
+            ->get();
 
-        $featured_videos = DefaultBanner::whereHas('video', function ($query) {
-            $query->visibleInCurrentRegion();
-        })->with(['video' => function ($query) {
-            $query->visibleInCurrentRegion();
-        }])->orderBy('id', 'DESC')->get();
+        $featured_videos = DefaultBanner::whereHas('video')
+            ->with('video')
+            ->orderBy('id', 'DESC')
+            ->get();
         $slides = FeaturedResource::collection($featured_videos)->resolve(request());
         return BrowseResource::collection($sections)
             ->additional(['meta' => [
@@ -49,10 +47,10 @@ class BrowseController extends Controller
 
     public function show($id)
     {
-        $video = Video::visibleInCurrentRegion()->findOrFail($id);
+        $video = Video::findOrFail($id);
         $video->load('episodes', 'genres', 'casts', 'filmers', 'related_videos.video');
         $video->setRelation('related_videos', $video->related_videos->filter(function ($related) {
-            return $related->video && !$related->video->isBlockedInCurrentRegion();
+            return (bool) $related->video;
         })->values());
 
         return new VideoIndexResource($video);
@@ -61,11 +59,10 @@ class BrowseController extends Controller
 
     public function featuredVideos()
     {
-        $featured_videos = DefaultBanner::whereHas('video', function ($query) {
-            $query->visibleInCurrentRegion();
-        })->with(['video' => function ($query) {
-            $query->visibleInCurrentRegion();
-        }])->orderBy('id', 'DESC')->get();
+        $featured_videos = DefaultBanner::whereHas('video')
+            ->with('video')
+            ->orderBy('id', 'DESC')
+            ->get();
         return FeaturedResource::collection($featured_videos);
     }
 }

@@ -36,7 +36,7 @@ class CheckoutController extends Controller
             'type' => 'required|in:buy,rent',
         ]);
 
-        $video = Video::visibleInCurrentRegion()->findOrFail($data['video_id']);
+        $video = Video::findOrFail($data['video_id']);
         $currency = $request->attributes->get('currency_code', 'NGN');
         $amount = $this->priceFor($video, $data['type'], $currency);
 
@@ -117,14 +117,14 @@ class CheckoutController extends Controller
             ->first();
 
         if ($payment) {
-            $video = Video::visibleInCurrentRegion()->findOrFail($payment->video_id);
+            $video = Video::findOrFail($payment->video_id);
             $purchaseType = $payment->purchase_type;
             $currency = $payment->currency;
             $amount = (float) $payment->amount;
         } else {
             abort_if(empty($data['video_id']) || empty($data['type']), 422, 'Video and purchase type are required for this payment.');
 
-            $video = Video::visibleInCurrentRegion()->findOrFail($data['video_id']);
+            $video = Video::findOrFail($data['video_id']);
             $purchaseType = $data['type'];
             $currency = $request->attributes->get('currency_code', 'NGN');
             $amount = $this->priceFor($video, $purchaseType, $currency);

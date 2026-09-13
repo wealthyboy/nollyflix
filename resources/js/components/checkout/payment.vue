@@ -205,9 +205,9 @@ export default {
                                         currency: context.user.iso_code
                                     })
                                     .then(res => {
-                                        location.href =
-                                            "/watch/" +
-                                            context.$root.video.slug;
+                                        location.href = context.$root.video.region_blocked
+                                            ? "/browse/" + context.$root.video.slug
+                                            : "/watch/" + context.$root.video.slug;
                                     })
                                     .catch(error => {
                                         alert("Something went wrong");

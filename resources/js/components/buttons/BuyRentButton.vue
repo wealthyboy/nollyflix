@@ -2,7 +2,7 @@
     <div>
         <a
             :href="'/watch/' + $root.video.slug + '?watch=free'"
-            v-if="$root.video.access_type == 'is_free'"
+            v-if="$root.video.access_type == 'is_free' && !$root.video.region_blocked"
             class="d-flex flex-row mb-2 rounded-0 btn-primary"
         >
             <span class="purchase-btn-icon  p-4">
@@ -17,6 +17,16 @@
                 <div class="purchase-btn-price-subtext">Its free</div>
             </span>
         </a>
+        <div
+            v-if="$root.video.access_type == 'is_free' && $root.video.region_blocked"
+            class="d-flex flex-row mb-2 rounded-0 btn-secondary disabled"
+            aria-disabled="true"
+        >
+            <span class="purchase-btn-price-text-wrap p-3">
+                Unavailable in your region
+                <div class="purchase-btn-price-subtext">Trailer and movie details are still available.</div>
+            </span>
+        </div>
         <template v-if="$root.video.access_type == 'is_for_rent_and_buy'">
             <a
                 href="#!"

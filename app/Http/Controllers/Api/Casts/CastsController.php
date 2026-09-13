@@ -18,11 +18,10 @@ class CastsController extends Controller
     public function index()
     {
         $users = User::where('type', 'casts')
-            ->whereHas('cast_videos', function ($query) {
-                $query->visibleInCurrentRegion();
-            })->with(['cast_videos' => function ($query) {
-                $query->visibleInCurrentRegion();
-            }])->orderBy('name', 'ASC')->get();
+            ->whereHas('cast_videos')
+            ->with('cast_videos')
+            ->orderBy('name', 'ASC')
+            ->get();
 
         return CastsResource::collection($users);
     }

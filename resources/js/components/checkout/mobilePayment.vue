@@ -135,11 +135,10 @@ export default {
                                         cart_id: context.params.cart_id
                                     })
                                     .then(res => {
-                                        location.href =
-                                            "/watch/" +
-                                            context.$root.video.slug +
-                                            "?user_id=" +
-                                            context.params.user_id;
+                                        location.href = context.$root.video.region_blocked
+                                            ? "/browse/" + context.$root.video.slug
+                                            : "/watch/" + context.$root.video.slug +
+                                                "?user_id=" + context.params.user_id;
                                     })
                                     .catch(error => {
                                         context.$store.commit(

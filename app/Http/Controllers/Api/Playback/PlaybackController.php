@@ -11,7 +11,8 @@ class PlaybackController extends Controller
 {
     public function show(Request $request, VideoEntitlementService $entitlements, $id)
     {
-        $video = Video::visibleInCurrentRegion()->with('episodes')->findOrFail($id);
+        $video = Video::with('episodes')->findOrFail($id);
+        abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available in your region.');
         $user = null;
         if ($request->bearerToken()) {
             try {

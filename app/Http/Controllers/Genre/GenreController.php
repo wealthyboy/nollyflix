@@ -16,7 +16,7 @@ class GenreController extends Controller
      */
     public function  index(Request $request,Genre $genre)  
     {   
-        $genre->setRelation('videos', $genre->videos()->visibleInCurrentRegion()->get());
+        $genre->setRelation('videos', $genre->videos()->get());
 
         $page_title = "Buy ,Rent Movies, {$genre->name}";
         $page_meta_description = "Buy nollywood movies, $genre->name";

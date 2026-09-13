@@ -17,11 +17,10 @@ class FilmMakersController extends Controller
     public function index()
     {
         $users = User::where('type', 'filmakers')
-            ->whereHas('filmer_videos', function ($query) {
-                $query->visibleInCurrentRegion();
-            })->with(['filmer_videos' => function ($query) {
-                $query->visibleInCurrentRegion();
-            }])->orderBy('name', 'ASC')->get();
+            ->whereHas('filmer_videos')
+            ->with('filmer_videos')
+            ->orderBy('name', 'ASC')
+            ->get();
 
         return FilmMakersResource::collection($users);
     }

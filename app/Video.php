@@ -24,7 +24,9 @@ class Video extends Model
         'converted_buy_price',
         'converted_rent_price',
         'iso_code',
-        'year_release'
+        'year_release',
+        'region_blocked',
+        'region_available'
     ];
 
     protected $dates = [
@@ -364,6 +366,16 @@ class Video extends Model
         }
 
         return in_array($continentCode, $this->blocked_continents ?: [], true);
+    }
+
+    public function getRegionBlockedAttribute()
+    {
+        return $this->isBlockedInCurrentRegion();
+    }
+
+    public function getRegionAvailableAttribute()
+    {
+        return !$this->isBlockedInCurrentRegion();
     }
 
     /**

@@ -34,7 +34,7 @@ class WatchController extends Controller
      */
     public function index(Request $request,Video $video)
     {     
-        abort_if($video->isBlockedInCurrentRegion(), 404);
+        abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available in your region.');
 
         if ($video->access_type !== 'is_free') {
             if ($request->user_id) {
@@ -128,7 +128,7 @@ class WatchController extends Controller
 
     protected function authorizePlayback(Request $request, Video $video)
     {
-        abort_if($video->isBlockedInCurrentRegion(), 404);
+        abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available in your region.');
 
         if ($video->access_type === 'is_free') {
             return;

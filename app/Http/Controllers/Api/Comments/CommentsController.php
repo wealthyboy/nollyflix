@@ -20,8 +20,6 @@ class CommentsController extends Controller
      */
     public function index(Video $video)
     {
-        abort_if($video->isBlockedInCurrentRegion(), 404);
-
         $comments =  $video->comments()->orderBy('created_at','DESC')->paginate(3);
         return CommentsResource::collection( $comments );
     }
@@ -38,7 +36,7 @@ class CommentsController extends Controller
     {
         //
         $user = $request->user();
-        $video = Video::visibleInCurrentRegion()->findOrFail($request->video_id);
+        $video = Video::findOrFail($request->video_id);
 
         $new_review =  $comment->create([
             'user_id' => $user->id,

@@ -12,6 +12,7 @@ class VideoSummaryResource extends JsonResource
         $symbol = $request->attributes->get('currency_symbol', '₦');
         $buyPrice = $currency === 'USD' ? $this->buy_price_usd : $this->buy_price;
         $rentPrice = $currency === 'USD' ? $this->rent_price_usd : $this->rent_price;
+        $regionBlocked = $this->isBlockedInCurrentRegion();
 
         return [
             'id' => $this->id,
@@ -35,6 +36,11 @@ class VideoSummaryResource extends JsonResource
             'currency' => $symbol,
             'iso_code' => $currency,
             'country_code' => $request->attributes->get('country_code', 'NG'),
+            'is_region_blocked' => (bool) $regionBlocked,
+            'is_available_in_region' => ! $regionBlocked,
+            'region_message' => $regionBlocked
+                ? 'This title is not available in your region.'
+                : null,
         ];
     }
 }
