@@ -41,41 +41,35 @@
     }
 }
 
-.progression-studios-video-feaured-image {
-    height: 361px;
+/* Movie rows: keep posters at their proper 2:3 ratio at every viewport size.
+   The old fixed 361px desktop height made posters look cropped/short on wide screens. */
+.progression-video-carousel .item,
+.progression-video-carousel .progression-studios-video-index-container {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+.progression-video-carousel .progression-studios-video-feaured-image {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 2 / 3;
+    padding: 0 !important;
     overflow: hidden;
 }
 
-/* Mobile movie rows only: keep every section poster/card at a true 2:3 ratio. */
-@media only screen and (max-width: 767px) {
-    .progression-video-carousel .item,
-    .progression-video-carousel .progression-studios-video-index-container {
-        height: auto !important;
-        min-height: 0 !important;
-    }
+.progression-video-carousel .progression-studios-video-feaured-image img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+}
 
-    .progression-video-carousel .progression-studios-video-feaured-image {
-        position: relative;
-        width: 100%;
-        height: auto !important;
-        min-height: 0 !important;
-        aspect-ratio: 2 / 3;
-        padding: 0 !important;
-        overflow: hidden;
-    }
-
-    .progression-video-carousel .progression-studios-video-feaured-image img {
-        position: absolute;
-        inset: 0;
-        display: block;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
-        object-position: center;
-    }
-
-    .progression-video-carousel .video-index-border-hover,
-    .progression-video-carousel .progression-video-index-content {
-        height: 100% !important;
-    }
+.progression-video-carousel .video-index-border-hover,
+.progression-video-carousel .progression-video-index-content {
+    height: 100% !important;
 }

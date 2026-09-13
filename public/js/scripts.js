@@ -183,9 +183,21 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		    768 : {
 		        items:4,
 		    },
-		    // breakpoint from 1025 up
+		    // Standard laptop / desktop
 		    1250: {
 		        items:5,
+		    },
+		    // 15-inch / wide laptop screens: keep poster width close to the 13-inch layout
+		    1500: {
+		        items:6,
+		    },
+		    // Full-HD / iMac-style wide screens
+		    1850: {
+		        items:7,
+		    },
+		    // 2K / large iMac displays
+		    2300: {
+		        items:8,
 		    }
 		}
 	});
