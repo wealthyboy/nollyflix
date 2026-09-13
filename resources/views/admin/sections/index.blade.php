@@ -73,7 +73,11 @@
                                     {{ $section->name }}  
                                     <a href="{{ route('sections.edit',['section'=>$section->id]) }}">
                                        <i class="fa fa-pencil"></i> Edit
-                                    </a> 
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <a href="{{ route('sections.videos.order',['section'=>$section->id]) }}" title="Arrange movies in {{ $section->name }}">
+                                       <i class="material-icons" style="font-size:16px; vertical-align:middle;">drag_indicator</i> Arrange Movies
+                                    </a>
                                 </label>
                             </div>   
                         </div>

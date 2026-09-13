@@ -13,6 +13,10 @@
                     <i class="material-icons">add</i>
                     Add Video
                 </a>
+                <a href="{{ route('sections.index') }}" rel="tooltip" title="Arrange homepage section movies" class="btn btn-primary btn-simple btn-xs">
+                    <i class="material-icons">drag_indicator</i>
+                    Arrange Homepage Movies
+                </a>
                 <a href="javascript:void(0)" onclick="confirm('Are you sure?') ? $('#form-videos').submit() : false;" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                     <i class="material-icons">close</i>
                     Remove

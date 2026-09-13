@@ -8,6 +8,7 @@ use App\Section;
 use App\Activity;
 use App\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -28,6 +29,69 @@ class SectionsController extends Controller
     {
         $sections = Section::latest()->get();
         return view('admin.sections.index',compact('sections'));
+    }
+
+
+    /**
+     * Show the drag-and-drop movie order for one homepage section.
+     */
+    public function orderVideos($id)
+    {
+        User::canTakeAction(4);
+
+        $section = Section::with('videos')->findOrFail($id);
+
+        return view('admin.sections.video-order', compact('section'));
+    }
+
+    /**
+     * Persist the drag-and-drop movie order for one homepage section.
+     */
+    public function updateVideoOrder(Request $request, $id)
+    {
+        User::canTakeAction(4);
+
+        $section = Section::findOrFail($id);
+
+        $this->validate($request, [
+            'video_ids' => 'required|array',
+            'video_ids.*' => 'required|integer|distinct|exists:videos,id',
+        ]);
+
+        $videoIds = array_map('intval', $request->input('video_ids', []));
+        $attachedVideoIds = DB::table('section_video')
+            ->where('section_id', $section->id)
+            ->pluck('video_id')
+            ->map(function ($videoId) {
+                return (int) $videoId;
+            })
+            ->all();
+
+        $submitted = $videoIds;
+        $attached = $attachedVideoIds;
+        sort($submitted);
+        sort($attached);
+
+        if ($submitted !== $attached) {
+            return response()->json([
+                'message' => 'The movie list changed while you were arranging it. Refresh the page and try again.',
+            ], 422);
+        }
+
+        DB::transaction(function () use ($section, $videoIds) {
+            foreach ($videoIds as $position => $videoId) {
+                DB::table('section_video')
+                    ->where('section_id', $section->id)
+                    ->where('video_id', $videoId)
+                    ->update(['sort_order' => $position + 1]);
+            }
+        });
+
+        (new Activity)->Log("Reordered movies in section {$section->name}");
+
+        return response()->json([
+            'message' => 'Movie order saved.',
+        ]);
     }
 
     /**

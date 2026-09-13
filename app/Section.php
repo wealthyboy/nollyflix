@@ -21,7 +21,10 @@ class Section extends Model
     */
     public function videos()
     {
-        return $this->belongsToMany('App\Video','section_video')->orderBy('id','DESC');
+        return $this->belongsToMany('App\Video', 'section_video')
+            ->withPivot('sort_order')
+            ->orderBy('section_video.sort_order', 'asc')
+            ->orderBy('section_video.id', 'asc');
     }
 
     /**

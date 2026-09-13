@@ -25,6 +25,8 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::resource('settings','Admin\Settings\SettingsController',['names' => 'settings']);
     Route::resource('media','Admin\Media\MediaController',['names'=>'media']);
     Route::resource('category','Admin\Category\CategoryController',['names'=>'category']);
+    Route::get('sections/{section}/videos/order', 'Admin\Section\SectionsController@orderVideos')->name('sections.videos.order');
+    Route::post('sections/{section}/videos/order', 'Admin\Section\SectionsController@updateVideoOrder')->name('sections.videos.order.update');
     Route::resource('sections','Admin\Section\SectionsController',['names'=>'sections']);
 
     Route::post('category/delete/image','Admin\Category\CategoryController@undo');
