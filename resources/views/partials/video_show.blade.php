@@ -142,25 +142,6 @@
             </div>
          </div>
          <div class="col-lg-4 mb-5">
-            @if(!$blocked && $system_settings->allow_multi_currency)
-            <div class="">
-               <div class="dotted-dividers-pro">
-                  <h5>Switch Currency: {{ $video->currency }}</h5>
-                  <form method="GET" id="form-currency"  action="/currency">
-                     <select name="currency_id" id="switch-currency" class="custom-select">
-                        @foreach($currencies as $currency)
-                        @if ($currency->symbol === $video->currency)
-                        <option value="{{ $currency->id }}"  selected>{{ $currency->symbol }} {{ $currency->iso_code3 }} </option>
-                        @else
-                        <option value="{{ $currency->id }}">{{ $currency->symbol }} {{ $currency->iso_code3 }} </option>
-                        @endif 
-                        @endforeach
-                     </select>
-                  </form>
-               </div>
-               <!-- close .dotted-dividers-pro -->
-            </div>
-            @endif
             <div class="mt-3" id="">
                @if($blocked)
                   <div class="alert alert-warning p-4 rounded mb-4" role="alert">

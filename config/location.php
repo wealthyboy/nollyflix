@@ -117,9 +117,9 @@ return [
 
     'testing' => [
 
-        'enabled' => true,
+        'enabled' => filter_var(env('LOCATION_TESTING_ENABLED', false), FILTER_VALIDATE_BOOLEAN),
 
-        'ip' => '66.102.0.0',
+        'ip' => env('LOCATION_TESTING_IP', '66.102.0.0'),
 
     ],
 

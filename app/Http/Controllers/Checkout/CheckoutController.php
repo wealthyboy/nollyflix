@@ -60,9 +60,10 @@ class CheckoutController extends Controller
 		try {
 			$admin_emails = explode(',', $this->settings->alert_email);
 			$when = now()->addMinutes(5);
+			$currencySymbol = strtoupper((string) $request->currency) === 'USD' ? '$' : '₦';
 			\Mail::to($user->email)
 				->bcc($admin_emails[0])
-				->later($when, new OrderReceipt($user, $order, $cart, $this->settings, "₦"));
+				->later($when, new OrderReceipt($user, $order, $cart, $this->settings, $currencySymbol));
 		} catch (\Throwable $th) {
 			dd($th);
 		}

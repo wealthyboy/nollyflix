@@ -40,17 +40,28 @@ class CartController  extends Controller {
 		$video = Video::findOrFail($request->video_id);
 		abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available to buy or rent in your region.');
 
+		$type = strtolower((string) $request->type);
+		abort_unless(in_array($type, ['buy', 'rent'], true), 422, 'Invalid purchase type.');
+
+		// Never trust a browser-supplied amount. The IP middleware selects NGN
+		// or USD, and the Video accessor returns the manually-entered price.
+		$price = $type === 'rent'
+			? $video->converted_rent_price
+			: $video->converted_buy_price;
+
+		abort_if($price === null || (float) $price <= 0, 422, 'This purchase option is unavailable in your currency.');
+
 		$result = $cart->updateOrCreate(
 			$channel,
 			[ 
 				'video_id' => $request->video_id,		
 				'quantity' => 1,
-				'price' => $request->price,
-				'total' => $request->price * 1,
+				'price' => $price,
+				'total' => $price,
 				'user_id' => $request->from === 'app' ? $request->user_id : optional(auth()->user())->id,
 				'content_owner_id' => $content_owner_id,
 				'purchase_type' => $request->type,
-				'rate' => optional($rate)->rate ?? 1,
+				'rate' => 1,
 				'request_from' => $request->from,
 				'remember_token' => $request->token
 			]
