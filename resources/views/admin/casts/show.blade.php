@@ -10,6 +10,10 @@
                 <i class="material-icons">refresh</i>
                 Back
             </a>
+            <a href="{{ route('casts.edit', ['cast' => $cast->id]) }}" rel="tooltip" title="Edit" class="btn btn-rose btn-simple btn-xs">
+                <i class="material-icons">edit</i>
+                Edit Cast
+            </a>
            
         </div>
     </div>
@@ -21,10 +25,9 @@
             <h4 class="card-title">Details For {{ $cast->fullname() }}</h4>
         </div>
         <div class="card-content">
-            <ul class="nav nav-pills nav-pills-warning nfx-profile-tabs">
-                <li class="active"><a href="panels.html#pill1" data-toggle="tab"><i class="material-icons">person</i> General</a></li>
-                <li class=""><a href="panels.html#videos" data-toggle="tab"><i class="material-icons">movie</i> Videos</a></li>
-                <li class=""><a href="panels.html#sales" data-toggle="tab"><i class="material-icons">assessment</i> Stats</a></li>
+            <ul class="nav nav-pills nav-pills-warning">
+                <li class="active"><a href="panels.html#pill1" data-toggle="tab">General</a></li>
+                <li class=""><a href="panels.html#videos" data-toggle="tab">Videos</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="pill1">
@@ -102,9 +105,6 @@
                         @endif
                     </div>
 
-                </div>
-                <div class="tab-pane" id="sales">
-                    @include('admin.partials.content-attribution-stats')
                 </div>
             </div>
         </div>

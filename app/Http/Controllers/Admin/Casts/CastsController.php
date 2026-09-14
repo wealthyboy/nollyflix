@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notification;
+use Illuminate\Validation\Rule;
 use App\Notifications\CastsEmailNotification;
-use App\Services\ContentAttributionStats;
 
 
 
@@ -29,7 +29,7 @@ class CastsController extends Controller
      */
     public function index()
     {    
-        $casts = (new User())->castings()->withCount('attributed_orders')->latest()->get();
+        $casts = (new User())->castings()->latest()->get();
         return  view('admin.casts.index', compact('casts'));  
     }
 
@@ -90,15 +90,10 @@ class CastsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, ContentAttributionStats $attributionStats)
+    public function show($id)
     {   
-        $cast = User::with('cast_videos')->findOrFail($id);
-        $attribution = $attributionStats->forCast($cast);
-        $attributedOrders = $attribution['orders'];
-        $movieBreakdown = $attribution['movieBreakdown'];
-        $stats = $attribution['stats'];
-
-        return view('admin.casts.show', compact('cast', 'attributedOrders', 'movieBreakdown', 'stats'));  
+        $cast = User::find($id);
+        return  view('admin.casts.show',compact('cast'));  
     }
 
     /**
@@ -109,7 +104,9 @@ class CastsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cast = User::where('type', 'casts')->findOrFail($id);
+
+        return view('admin.casts.edit', compact('cast'));
     }
 
     /**
@@ -121,7 +118,29 @@ class CastsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cast = User::where('type', 'casts')->findOrFail($id);
+
+        $request->validate([
+            'first_name'  => 'required|min:1|max:100',
+            'last_name'   => 'nullable|max:100',
+            'email'       => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($cast->id)],
+            'username'    => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($cast->id)],
+            'description' => 'required|min:1|max:1000',
+            'image'       => 'nullable|string',
+        ]);
+
+        $cast->name = $request->first_name;
+        $cast->last_name = $request->last_name;
+        $cast->slug = str_slug(trim($request->first_name.' '.$request->last_name));
+        $cast->email = $request->email;
+        $cast->username = str_slug($request->username);
+        $cast->description = $request->description;
+        $cast->image = $request->image ?: null;
+        $cast->type = 'casts';
+        $cast->save();
+
+        return redirect()->route('casts.show', ['cast' => $cast->id])
+            ->with('success', 'Cast updated successfully.');
     }
 
     /**
