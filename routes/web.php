@@ -100,6 +100,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('cart/delete/{id}',     'Cart\CartController@destroy');
     Route::get('thankyou',             'Thankyou\ThankYouCtrl@index');
     Route::get('pages/{information}',  'Information\InformationController@show');
+    Route::get('cookie-policy',          'Information\InformationController@cookiePolicy')->name('cookie.policy');
 
     Route::post('checkout',              'Checkout\CheckoutController@store');
     Route::post('payment/successful',  'Checkout\CheckoutController@paymentSuccessful');

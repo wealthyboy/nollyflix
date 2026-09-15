@@ -19,7 +19,7 @@ class InformationController extends Controller
 	
 	public function __construct()
     {	  
-	    $this->middleware('admin', ['except' => ['show']]); 
+	    $this->middleware('admin', ['except' => ['show', 'cookiePolicy']]); 
     }
 	
 	public function  index(Request $request)  {
@@ -97,8 +97,32 @@ class InformationController extends Controller
 		$page_title = $information->name;
 		$mobile = $request->mobile;
 
+		// The cookie policy is maintained in code so the public page cannot
+		// drift back to copied/obsolete third-party wording or links.
+		if (stripos((string) $information->slug, 'cookie') !== false
+			|| stripos((string) $information->name, 'cookie') !== false) {
+			return view('pages.cookie-policy', compact('information', 'page_title', 'mobile'));
+		}
+
 		return view('pages.index',compact('information','page_title','mobile'));
 	}
+
+	public function cookiePolicy(Request $request)
+	{
+		$information = Information::query()
+			->where(function ($query) {
+				$query->where('slug', 'like', '%cookie%')
+					->orWhere('name', 'like', '%cookie%');
+			})
+			->orderBy('id')
+			->first();
+
+		$page_title = 'Cookie Policy';
+		$mobile = $request->mobile;
+
+		return view('pages.cookie-policy', compact('information', 'page_title', 'mobile'));
+	}
+
 
 	public function  destroy(Request $request,$id)  
 	{ 
