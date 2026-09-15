@@ -56,14 +56,14 @@
 
                 <h3>3. Your cookie choices</h3>
                 <p>
-                    Visitors outside Nigeria are shown a cookie consent panel when Nollyflix identifies the request as
-                    non-Nigerian. You can accept all optional cookies, reject non-essential cookies, or choose your
-                    preferences by category. If we cannot reliably determine your location, we show the consent panel
-                    as a precaution.
+                    Nollyflix shows public web visitors a cookie notice that slides up from the bottom of the website.
+                    You can accept all optional cookies, continue with essential cookies only, or choose your preferences
+                    by category. This makes the choice clear for everyone and supports consent requirements that apply to
+                    visitors in the European Union, European Economic Area, and United Kingdom.
                 </p>
                 <p>
                     Your consent preference is stored for up to 180 days so we can remember your choice. You can
-                    change or withdraw your optional-cookie consent at any time by opening Cookie Settings.
+                    change or withdraw your optional-cookie consent at any time by using Cookie Settings in the site footer or on this page.
                 </p>
 
                 @if(!empty($cookie_consent_required))

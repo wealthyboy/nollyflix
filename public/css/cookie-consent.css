@@ -6,21 +6,17 @@
 #nollyflix-cookie-consent {
     position: fixed;
     z-index: 2147483000;
-    left: 18px;
-    right: 18px;
-    bottom: 18px;
-    max-width: 980px;
-    margin: 0 auto;
-    background: rgba(14, 14, 17, 0.98);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(12, 12, 15, 0.985);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 14px;
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
-    padding: 20px;
-    transform: translateY(calc(100% + 46px));
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.42);
+    transform: translateY(110%);
     opacity: 0;
     visibility: hidden;
-    transition: transform .38s ease, opacity .28s ease, visibility .28s ease;
+    transition: transform .42s cubic-bezier(.22, .72, .22, 1), opacity .28s ease, visibility .28s ease;
 }
 
 #nollyflix-cookie-consent.nollyflix-cookie-show {
@@ -29,63 +25,108 @@
     visibility: visible;
 }
 
+.nollyflix-cookie-shell {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 20px 28px 22px;
+}
+
 .nollyflix-cookie-row {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 28px;
 }
 
 .nollyflix-cookie-copy {
-    flex: 1 1 auto;
+    flex: 1 1 560px;
     min-width: 0;
 }
 
+.nollyflix-cookie-kicker {
+    margin: 0 0 4px;
+    color: #ef3b67;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
 .nollyflix-cookie-title {
-    margin: 0 0 6px;
+    margin: 0 0 5px;
     color: #fff;
     font-size: 20px;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .nollyflix-cookie-text {
     margin: 0;
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 13px;
     line-height: 1.55;
 }
 
 .nollyflix-cookie-text a,
 .nollyflix-cookie-link {
-    color: #ff3b69;
+    color: #fff;
     text-decoration: underline;
+    text-decoration-color: #ef3b67;
+    text-underline-offset: 3px;
 }
 
 .nollyflix-cookie-actions {
     display: flex;
-    flex: 0 0 auto;
-    gap: 9px;
+    flex: 0 1 560px;
+    gap: 8px;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: flex-end;
 }
 
 .nollyflix-cookie-btn {
     appearance: none;
     border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 8px;
-    padding: 10px 14px;
+    border-radius: 7px;
+    padding: 10px 13px;
     background: transparent;
     color: #fff;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
 }
 
 .nollyflix-cookie-btn:hover,
 .nollyflix-cookie-btn:focus {
-    border-color: rgba(255, 255, 255, 0.7);
+    border-color: rgba(255, 255, 255, 0.72);
+    color: #fff;
     outline: none;
+    text-decoration: none;
+}
+
+.nollyflix-cookie-btn:active {
+    transform: translateY(1px);
+}
+
+.nollyflix-cookie-btn-policy {
+    border-color: transparent;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-decoration: underline;
+    text-decoration-color: #ef3b67;
+    text-underline-offset: 3px;
+}
+
+.nollyflix-cookie-btn-policy:hover,
+.nollyflix-cookie-btn-policy:focus {
+    border-color: transparent;
+    text-decoration: underline;
+    text-decoration-color: #fff;
 }
 
 .nollyflix-cookie-btn-primary {
@@ -95,15 +136,15 @@
 
 .nollyflix-cookie-btn-primary:hover,
 .nollyflix-cookie-btn-primary:focus {
-    background: #f22d62;
-    border-color: #f22d62;
+    background: #f02d62;
+    border-color: #f02d62;
 }
 
 #nollyflix-cookie-preferences {
     display: none;
     margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 #nollyflix-cookie-preferences.nollyflix-cookie-preferences-open {
@@ -115,59 +156,86 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 18px;
-    padding: 10px 0;
+    padding: 9px 0;
 }
 
 .nollyflix-cookie-option + .nollyflix-cookie-option {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .nollyflix-cookie-option strong {
     display: block;
     margin-bottom: 2px;
     color: #fff;
+    font-size: 13px;
 }
 
 .nollyflix-cookie-option span {
     display: block;
-    color: rgba(255, 255, 255, 0.68);
+    max-width: 760px;
+    color: rgba(255, 255, 255, 0.66);
     font-size: 12px;
     line-height: 1.4;
 }
 
 .nollyflix-cookie-toggle {
-    width: 20px;
-    height: 20px;
+    width: 19px;
+    height: 19px;
     margin-top: 2px;
     accent-color: #e81f55;
 }
 
+.nollyflix-cookie-preference-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.nollyflix-cookie-footer-settings {
+    display: flex;
+    justify-content: center;
+    padding: 0 16px 14px;
+}
+
 #nollyflix-cookie-settings-button {
+    display: none;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.64);
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+#nollyflix-cookie-settings-button:hover,
+#nollyflix-cookie-settings-button:focus {
+    color: #fff;
+    outline: none;
+}
+
+#nollyflix-cookie-settings-button.nollyflix-cookie-settings-visible {
+    display: inline-block;
+}
+
+#nollyflix-cookie-settings-button.nollyflix-cookie-settings-fallback {
     position: fixed;
     z-index: 2147482990;
     left: 14px;
     bottom: 14px;
-    display: none;
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 999px;
-    background: rgba(14, 14, 17, 0.9);
-    color: #fff;
+    background: rgba(12, 12, 15, 0.92);
     padding: 8px 12px;
-    font-size: 12px;
-    cursor: pointer;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
 }
 
-#nollyflix-cookie-settings-button.nollyflix-cookie-settings-visible {
-    display: block;
-}
-
-@media (max-width: 760px) {
-    #nollyflix-cookie-consent {
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        padding: 16px;
+@media (max-width: 900px) {
+    .nollyflix-cookie-shell {
+        padding: 17px 18px 18px;
     }
 
     .nollyflix-cookie-row {
@@ -178,9 +246,55 @@
         margin-top: 14px;
         justify-content: flex-start;
     }
+}
+
+@media (max-width: 600px) {
+    .nollyflix-cookie-shell {
+        padding: 15px 14px calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nollyflix-cookie-title {
+        font-size: 18px;
+    }
+
+    .nollyflix-cookie-text {
+        font-size: 12.5px;
+    }
+
+    .nollyflix-cookie-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        gap: 8px;
+    }
 
     .nollyflix-cookie-btn {
-        flex: 1 1 calc(50% - 6px);
-        text-align: center;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .nollyflix-cookie-btn-policy {
+        grid-column: 1 / -1;
+        text-align: left;
+        padding-left: 0;
+    }
+
+    .nollyflix-cookie-btn-primary {
+        grid-column: 1 / -1;
+    }
+
+    .nollyflix-cookie-preference-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .nollyflix-cookie-preference-actions .nollyflix-cookie-btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #nollyflix-cookie-consent {
+        transition: none;
     }
 }

@@ -50,6 +50,7 @@
             return defaults;
         }
 
+        // Keep support for preferences saved by the previous consent panel.
         if (value.indexOf('custom:') === 0) {
             var selected = value.substring(7).split(',');
             defaults.functional = selected.indexOf('functional') !== -1;
@@ -91,38 +92,43 @@
         root.id = 'nollyflix-cookie-consent';
         root.setAttribute('role', 'dialog');
         root.setAttribute('aria-live', 'polite');
-        root.setAttribute('aria-label', 'Cookie preferences');
+        root.setAttribute('aria-labelledby', 'nollyflix-cookie-title');
         root.innerHTML = ''
-            + '<div class="nollyflix-cookie-row">'
-            + '  <div class="nollyflix-cookie-copy">'
-            + '    <h2 class="nollyflix-cookie-title">Your privacy choices</h2>'
-            + '    <p class="nollyflix-cookie-text">We use necessary cookies to make Nollyflix work. With your permission, we may also use optional functional, analytics and advertising cookies. You can accept all, reject non-essential cookies, or choose your preferences. <a href="' + policyUrl + '">Cookie Policy</a></p>'
+            + '<div class="nollyflix-cookie-shell">'
+            + '  <div class="nollyflix-cookie-row">'
+            + '    <div class="nollyflix-cookie-copy">'
+            + '      <div class="nollyflix-cookie-kicker">Cookies &amp; privacy</div>'
+            + '      <h2 id="nollyflix-cookie-title" class="nollyflix-cookie-title">Your privacy matters</h2>'
+            + '      <p class="nollyflix-cookie-text">Nollyflix uses essential cookies to keep the service secure and working. Please review how we use cookies and your choices in our <a href="' + policyUrl + '">Cookie Policy</a>. Optional cookies are used only with your permission, including where EU/EEA or UK law requires consent.</p>'
+            + '    </div>'
+            + '    <div class="nollyflix-cookie-actions">'
+            + '      <a class="nollyflix-cookie-btn nollyflix-cookie-btn-policy" href="' + policyUrl + '">Read Cookie Policy</a>'
+            + '      <button type="button" class="nollyflix-cookie-btn" data-cookie-action="reject">Essential only</button>'
+            + '      <button type="button" class="nollyflix-cookie-btn" data-cookie-action="manage">Manage choices</button>'
+            + '      <button type="button" class="nollyflix-cookie-btn nollyflix-cookie-btn-primary" data-cookie-action="accept">Accept all</button>'
+            + '    </div>'
             + '  </div>'
-            + '  <div class="nollyflix-cookie-actions">'
-            + '    <button type="button" class="nollyflix-cookie-btn" data-cookie-action="reject">Reject non-essential</button>'
-            + '    <button type="button" class="nollyflix-cookie-btn" data-cookie-action="manage">Manage</button>'
-            + '    <button type="button" class="nollyflix-cookie-btn nollyflix-cookie-btn-primary" data-cookie-action="accept">Accept all</button>'
-            + '  </div>'
-            + '</div>'
-            + '<div id="nollyflix-cookie-preferences">'
-            + '  <div class="nollyflix-cookie-option">'
-            + '    <div><strong>Strictly necessary</strong><span>Required for sign-in, security, checkout, purchases/rentals, playback and remembering your cookie choice.</span></div>'
-            + '    <input class="nollyflix-cookie-toggle" type="checkbox" checked disabled aria-label="Strictly necessary cookies always enabled">'
-            + '  </div>'
-            + '  <div class="nollyflix-cookie-option">'
-            + '    <div><strong>Functional</strong><span>Helps remember optional preferences and improve convenience.</span></div>'
-            + '    <input id="nollyflix-consent-functional" class="nollyflix-cookie-toggle" type="checkbox">'
-            + '  </div>'
-            + '  <div class="nollyflix-cookie-option">'
-            + '    <div><strong>Analytics</strong><span>Helps us understand usage and improve performance where analytics tools are enabled.</span></div>'
-            + '    <input id="nollyflix-consent-analytics" class="nollyflix-cookie-toggle" type="checkbox">'
-            + '  </div>'
-            + '  <div class="nollyflix-cookie-option">'
-            + '    <div><strong>Advertising</strong><span>Allows optional advertising or campaign measurement technologies where used.</span></div>'
-            + '    <input id="nollyflix-consent-advertising" class="nollyflix-cookie-toggle" type="checkbox">'
-            + '  </div>'
-            + '  <div class="nollyflix-cookie-actions" style="margin-top:12px">'
-            + '    <button type="button" class="nollyflix-cookie-btn nollyflix-cookie-btn-primary" data-cookie-action="save">Save choices</button>'
+            + '  <div id="nollyflix-cookie-preferences">'
+            + '    <div class="nollyflix-cookie-option">'
+            + '      <div><strong>Strictly necessary</strong><span>Required for sign-in, security, checkout, purchases/rentals, playback and remembering your cookie choice.</span></div>'
+            + '      <input class="nollyflix-cookie-toggle" type="checkbox" checked disabled aria-label="Strictly necessary cookies always enabled">'
+            + '    </div>'
+            + '    <div class="nollyflix-cookie-option">'
+            + '      <div><strong>Functional</strong><span>Helps remember optional preferences and improve convenience.</span></div>'
+            + '      <input id="nollyflix-consent-functional" class="nollyflix-cookie-toggle" type="checkbox">'
+            + '    </div>'
+            + '    <div class="nollyflix-cookie-option">'
+            + '      <div><strong>Analytics</strong><span>Helps us understand usage and improve performance where analytics tools are enabled.</span></div>'
+            + '      <input id="nollyflix-consent-analytics" class="nollyflix-cookie-toggle" type="checkbox">'
+            + '    </div>'
+            + '    <div class="nollyflix-cookie-option">'
+            + '      <div><strong>Advertising</strong><span>Allows optional advertising or campaign measurement technologies where used.</span></div>'
+            + '      <input id="nollyflix-consent-advertising" class="nollyflix-cookie-toggle" type="checkbox">'
+            + '    </div>'
+            + '    <div class="nollyflix-cookie-preference-actions">'
+            + '      <a class="nollyflix-cookie-link" href="' + policyUrl + '">Read full Cookie Policy</a>'
+            + '      <button type="button" class="nollyflix-cookie-btn nollyflix-cookie-btn-primary" data-cookie-action="save">Save choices</button>'
+            + '    </div>'
             + '  </div>'
             + '</div>';
 
@@ -133,7 +139,18 @@
         settings.id = 'nollyflix-cookie-settings-button';
         settings.textContent = 'Cookie settings';
         settings.setAttribute('aria-label', 'Open cookie settings');
-        document.body.appendChild(settings);
+
+        var footers = document.querySelectorAll('footer#footer-pro');
+        var footer = footers.length ? footers[footers.length - 1] : null;
+        if (footer) {
+            var settingsWrap = document.createElement('div');
+            settingsWrap.className = 'nollyflix-cookie-footer-settings';
+            settingsWrap.appendChild(settings);
+            footer.appendChild(settingsWrap);
+        } else {
+            settings.className = 'nollyflix-cookie-settings-fallback';
+            document.body.appendChild(settings);
+        }
 
         return { root: root, settings: settings };
     }
@@ -155,10 +172,13 @@
             advertising.checked = !!consent.advertising;
         }
 
-        function open() {
+        function open(showPreferences) {
             syncControls(parseConsent(readCookie(CONSENT_COOKIE)));
-            preferences.classList.add('nollyflix-cookie-preferences-open');
-            settingsButton.classList.remove('nollyflix-cookie-settings-visible');
+            if (showPreferences) {
+                preferences.classList.add('nollyflix-cookie-preferences-open');
+            } else {
+                preferences.classList.remove('nollyflix-cookie-preferences-open');
+            }
             requestAnimationFrame(function () {
                 root.classList.add('nollyflix-cookie-show');
             });
@@ -167,12 +187,13 @@
         function close() {
             root.classList.remove('nollyflix-cookie-show');
             preferences.classList.remove('nollyflix-cookie-preferences-open');
-            settingsButton.classList.add('nollyflix-cookie-settings-visible');
         }
 
         function save(consent) {
             writeCookie(serializeConsent(consent));
+            current = consent;
             emit(consent);
+            settingsButton.classList.add('nollyflix-cookie-settings-visible');
             close();
         }
 
@@ -198,11 +219,15 @@
             }
         });
 
-        settingsButton.addEventListener('click', open);
+        settingsButton.addEventListener('click', function () {
+            open(true);
+        });
 
         window.NollyflixCookieConsent = {
             current: current,
-            open: open,
+            open: function () {
+                open(true);
+            },
             has: function (category) {
                 var consent = window.NollyflixCookieConsent.current || parseConsent(readCookie(CONSENT_COOKIE));
                 return category === 'necessary' ? true : !!consent[category];
@@ -215,8 +240,8 @@
             syncControls(current);
             requestAnimationFrame(function () {
                 setTimeout(function () {
-                    root.classList.add('nollyflix-cookie-show');
-                }, 120);
+                    open(false);
+                }, 180);
             });
         } else {
             settingsButton.classList.add('nollyflix-cookie-settings-visible');
