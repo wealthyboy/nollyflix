@@ -43,6 +43,7 @@
 			</div><!-- close .container -->
 		</footer>
 		
+		@include('includes.whatsapp-chat')
 		<a href="#" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
 		
 	
