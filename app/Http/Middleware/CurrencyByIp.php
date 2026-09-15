@@ -18,6 +18,17 @@ class CurrencyByIp
     {
         $pricing = $this->resolver->resolve($request);
 
+        // A visitor can manually override the IP-selected currency from the
+        // movie show page. Keep that choice in the session until they switch
+        // again. Prices remain the manually-entered NGN/USD values; no FX
+        // conversion is performed.
+        $manualCurrency = strtoupper((string) $request->session()->get('currency_manual'));
+
+        if (in_array($manualCurrency, ['NGN', 'USD'], true)) {
+            $pricing['currency_code'] = $manualCurrency;
+            $pricing['currency_symbol'] = $manualCurrency === 'USD' ? '$' : '₦';
+        }
+
         $request->attributes->set('country_code', $pricing['country_code']);
         $request->attributes->set('currency_code', $pricing['currency_code']);
         $request->attributes->set('currency_symbol', $pricing['currency_symbol']);

@@ -149,6 +149,24 @@
                      <div>You can still watch the preview and view the movie details.</div>
                   </div>
                @else
+                  @php
+                     $selectedCurrency = strtoupper((string) session('switch', $video->iso_code ?: 'NGN'));
+                  @endphp
+                  <div class="d-flex align-items-center justify-content-between mb-3 p-2 border rounded" style="background:#111; border-color:#3a3a3a !important;">
+                     <span class="font-weight-bold text-white pl-2">Currency</span>
+                     <div class="btn-group btn-group-sm" role="group" aria-label="Choose currency">
+                        <a href="{{ url('/currency') }}?currency=NGN"
+                           class="btn {{ $selectedCurrency === 'NGN' ? 'btn-danger' : 'btn-outline-light' }}"
+                           aria-pressed="{{ $selectedCurrency === 'NGN' ? 'true' : 'false' }}">
+                           NGN ₦
+                        </a>
+                        <a href="{{ url('/currency') }}?currency=USD"
+                           class="btn {{ $selectedCurrency === 'USD' ? 'btn-danger' : 'btn-outline-light' }}"
+                           aria-pressed="{{ $selectedCurrency === 'USD' ? 'true' : 'false' }}">
+                           USD $
+                        </a>
+                     </div>
+                  </div>
                   <buttons />
                @endif
             </div>
