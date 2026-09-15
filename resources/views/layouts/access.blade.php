@@ -23,7 +23,10 @@
 			@yield('content')
 		</section>
 
-		<footer id="footer-pro">
+		@php
+			$showMobileSiteFooter = request()->routeIs('home') || request()->routeIs('cookie.policy');
+		@endphp
+		<footer id="footer-pro" class="{{ $showMobileSiteFooter ? '' : 'mobile-hide-site-footer' }}">
 		    <div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-12">
@@ -42,7 +45,7 @@
 		</footer>
 
 		
-		<footer id="footer-pro">
+		<footer id="footer-pro" class="{{ $showMobileSiteFooter ? '' : 'mobile-hide-site-footer' }}">
 			<div class="container">
 				<div class="row">
 					<div class="col-md">

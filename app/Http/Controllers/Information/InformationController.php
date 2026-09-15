@@ -97,11 +97,18 @@ class InformationController extends Controller
 		$page_title = $information->name;
 		$mobile = $request->mobile;
 
-		// The cookie policy is maintained in code so the public page cannot
-		// drift back to copied/obsolete third-party wording or links.
+		// Legal pages are maintained in code so the public site cannot drift
+		// back to copied/obsolete third-party wording, unsupported features,
+		// or links that do not exist on the current Nollyflix platform.
 		if (stripos((string) $information->slug, 'cookie') !== false
 			|| stripos((string) $information->name, 'cookie') !== false) {
 			return view('pages.cookie-policy', compact('information', 'page_title', 'mobile'));
+		}
+
+		if (stripos((string) $information->slug, 'privacy') !== false
+			|| stripos((string) $information->name, 'privacy') !== false) {
+			$page_title = 'Privacy Policy';
+			return view('pages.privacy-policy', compact('information', 'page_title', 'mobile'));
 		}
 
 		return view('pages.index',compact('information','page_title','mobile'));

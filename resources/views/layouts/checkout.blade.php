@@ -21,7 +21,7 @@
 		@yield('content')
 	</div><!-- close #content-pro -->
 
-	<footer id="footer-pro">
+	<footer id="footer-pro" class="mobile-hide-site-footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-md">

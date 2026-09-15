@@ -20,7 +20,7 @@
 			@yield('content')
 		</section>
 
-		<footer id="footer-pro">
+		<footer id="footer-pro" class="mobile-hide-site-footer">
 		    <div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-12">
@@ -39,7 +39,7 @@
 		</footer>
 
 		
-		<footer id="footer-pro">
+		<footer id="footer-pro" class="mobile-hide-site-footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-md">

@@ -73,3 +73,46 @@
 .progression-video-carousel .progression-video-index-content {
     height: 100% !important;
 }
+
+
+/* Mobile footer behaviour
+   Keep the full site footer on the home and information/legal pages, but do
+   not let it take over inner browsing, profile, checkout or utility screens. */
+@media (max-width: 767.98px) {
+    .mobile-hide-site-footer {
+        display: none !important;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 7px 14px;
+        padding: 14px 10px;
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .footer-links li {
+        display: inline-flex;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li a {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    footer#footer-pro .copyright-text-pro {
+        padding: 14px 0 6px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    footer#footer-pro ul.social-icons-pro {
+        padding: 6px 0 14px;
+        text-align: center;
+    }
+}
