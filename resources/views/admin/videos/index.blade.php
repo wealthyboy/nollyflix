@@ -128,7 +128,7 @@
                                                     <input
                                                         type="checkbox"
                                                         class="js-video-active-toggle"
-                                                        data-url="{{ route('videos.toggle-active', ['video' => $video->id]) }}"
+                                                        data-url="{{ route('videos.toggle-active', ['video' => $video]) }}"
                                                         {{ $video->is_active ? 'checked' : '' }}
                                                     >
                                                     <span class="js-video-active-label" style="font-weight:600; color:{{ $video->is_active ? '#2e7d32' : '#c62828' }};">
