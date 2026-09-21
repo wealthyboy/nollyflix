@@ -28,7 +28,6 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::get('sections/{section}/videos/order', 'Admin\Section\SectionsController@orderVideos')->name('sections.videos.order');
     Route::post('sections/{section}/videos/order', 'Admin\Section\SectionsController@updateVideoOrder')->name('sections.videos.order.update');
     Route::resource('sections','Admin\Section\SectionsController',['names'=>'sections']);
-
     Route::post('category/delete/image','Admin\Category\CategoryController@undo');
 
     Route::resource('rates','Admin\CurrencyRates\CurrencyRatesController',['name'=>'rates']);
