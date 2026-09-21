@@ -173,6 +173,22 @@ class VideosController extends Controller
         return response('done', 200);
     }
 
+    public function toggleActive(Request $request, Video $video)
+    {
+        User::canTakeAction(3);
+
+        $video->is_active = ! (bool) $video->is_active;
+        $video->save();
+
+        (new Activity)->Log(($video->is_active ? 'Activated' : 'Deactivated') . " video {$video->title}");
+
+        return response()->json([
+            'success' => true,
+            'is_active' => (bool) $video->is_active,
+            'label' => $video->is_active ? 'Active' : 'Inactive',
+        ]);
+    }
+
     public function search(Request $request)
     {
         $filtered_array = $request->only(['q', 'field']);

@@ -28,7 +28,11 @@ class CategoryController extends Controller
 	public function  index(Request $request,Category $category)  
     {   
         $category->load(['sections' => function ($query) {
-            $query->whereHas('videos')->with('videos');
+            $query->whereHas('videos', function ($videoQuery) {
+                $videoQuery->active();
+            })->with(['videos' => function ($videoQuery) {
+                $videoQuery->active();
+            }]);
         }]);
 
         $page_title = "Buy ,Rent Movies, {$category->name}";

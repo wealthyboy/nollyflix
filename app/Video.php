@@ -35,6 +35,7 @@ class Video extends Model
 
     protected $casts = [
         'blocked_continents' => 'array',
+        'is_active' => 'boolean',
     ];
 
     public function setBlockedContinentsAttribute($value)
@@ -341,6 +342,11 @@ class Video extends Model
         $request->attributes->set('continent_code', $continentCode);
 
         return $continentCode;
+    }
+
+    public function scopeActive(Builder $query)
+    {
+        return $query->where($query->getModel()->qualifyColumn('is_active'), true);
     }
 
     public function scopeVisibleInCurrentRegion(Builder $query, $continentCode = null)

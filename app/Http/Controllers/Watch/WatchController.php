@@ -9,6 +9,7 @@ use App\Video;
 use App\VideoEpisode;
 use App\Order;
 use App\View;
+use App\WatchProgress;
 use Illuminate\Support\Facades\Http;
 
 
@@ -60,9 +61,15 @@ class WatchController extends Controller
         $nextVideo = $this->nextWatchVideoFor($video, $request);
         $nextVideoUrl = $nextVideo ? $this->nextVideoUrlFor($nextVideo, $request) : null;
         $playbackToken = $this->makePlaybackToken($video);
+        $resumeProgress = $request->user()
+            ? WatchProgress::where('user_id', $request->user()->id)
+                ->where('video_id', $video->id)
+                ->where('completed', false)
+                ->first()
+            : null;
         $this->viwed($video);
         $title = "You are watching " .$video->title;
-        return view('watch.index',compact('video','title', 'nextVideo', 'nextVideoUrl', 'playbackToken'));
+        return view('watch.index',compact('video','title', 'nextVideo', 'nextVideoUrl', 'playbackToken', 'resumeProgress'));
     }
 
 
@@ -105,6 +112,87 @@ class WatchController extends Controller
 
     public function log(Request $request){
        \Log::info($request->dom);
+    }
+
+    public function progress(Request $request, Video $video)
+    {
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json(['saved' => false], 401);
+        }
+
+        abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available in your region.');
+        abort_unless($this->canWatchVideo($video, $user), 403, 'You do not have access to this title.');
+
+        $data = $this->validate($request, [
+            'episode_id' => 'nullable|integer|exists:video_episodes,id',
+            'position_seconds' => 'required|numeric|min:0',
+            'duration_seconds' => 'nullable|numeric|min:0',
+            'completed' => 'nullable|boolean',
+        ]);
+
+        $episode = null;
+        if (!empty($data['episode_id'])) {
+            $episode = VideoEpisode::where('id', $data['episode_id'])
+                ->where('video_id', $video->id)
+                ->firstOrFail();
+        }
+
+        $position = max(0, (int) floor($data['position_seconds']));
+        $duration = max(0, (int) floor(isset($data['duration_seconds']) ? $data['duration_seconds'] : 0));
+        $reachedEnd = !empty($data['completed']);
+
+        if ($duration > 0) {
+            $reachedEnd = $reachedEnd
+                || $position >= (int) floor($duration * 0.95)
+                || ($duration - $position) <= 30;
+        }
+
+        $nextEpisode = null;
+        $isCompleted = false;
+
+        if ($episode && $reachedEnd) {
+            $episodeIds = $video->episodes()
+                ->whereNotNull('link')
+                ->pluck('id')
+                ->values();
+            $currentIndex = $episodeIds->search($episode->id);
+
+            if ($currentIndex !== false && isset($episodeIds[$currentIndex + 1])) {
+                $nextEpisode = VideoEpisode::find($episodeIds[$currentIndex + 1]);
+                $episode = $nextEpisode;
+                $position = 0;
+                $duration = 0;
+            } else {
+                $isCompleted = true;
+            }
+        } elseif (!$episode && $reachedEnd) {
+            $isCompleted = true;
+        }
+
+        $progress = WatchProgress::updateOrCreate(
+            [
+                'user_id' => $user->id,
+                'video_id' => $video->id,
+            ],
+            [
+                'episode_id' => $episode ? $episode->id : null,
+                'position_seconds' => $isCompleted ? max($position, $duration) : $position,
+                'duration_seconds' => $duration,
+                'completed' => $isCompleted,
+                'last_watched_at' => now(),
+            ]
+        );
+
+        return response()->json([
+            'saved' => true,
+            'completed' => (bool) $progress->completed,
+            'episode_id' => $progress->episode_id,
+            'position_seconds' => $progress->position_seconds,
+            'duration_seconds' => $progress->duration_seconds,
+            'next_episode_id' => $nextEpisode ? $nextEpisode->id : null,
+        ]);
     }
 
     public function videoHls(Request $request, Video $video)
@@ -164,6 +252,7 @@ class WatchController extends Controller
             ->filter(function ($candidate) use ($video) {
                 return $candidate &&
                     $candidate->id !== $video->id &&
+                    (bool) $candidate->is_active &&
                     !$candidate->isBlockedInCurrentRegion() &&
                     $this->hasPlayableSource($candidate);
             })
@@ -190,7 +279,7 @@ class WatchController extends Controller
 
     protected function nextVideoQuery()
     {
-        return Video::visibleInCurrentRegion()->where(function ($query) {
+        return Video::active()->visibleInCurrentRegion()->where(function ($query) {
             $query->whereNotNull('link')
                 ->orWhereHas('episodes');
         });

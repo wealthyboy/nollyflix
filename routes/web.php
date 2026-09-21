@@ -34,6 +34,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::resource('rates','Admin\CurrencyRates\CurrencyRatesController',['name'=>'rates']);
     Route::get('videos/search','Admin\Videos\VideosController@search')->name('search.videos');
     Route::post('videos/metadata', 'Admin\Videos\VideoMetadataController@store')->name('videos.metadata.store');
+    Route::post('videos/{video}/toggle-active', 'Admin\Videos\VideosController@toggleActive')->name('videos.toggle-active');
 
     Route::resource('videos','Admin\Videos\VideosController',['names' => 'videos']);
     Route::resource('activity','Admin\Activity\ActivityController',['names' => 'activity']);
@@ -92,6 +93,7 @@ Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('profile/videos',              'ProfileVideo\ProfileVideoController@index')->name('profiles.videos');
     Route::get('profile/watchlists',          'ProfileWatchList\ProfileWatchListController@index')->name('profiles.watchlists');
     Route::get('watch/{video}',               'Watch\WatchController@index')->name('watch');
+    Route::post('watch/progress/{video}',     'Watch\WatchController@progress')->name('watch.progress');
     Route::get('watch/log/dom',               'Watch\WatchController@log');
     Route::get('watch/expired/{video}',       'Watch\WatchController@expired')->name('watch.expired');
     Route::resource('orders',          'Orders\OrdersController',['name'=>'orders']);

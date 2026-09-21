@@ -27,7 +27,7 @@ class SearchController extends Controller
             $filtered_array = $request->only(['q']);
 
 			$filtered_array = array_filter($filtered_array);
-            $query = Video::where(function ($videoQuery) use ($filtered_array) {
+            $query = Video::active()->where(function ($videoQuery) use ($filtered_array) {
                 $videoQuery->where('videos.title', 'like', '%' . $filtered_array['q'] . '%')
                     ->orWhereHas('filmers', function ($query) use ($filtered_array) {
                         $query->where('users.name', 'like', '%' . $filtered_array['q'] . '%');

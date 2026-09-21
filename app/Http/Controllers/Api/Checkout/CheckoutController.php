@@ -37,6 +37,7 @@ class CheckoutController extends Controller
         ]);
 
         $video = Video::findOrFail($data['video_id']);
+        abort_unless($video->is_active, 404, 'This title is currently unavailable.');
         abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available to buy or rent in your region.');
         $currency = $request->attributes->get('currency_code', 'NGN');
         $amount = $this->priceFor($video, $data['type'], $currency);
@@ -135,6 +136,7 @@ class CheckoutController extends Controller
             abort_if($purchaseType === 'rent' && ! $video->allow_rent, 422, 'This title is not available to rent.');
         }
 
+        abort_unless($video->is_active, 404, 'This title is currently unavailable.');
         abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available to buy or rent in your region.');
 
         // DEVELOPMENT ONLY: bypass Flutterwave server verification temporarily.

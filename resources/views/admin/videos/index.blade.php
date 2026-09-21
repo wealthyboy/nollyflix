@@ -83,6 +83,7 @@
                                         <th>Type</th>
                                         <th>Buy Price</th>
                                         <th>Rent Price</th>
+                                        <th>Status</th>
                                         <th class="disabled-sorting text-right">Actions</th>
                                     </tr>
                                 </thead>
@@ -120,6 +121,21 @@
                                             <span class="amount">
                                             {{ $system_settings->default_currency->symbol }}{{ $video->rent_price }}
                                             </span> 
+                                        </td>
+                                        <td>
+                                            <div class="togglebutton" style="margin:0;">
+                                                <label style="display:flex; align-items:center; gap:8px; margin:0;">
+                                                    <input
+                                                        type="checkbox"
+                                                        class="js-video-active-toggle"
+                                                        data-url="{{ route('videos.toggle-active', ['video' => $video->id]) }}"
+                                                        {{ $video->is_active ? 'checked' : '' }}
+                                                    >
+                                                    <span class="js-video-active-label" style="font-weight:600; color:{{ $video->is_active ? '#2e7d32' : '#c62828' }};">
+                                                        {{ $video->is_active ? 'Active' : 'Inactive' }}
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </td>
                                         <td class="td-actions text-right">                     
                                             <a href="{{ route('videos.edit',['video'=>$video->id] ) }}" rel="tooltip" title="Edit" class="btn btn-primary btn-simple btn-xs">
@@ -163,6 +179,32 @@ $(document).ready(function() {
 
     });
     $('.card .material-datatables label').addClass('form-group');
+
+    $(document).on('change', '.js-video-active-toggle', function() {
+        var $toggle = $(this);
+        var wasChecked = !$toggle.prop('checked');
+        var $label = $toggle.closest('label').find('.js-video-active-label');
+
+        $toggle.prop('disabled', true);
+
+        $.ajax({
+            url: $toggle.data('url'),
+            type: 'POST',
+            success: function(response) {
+                $toggle.prop('checked', !!response.is_active);
+                $label
+                    .text(response.label)
+                    .css('color', response.is_active ? '#2e7d32' : '#c62828');
+            },
+            error: function() {
+                $toggle.prop('checked', wasChecked);
+                alert('Unable to update the video status. Please try again.');
+            },
+            complete: function() {
+                $toggle.prop('disabled', false);
+            }
+        });
+    });
 });
 @stop
 

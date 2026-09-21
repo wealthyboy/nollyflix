@@ -70,7 +70,7 @@
                     providers for transactional email delivery, hosting, infrastructure, security and video delivery.
                     These providers may process information needed to perform the service they provide to Nollyflix and
                     may have their own privacy terms for information they collect directly from you.
-                </p>
+                </p> 22197849459
                 <p>
                     Nollyflix may also disclose information when required by law, to respond to lawful requests, to
                     enforce applicable terms, to investigate fraud or security incidents, or to protect the rights,
