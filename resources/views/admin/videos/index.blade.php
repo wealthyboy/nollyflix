@@ -138,6 +138,17 @@
                                             </div>
                                         </td>
                                         <td class="td-actions text-right">                     
+                                            @if(!empty($video->link) || $video->episodes_count > 0)
+                                            <a href="{{ route('videos.watch', ['video' => $video]) }}" target="_blank" rel="tooltip" title="Watch movie" class="btn btn-success btn-simple btn-xs">
+                                                <i class="material-icons">play_arrow</i>
+                                                Watch
+                                            </a>
+                                            @else
+                                            <span rel="tooltip" title="No playable video has been uploaded" class="btn btn-default btn-simple btn-xs disabled" style="pointer-events:none; opacity:.5;">
+                                                <i class="material-icons">play_arrow</i>
+                                                Watch
+                                            </span>
+                                            @endif
                                             <a href="{{ route('videos.edit',['video'=>$video->id] ) }}" rel="tooltip" title="Edit" class="btn btn-primary btn-simple btn-xs">
                                                 <i class="material-icons">edit</i>
                                                 Edit

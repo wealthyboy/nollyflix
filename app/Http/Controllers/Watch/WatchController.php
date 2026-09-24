@@ -69,7 +69,42 @@ class WatchController extends Controller
             : null;
         $this->viwed($video);
         $title = "You are watching " .$video->title;
-        return view('watch.index',compact('video','title', 'nextVideo', 'nextVideoUrl', 'playbackToken', 'resumeProgress'));
+        $adminPreview = false;
+        return view('watch.index',compact('video','title', 'nextVideo', 'nextVideoUrl', 'playbackToken', 'resumeProgress', 'adminPreview'));
+    }
+
+
+    /**
+     * Preview a title directly from the admin area without creating an order.
+     * The admin middleware on the route is the only place that can mint the
+     * short-lived preview token used by the HLS proxy.
+     */
+    public function adminPreview(Request $request, Video $video)
+    {
+        $video->load('episodes');
+
+        $hasPlayableEpisode = $video->episodes->contains(function ($episode) {
+            return !empty($episode->link);
+        });
+
+        abort_unless(!empty($video->link) || $hasPlayableEpisode, 404, 'No playable video has been uploaded for this title yet.');
+
+        $nextVideo = null;
+        $nextVideoUrl = null;
+        $resumeProgress = null;
+        $playbackToken = $this->makeAdminPreviewToken($video);
+        $adminPreview = true;
+        $title = 'Admin preview - ' . $video->title;
+
+        return view('watch.index', compact(
+            'video',
+            'title',
+            'nextVideo',
+            'nextVideoUrl',
+            'playbackToken',
+            'resumeProgress',
+            'adminPreview'
+        ));
     }
 
 
@@ -216,6 +251,12 @@ class WatchController extends Controller
 
     protected function authorizePlayback(Request $request, Video $video)
     {
+        // Admin previews are allowed to inspect inactive/region-blocked titles,
+        // but only with a short-lived token minted by the admin-only route.
+        if ($this->hasValidAdminPreviewToken($request, $video)) {
+            return;
+        }
+
         abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available in your region.');
 
         if ($video->access_type === 'is_free') {
@@ -335,6 +376,47 @@ class WatchController extends Controller
         $signature = hash_hmac('sha256', $video->id . '|' . $expires, config('app.key'));
 
         return $expires . '.' . $signature;
+    }
+
+    protected function makeAdminPreviewToken(Video $video)
+    {
+        $expires = now()->addHours(2)->timestamp;
+        $signature = hash_hmac(
+            'sha256',
+            'admin-preview|' . $video->id . '|' . $expires,
+            config('app.key')
+        );
+
+        return $expires . '.' . $signature;
+    }
+
+    protected function hasValidAdminPreviewToken(Request $request, Video $video)
+    {
+        $user = $request->user();
+
+        if (!$user || !$user->users_permission) {
+            return false;
+        }
+
+        $token = $request->query('admin_preview_token');
+
+        if (!$token || strpos($token, '.') === false) {
+            return false;
+        }
+
+        list($expires, $signature) = explode('.', $token, 2);
+
+        if (!ctype_digit($expires) || (int) $expires < time()) {
+            return false;
+        }
+
+        $expected = hash_hmac(
+            'sha256',
+            'admin-preview|' . $video->id . '|' . $expires,
+            config('app.key')
+        );
+
+        return hash_equals($expected, $signature);
     }
 
     protected function hasValidPlaybackToken(Request $request, Video $video)

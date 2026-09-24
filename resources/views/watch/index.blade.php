@@ -4,10 +4,18 @@
     $seriesEpisodes = $video->episodes->filter(function ($episode) {
         return !empty($episode->link);
     })->values();
-    $firstEpisode = $seriesEpisodes->first();
+    $resumeEpisode = isset($resumeProgress) && $resumeProgress && $resumeProgress->episode_id
+        ? $seriesEpisodes->firstWhere('id', (int) $resumeProgress->episode_id)
+        : null;
+    $firstEpisode = $resumeEpisode ?: $seriesEpisodes->first();
+    $resumeSeconds = isset($resumeProgress) && $resumeProgress && !$resumeProgress->completed
+        ? (int) $resumeProgress->position_seconds
+        : 0;
+    $isAdminPreview = !empty($adminPreview);
+    $playbackTokenParameter = $isAdminPreview ? 'admin_preview_token' : 'playback_token';
     $initialSource = $firstEpisode
-        ? route('watch.hls.episode', ['episode' => $firstEpisode->id, 'playback_token' => $playbackToken])
-        : route('watch.hls.video', ['video' => $video->slug, 'playback_token' => $playbackToken]);
+        ? route('watch.hls.episode', ['episode' => $firstEpisode->id, $playbackTokenParameter => $playbackToken])
+        : route('watch.hls.video', ['video' => $video->slug, $playbackTokenParameter => $playbackToken]);
     $initialTitle = $firstEpisode
         ? ($firstEpisode->title ?: 'Episode ' . ($firstEpisode->episode_number ?: 1))
         : $video->title;
@@ -251,20 +259,35 @@
 @endsection
 
 @section('content')
+@if($resumeEpisode)
+<script>
+try {
+    window.localStorage.setItem('nollyflix:watch:episode:{{ $video->id }}', '{{ $resumeEpisode->id }}');
+} catch (error) {}
+</script>
+@endif
 <div id="video-page-title-pro" style="background-image:url({{ optional($video)->poster }});">
     <img class="spinner-image" src="/images/loaders/spinner.png" alt="" width="30" height="30">
 </div><!-- close #video-page-title-pro -->
 
 <div  class="background_video hide">
     <div class="back">
-        <a href="/"> <i class="fas fa-long-arrow-alt-left"></i></a>
+        <a href="{{ $isAdminPreview ? route('videos.index') : '/' }}"> <i class="fas fa-long-arrow-alt-left"></i></a>
     </div>
+    @if($isAdminPreview)
+    <div style="position:absolute; top:22px; right:24px; z-index:15; background:rgba(0,0,0,.72); color:#fff; border:1px solid rgba(255,255,255,.35); padding:8px 12px; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">
+        Admin Preview
+    </div>
+    @endif
     <div class="watch-player-title" data-watch-player-title>{{ $initialTitle }}</div>
     <div class="watch-player-loader" data-watch-player-loader>
         <img src="/images/loaders/spinner.png" alt="" width="72" height="72">
     </div>
 
-    <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture controlsList="nodownload noplaybackrate noremoteplayback" nodownload  class="video-js vjs-default-skin" data-auth-required="{{ $video->access_type === 'is_free' ? '0' : '1' }}" data-watch-video-id="{{ $video->id }}"
+    <video id="video"  poster="{{ optional($video)->poster }}"  muted  disablePictureInPicture controlsList="nodownload noplaybackrate noremoteplayback" nodownload  class="video-js vjs-default-skin" data-auth-required="{{ $isAdminPreview || $video->access_type === 'is_free' ? '0' : '1' }}" data-watch-video-id="{{ $video->id }}"
+        data-watch-progress-url="{{ !$isAdminPreview && auth()->check() ? route('watch.progress', ['video' => $video->slug]) : '' }}"
+        data-watch-resume-position="{{ $resumeSeconds }}"
+        data-watch-resume-episode-id="{{ $resumeEpisode ? $resumeEpisode->id : '' }}"
         playsinline webkit-playsinline oncontextmenu="return false">
         <source src="{{ $initialSource }}" type="application/x-mpegURL">
         @if($initialTrack)
@@ -371,9 +394,9 @@
                                         $episodeSummary = $fallbackDescription ?: 'Select this episode to continue watching.';
                                     @endphp
                                     <button type="button"
-                                        class="watch-episode-item {{ $loop->parent->first && $loop->first ? 'active' : '' }}"
+                                        class="watch-episode-item {{ $firstEpisode && $episode->id === $firstEpisode->id ? 'active' : '' }}"
                                         data-episode-id="{{ $episode->id }}"
-                                        data-episode-source="{{ route('watch.hls.episode', ['episode' => $episode->id, 'playback_token' => $playbackToken]) }}"
+                                        data-episode-source="{{ route('watch.hls.episode', ['episode' => $episode->id, $playbackTokenParameter => $playbackToken]) }}"
                                         data-episode-track="{{ $episode->track_file ?: $video->track_file }}"
                                         data-episode-title="{{ $episodeTitle }}">
                                         <span class="watch-episode-number">{{ $episodeNumber }}</span>
@@ -451,6 +474,12 @@
         }), 0);
 
         function getStoredEpisodeId() {
+            var serverEpisodeId = video ? (video.getAttribute('data-watch-resume-episode-id') || '') : '';
+
+            if (serverEpisodeId) {
+                return serverEpisodeId;
+            }
+
             if (!storageKey || !window.localStorage) {
                 return '';
             }
@@ -565,6 +594,9 @@
             }
 
             showLoader();
+            if (typeof window.nollyflixWatchProgressSwitchEpisode === 'function') {
+                window.nollyflixWatchProgressSwitchEpisode();
+            }
             currentIndex = episodeButtons.indexOf(button);
             rememberEpisode(button);
             episodeButtons.forEach(function (item) {
@@ -722,6 +754,180 @@
         if (event.detail && event.detail.player) {
             event.detail.player.ready(function () {
                 setupSeriesPanel(event.detail.player);
+            });
+        }
+    });
+})();
+</script>
+@endif
+
+@if(auth()->check())
+<script>
+(function () {
+    function setupWatchProgress(player) {
+        var video = document.getElementById('video');
+        if (!video || video.getAttribute('data-watch-progress-ready') === '1') {
+            return;
+        }
+
+        var endpoint = video.getAttribute('data-watch-progress-url') || '';
+        if (!endpoint) {
+            return;
+        }
+
+        video.setAttribute('data-watch-progress-ready', '1');
+
+        var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+        var csrfToken = csrfMeta ? csrfMeta.getAttribute('content') : '';
+        var resumePosition = Number(video.getAttribute('data-watch-resume-position') || 0);
+        var resumeEpisodeId = video.getAttribute('data-watch-resume-episode-id') || '';
+        var resumeApplied = resumePosition < 5;
+        var lastSentAt = 0;
+        var lastState = null;
+        var suppressNonCompletedUntil = 0;
+
+        function activeEpisodeId() {
+            var activeEpisode = document.querySelector('[data-episode-id].active');
+            return activeEpisode ? activeEpisode.getAttribute('data-episode-id') : null;
+        }
+
+        function captureState() {
+            var position = Number(player.currentTime ? player.currentTime() : 0);
+            var duration = Number(player.duration ? player.duration() : 0);
+
+            lastState = {
+                episodeId: activeEpisodeId(),
+                position: Number.isFinite(position) ? Math.max(0, position) : 0,
+                duration: Number.isFinite(duration) ? Math.max(0, duration) : 0
+            };
+
+            return lastState;
+        }
+
+        function postProgress(state, completed, force) {
+            state = state || captureState();
+
+            var now = Date.now();
+            if (!completed && now < suppressNonCompletedUntil) {
+                return;
+            }
+            if (!force && (now - lastSentAt) < 10000) {
+                return;
+            }
+
+            lastSentAt = now;
+
+            var payload = {
+                episode_id: state.episodeId ? Number(state.episodeId) : null,
+                position_seconds: Math.floor(state.position || 0),
+                duration_seconds: Math.floor(state.duration || 0),
+                completed: completed ? 1 : 0
+            };
+
+            fetch(endpoint, {
+                method: 'POST',
+                credentials: 'same-origin',
+                keepalive: !!force,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify(payload)
+            }).catch(function () {
+                // Playback must never be interrupted because a progress save failed.
+            });
+        }
+
+        function applyResumePosition() {
+            if (resumeApplied || resumePosition < 5) {
+                return;
+            }
+
+            var currentEpisodeId = activeEpisodeId() || '';
+            if (resumeEpisodeId && currentEpisodeId && currentEpisodeId !== resumeEpisodeId) {
+                return;
+            }
+
+            var duration = Number(player.duration ? player.duration() : 0);
+            if (!Number.isFinite(duration) || duration <= 0) {
+                return;
+            }
+
+            var safePosition = Math.min(resumePosition, Math.max(0, duration - 5));
+            if (safePosition >= 5) {
+                player.currentTime(safePosition);
+            }
+
+            resumeApplied = true;
+            video.setAttribute('data-watch-resume-position', '0');
+        }
+
+        window.nollyflixWatchProgressSwitchEpisode = function () {
+            postProgress(captureState(), false, true);
+            suppressNonCompletedUntil = Date.now() + 2000;
+        };
+
+        player.on('loadedmetadata', applyResumePosition);
+        player.on('durationchange', applyResumePosition);
+        player.on('canplay', applyResumePosition);
+        player.on('playing', function () {
+            suppressNonCompletedUntil = 0;
+            applyResumePosition();
+            postProgress(captureState(), false, true);
+        });
+        player.on('timeupdate', function () {
+            postProgress(captureState(), false, false);
+        });
+        player.on('pause', function () {
+            postProgress(captureState(), false, true);
+        });
+        player.on('ended', function () {
+            var endedState = lastState || captureState();
+            postProgress(endedState, true, true);
+        });
+
+        window.addEventListener('pagehide', function () {
+            postProgress(captureState(), false, true);
+        });
+
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                postProgress(captureState(), false, true);
+            }
+        });
+    }
+
+    function waitForProgressPlayer(attempt) {
+        attempt = attempt || 0;
+
+        if (window.nollyflixWatchPlayer) {
+            window.nollyflixWatchPlayer.ready(function () {
+                setupWatchProgress(window.nollyflixWatchPlayer);
+            });
+            return;
+        }
+
+        if (attempt < 60) {
+            window.setTimeout(function () {
+                waitForProgressPlayer(attempt + 1);
+            }, 100);
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        waitForProgressPlayer();
+    } else {
+        window.addEventListener('load', function () {
+            waitForProgressPlayer();
+        });
+    }
+
+    window.addEventListener('nollyflix:watch-player-ready', function (event) {
+        if (event.detail && event.detail.player) {
+            event.detail.player.ready(function () {
+                setupWatchProgress(event.detail.player);
             });
         }
     });

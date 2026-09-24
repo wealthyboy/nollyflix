@@ -28,12 +28,14 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::get('sections/{section}/videos/order', 'Admin\Section\SectionsController@orderVideos')->name('sections.videos.order');
     Route::post('sections/{section}/videos/order', 'Admin\Section\SectionsController@updateVideoOrder')->name('sections.videos.order.update');
     Route::resource('sections','Admin\Section\SectionsController',['names'=>'sections']);
+
     Route::post('category/delete/image','Admin\Category\CategoryController@undo');
 
     Route::resource('rates','Admin\CurrencyRates\CurrencyRatesController',['name'=>'rates']);
     Route::get('videos/search','Admin\Videos\VideosController@search')->name('search.videos');
     Route::post('videos/metadata', 'Admin\Videos\VideoMetadataController@store')->name('videos.metadata.store');
     Route::post('videos/{video}/toggle-active', 'Admin\Videos\VideosController@toggleActive')->name('videos.toggle-active');
+    Route::get('videos/{video}/watch', 'Watch\WatchController@adminPreview')->name('videos.watch');
 
     Route::resource('videos','Admin\Videos\VideosController',['names' => 'videos']);
     Route::resource('activity','Admin\Activity\ActivityController',['names' => 'activity']);
