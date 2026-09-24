@@ -1,2 +1,47 @@
 @import "~video.js/src/css/video-js.scss";
 @import "./watch.scss";
+
+// Nollyflix controlled subtitle renderer. Native text tracks stay hidden so
+// their active cues can be rendered above the custom progress controls.
+.watch-caption-overlay {
+    position: fixed;
+    left: 7%;
+    right: 7%;
+    bottom: 158px;
+    z-index: 2690;
+    pointer-events: none;
+    text-align: center;
+    color: #fff;
+    font-family: "Lato", sans-serif;
+    font-size: clamp(24px, 2.2vw, 44px);
+    font-weight: 500;
+    line-height: 1.2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .95);
+}
+
+.watch-caption-overlay[hidden] {
+    display: none !important;
+}
+
+.watch-caption-line {
+    margin: 4px auto;
+    text-align: center;
+}
+
+.watch-caption-line span {
+    display: inline;
+    padding: .08em .24em .12em;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, .72);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+@media only screen and (max-width: 767px) {
+    .watch-caption-overlay {
+        left: 4%;
+        right: 4%;
+        bottom: 118px;
+        font-size: clamp(18px, 5vw, 28px);
+    }
+}

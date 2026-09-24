@@ -291,10 +291,12 @@ try {
         playsinline webkit-playsinline oncontextmenu="return false">
         <source src="{{ $initialSource }}" type="application/x-mpegURL">
         @if($initialTrack)
-        <track src="{{ $initialTrack }}" kind="subtitles" srclang="en" label="English" default data-watch-subtitle-track>
+        <track src="{{ $initialTrack }}" kind="subtitles" srclang="en" label="English" data-watch-subtitle-track>
         @endif
     </video>
 
+
+    <div class="watch-caption-overlay" data-watch-caption-overlay aria-live="off" aria-hidden="true" hidden></div>
 
     <button type="button" class="watch-center-play" data-watch-center-play aria-label="Play">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -444,6 +446,7 @@ try {
 @endsection
 
 @section('page-scripts')
+<script src="/js/watch-captions.js?version={{ str_random(6) }}"></script>
 @if($seriesEpisodes->count() || $nextVideoUrl)
 <script>
 (function () {
