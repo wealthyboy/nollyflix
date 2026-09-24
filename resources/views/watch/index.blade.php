@@ -291,7 +291,7 @@ try {
         playsinline webkit-playsinline oncontextmenu="return false">
         <source src="{{ $initialSource }}" type="application/x-mpegURL">
         @if($initialTrack)
-        <track src="{{ $initialTrack }}" kind="subtitles" srclang="en" label="English" data-watch-subtitle-track>
+        <track src="{{ $initialTrack }}" kind="subtitles" srclang="en" label="English" default data-watch-subtitle-track>
         @endif
     </video>
 

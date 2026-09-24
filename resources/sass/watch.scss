@@ -182,7 +182,8 @@ video[poster] {
 }
 
 .vjs-text-track-display {
-    bottom: 4em;
+    // Keep subtitles comfortably above the custom seek/progress bar.
+    bottom: 6em;
 }
 
 .vjs-subs-caps-button.vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button {
