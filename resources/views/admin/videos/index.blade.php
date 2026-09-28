@@ -21,6 +21,10 @@
                     <i class="material-icons">close</i>
                     Remove
                 </a>
+                <button type="button" id="send-video-push" class="btn btn-success btn-simple btn-xs">
+                    <i class="material-icons">notifications_active</i>
+                    Notify selected
+                </button>
 
             </div>                                                 
                             
@@ -163,6 +167,10 @@
                                 </tbody>
                             </table>
                         </form>
+                        <form action="{{ route('videos.push-notification') }}" method="post" id="video-push-form" style="display:none;">
+                            @csrf
+                            <div id="video-push-selection"></div>
+                        </form>
 
                         @else
                            <div ><h1> No videos found</h1></div>
@@ -191,6 +199,27 @@ $(document).ready(function() {
     });
     $('.card .material-datatables label').addClass('form-group');
 
+    $('#send-video-push').on('click', function() {
+        var selected = $('#form-videos input[name="selected[]"]:checked').map(function() {
+            return this.value;
+        }).get();
+
+        if (!selected.length) {
+            alert('Select at least one video first.');
+            return;
+        }
+
+        if (!confirm('Send a push notification for the selected video' + (selected.length > 1 ? 's' : '') + '?')) {
+            return;
+        }
+
+        var $selection = $('#video-push-selection').empty();
+        $.each(selected, function(_, id) {
+            $('<input>', { type: 'hidden', name: 'selected[]', value: id }).appendTo($selection);
+        });
+        $('#video-push-form').submit();
+    });
+
     $(document).on('change', '.js-video-active-toggle', function() {
         var $toggle = $(this);
         var wasChecked = !$toggle.prop('checked');
@@ -218,7 +247,6 @@ $(document).ready(function() {
     });
 });
 @stop
-
 
 
 

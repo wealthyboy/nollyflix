@@ -60,6 +60,11 @@ class Video extends Model
         return $this->belongsToMany('App\Section', 'section_video');
     }
 
+    public function pushCampaigns()
+    {
+        return $this->belongsToMany(PushCampaign::class, 'push_campaign_video');
+    }
+
     /**
      * The categories that belong to the user.
      */

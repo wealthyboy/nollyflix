@@ -36,6 +36,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::post('videos/metadata', 'Admin\Videos\VideoMetadataController@store')->name('videos.metadata.store');
     Route::post('videos/{video}/toggle-active', 'Admin\Videos\VideosController@toggleActive')->name('videos.toggle-active');
     Route::get('videos/{video}/watch', 'Watch\WatchController@adminPreview')->name('videos.watch');
+    Route::post('videos/push-notification', 'Admin\Videos\VideosController@sendPushNotification')->name('videos.push-notification');
 
     Route::resource('videos','Admin\Videos\VideosController',['names' => 'videos']);
     Route::resource('activity','Admin\Activity\ActivityController',['names' => 'activity']);
@@ -132,6 +133,5 @@ Route::get('watch/hls/episode/{episode}', 'Watch\WatchController@episodeHls')->n
 
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
-
 
 

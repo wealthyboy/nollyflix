@@ -39,4 +39,9 @@ return [
         'mobile_redirect_url' => env('FLW_MOBILE_REDIRECT_URL', 'https://flutterwave.com/rn-redirect'),
     ],
 
+    'firebase' => [
+        'project_id' => env('FIREBASE_PROJECT_ID'),
+        'credentials' => env('FIREBASE_CREDENTIALS'),
+    ],
+
 ];

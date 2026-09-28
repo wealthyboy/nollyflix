@@ -16,6 +16,8 @@ use App\Http\Helper;
 use App\SystemSetting;
 use App\RelatedVideo;
 use App\Genre;
+use App\Jobs\SendPushCampaign;
+use App\PushCampaign;
 use Illuminate\Http\Request;
 
 use Illuminate\Validation\Rule;
@@ -187,6 +189,55 @@ class VideosController extends Controller
             'is_active' => (bool) $video->is_active,
             'label' => $video->is_active ? 'Active' : 'Inactive',
         ]);
+    }
+
+    public function sendPushNotification(Request $request)
+    {
+        User::canTakeAction(3);
+
+        $this->validate($request, [
+            'selected' => 'required|array|min:1',
+            'selected.*' => 'integer|exists:videos,id',
+        ], [
+            'selected.required' => 'Select at least one video to notify viewers about.',
+        ]);
+
+        $videos = Video::whereIn('id', $request->input('selected'))->get();
+        $singleVideo = $videos->count() === 1 ? $videos->first() : null;
+
+        $title = $singleVideo
+            ? 'New on Nollyflix: '.$singleVideo->title
+            : 'New releases on Nollyflix';
+        $body = $singleVideo
+            ? Str::limit(trim(strip_tags((string) $singleVideo->description)), 120)
+            : $videos->count().' new titles are ready to watch.';
+
+        if ($body === '') {
+            $body = 'Open Nollyflix to watch now.';
+        }
+
+        $data = [
+            'type' => 'video_release',
+            'url' => $singleVideo ? 'nollyflix://video/'.$singleVideo->id : 'nollyflix://home',
+        ];
+        if ($singleVideo) {
+            $data['video_id'] = (string) $singleVideo->id;
+        }
+
+        $campaign = PushCampaign::create([
+            'created_by' => optional($request->user())->id,
+            'title' => $title,
+            'body' => $body,
+            'data' => $data,
+            'status' => 'queued',
+        ]);
+        $campaign->videos()->sync($videos->pluck('id')->all());
+
+        SendPushCampaign::dispatch($campaign->id);
+
+        (new Activity)->Log('Queued a push notification for '.$videos->count().' video(s)');
+
+        return redirect()->route('videos.index')->with('success', 'Push notification queued for delivery.');
     }
 
     public function search(Request $request)
