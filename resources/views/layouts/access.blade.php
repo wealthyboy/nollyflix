@@ -53,19 +53,19 @@
 					</div><!-- close .col -->
 					<div class="col-md">
 						<ul class="social-icons-pro">
-							<li class="facebook-color"><a  href="{{ $system_settings->facebook_link }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="twitter-color"><a   href="{{  $system_settings->twitter_link }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li class="instagram-color"><a href="{{  $system_settings->instagram_link }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li class="youtube-color"><a   href="{{  $system_settings->youtube_link }}" target="_blank"><i class="fab fa-youtube"></i></a></li>
+							<li class="instagram-color"><a href="https://www.instagram.com/Nollyflix2026" target="_blank" rel="noopener noreferrer" aria-label="Nollyflix on Instagram"><i class="fab fa-instagram"></i></a></li>
+							<li class="twitter-color"><a href="https://x.com/Nollyflix2026" target="_blank" rel="noopener noreferrer" aria-label="Nollyflix on X"><span aria-hidden="true" style="font-family:Arial,sans-serif;font-size:18px;font-weight:700;line-height:1;">X</span></a></li>
+							<li class="tiktok-color"><a href="https://www.tiktok.com/@Nollyflix_" target="_blank" rel="noopener noreferrer" aria-label="Nollyflix on TikTok"><i class="fab fa-tiktok"></i></a></li>
 						</ul>
 					</div><!-- close .col -->
 				</div><!-- close .row -->
 			</div><!-- close .container -->
 		</footer>
 		
-		@include('includes.whatsapp-chat')
 		<a href="#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
 		</div>
+
+		@include('includes.whatsapp-chat')
 		
 	
 		<!-- Required Framework JavaScript -->
