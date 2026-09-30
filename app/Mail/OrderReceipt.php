@@ -40,6 +40,6 @@ class OrderReceipt extends Mailable
     
     public function build()
     {   
-        return $this->subject('Order Confirmation')->view('emails.receipt.index');
+        return $this->subject(strtolower((string) $this->cart->purchase_type) === 'rent' ? 'Your Nollyflix Rental Receipt' : 'Your Nollyflix Purchase Receipt')->view('emails.receipt.index');
     }
 }

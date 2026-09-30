@@ -6,7 +6,7 @@
 
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="format-detection" content="telephone=no">
-   <title>{{ Config('app.name')}} Reciept</title>
+   <title>{{ Config('app.name')}} Receipt</title>
    <style>
       table {
          mso-table-lspace: 0pt;
@@ -340,7 +340,7 @@
                                              <td colspan="2" style="font-size:0;line-height:0;" height="10">&nbsp;</td>
                                           </tr>
                                           <tr>
-                                             <td class="antd" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="AnnouncementLink" data-color="AnnouncementTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;text-align: right;line-height: 150%;font-weight: bold;letter-spacing: 2px;" width="318" valign="middle" height="80" align="right"><a href="#" target="_blank" style="text-decoration: none;color: #425065;" data-color="AnnouncementLink"></a>YOUR INVOICE</td>
+                                             <td class="antd" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="AnnouncementLink" data-color="AnnouncementTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;text-align: right;line-height: 150%;font-weight: bold;letter-spacing: 2px;" width="318" valign="middle" height="80" align="right"><a href="#" target="_blank" style="text-decoration: none;color: #425065;" data-color="AnnouncementLink"></a>YOUR RECEIPT</td>
                                              <td class="esFrMb" width="30"></td>
                                           </tr>
                                           <tr>
@@ -382,7 +382,13 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz" width="30"></td>
-                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>Your order have been received. Your order details are below.</td>
+                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>
+@if(strtolower((string) $cart->purchase_type) === 'rent')
+Thank you for your rental. Your payment was successful and your movie is now available in your Nollyflix account for the applicable rental period.
+@else
+Thank you for your purchase. Your payment was successful and your movie is now available in your Nollyflix account.
+@endif
+<br>Your transaction details are below.</td>
                                                       <td class="wz" width="30"></td>
                                                    </tr>
                                                    <tr>
@@ -435,10 +441,10 @@
                                                                   <!-- <img src="{{ Config('app.url')}}/images/logo/number-icon-20x20.png" style="display:block;" alt="IMG" vspace="0" hspace="0" border="0">  -->
                                                                </td>
                                                                <td rowspan="2" style="font-size:0;line-height:0;" width="14">&nbsp;</td>
-                                                               <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice No</td>
+                                                               <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Receipt No</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->invoice }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ preg_replace('/^INV-/', 'RCP-', $order->invoice) }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -463,7 +469,7 @@
                                                                   <!-- <img src="" style="display:block;" alt="IMG" vspace="0" hspace="0" border="0"> -->
                                                                </td>
                                                                <td rowspan="2" style="font-size:0;line-height:0;" width="14">&nbsp;</td>
-                                                               <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice Date</td>
+                                                               <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Transaction Date</td>
                                                             </tr>
                                                             <tr>
                                                                <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->created_at->toFormattedDateString()  }}</td>
@@ -491,10 +497,10 @@
                                                                   <!-- <img src="" style="display:block;" alt="IMG" vspace="0" hspace="0" border="0"> -->
                                                                </td>
                                                                <td rowspan="2" style="font-size:0;line-height:0;" width="14">&nbsp;</td>
-                                                               <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice Total</td>
+                                                               <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Amount Paid</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->currency }}{{ $cart->total }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $currency }}{{ number_format((float) $cart->total, 2) }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -539,7 +545,7 @@
 
                                                    <tr>
 
-                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="padding: 4px;color: #ffffff;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Movie Name</td>
+                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="padding: 4px;color: #ffffff;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Movie</td>
 
                                                    </tr>
 
@@ -550,7 +556,7 @@
 
                                                    <tr>
 
-                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: #ffffff; padding: 4px;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Price</td>
+                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: #ffffff; padding: 4px;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Access Type</td>
 
                                                    </tr>
                                                 </table>
@@ -560,7 +566,7 @@
 
                                                    <tr>
 
-                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="padding: 4px;color: #ffffff;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Quantity</td>
+                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="padding: 4px;color: #ffffff;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Price</td>
 
                                                    </tr>
 
@@ -571,7 +577,7 @@
 
                                                    <tr>
 
-                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="padding: 4px;color: #ffffff;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Total</td>
+                                                      <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="padding: 4px;color: #ffffff;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Amount</td>
 
                                                    </tr>
 
@@ -638,7 +644,7 @@
                                                    </tr>
                                                    <tr>
 
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{ $cart->price }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ strtolower((string) $cart->purchase_type) === 'rent' ? 'Rental' : 'Purchase' }}</td>
 
                                                    </tr>
                                                    <tr>
@@ -654,7 +660,7 @@
                                                    </tr>
                                                    <tr>
 
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $cart->quantity }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $currency }}{{ number_format((float) $cart->price, 2) }}</td>
 
                                                    </tr>
                                                    <tr>
@@ -670,7 +676,7 @@
                                                    </tr>
                                                    <tr>
 
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $cart->price }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $currency }}{{ number_format((float) $cart->total, 2) }}</td>
 
                                                    </tr>
                                                    <tr>
@@ -732,7 +738,7 @@
                                           </tr>
                                           <tr>
                                              <td class="wz2" width="30"><br></td>
-                                             <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user->currency }}{{ $cart->price  }}</td>
+                                             <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $currency }}{{ number_format((float) $cart->total, 2) }}</td>
                                              <td class="wz2" width="30"><br></td>
                                           </tr>
                                           <tr>
@@ -750,7 +756,7 @@
                                           </tr>
                                           <tr>
                                              <td class="wz2" width="30"><br></td>
-                                             <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(43, 3, 78);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Total</td>
+                                             <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(43, 3, 78);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Amount Paid</td>
                                              <td class="wz2" width="30"><br></td>
                                           </tr>
                                           <tr>
@@ -765,7 +771,7 @@
                                           </tr>
                                           <tr>
                                              <td class="wz2" width="30"><br></td>
-                                             <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(43, 3, 78);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $order->currency }}{{ $cart->price }}</td>
+                                             <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(43, 3, 78);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $currency }}{{ number_format((float) $cart->total, 2) }}</td>
                                              <td class="wz2" width="30"><br></td>
                                           </tr>
                                           <tr>
@@ -787,6 +793,34 @@
    </td>
    </tr>
    </table>
+   <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <tr>
+         <td align="center">
+            <table class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px;" width="668" cellspacing="0" cellpadding="0" border="0" align="center">
+               <tr>
+                  <td class="table600st" style="min-width:668px;" align="center">
+                     <table data-bgcolor="cbc" class="table600Min" style="min-width:629px;" width="629" cellspacing="0" cellpadding="0" border="0" bgcolor="#fdfdfd" align="center">
+                        <tr>
+                           <td style="padding: 24px 30px; color: #727e8d; font-family: sans-serif; font-size: 13px; line-height: 22px; text-align: left;">
+                              <strong style="color:#425065; font-size:15px;">Enjoy your movie!</strong><br>
+                              @if(strtolower((string) $cart->purchase_type) === 'rent')
+                                 Your rental is now available in your Nollyflix account for the applicable rental period.
+                              @else
+                                 You can access your purchased movie from your Nollyflix account during the applicable access period.
+                              @endif
+                              <br><br>
+                              Need help with your purchase, rental or playback? Contact us at
+                              <a href="mailto:support@nollyflix.tv" style="color:#2b034e; font-weight:bold;">support@nollyflix.tv</a>.
+                           </td>
+                        </tr>
+                     </table>
+                  </td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+   </table>
+
    <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FooterModule" data-thumb="" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
       <tr>
          <td align="center">
@@ -800,14 +834,14 @@
 
                                  <tr>
 
-                                    <td class="catd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="FooterCaptionLink" data-color="FooterCaptionTXT" style="color: rgb(12, 13, 13); font-family: sans-serif; font-size: 13px; text-align: center; font-weight: bold; line-height: 190%;"> <a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="FooterCaptionLink"></a>Thanks for using our service </td>
+                                    <td class="catd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="FooterCaptionLink" data-color="FooterCaptionTXT" style="color: rgb(12, 13, 13); font-family: sans-serif; font-size: 13px; text-align: center; font-weight: bold; line-height: 190%;"> <a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="FooterCaptionLink"></a>Thank you for choosing Nollyflix — home for African cinema. </td>
                                  </tr>
 
 
 
                                  <tr>
 
-                                    <td class="moptd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: rgb(13, 14, 12); font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;">All rights Reserved NollyFlix</td>
+                                    <td class="moptd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: rgb(13, 14, 12); font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;">All rights reserved Nollyflix.</td>
                                  </tr>
 
                               </table>

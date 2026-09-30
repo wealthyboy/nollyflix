@@ -51,7 +51,7 @@ class CheckoutController extends Controller
 			[
 				'user_id'  => $user->id,
 				'currency' => $request->currency,
-				'invoice'  => "INV-" . date('Y') . "-" . rand(10000, 39999),
+				'invoice'  => "RCP-" . date('Y') . "-" . rand(10000, 39999),
 				'video_id' => $cart->video_id,
 				'video_rent_expires' => now()->addDays(2)
 			]
