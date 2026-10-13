@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta name="google-site-verification" content="1xsOp3Jci_keDIrQHA4qDUyKtMT-9B96BRkAAGbbltA" />
 <title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') : 'NollyFlix' }}</title>
 <meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 <meta name="keywords" content="{{ isset($system_settings->meta_tag_keywords) ? $system_settings->meta_tag_keywords : 'Nollywood, Onlive movies, Rent movies online buy movies online, buy nollywood movies online' }}" />
