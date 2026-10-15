@@ -65,6 +65,9 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 
     Route::resource('users',                    'Admin\Users\UsersController',['names'=>'admin.users']);
+    Route::get('customers/{customer}/movie-access', 'Admin\Customers\CustomerMovieAccessController@create')->name('customers.movie-access.create');
+    Route::post('customers/{customer}/movie-access', 'Admin\Customers\CustomerMovieAccessController@store')->name('customers.movie-access.store');
+    Route::post('customers/{customer}/movie-access/{grant}/resend', 'Admin\Customers\CustomerMovieAccessController@resend')->name('customers.movie-access.resend');
     Route::resource('customers',                'Admin\Customers\CustomersController',['name'=>'customers']);
     Route::resource('casts',                    'Admin\Casts\CastsController',['name'=>'casts']);
     Route::resource('filmers',                  'Admin\Filmers\FilmersController',['name'=>'filmers']);
@@ -83,6 +86,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 Auth::routes();
 
+Route::get('movie-access/{grant}', 'Watch\MovieAccessController@show')->middleware('auth')->name('movie-access.show');
 
 Route::group(['middleware' => 'currencyByIp'], function(){
     Route::get('/', 'Browse\BrowseController@index')->name('home');

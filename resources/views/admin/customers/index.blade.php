@@ -48,6 +48,7 @@
                                     <th>Full name</th>
                                     <th>Email</th>
                                     <th class="disabled-sorting text-right">Date</th>
+                                    <th class="disabled-sorting text-right">Movie access</th>
                                 </tr>
                             </thead>
                             
@@ -65,9 +66,11 @@
                                     <td><a href="#">{{ $user->fullname() }}</a></td>
                                     <td class="text-left">{{ $user->email }}</td>
 
-                                    </td>
                                     <td class="text-right">
                                        {{ $user->created_at }}
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ route('customers.movie-access.create', ['customer' => $user->id]) }}" class="btn btn-primary btn-sm">Grant movie access</a>
                                     </td>
                                 </tr>
                                 @endforeach
