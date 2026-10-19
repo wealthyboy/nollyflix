@@ -57,6 +57,11 @@
       
         <div class="col-md-12">
         @include('includes.success')
+        @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+            </div>
+        @endif
 
             <div class="card">
         
@@ -97,7 +102,10 @@
                                         <td>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" value="{{ $video->id }}" name="selected[]" >
+                                                    <input type="checkbox" value="{{ $video->id }}" name="selected[]"
+                                                        data-title="{{ $video->title }}"
+                                                        data-push-title="{{ \Illuminate\Support\Str::limit('New on Nollyflix: '.$video->title, 150, '') }}"
+                                                        data-push-body="{{ \Illuminate\Support\Str::limit(trim(strip_tags((string) $video->description)), 120) ?: 'Open Nollyflix to watch now.' }}" >
                                                 </label>
                                             </div>
                                         </td>
@@ -167,10 +175,25 @@
                                 </tbody>
                             </table>
                         </form>
-                        <form action="{{ route('videos.push-notification') }}" method="post" id="video-push-form" style="display:none;">
-                            @csrf
-                            <div id="video-push-selection"></div>
-                        </form>
+                        <div class="modal fade" id="video-push-modal" tabindex="-1" role="dialog" aria-labelledby="video-push-heading">
+                            <div class="modal-dialog" role="document">
+                                <form action="{{ route('videos.push-notification') }}" method="post" id="video-push-form" class="modal-content">
+                                    @csrf
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="video-push-heading">Compose movie notifications</h4>
+                                    </div>
+                                    <div class="modal-body" style="max-height:60vh; overflow-y:auto;">
+                                        <p>Each movie sends a separate notification to all opted-in devices. Tapping it opens that movie.</p>
+                                        <div id="video-push-selection"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Queue notifications</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
                         @else
                            <div ><h1> No videos found</h1></div>
@@ -187,7 +210,7 @@
 @stop
 @section('inline-scripts')
 $(document).ready(function() {
-    $('#datatables').DataTable({
+    var videosTable = $('#datatables').DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         responsive: true,
@@ -200,24 +223,36 @@ $(document).ready(function() {
     $('.card .material-datatables label').addClass('form-group');
 
     $('#send-video-push').on('click', function() {
-        var selected = $('#form-videos input[name="selected[]"]:checked').map(function() {
-            return this.value;
-        }).get();
+        var selected = videosTable.$('input[name="selected[]"]:checked');
 
         if (!selected.length) {
             alert('Select at least one video first.');
             return;
         }
 
-        if (!confirm('Send a push notification for the selected video' + (selected.length > 1 ? 's' : '') + '?')) {
+        var $selection = $('#video-push-selection').empty();
+        selected.each(function() {
+            var id = this.value;
+            var $source = $(this);
+            var $movie = $('<fieldset>').css({ border: '1px solid #ddd', padding: '16px', marginBottom: '16px' }).appendTo($selection);
+            $('<legend>').css({ fontSize: '16px', marginBottom: '12px' }).text($source.attr('data-title')).appendTo($movie);
+            $('<input>', { type: 'hidden', name: 'selected[]', value: id }).appendTo($movie);
+            $('<label>', { for: 'push-title-' + id }).text('Notification title').appendTo($movie);
+            $('<input>', { id: 'push-title-' + id, type: 'text', class: 'form-control', name: 'messages[' + id + '][title]', maxlength: 150, required: true })
+                .val($source.attr('data-push-title')).appendTo($movie);
+            $('<label>', { for: 'push-body-' + id }).css('marginTop', '12px').text('Custom message').appendTo($movie);
+            $('<textarea>', { id: 'push-body-' + id, class: 'form-control', name: 'messages[' + id + '][body]', maxlength: 500, rows: 4, required: true })
+                .val($source.attr('data-push-body')).appendTo($movie);
+        });
+        $('#video-push-modal').modal('show');
+    });
+
+    $('#video-push-form').on('submit', function(event) {
+        if (!confirm('Send these movie notifications to all opted-in devices?')) {
+            event.preventDefault();
             return;
         }
-
-        var $selection = $('#video-push-selection').empty();
-        $.each(selected, function(_, id) {
-            $('<input>', { type: 'hidden', name: 'selected[]', value: id }).appendTo($selection);
-        });
-        $('#video-push-form').submit();
+        $(this).find('button[type="submit"]').prop('disabled', true).text('Queuing...');
     });
 
     $(document).on('change', '.js-video-active-toggle', function() {

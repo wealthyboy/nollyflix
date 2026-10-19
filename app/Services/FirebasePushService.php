@@ -47,7 +47,9 @@ class FirebasePushService
                         'data' => $stringData,
                         'android' => [
                             'priority' => 'high',
-                            'notification' => ['sound' => 'default'],
+                            // No expiry or shared tag: each delivered movie stays in the
+                            // drawer until opened/dismissed and does not replace another.
+                            'notification' => ['sound' => 'default', 'sticky' => false],
                         ],
                         'apns' => [
                             'payload' => [

@@ -197,47 +197,48 @@ class VideosController extends Controller
 
         $this->validate($request, [
             'selected' => 'required|array|min:1',
-            'selected.*' => 'integer|exists:videos,id',
+            'selected.*' => 'integer|distinct|exists:videos,id',
+            'messages' => 'nullable|array',
+            'messages.*' => 'array',
+            'messages.*.title' => 'nullable|string|max:150',
+            'messages.*.body' => 'nullable|string|max:500',
         ], [
             'selected.required' => 'Select at least one video to notify viewers about.',
         ]);
 
         $videos = Video::whereIn('id', $request->input('selected'))->get();
-        $singleVideo = $videos->count() === 1 ? $videos->first() : null;
+        $campaigns = \DB::transaction(function () use ($request, $videos) {
+            return $videos->map(function ($video) use ($request) {
+                $custom = $request->input('messages.'.$video->id, []);
+                $title = trim((string) ($custom['title'] ?? ''));
+                $body = trim((string) ($custom['body'] ?? ''));
+                if ($title === '') $title = Str::limit('New on Nollyflix: '.$video->title, 150, '');
+                if ($body === '') $body = Str::limit(trim(strip_tags((string) $video->description)), 120);
+                if ($body === '') $body = 'Open Nollyflix to watch now.';
 
-        $title = $singleVideo
-            ? 'New on Nollyflix: '.$singleVideo->title
-            : 'New releases on Nollyflix';
-        $body = $singleVideo
-            ? Str::limit(trim(strip_tags((string) $singleVideo->description)), 120)
-            : $videos->count().' new titles are ready to watch.';
+                $campaign = PushCampaign::create([
+                    'created_by' => optional($request->user())->id,
+                    'title' => $title,
+                    'body' => $body,
+                    'data' => [
+                        'type' => 'video_release',
+                        'url' => 'nollyflix://video/'.$video->id,
+                        'video_id' => (string) $video->id,
+                    ],
+                    'status' => 'queued',
+                ]);
+                $campaign->videos()->sync([$video->id]);
+                return $campaign;
+            });
+        });
 
-        if ($body === '') {
-            $body = 'Open Nollyflix to watch now.';
+        foreach ($campaigns as $campaign) {
+            SendPushCampaign::dispatch($campaign->id);
         }
-
-        $data = [
-            'type' => 'video_release',
-            'url' => $singleVideo ? 'nollyflix://video/'.$singleVideo->id : 'nollyflix://home',
-        ];
-        if ($singleVideo) {
-            $data['video_id'] = (string) $singleVideo->id;
-        }
-
-        $campaign = PushCampaign::create([
-            'created_by' => optional($request->user())->id,
-            'title' => $title,
-            'body' => $body,
-            'data' => $data,
-            'status' => 'queued',
-        ]);
-        $campaign->videos()->sync($videos->pluck('id')->all());
-
-        SendPushCampaign::dispatch($campaign->id);
 
         (new Activity)->Log('Queued a push notification for '.$videos->count().' video(s)');
 
-        return redirect()->route('videos.index')->with('success', 'Push notification queued for delivery.');
+        return redirect()->route('videos.index')->with('success', $campaigns->count().' movie notification(s) queued for delivery.');
     }
 
     public function search(Request $request)
