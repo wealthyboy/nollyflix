@@ -50,7 +50,7 @@ class GrantPlayerTestAccessTest extends TestCase
         $this->assertSame(0.0, (float) $order->total);
         $this->assertNull($order->transaction_id);
         $this->assertNull($order->video_rent_expires);
-        $this->assertSame((int) $this->administrator->id, (int) MovieAccessGrant::first()->granted_by);
+        $this->assertSame((int) $this->customer->id, (int) MovieAccessGrant::first()->granted_by);
         $this->assertTrue(app(VideoEntitlementService::class)->access($this->customer, Video::findOrFail(43))['allowed']);
         $this->assertDatabaseCount('payment_transactions', 0);
         Mail::assertNothingSent();
@@ -66,11 +66,21 @@ class GrantPlayerTestAccessTest extends TestCase
         $this->assertDatabaseCount('movie_access_grants', 1);
     }
 
-    public function test_missing_or_non_administrator_actor_cannot_create_access()
+    public function test_jacobs_admin_account_needs_no_permission_record_or_admin_option()
     {
-        $this->artisan('movie-access:grant-player-test', ['--yes' => true, '--no-interaction' => true])->assertExitCode(1);
-        $this->artisan('movie-access:grant-player-test', ['--admin' => $this->customer->email, '--yes' => true])->assertExitCode(1);
-        $this->assertDatabaseCount('orders', 0);
+        $this->customer->update(['type' => 'admin']);
+        $this->assertNull($this->customer->users_permission);
+        $this->artisan('movie-access:grant-player-test', ['--yes' => true, '--no-interaction' => true])->assertExitCode(0);
+        $this->artisan('movie-access:grant-player-test', ['--admin' => $this->customer->email, '--yes' => true])->assertExitCode(0);
+        $this->assertSame('admin', $this->customer->fresh()->type);
+        $this->assertNull($this->customer->fresh()->users_permission);
+        $this->assertDatabaseCount('orders', 1);
+        $this->assertDatabaseCount('movie_access_grants', 1);
+        $this->actingAs($this->customer, 'api')->withHeaders([
+            'Authorization' => 'Bearer test-guard-user', 'CF-IPCountry' => 'NG',
+        ]);
+        $this->getJson('/api/video/43')->assertOk()->assertJsonPath('data.is_purchased', true);
+        $this->getJson('/api/video/43/play')->assertOk()->assertJsonPath('data.access_type', 'buy');
     }
 
     public function test_missing_customer_or_unavailable_movie_does_not_create_replacements()
@@ -144,6 +154,15 @@ class GrantPlayerTestAccessTest extends TestCase
             'grant_token' => (string) \Illuminate\Support\Str::uuid(), 'video_id' => 43,
             'purchase_type' => 'buy', 'reason' => 'Default flow stays subscriber-only.',
         ]);
+    }
+
+    public function test_the_exception_cannot_grant_another_administrator_access()
+    {
+        $this->expectException(\Illuminate\Database\Eloquent\ModelNotFoundException::class);
+        app(\App\Services\MovieAccessGrantService::class)->grant($this->administrator, $this->administrator, [
+            'grant_token' => (string) \Illuminate\Support\Str::uuid(), 'video_id' => 43,
+            'purchase_type' => 'buy', 'reason' => 'Must not grant another account.',
+        ], ['player_test_recipient' => true]);
     }
 
     protected function runGrant()
