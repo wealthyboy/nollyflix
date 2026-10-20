@@ -18,10 +18,18 @@ class GrantPlayerTestAccess extends Command
 
     public function handle(MovieAccessGrantService $service)
     {
-        $customer = User::customers()->where('email', 'jacob.atam@gmail.com')->first();
+        $customer = User::where('email', 'jacob.atam@gmail.com')->first();
+        if (! $customer) {
+            $this->error('Account jacob.atam@gmail.com was not found in this database. Nothing was changed.');
+            return 1;
+        }
+        if ($customer->type !== 'subscriber' && ! $customer->isAdmin()) {
+            $this->error('This account is neither a subscriber nor an administrator. Nothing was changed.');
+            return 1;
+        }
         $video = Video::active()->whereNull('deleted_at')->find(43);
-        if (! $customer || ! $video) {
-            $this->error('The existing customer jacob.atam@gmail.com and active movie 43 must both exist. Nothing was changed.');
+        if (! $video) {
+            $this->error('Movie 43 was not found, is inactive or was deleted. Nothing was changed.');
             return 1;
         }
 
@@ -43,7 +51,7 @@ class GrantPlayerTestAccess extends Command
             return 1;
         }
 
-        $this->line('Customer: '.$customer->email);
+        $this->line('Account: '.$customer->email.' (role unchanged)');
         $this->line('Movie: 43 — '.$video->title);
         $this->line('Access: Buy (no expiry). Complimentary order: 0. No payment, receipt, email or push will be sent.');
         if (! $this->option('yes') && (! $this->input->isInteractive()
@@ -58,7 +66,11 @@ class GrantPlayerTestAccess extends Command
             'video_id' => 43,
             'purchase_type' => 'buy',
             'reason' => 'Complimentary app video-player test requested for jacob.atam@gmail.com, movie 43.',
-        ], ['user_agent' => 'Artisan movie-access:grant-player-test']);
+        ], [
+            'user_agent' => 'Artisan movie-access:grant-player-test',
+            // Only this explicit CLI grant accepts an administrator recipient.
+            'allow_admin_recipient' => true,
+        ]);
 
         if (! $grant->order || ! $service->orderHasAccess($grant->order)) {
             $this->error('The previous test grant was revoked or its order is unavailable. Use Customers > Grant movie access to review it; no replacement was created.');

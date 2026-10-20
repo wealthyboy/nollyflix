@@ -21,7 +21,16 @@ class MovieAccessGrantService
     {
         return DB::transaction(function () use ($administrator, $customer, $data, $context) {
             // Serialize grants for this customer, including requests using different tokens.
-            $customer = User::customers()->whereKey($customer->id)->lockForUpdate()->firstOrFail();
+            $recipients = User::whereKey($customer->id);
+            if (! empty($context['allow_admin_recipient'])) {
+                $recipients->where(function ($query) {
+                    $query->where('type', 'subscriber')->orWhereHas('users_permission');
+                });
+            } else {
+                // Keep the normal customer-grant flow subscriber-only.
+                $recipients->customers();
+            }
+            $customer = $recipients->lockForUpdate()->firstOrFail();
             $existing = MovieAccessGrant::where('grant_token', $data['grant_token'])->first();
 
             if ($existing) {

@@ -114,6 +114,38 @@ class GrantPlayerTestAccessTest extends TestCase
         $this->getJson('/api/profile/videos')->assertOk()->assertJsonFragment(['id' => 43, 'is_purchased' => true]);
     }
 
+    public function test_jacobs_administrator_account_can_grant_itself_buy_access_without_a_role_change()
+    {
+        $this->customer->update(['type' => 'admin']);
+        $this->customer->users_permission()->create([
+            'permission_id' => $this->administrator->users_permission->permission_id,
+        ]);
+        $options = ['--admin' => $this->customer->email, '--yes' => true];
+        $this->artisan('movie-access:grant-player-test', $options)->assertExitCode(0);
+        $this->artisan('movie-access:grant-player-test', $options)->assertExitCode(0);
+        $this->assertSame('admin', $this->customer->fresh()->type);
+        $this->assertTrue($this->customer->fresh()->isAdmin());
+        $this->assertDatabaseCount('orders', 1);
+        $this->assertDatabaseCount('movie_access_grants', 1);
+        $this->assertSame((int) $this->customer->id, (int) Order::first()->user_id);
+        $this->assertSame((int) $this->customer->id, (int) MovieAccessGrant::first()->granted_by);
+        $this->actingAs($this->customer, 'api')->withHeaders([
+            'Authorization' => 'Bearer test-guard-user', 'CF-IPCountry' => 'NG',
+        ]);
+        $this->getJson('/api/video/43')->assertOk()->assertJsonPath('data.is_purchased', true);
+        $this->getJson('/api/video/43/play')->assertOk()->assertJsonPath('data.access_type', 'buy');
+        $this->getJson('/api/profile/videos')->assertOk()->assertJsonFragment(['id' => 43, 'is_purchased' => true]);
+    }
+
+    public function test_normal_grant_service_still_rejects_an_administrator_recipient_by_default()
+    {
+        $this->expectException(\Illuminate\Database\Eloquent\ModelNotFoundException::class);
+        app(\App\Services\MovieAccessGrantService::class)->grant($this->administrator, $this->administrator, [
+            'grant_token' => (string) \Illuminate\Support\Str::uuid(), 'video_id' => 43,
+            'purchase_type' => 'buy', 'reason' => 'Default flow stays subscriber-only.',
+        ]);
+    }
+
     protected function runGrant()
     {
         $this->artisan('movie-access:grant-player-test', ['--admin' => $this->administrator->email, '--yes' => true])->assertExitCode(0);
