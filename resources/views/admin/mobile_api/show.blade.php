@@ -21,6 +21,10 @@
             <dt>Request</dt><dd>{{ $log->method }} /{{ $log->path }}</dd>
             <dt>Status / duration</dt><dd>{{ $log->status ?: 'Exception' }} · {{ number_format((float) $log->duration_ms, 2) }} ms</dd>
             <dt>Customer</dt><dd>{{ optional($log->user)->email ?: ($log->user_id ? 'User #'.$log->user_id : 'Guest') }}</dd>
+            <dt>Device (app-reported)</dt><dd>{{ $log->device_label }}</dd>
+            <dt>Brand</dt><dd>{{ $log->device_brand ?: 'Unknown' }}</dd>
+            <dt>Model</dt><dd>{{ $log->device_model ?: 'Unknown' }}</dd>
+            <dt>Operating system</dt><dd>{{ $log->os_label }}</dd>
             <dt>App</dt><dd>{{ $log->platform ?: 'Unknown' }} {{ $log->app_version ? 'v'.$log->app_version : '' }} {{ $log->app_build ? '(build '.$log->app_build.')' : '' }}</dd>
             <dt>IP</dt><dd>{{ $log->ip ?: 'Unknown' }}</dd>
             <dt>User agent</dt><dd>{{ $log->user_agent ?: 'Unknown' }}</dd>

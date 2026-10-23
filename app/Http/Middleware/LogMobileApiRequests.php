@@ -29,9 +29,12 @@ class LogMobileApiRequests
             'path' => $request->path(),
             'ip' => $request->ip(),
             'user_id' => null,
-            'platform' => $request->header('X-App-Platform'),
-            'app_version' => $request->header('X-App-Version'),
-            'app_build' => $request->header('X-App-Build'),
+            'platform' => $this->deviceHeader($request, 'X-App-Platform', 30),
+            'app_version' => $this->deviceHeader($request, 'X-App-Version', 40),
+            'app_build' => $this->deviceHeader($request, 'X-App-Build', 40),
+            'device_brand' => $this->deviceHeader($request, 'X-Device-Brand', 80),
+            'device_model' => $this->deviceHeader($request, 'X-Device-Model', 120),
+            'os_version' => $this->deviceHeader($request, 'X-OS-Version', 40),
             'user_agent' => $request->userAgent(),
             'request_payload' => $this->redact(array_merge($request->query(), $request->all())),
         ];
@@ -62,6 +65,16 @@ class LogMobileApiRequests
             Log::channel('mobile_api')->error('Mobile API request failed', $context);
             throw $exception;
         }
+    }
+
+    private function deviceHeader($request, $name, $length)
+    {
+        // Diagnostic, app-reported metadata only; never use it to authorize a
+        // request. Keep untrusted header values bounded and log-safe.
+        $value = preg_replace('/[\x00-\x1F\x7F]/', ' ', (string) $request->header($name, ''));
+        $value = trim(mb_substr($value, 0, $length));
+
+        return $value !== '' && strcasecmp($value, 'unknown') !== 0 ? $value : null;
     }
 
     private function responsePayload($response)

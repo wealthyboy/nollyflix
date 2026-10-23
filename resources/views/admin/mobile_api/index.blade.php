@@ -26,6 +26,7 @@
             <div class="card-content">
                 <h3 class="monitor-title">Mobile API Monitor</h3>
                 <p class="monitor-subtitle">Every app request, response status, duration and backend failure. Statistics cover the last 24 hours.</p>
+                <p class="monitor-subtitle">Device details are reported by the app, not verified device identity. Older app versions may show Unknown.</p>
             </div>
         </div>
     </div>
@@ -55,13 +56,14 @@
             <div class="col-md-2"><select name="result" class="form-control"><option value="">All results</option><option value="success" {{ request('result') === 'success' ? 'selected' : '' }}>Successful</option><option value="client_error" {{ request('result') === 'client_error' ? 'selected' : '' }}>Client errors (4xx)</option><option value="server_error" {{ request('result') === 'server_error' ? 'selected' : '' }}>Server errors (5xx)</option><option value="slow" {{ request('result') === 'slow' ? 'selected' : '' }}>Slow (2s+)</option></select></div>
             <div class="col-md-3"><input name="path" value="{{ request('path') }}" class="form-control" placeholder="Endpoint, e.g. video/12/play"></div>
             <div class="col-md-2"><input name="request_id" value="{{ request('request_id') }}" class="form-control" placeholder="Request ID"></div>
-            <div class="col-md-1"><select name="platform" class="form-control"><option value="">Device</option><option value="android" {{ request('platform') === 'android' ? 'selected' : '' }}>Android</option><option value="ios" {{ request('platform') === 'ios' ? 'selected' : '' }}>iOS</option></select></div>
+            <div class="col-md-1"><select name="platform" class="form-control"><option value="">Platform</option><option value="android" {{ request('platform') === 'android' ? 'selected' : '' }}>Android</option><option value="ios" {{ request('platform') === 'ios' ? 'selected' : '' }}>iOS</option></select></div>
             <div class="col-md-2"><button class="btn btn-rose btn-block">Filter</button></div>
         </div>
         <div class="row">
             <div class="col-md-2"><input type="number" name="user_id" value="{{ request('user_id') }}" class="form-control" placeholder="User ID"></div>
             <div class="col-md-2"><input type="date" name="from" value="{{ request('from') }}" class="form-control"></div>
             <div class="col-md-2"><input type="date" name="to" value="{{ request('to') }}" class="form-control"></div>
+            <div class="col-md-3"><input name="device" value="{{ request('device') }}" class="form-control" placeholder="Device brand or model" aria-label="Device brand or model"></div>
             <div class="col-md-2"><a href="{{ route('admin.mobile-api.index') }}" class="btn btn-default btn-block">Reset</a></div>
         </div>
     </form>
@@ -77,7 +79,7 @@
                     <td class="method">{{ $log->method }}</td>
                     <td class="monitor-path" title="{{ $log->path }}">/{{ $log->path }}</td>
                     <td>{{ optional($log->user)->email ?: ($log->user_id ? '#'.$log->user_id : 'Guest') }}</td>
-                    <td>{{ $log->platform ?: 'Unknown' }}<br><small>{{ $log->app_version ? 'v'.$log->app_version : '' }}</small></td>
+                    <td><strong>{{ $log->device_label }}</strong><br><small>{{ $log->os_label }}</small>@if($log->app_version || $log->app_build)<br><small>App {{ $log->app_version ? 'v'.$log->app_version : '' }}{{ $log->app_build ? ' (build '.$log->app_build.')' : '' }}</small>@endif</td>
                     <td class="{{ $log->duration_ms >= 2000 ? 'text-danger' : '' }}"><strong>{{ number_format((float) $log->duration_ms, 0) }} ms</strong></td>
                     <td><code>{{ substr($log->request_id, 0, 8) }}</code></td>
                     <td><a href="{{ route('admin.mobile-api.show', $log->id) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td>

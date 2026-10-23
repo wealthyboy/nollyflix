@@ -15,6 +15,7 @@ class MobileApiLogsController extends Controller
 
     public function index(Request $request)
     {
+        $request->validate(['device' => 'nullable|string|max:120']);
         $query = MobileApiLog::with('user')->latest();
 
         if ($request->filled('method')) $query->where('method', strtoupper($request->method));
@@ -22,6 +23,13 @@ class MobileApiLogsController extends Controller
         if ($request->filled('request_id')) $query->where('request_id', 'like', $request->request_id.'%');
         if ($request->filled('user_id')) $query->where('user_id', $request->user_id);
         if ($request->filled('platform')) $query->where('platform', $request->platform);
+        if ($request->filled('device')) {
+            $device = mb_substr((string) $request->input('device'), 0, 120);
+            $query->where(function ($query) use ($device) {
+                $query->where('device_brand', 'like', '%'.$device.'%')
+                    ->orWhere('device_model', 'like', '%'.$device.'%');
+            });
+        }
         if ($request->filled('result')) {
             if ($request->result === 'success') $query->whereBetween('status', [200, 399]);
             if ($request->result === 'client_error') $query->whereBetween('status', [400, 499]);

@@ -33,6 +33,26 @@ php artisan config:cache
 php artisan route:clear
 ```
 
+## Device details in Mobile API Monitor
+
+Deploy the backend and run `php artisan migrate --force` to add the nullable
+device fields. Install a newly rebuilt mobile app; JavaScript reloads alone do
+not install the native device-information module. For iOS builds, run
+`bundle exec pod install` inside the app's `ios` directory first.
+
+The app attaches `X-App-Platform`, `X-App-Version`, `X-App-Build`,
+`X-Device-Brand`, `X-Device-Model`, and `X-OS-Version` to API requests,
+including requests before login. `/admin/mobile-api` displays these details in
+the Device column and request details, with a brand/model filter.
+
+Existing rows are not backfilled or guessed from the IP address/user agent;
+missing brand/model values show Unknown. These values are client-reported and
+may be spoofed: do not use them as authentication or access-control evidence.
+No serial number, IMEI, advertising ID, unique device ID or personal phone name
+is collected by this feature. Model codes are shared hardware models, not
+unique identifiers. iOS model names can lag new releases, so the app includes
+the hardware model code when available.
+
 ## Catalogue pricing
 
 - All mobile API requests currently use `videos.buy_price` and
