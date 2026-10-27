@@ -44,4 +44,9 @@ return [
         'credentials' => env('FIREBASE_CREDENTIALS'),
     ],
 
+    // Temporary mobile playback testing only. Keep disabled outside the test window.
+    'mobile_playback' => [
+        'ignore_geofence' => env('MOBILE_PLAYBACK_IGNORE_GEOFENCE', false),
+    ],
+
 ];

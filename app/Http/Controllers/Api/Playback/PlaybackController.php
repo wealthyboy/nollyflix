@@ -6,13 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Services\VideoEntitlementService;
 use App\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PlaybackController extends Controller
 {
     public function show(Request $request, VideoEntitlementService $entitlements, $id)
     {
         $video = Video::active()->with('episodes')->findOrFail($id);
-        abort_if($video->isBlockedInCurrentRegion(), 403, 'This title is not available in your region.');
+        $regionBlocked = $video->isBlockedInCurrentRegion();
+        $platform = strtolower(trim((string) $request->header('X-App-Platform')));
+        $testingBypass = $regionBlocked
+            && config('services.mobile_playback.ignore_geofence', false)
+            && in_array($platform, ['android', 'ios'], true);
+        abort_if($regionBlocked && ! $testingBypass, 403, 'This title is not available in your region.');
         $user = null;
         if ($request->bearerToken()) {
             try {
@@ -42,9 +48,17 @@ class PlaybackController extends Controller
         $subtitleUrl = optional($episode)->track_file ?: $video->track_file;
         abort_if(! $streamUrl, 404, 'This video is not available for playback.');
 
+        if ($testingBypass) {
+            Log::notice('mobile_playback_geofence_testing_bypass', [
+                'video_id' => $video->id,
+                'platform' => $platform,
+            ]);
+        }
+
         return response()->json([
             'data' => [
                 'video_id' => $video->id,
+                'geofence_bypassed_for_testing' => (bool) $testingBypass,
                 'is_series' => $video->isSeries(),
                 'episode_id' => optional($episode)->id,
                 'episodes' => $video->isSeries() ? $video->episodes->filter(function ($candidate) {
