@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
+    Route::get('account-deletion-requests', 'Admin\Users\AccountDeletionRequestsController@index')->name('admin.account-deletion-requests.index');
     Route::get('/','Admin\HomeCtrl@index')->name('admin_home');
     Route::get('mobile-api', 'Admin\MobileApi\MobileApiLogsController@index')->name('admin.mobile-api.index');
     Route::get('mobile-api/{id}', 'Admin\MobileApi\MobileApiLogsController@show')->name('admin.mobile-api.show');
@@ -87,6 +88,11 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 
 Auth::routes();
+
+Route::get('account-deletion', 'AccountDeletionController@show')->name('account-deletion.show');
+Route::post('account-deletion', 'AccountDeletionController@store')->middleware('throttle:5,1')->name('account-deletion.store');
+Route::match(['get', 'post'], 'account-deletion/confirm/{user}', 'AccountDeletionController@confirm')
+    ->middleware('throttle:10,1')->name('account-deletion.confirm');
 
 Route::get('movie-access/{grant}', 'Watch\MovieAccessController@show')->middleware('auth')->name('movie-access.show');
 

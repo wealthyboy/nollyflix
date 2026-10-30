@@ -30,6 +30,7 @@ Route::middleware(['apiCurrencyByIp'])->group(function () {
         Route::post('checkout/initialize', 'Api\Checkout\CheckoutController@initialize');
         Route::post('checkout', 'Api\Checkout\CheckoutController@store');
         Route::put('profile', 'Api\Profile\ProfileController@update');
+        Route::post('profile/account-deletion', 'AccountDeletionController@mobile')->middleware('throttle:5,1');
         Route::post('profile/change-password', 'Api\Profile\ProfileController@changePassword');
     });
 });

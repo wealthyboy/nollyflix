@@ -4,4 +4,5 @@
         <li class="{{ $current == 'videos' ? 'current' : '' }}" ><a href="{{ route('profiles.videos') }}">Videos({{ $user->profile_videos->count() }})</a></li>
     @endif
     <li class="{{ $current == 'watchlists' ? 'current' : '' }}"><a href="{{ route('profiles.watchlists') }}">Watchlist({{ $user->movies->count() }})</a></li>
+    <li><a href="{{ route('account-deletion.show') }}">Delete account</a></li>
 </ul>

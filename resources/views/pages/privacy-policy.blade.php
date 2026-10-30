@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h1 style="margin-bottom: 8px;">Privacy Policy</h1>
-                <p class="text-muted" style="margin-bottom: 32px;">Last updated: September 2026</p>
+                <p class="text-muted" style="margin-bottom: 32px;">Last updated: October 2026</p>
 
                 <p>
                     This Privacy Policy explains how Nollyflix collects, uses, stores and shares personal information
@@ -112,10 +112,14 @@
                     prevention, security and record-keeping purposes.
                 </p>
                 <p>
-                    The current website does not publish a dedicated Data Protection Officer page or a separate
-                    Privacy Office email address. Privacy requests should therefore be made through the official
-                    customer-support contact Nollyflix provides to you. If a dedicated privacy contact is introduced,
-                    this page will be updated to show it.
+                    To request deletion of your NollyFlix account and associated personal data, visit
+                    <a href="{{ route('account-deletion.show') }}">Delete your account</a> or choose Delete account
+                    in the mobile app's Account screen. Confirm the request using the link sent to your account
+                    email address. Support processes verified requests; submitting a request is not immediate
+                    deletion. Completed deletion removes access to purchases and rentals on both the website
+                    and app. If you cannot access your account email, contact support@nollyflix.tv for help
+                    verifying ownership. Support will explain any records that must be retained and the
+                    applicable retention period.
                 </p>
 
                 <h3>8. Data retention</h3>

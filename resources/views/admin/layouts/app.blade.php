@@ -169,13 +169,13 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ $helper->active_link(['users','customers']) }} ">
+            <li class="{{ $helper->active_link(['users','customers','account-deletion-requests']) }} ">
                 <a data-toggle="collapse" href="dashboard.html#users">
                     <i class="fa fa-user fw"></i> <p> Users 
                        <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse  {{ $helper->active_link(['casts','filmers','users','customers']) ? 'in' : '' }}" id="users">
+                <div class="collapse  {{ $helper->active_link(['casts','filmers','users','customers','account-deletion-requests']) ? 'in' : '' }}" id="users">
                     <ul class="nav">
                         <li class="{{ $helper->active_link(['users']) }} ">
                             <a href="{{ route('admin.users.index') }}">
@@ -189,6 +189,14 @@
                                 <span class="sidebar-normal">  Subscribers</span>
                             </a>
                         </li>
+                        @if(\App\User::userHasPermission(3))
+                        <li class="{{ $helper->active_link(['account-deletion-requests']) }}">
+                            <a href="{{ route('admin.account-deletion-requests.index') }}">
+                                <span class="sidebar-mini"><i class="fa fa-circle"></i></span>
+                                <span class="sidebar-normal">Deletion requests</span>
+                            </a>
+                        </li>
+                        @endif
                         <li class="{{ $helper->active_link(['casts']) }} ">
                             <a href="{{ route('casts.index') }}">
                                 <span class="sidebar-mini"><i class="fa fa-circle"></i></span>
