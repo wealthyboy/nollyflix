@@ -37,6 +37,9 @@ class VideoIndexResource extends JsonResource
             'genres' => $this->whenLoaded('genres', function () {
                 return $this->genres->map->only(['id', 'name', 'slug']);
             }),
+            'content_advisories' => $this->whenLoaded('contentAdvisories', function () {
+                return $this->contentAdvisories->map->only(['id', 'name', 'slug'])->values();
+            }),
             'casts' => $this->whenLoaded('casts', function () {
                 return $this->casts->map->only(['id', 'name', 'last_name', 'username']);
             }),

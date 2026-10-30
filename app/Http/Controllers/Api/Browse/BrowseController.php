@@ -56,7 +56,7 @@ class BrowseController extends Controller
     public function show($id)
     {
         $video = Video::active()->findOrFail($id);
-        $video->load('episodes', 'genres', 'casts', 'filmers', 'related_videos.video');
+        $video->load('episodes', 'genres', 'contentAdvisories', 'casts', 'filmers', 'related_videos.video');
         $video->setRelation('related_videos', $video->related_videos->filter(function ($related) {
             return (bool) $related->video && (bool) $related->video->is_active;
         })->values());

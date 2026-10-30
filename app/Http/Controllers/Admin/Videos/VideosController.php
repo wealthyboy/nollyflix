@@ -16,6 +16,7 @@ use App\Http\Helper;
 use App\SystemSetting;
 use App\RelatedVideo;
 use App\Genre;
+use App\ContentAdvisory;
 use App\Jobs\SendPushCampaign;
 use App\PushCampaign;
 use Illuminate\Http\Request;
@@ -61,11 +62,12 @@ class VideosController extends Controller
         User::canTakeAction(2);
         $categories = Category::parents()->get();
         $genres  = Genre::latest()->get();
+        $contentAdvisories = ContentAdvisory::ordered()->get();
         $sections = Section::latest()->get();
         $filmers = (new User())->filmers()->latest()->get();
         $casts = (new User())->castings()->latest()->get();
         $excludes = Video::excludes();
-        return view('admin.videos.create', compact('excludes', 'genres', 'sections', 'filmers', 'casts', 'categories'));
+        return view('admin.videos.create', compact('excludes', 'genres', 'sections', 'filmers', 'casts', 'categories', 'contentAdvisories'));
     }
 
     /**
@@ -76,10 +78,13 @@ class VideosController extends Controller
      */
     public function store(Request $request, Video $video)
     {
+        abort_unless(User::userHasPermission(2), 403);
 
         //
         $this->validate($request, [
             'content_type' => 'nullable|in:movie,series',
+            'content_advisory_ids' => 'nullable|array',
+            'content_advisory_ids.*' => 'required|integer|distinct|exists:content_advisories,id',
             'buy_price'  =>  'required',
             'rent_price' =>  'required',
             'buy_price_usd'  =>  'nullable|numeric',
@@ -131,6 +136,7 @@ class VideosController extends Controller
         $video->featured = $request->featured_video ? 1 : 0;
         $video->access_type = $request->access_type;
         $video->save();
+        $video->contentAdvisories()->sync($request->input('content_advisory_ids', []));
         $this->syncEpisodes($video, $request);
 
         if (!empty($request->category_id)) {
@@ -303,13 +309,14 @@ class VideosController extends Controller
         User::canTakeAction(3);
         $categories = Category::parents()->get();
         $genres = Genre::latest()->get();
+        $contentAdvisories = ContentAdvisory::ordered()->get();
         $sections = Section::latest()->get();
         $filmers = (new User())->filmers()->latest()->get();
         $casts = (new User())->castings()->latest()->get();
-        $video = Video::with('episodes')->find($id);
+        $video = Video::with('episodes', 'contentAdvisories')->findOrFail($id);
         $excludes = Video::excludes();
 
-        return view('admin.videos.edit', compact('excludes', 'genres', 'filmers', 'sections', 'casts', 'categories', 'video'));
+        return view('admin.videos.edit', compact('excludes', 'genres', 'filmers', 'sections', 'casts', 'categories', 'video', 'contentAdvisories'));
     }
 
     /**
@@ -321,9 +328,12 @@ class VideosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        abort_unless(User::userHasPermission(3), 403);
         //
         $this->validate($request, [
             'content_type' => 'nullable|in:movie,series',
+            'content_advisory_ids' => 'nullable|array',
+            'content_advisory_ids.*' => 'required|integer|distinct|exists:content_advisories,id',
             'buy_price'  =>  'required',
             'rent_price' =>  'required',
             'buy_price_usd'  =>  'nullable|numeric',
@@ -373,6 +383,11 @@ class VideosController extends Controller
         $video->featured = $request->featured_video ? 1 : 0;
         $video->access_type = $request->access_type;
         $video->save();
+        // An unchecked form clears all advisories; older clients that omit this
+        // field entirely must not silently erase an existing classification.
+        if ($request->has('content_advisories_present') || $request->has('content_advisory_ids')) {
+            $video->contentAdvisories()->sync($request->input('content_advisory_ids', []));
+        }
         $this->syncEpisodes($video, $request);
 
         if (!empty($request->category_id)) {

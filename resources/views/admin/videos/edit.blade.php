@@ -376,6 +376,7 @@
                                   </div>
                                </div>
                             </div>
+                            @include('admin.videos.content_advisories')
                             <div class="row">
                                <div class="col-md-12">
                                   <div class="form-group label-floating ">

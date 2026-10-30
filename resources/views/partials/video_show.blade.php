@@ -108,6 +108,7 @@
                   <li id=""><span>{{ $video->duration }}</span></li>
                </ul>
                <div class="clearfix"></div>
+               @include('partials.content_advisories')
                <div class="content-sidebar-short-description mt-3"> Genres:
                   {!! $video->allGenres() !!}
                </div>

@@ -129,7 +129,7 @@
                     </p>
                 </a>
 
-                <div class="collapse {{ $helper->active_link(['sections','category','genres','videos']) ? 'in' : ''}}" id="products">
+                <div class="collapse {{ $helper->active_link(['sections','category','genres','videos','content-advisories']) ? 'in' : ''}}" id="products">
                     <ul class="nav">
                         <li class="{{ $helper->active_link(['videos']) }} ">
                              <a  href="{{ route('videos.index') }}">
@@ -149,6 +149,13 @@
                             <a  href="{{ route('genres.index') }}">
                                 <span class="sidebar-mini"> VG</span>
                                 <span class="sidebar-normal"> Video Genres </span>
+                            </a>
+                        </li>
+
+                        <li class="{{ $helper->active_link(['content-advisories']) }}">
+                            <a href="{{ route('content-advisories.index') }}">
+                                <span class="sidebar-mini"> CA </span>
+                                <span class="sidebar-normal"> Content Advisories </span>
                             </a>
                         </li>
 

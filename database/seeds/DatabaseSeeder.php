@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             // PermissionSeeder::class,
             // UsersPermissionSeeder::class,
             // CurrencySeeder::class,
-            SystemSeeder::class
+            SystemSeeder::class,
+            ContentAdvisorySeeder::class,
 
 
         ]);

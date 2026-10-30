@@ -159,6 +159,12 @@ class Video extends Model
         return $this->belongsToMany('App\Genre');
     }
 
+    public function contentAdvisories()
+    {
+        return $this->belongsToMany(ContentAdvisory::class, 'content_advisory_video')
+            ->withTimestamps()->ordered();
+    }
+
 
     public function getUrlAttribute()
     {

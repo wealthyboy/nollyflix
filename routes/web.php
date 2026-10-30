@@ -39,6 +39,8 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::post('videos/push-notification', 'Admin\Videos\VideosController@sendPushNotification')->name('videos.push-notification');
 
     Route::resource('videos','Admin\Videos\VideosController',['names' => 'videos']);
+    Route::resource('content-advisories', 'Admin\Videos\ContentAdvisoriesController')
+        ->only(['index', 'store', 'edit', 'update']);
     Route::resource('activity','Admin\Activity\ActivityController',['names' => 'activity']);
     Route::resource('category/featured','Admin\Activity\ActivityController',['names' => 'category.featured']);
 
