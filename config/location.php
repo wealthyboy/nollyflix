@@ -11,7 +11,8 @@ return [
     |
     */
 
-    'driver' => Stevebauman\Location\Drivers\IpApi::class,
+    // The bundled online drivers use HTTP. Use our HTTPS-only adapter instead.
+    'driver' => App\Location\Drivers\HttpsIpInfo::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -27,10 +28,7 @@ return [
 
     'fallbacks' => [
 
-        Stevebauman\Location\Drivers\IpInfo::class,
-
-        Stevebauman\Location\Drivers\GeoPlugin::class,
-
+        // Local database only; never downgrade a failed TLS lookup to HTTP.
         Stevebauman\Location\Drivers\MaxMind::class,
     ],
 
@@ -99,7 +97,7 @@ return [
 
     'ipinfo' => [
 
-        'token' => env('c345ac300b2cd2'),
+        'token' => env('IPINFO_TOKEN'),
 
     ],
 
