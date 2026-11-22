@@ -25,7 +25,20 @@
         <div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
         <div class="header-user-profile prfDrpdwn {{ !auth()->check() ? 'd-none' : '' }}" id="header-user-profile">
             <div id="header-user-profile-click" class="noselect header-user-profile-click">
-            <img src="{{ auth()->check() ? auth()->user()->m_path() : asset('images/users/default/default_image.png')}}" alt="Suzie">
+            @php
+                // Prefer a genuine uploaded photo, but never point the header to a missing file.
+                $headerAvatarFallback = asset('images/default-contributor-avatar.jpg');
+                $headerAvatar = $headerAvatarFallback;
+                if (auth()->check() && !empty(auth()->user()->image)) {
+                    $headerPhoto = basename((string) auth()->user()->image);
+                    if ($headerPhoto !== '' && is_file(public_path('images/users/m/' . $headerPhoto))) {
+                        $headerAvatar = asset('images/users/m/' . $headerPhoto);
+                    }
+                }
+            @endphp
+            <img src="{{ $headerAvatar }}"
+                 alt="{{ auth()->check() ? auth()->user()->fullname() : 'Profile' }}"
+                 onerror="this.onerror=null;this.src='{{ $headerAvatarFallback }}';">
                 <div id="header-username">{{ '' }}</div><i class="fas fa-angle-down"></i>
             </div><!-- close #header-user-profile-click -->
             <div class="header-user-profile-menu" id="header-user-profile-menu">
