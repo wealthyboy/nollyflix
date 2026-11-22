@@ -5,7 +5,7 @@
             <button type="button" class="btn btn-xs btn-default" onclick="nfxCopyCredential('contributor-login-email')">Copy email</button>
         </p>
         <p><strong>Temporary password:</strong>
-            <code id="contributor-password" style="letter-spacing:1px">{{ $contributor->temporary_password_ciphertext ? 'xxxxxxxxxx'.substr(app('App\Services\ContributorCredentials')->availablePassword($contributor), -2) : 'Not available' }}</code>
+            <code id="contributor-password" style="letter-spacing:1px">{{ $contributor->temporary_password_ciphertext ? 'xxxxxx'.substr(app('App\Services\ContributorCredentials')->availablePassword($contributor), -2) : 'Not available' }}</code>
             <button type="button" class="btn btn-xs btn-primary" id="nfx-reveal-password" {{ $contributor->temporary_password_ciphertext ? '' : 'disabled' }}>Reveal</button>
             <button type="button" class="btn btn-xs btn-default" id="nfx-copy-password" disabled>Copy</button>
         </p>
@@ -29,7 +29,7 @@
     }
     window.nfxCopyCredential = function(id) { copyText(document.getElementById(id).textContent.trim()); };
     show.addEventListener('click', function(){
-        if (revealed !== null) { revealed = null; output.textContent = @json($contributor->temporary_password_ciphertext ? 'xxxxxxxxxx'.substr(app('App\Services\ContributorCredentials')->availablePassword($contributor), -2) : 'Not available'); show.textContent='Reveal'; copy.disabled=true; return; }
+        if (revealed !== null) { revealed = null; output.textContent = @json($contributor->temporary_password_ciphertext ? 'xxxxxx'.substr(app('App\Services\ContributorCredentials')->availablePassword($contributor), -2) : 'Not available'); show.textContent='Reveal'; copy.disabled=true; return; }
         fetch(@json($revealRoute), {method:'POST', credentials:'same-origin', headers:{'X-CSRF-TOKEN':@json(csrf_token()), 'Accept':'application/json'}})
             .then(function(r){ if (!r.ok) throw Error('Unable to reveal password'); return r.json(); })
             .then(function(data){ if (!data.available) {output.textContent='No temporary password available';return;} revealed=data.password; output.textContent=data.password; show.textContent='Hide'; copy.disabled=false; })
