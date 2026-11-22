@@ -46,13 +46,14 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request,$user)
     {
-        if ($user->type === 'casts') {
+        if (in_array($user->type, ['casts', 'filmakers'], true)) {
             $request->session()->forget('url.intended');
+            $destination = $user->must_change_password ? route('contributor.password.edit') : route('actors.dashboard');
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json(['loggedIn' => true, 'user' => $user,
-                    'redirect' => route('actors.dashboard')]);
+                    'redirect' => $destination]);
             }
-            return redirect()->route('actors.dashboard');
+            return redirect($destination);
         }
 
         if ( $request->ajax() ) { 

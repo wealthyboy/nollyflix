@@ -43,6 +43,7 @@
                             </div>
                         </div> 
                     </div>
+                    @include('admin.partials.contributor-credentials', ['contributor' => $cast, 'resetRoute' => route('casts.credentials.reset', $cast->id), 'revealRoute' => route('casts.credentials.reveal', $cast->id)])
                     <div class="col-md-8 col-sm-12">
                         <div class="table-responsive">
                             <table class="table">

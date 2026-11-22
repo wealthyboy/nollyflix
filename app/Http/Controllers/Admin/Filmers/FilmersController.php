@@ -11,6 +11,7 @@ use App\Notifications\FilmerEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
 use App\Services\ContentAttributionStats;
+use App\Services\ContributorCredentials;
 
 
 
@@ -50,45 +51,32 @@ class FilmersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ContributorCredentials $credentials)
     {   
 
         $this->validate($request,[           
             'first_name'   => 'required|min:1|max:100',
-            'email'    => 'required|email|max:255|unique:users',
-            'username'    => 'required|string|max:255|unique:users',
+            'email'    => 'nullable|email|max:255|unique:users',
+            'username'    => 'nullable|string|max:255|unique:users',
             'last_name'    => 'required|min:1|max:200',
             'description'  => 'required|min:1|max:1000',
         ]);
 
-        try {
-            $data  = collect($request->except('uimage'));
-            $password = str_random(8);
-            $user = new User;
-            $user->name         =  $request->first_name;
-            $user->last_name    =  $request->last_name;
-            $user->email        =  $request->email;
-            $user->slug         =  str_slug($request->first_name.' '.$request->last_name);
-            $user->description  =  $request->description;
-            $user->username     =  $request->username;
-            $user->image        =  $request->image;
-            $user->type         =  'filmakers';
-            $user->password= bcrypt($password); 
-            $user->save();
-            $data['password'] = $password;
-            Notification::route('mail', $request->email)
-                ->notify(new FilmerEmailNotification($data));
-        } catch (\Throwable $th) {
-            return back()->with('error','Failed to add filmers');
-        }
+        $user = new User;
+        $user->name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->filled('email') ? $request->email : $credentials->generatedEmail($request->first_name, $request->last_name);
+        $user->slug = str_slug($request->first_name.' '.$request->last_name);
+        $user->description = $request->description;
+        $user->username = $request->filled('username') ? str_slug($request->username) : $credentials->generatedUsername($request->first_name, $request->last_name);
+        $user->image = $request->image;
+        $user->type = 'filmakers';
+        $user->password = bcrypt(\Illuminate\Support\Str::random(32));
+        $user->save();
+        $credentials->createPassword($user);
 
-        
-        /**
-         * Send  Email Notification 
-         */
-        
-        
-        return redirect()->route('filmers.index')->with('success','An email has been sent to '.$request->email);
+        return redirect()->route('filmers.show', $user->id)
+            ->with('success', 'Filmmaker created. Reveal and copy the temporary password below. No email was sent.');
     }
 
     /**
@@ -99,7 +87,7 @@ class FilmersController extends Controller
      */
     public function show($id, ContentAttributionStats $attributionStats)
     {
-        $filmer = User::with('filmer_videos')->findOrFail($id);
+        $filmer = User::where('type', 'filmakers')->with('filmer_videos')->findOrFail($id);
         $attribution = $attributionStats->forFilmer($filmer);
         $attributedOrders = $attribution['orders'];
         $movieBreakdown = $attribution['movieBreakdown'];

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Validation\Rule;
+use App\Services\ContributorCredentials;
 
 
 
@@ -46,30 +47,29 @@ class CastsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ContributorCredentials $credentials)
     {   
 
         request()->validate([
-            'email'       => 'required|email|max:255|unique:users',
+            'email'       => 'nullable|email|max:255|unique:users',
             'first_name'  => 'required|min:1|max:100',
-            'username'    => 'required|string|max:255|unique:users',
+            'username'    => 'nullable|string|max:255|unique:users',
             'description' => 'required|min:1|max:1000',
-            'password' => 'required|string|min:8|max:72|confirmed',
         ]);
 
-        $password = $request->password;
         $user = new User;
         $user->name = $request->first_name;
         $user->last_name=$request->last_name;
         $user->slug=str_slug($request->first_name.' '.$request->last_name);
-        $user->email  =$request->email;
-        $user->username  =str_slug($request->username);
+        $user->email  = $request->filled('email') ? $request->email : $credentials->generatedEmail($request->first_name, $request->last_name);
+        $user->username = $request->filled('username') ? str_slug($request->username) : $credentials->generatedUsername($request->first_name, $request->last_name);
         $user->description  =$request->description;
         $user->image  =$request->image;
         $user->type   ='casts';
-        $user->password= bcrypt($password); 
+        $user->password = bcrypt(\Illuminate\Support\Str::random(32));
         $user->save();
-        return redirect()->route('casts.index')->with('success', 'Actor account created. Share the email and the password you entered with the actor.');
+        $credentials->createPassword($user);
+        return redirect()->route('casts.show', $user->id)->with('success', 'Actor created. Reveal and copy the temporary password below. No email was sent.');
     }
 
     /**
@@ -80,7 +80,7 @@ class CastsController extends Controller
      */
     public function show($id)
     {   
-        $cast = User::find($id);
+        $cast = User::where('type', 'casts')->findOrFail($id);
         return  view('admin.casts.show',compact('cast'));  
     }
 
@@ -128,6 +128,8 @@ class CastsController extends Controller
         $cast->type = 'casts';
         if ($request->filled('password')) {
             $cast->password = bcrypt($request->password);
+            $cast->temporary_password_ciphertext = null;
+            $cast->must_change_password = false;
             $cast->setRememberToken(str_random(60));
         }
         $cast->save();

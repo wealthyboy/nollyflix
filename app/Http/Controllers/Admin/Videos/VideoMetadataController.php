@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Services\ContributorCredentials;
 
 class VideoMetadataController extends Controller
 {
@@ -18,7 +19,7 @@ class VideoMetadataController extends Controller
         $this->middleware('admin');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, ContributorCredentials $credentials)
     {
         $request->validate([
             'type' => ['required', Rule::in(['genre', 'section', 'cast', 'filmer'])],
@@ -54,6 +55,7 @@ class VideoMetadataController extends Controller
             $item->type = $request->type === 'cast' ? 'casts' : 'filmakers';
             $item->password = bcrypt(Str::random(32));
             $item->save();
+            $credentials->createPassword($item);
             $label = trim($item->name.' '.$item->last_name);
         }
 

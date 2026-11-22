@@ -72,6 +72,10 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::post('customers/{customer}/movie-access', 'Admin\Customers\CustomerMovieAccessController@store')->name('customers.movie-access.store');
     Route::post('customers/{customer}/movie-access/{grant}/resend', 'Admin\Customers\CustomerMovieAccessController@resend')->name('customers.movie-access.resend');
     Route::resource('customers',                'Admin\Customers\CustomersController',['name'=>'customers']);
+    Route::post('casts/{cast}/credentials/reset', 'Admin\ContributorCredentialsController@resetCast')->name('casts.credentials.reset');
+    Route::post('casts/{cast}/credentials/reveal', 'Admin\ContributorCredentialsController@revealCast')->name('casts.credentials.reveal');
+    Route::post('filmers/{filmer}/credentials/reset', 'Admin\ContributorCredentialsController@resetFilmer')->name('filmers.credentials.reset');
+    Route::post('filmers/{filmer}/credentials/reveal', 'Admin\ContributorCredentialsController@revealFilmer')->name('filmers.credentials.reveal');
     Route::resource('casts',                    'Admin\Casts\CastsController',['name'=>'casts']);
     Route::resource('filmers',                  'Admin\Filmers\FilmersController',['name'=>'filmers']);
     Route::resource('genres',                   'Admin\Genres\GenresController',['name'=>'genres']);
@@ -89,6 +93,8 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 Auth::routes();
 
+Route::get('contributor/password', 'Actors\ContributorPasswordController@edit')->middleware('auth')->name('contributor.password.edit');
+Route::post('contributor/password', 'Actors\ContributorPasswordController@update')->middleware('auth')->name('contributor.password.update');
 Route::get('actors/dashboard', 'Actors\ActorDashboardController@index')
     ->middleware('auth')->name('actors.dashboard');
 Route::post('watch/{video}/event', 'Watch\WatchController@recordWatch')

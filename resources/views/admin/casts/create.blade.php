@@ -46,7 +46,7 @@
                                    name="username"
                                    type="text"
                                    value="{{ old('username') }}"
-                                   required="true"
+                                   
                              />
                         </div>
 
@@ -59,19 +59,11 @@
                                    name="email"
                                    type="email"
                                    value="{{ old('email') }}"
-                                   required="true"
+                                   
                              />
                         </div>
 
-                        <div class="form-group label-floating is-focused">
-                            <label class="control-label">Login password</label>
-                            <input class="form-control" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
-                            <p class="help-block">Set a password to share with the actor alongside their email. Minimum 8 characters.</p>
-                        </div>
-                        <div class="form-group label-floating is-focused">
-                            <label class="control-label">Confirm password</label>
-                            <input class="form-control" name="password_confirmation" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
-                        </div>
+                        <p class="text-muted">A secure temporary login password will be generated automatically. Reveal and copy it from the actor details page; no email is sent.</p>
 
                         <div class="form-group label-floating">
                             <label class="control-label">

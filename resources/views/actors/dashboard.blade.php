@@ -8,8 +8,8 @@
         </div>
         <div id="vayvo-progression-author-content-container">
             @include('partials.profile_nav_link', ['user' => $user, 'current' => 'dashboard'])
-            <h1>Film Statistics</h1>
-            <p>Welcome, {{ $user->fullname() }}. See how the films linked to your actor profile are performing.</p>
+            <h1>{{ $user->type === 'casts' ? 'Actor Dashboard' : 'Filmmaker Dashboard' }}</h1>
+            <p>Welcome, {{ $user->fullname() }}. See how your linked movies are performing. Only movies linked to your profile appear here.</p>
             @include('errors.errors')
             <form method="get" action="{{ route('actors.dashboard') }}" class="row mb-4">
                 <div class="col-md-4"><label for="stats-from">From</label><input id="stats-from" type="date" name="from" value="{{ $from }}" class="form-control"></div>
@@ -21,7 +21,7 @@
                 <div class="col-md-4"><h2>{{ number_format($films->sum('clicks')) }}</h2><p>Film page clicks</p></div>
                 <div class="col-md-4"><h2>{{ number_format($films->sum('watches')) }}</h2><p>Watches started</p></div>
             </div>
-            <p>Clicks count film detail page visits, including repeat visits. Watches count playback starts once per player page session; pausing and resuming does not add another watch. Admin previews are excluded. These figures cover the website from this update onward.</p>
+            <p>These numbers represent activity recorded by Nollyflix, not third-party platforms. Clicks count film detail page visits, including repeat visits. Watches count playback starts once per player page session; pausing and resuming does not add another watch. Admin previews are excluded. These figures cover the website from this update onward.</p>
             @if($trackingStarted)<p>First recorded activity: {{ \Carbon\Carbon::parse($trackingStarted)->format('j M Y') }}.</p>@endif
             <div class="table-responsive">
                 <table class="table">
@@ -30,7 +30,7 @@
                     @forelse($films as $film)
                         <tr><td><a href="{{ route('browse.show', $film->slug) }}">{{ $film->title }}</a></td><td>{{ number_format($film->clicks) }}</td><td>{{ number_format($film->watches) }}</td></tr>
                     @empty
-                        <tr><td colspan="3">No films linked yet. Ask the administrator to add you to the cast of your films.</td></tr>
+                        <tr><td colspan="3">No films linked yet. Ask the administrator to link movies to your contributor profile.</td></tr>
                     @endforelse
                     </tbody>
                 </table>

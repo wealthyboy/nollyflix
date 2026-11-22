@@ -66,9 +66,11 @@ class ProfileController extends Controller
             'password' => 'bail|required|confirmed|min:6',
         ]);
         if (Hash::check($request->old_password, $request->user()->password)) {
-            $request->user()->fill([
-                'password' => Hash::make($request->password)
-            ])->save();
+            $user = $request->user();
+            $user->password = Hash::make($request->password);
+            $user->temporary_password_ciphertext = null;
+            $user->must_change_password = false;
+            $user->save();
             //event(new ChangePassword($request->user()));
             return back()->with('success','Password Updated.');
         }  else { 

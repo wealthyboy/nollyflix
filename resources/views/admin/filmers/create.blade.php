@@ -11,7 +11,7 @@
             <div class="card">
                    @csrf
                     <div class="card-content">
-                        <h4 class="card-title">Add Filmer</h4>
+                        <h4 class="card-title">Add Filmmaker</h4><p class="text-muted">A temporary password is generated automatically and shown only on the admin details page. No email is sent.</p>
                         <div class="form-group label-floating">
                             <label class="control-label">
                               Name
@@ -46,7 +46,7 @@
                                    name="username"
                                    type="text"
                                    value="{{ old('username') }}"
-                                   required="true"
+                                   
                              />
                         </div>
 
@@ -59,7 +59,7 @@
                                    name="email"
                                    type="email"
                                    value="{{ old('email') }}"
-                                   required="true"
+                                   
                              />
                         </div>
 

@@ -40,6 +40,7 @@
                             </div>
                         </div> 
                     </div>
+                    @include('admin.partials.contributor-credentials', ['contributor' => $filmer, 'resetRoute' => route('filmers.credentials.reset', $filmer->id), 'revealRoute' => route('filmers.credentials.reveal', $filmer->id)])
                     <div class="col-md-8 col-sm-12">
                         <div class="table-responsive">
                             <table class="table">
