@@ -1,3 +1,13 @@
+{{-- Show a local placeholder whenever a contributor has no uploaded profile photo.
+     The Vue component draws uploaded photos over this background. --}}
+<style>
+#content-sidebar-info {
+    background: #190c18 url("{{ asset('images/default-contributor-avatar.jpg') }}") center center / cover no-repeat;
+}
+#content-sidebar-info #avatar-sidebar-large-profile {
+    background-color: transparent;
+}
+</style>
 <div id="content-sidebar-info">
     <profile-picture />
 </div>
