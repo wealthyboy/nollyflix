@@ -19,7 +19,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+            return Auth::guard($guard)->user()->type === 'casts'
+                ? redirect()->route('actors.dashboard')
+                : redirect(RouteServiceProvider::HOME);
         }
 
         return $next($request);

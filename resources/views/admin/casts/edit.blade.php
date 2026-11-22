@@ -37,6 +37,16 @@
                     </div>
 
                     <div class="form-group label-floating is-focused">
+                        <label class="control-label">New login password</label>
+                        <input class="form-control" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" >
+                        <p class="help-block">Leave blank to keep the current password. Share any new password with the actor. Minimum 8 characters.</p>
+                    </div>
+                    <div class="form-group label-floating is-focused">
+                        <label class="control-label">Confirm password</label>
+                        <input class="form-control" name="password_confirmation" type="password" minlength="8" maxlength="72" autocomplete="new-password" >
+                    </div>
+
+                    <div class="form-group label-floating is-focused">
                         <label class="control-label">Bio <small>*</small></label>
                         <textarea required name="description" id="description" class="form-control" rows="10">{{ old('description', $cast->description) }}</textarea>
                     </div>

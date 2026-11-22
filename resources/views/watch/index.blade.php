@@ -764,6 +764,45 @@ try {
 </script>
 @endif
 
+@if(!$isAdminPreview)
+<script>
+(function () {
+    var endpoint = @json(route('watch.event', ['video' => $video->slug, 'playback_token' => $playbackToken]));
+    var eventKey = @json((string) \Illuminate\Support\Str::uuid());
+    var saved = false;
+    var pending = false;
+    function recordWatch() {
+        if (saved || pending) return;
+        pending = true;
+        fetch(endpoint, {
+            method: 'POST', credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': @json(csrf_token())},
+            body: JSON.stringify({event_key: eventKey})
+        }).then(function (response) { saved = response.ok; })
+          .catch(function () {})
+          .then(function () { pending = false; });
+    }
+    function attach(player) {
+        if (!player || player.nollyflixStatisticsReady) return;
+        player.nollyflixStatisticsReady = true;
+        player.on('playing', recordWatch);
+        if (!player.paused()) recordWatch();
+    }
+    window.addEventListener('nollyflix:watch-player-ready', function (event) {
+        attach(event.detail && event.detail.player);
+    });
+    function findPlayer(attempt) {
+        if (window.videojs && window.videojs.getPlayer('video')) {
+            attach(window.videojs.getPlayer('video'));
+        } else if (attempt < 40) {
+            setTimeout(function () { findPlayer(attempt + 1); }, 250);
+        }
+    }
+    findPlayer(0);
+})();
+</script>
+@endif
+
 @if(auth()->check())
 <script>
 (function () {

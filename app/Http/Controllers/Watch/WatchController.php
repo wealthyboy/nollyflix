@@ -8,7 +8,6 @@ use App\Cart;
 use App\Video;
 use App\VideoEpisode;
 use App\Order;
-use App\View;
 use App\WatchProgress;
 use Illuminate\Support\Facades\Http;
 
@@ -67,7 +66,7 @@ class WatchController extends Controller
                 ->where('completed', false)
                 ->first()
             : null;
-        $this->viwed($video);
+
         $title = "You are watching " .$video->title;
         $adminPreview = false;
         return view('watch.index',compact('video','title', 'nextVideo', 'nextVideoUrl', 'playbackToken', 'resumeProgress', 'adminPreview'));
@@ -121,29 +120,22 @@ class WatchController extends Controller
     }
 
 
-    protected function viwed($video)
+    public function recordWatch(Request $request, Video $video)
     {
-        /**
-         * Check if user has already viewed the video
-         */
-        $user  = auth()->user();
+        abort_unless($video->is_active, 404);
+        abort_if($video->isBlockedInCurrentRegion(), 403);
+        abort_unless($this->hasValidPlaybackToken($request, $video), 403);
+        $data = $request->validate(['event_key' => 'required|uuid']);
 
-        $view = View::where([
-            'user_id' => 1,
-            'video_id' => $video->id,
-        ])->first();
+        // Retries and pause/resume in the same player session count once.
+        \App\FilmEvent::insertOrIgnore([
+            'video_id' => $video->id, 'user_id' => $request->user() ? $request->user()->id : null,
+            'kind' => 'watch', 'event_key' => $data['event_key'],
+            'created_at' => now(), 'updated_at' => now(),
+        ]);
 
-        /**
-         * Create view if user has not viewed the video 
-         */
-        if (!$view){
-            $view = new View;
-            $view->user_id = 1;
-            $view->video_id = $video->id;
-            $view->save();
-        }
+        return response()->json(['recorded' => true]);
     }
-
 
     public function log(Request $request){
        \Log::info($request->dom);

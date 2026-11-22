@@ -1,4 +1,7 @@
 <ul id="dashboard-sub-menu">
+    @if ($user->type === 'casts')
+        <li class="{{ $current == 'dashboard' ? 'current' : '' }}"><a href="{{ route('actors.dashboard') }}">Film Statistics</a></li>
+    @endif
     <li class="{{  $current  == 'profile' ? 'current' : '' }}"><a href="{{ route('profile.index') }}">Account Settings</a></li>
     @if (!$user->isSubscriber()  && !$user->isAdmin())
         <li class="{{ $current == 'videos' ? 'current' : '' }}" ><a href="{{ route('profiles.videos') }}">Videos({{ $user->profile_videos->count() }})</a></li>

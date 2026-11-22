@@ -14,6 +14,10 @@ export const flashMessage = ({ commit },message) => {
 export const login = ({dispatch, commit },{ context }) => {
 
     return axios.post('/login',context.form).then((response) => {
+        if (response.data.redirect) {
+            window.location.assign(response.data.redirect)
+            return
+        }
         dispatch('IsLoggedIn',{context,response})
         return Promise.resolve()
     }).catch((error)=>{

@@ -20,7 +20,7 @@
                             <input class="form-control"
                                    name="first_name"
                                    type="text"
-                                   value="{{ old('name') }}"
+                                   value="{{ old('first_name') }}"
                                    required="true"
                              />
                         </div>
@@ -61,6 +61,16 @@
                                    value="{{ old('email') }}"
                                    required="true"
                              />
+                        </div>
+
+                        <div class="form-group label-floating is-focused">
+                            <label class="control-label">Login password</label>
+                            <input class="form-control" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
+                            <p class="help-block">Set a password to share with the actor alongside their email. Minimum 8 characters.</p>
+                        </div>
+                        <div class="form-group label-floating is-focused">
+                            <label class="control-label">Confirm password</label>
+                            <input class="form-control" name="password_confirmation" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
                         </div>
 
                         <div class="form-group label-floating">

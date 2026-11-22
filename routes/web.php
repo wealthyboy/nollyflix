@@ -89,6 +89,11 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
 
 Auth::routes();
 
+Route::get('actors/dashboard', 'Actors\ActorDashboardController@index')
+    ->middleware('auth')->name('actors.dashboard');
+Route::post('watch/{video}/event', 'Watch\WatchController@recordWatch')
+    ->middleware('throttle:60,1')->name('watch.event');
+
 Route::get('account-deletion', 'AccountDeletionController@show')->name('account-deletion.show');
 Route::post('account-deletion', 'AccountDeletionController@store')->middleware('throttle:5,1')->name('account-deletion.store');
 Route::match(['get', 'post'], 'account-deletion/confirm/{user}', 'AccountDeletionController@confirm')

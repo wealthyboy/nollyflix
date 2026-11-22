@@ -194,6 +194,11 @@ class Video extends Model
     /**
      * The video's views that belong to the video.
      */
+    public function filmEvents()
+    {
+        return $this->hasMany(FilmEvent::class);
+    }
+
     public function views()
     {
         return $this->hasMany('App\View');

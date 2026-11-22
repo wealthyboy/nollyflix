@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Admin\Casts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Notifications\Notification;
 use Illuminate\Validation\Rule;
-use App\Notifications\CastsEmailNotification;
 
 
 
@@ -57,10 +54,10 @@ class CastsController extends Controller
             'first_name'  => 'required|min:1|max:100',
             'username'    => 'required|string|max:255|unique:users',
             'description' => 'required|min:1|max:1000',
+            'password' => 'required|string|min:8|max:72|confirmed',
         ]);
 
-        $data  = collect($request->except('uimage'));
-        $password = str_random(8);
+        $password = $request->password;
         $user = new User;
         $user->name = $request->first_name;
         $user->last_name=$request->last_name;
@@ -72,16 +69,7 @@ class CastsController extends Controller
         $user->type   ='casts';
         $user->password= bcrypt($password); 
         $user->save();
-        $data['password'] = $password;
-        /**
-         * Send Email Notification
-        */
-
-        // Notification::route('mail', $request->email)
-        // ->notify(new CastsEmailNotification($data));
-
-
-        return redirect()->route('casts.index')->with('success','An email has been sent to '.$request->email);
+        return redirect()->route('casts.index')->with('success', 'Actor account created. Share the email and the password you entered with the actor.');
     }
 
     /**
@@ -127,6 +115,7 @@ class CastsController extends Controller
             'username'    => ['required', 'string', 'max:255', Rule::unique('users', 'username')->ignore($cast->id)],
             'description' => 'required|min:1|max:1000',
             'image'       => 'nullable|string',
+            'password'    => 'nullable|string|min:8|max:72|confirmed',
         ]);
 
         $cast->name = $request->first_name;
@@ -137,6 +126,10 @@ class CastsController extends Controller
         $cast->description = $request->description;
         $cast->image = $request->image ?: null;
         $cast->type = 'casts';
+        if ($request->filled('password')) {
+            $cast->password = bcrypt($request->password);
+            $cast->setRememberToken(str_random(60));
+        }
         $cast->save();
 
         return redirect()->route('casts.show', ['cast' => $cast->id])

@@ -30,6 +30,9 @@
             </div><!-- close #header-user-profile-click -->
             <div class="header-user-profile-menu" id="header-user-profile-menu">
                 <ul>
+                    @if(auth()->check() && auth()->user()->type === 'casts')
+                        <li><a href="{{ route('actors.dashboard') }}">Actor Dashboard</a></li>
+                    @endif
                     <li><a href="{{ route('profile.index') }}"><i class="fa fa-user-circle"></i>My Profile</a></li>
                     <li><a href="{{ route('profiles.watchlists') }}"><i class="fa fa-list-ul"></i>My Watchlist</a></li>
                     <li>

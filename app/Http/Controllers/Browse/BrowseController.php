@@ -125,6 +125,8 @@ class BrowseController extends Controller
         $page_title = "Buy ,Rent , {$video->title}";
         $page_meta_description = "Buy nollywood movies, $video->description";
         $blocked = $video->isBlockedInCurrentRegion();
+        \App\FilmEvent::create(['video_id' => $video->id, 'user_id' => auth()->id(),
+            'kind' => 'click', 'event_key' => (string) \Illuminate\Support\Str::uuid()]);
         return view('browse.show',compact('blocked','video','page_title','user','page_meta_description'));   
     }
     
