@@ -106,27 +106,39 @@ class ProfileController extends Controller
 
 
     public function updateImage(Request $request)
-    {   
-        if($request->hasFile('file')){
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:8192',
+        ]);
 
-            //when the user clicks change remove the previuos image
-            request()->validate([
-               'file' => 'required|image|mimes:jpeg,png,jpg,gif',
-            ]);
-
-            $path = $request->file('file')->store('images/users');
-            $file = basename($path);
-            $path =  public_path('images/users/'.$file);
-            $img  = \Image::make($path)->fit(200, 200)->save(
-                public_path('images/users/m/'.$file)
-            );
-         
-            $path = asset('images/users/'.$file);
-
-            $user = auth()->user();
-            $user->image = $path;
-            $user->save();
-            return $path = asset('images/users/'.$file);
+        // The configured local disk already points to public_path(). Use it explicitly
+        // so uploads do not unexpectedly switch to S3 or another default disk.
+        $file = $request->file('file');
+        $storedPath = $file->store('images/users', 'local');
+        if (!$storedPath) {
+            return response()->json(['message' => 'Unable to save profile photo.'], 500);
         }
+
+        $absolutePath = public_path($storedPath);
+        $thumbnailDir = public_path('images/users/m');
+        if (!is_dir($thumbnailDir) && !@mkdir($thumbnailDir, 0755, true) && !is_dir($thumbnailDir)) {
+            \Log::warning('Profile image thumbnail directory is not writable.');
+        }
+
+        // Thumbnail generation is optional. The original file is always available,
+        // even on servers lacking the GD/Imagick image extension.
+        if (is_dir($thumbnailDir) && is_writable($thumbnailDir)) {
+            try {
+                \Image::make($absolutePath)->fit(300, 300)->save($thumbnailDir . '/' . basename($storedPath));
+            } catch (\Throwable $exception) {
+                \Log::warning('Profile thumbnail creation failed: ' . $exception->getMessage());
+            }
+        }
+
+        $user = $request->user();
+        $user->image = asset($storedPath);
+        $user->save();
+
+        return response()->json(['url' => $user->m_path(), 'message' => 'Profile image updated.']);
     }
 }

@@ -275,17 +275,30 @@ class User extends Authenticatable implements JWTSubject
 
 	public function m_path()
 	{
-		$image = basename($this->image);
-		return !empty(trim($image)) ?  asset('images/users/m/' . $image) : asset('images/users/default/default_image.png');
+		$image = $this->image ? basename(parse_url($this->image, PHP_URL_PATH) ?: '') : '';
+		if ($image !== '') {
+			if (is_file(public_path('images/users/m/' . $image))) {
+				return asset('images/users/m/' . $image);
+			}
+			return asset('images/users/' . $image);
+		}
+		return asset('images/default-contributor-avatar.jpg');
 	}
-
 
 	public function tn_path()
 	{
-		$image = basename($this->image);
-		return !empty(trim($image)) ?  asset('images/users/tn/' . $image) : asset('images/users/default/default_image.png');
+		$image = $this->image ? basename(parse_url($this->image, PHP_URL_PATH) ?: '') : '';
+		if ($image !== '') {
+			if (is_file(public_path('images/users/tn/' . $image))) {
+				return asset('images/users/tn/' . $image);
+			}
+			if (is_file(public_path('images/users/m/' . $image))) {
+				return asset('images/users/m/' . $image);
+			}
+			return asset('images/users/' . $image);
+		}
+		return asset('images/default-contributor-avatar.jpg');
 	}
-
 
 	/**
 	 * [getJWTIdentifier description]
