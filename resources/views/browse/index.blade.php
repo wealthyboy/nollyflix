@@ -199,6 +199,7 @@
                                 }
                             }
                         @endphp
+                        @if(isset($continueVideo) && $continueVideo)
                         <div class="item">
                             <div class="progression-studios-video-index-container nollyflix-continue-card">
                                 <a href="{{ route('watch', ['video' => $continueVideo->slug]) }}" aria-label="Continue watching {{ $continueVideo->title }}">
@@ -210,8 +211,9 @@
                                 </a>
                             </div>
                             <a class="nollyflix-continue-title" href="{{ route('watch', ['video' => $continueVideo->slug]) }}">{{ $continueVideo->title }}</a>
-                            <div class="nollyflix-continue-subtitle">{{ $continueEpisodeLabel ?: 'Resume movie' }}</div>
+                            <div class="nollyflix-continue-subtitle">{{ $continueEpisodeLabel ?? 'Resume movie' }}</div>
                         </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
