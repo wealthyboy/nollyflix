@@ -1,5 +1,9 @@
 @extends('layouts.access')
 
+@section('page-css')
+<link rel="stylesheet" href="{{ asset('css/nollyflix-xd-home.css') }}?v=20261123">
+@endsection
+
 @section('content')
 
 @include('includes.searching')
@@ -7,48 +11,70 @@
 <section class="section-content">
 
 @if ($featured_videos->count())
-<div class="flexslider progression-studios-slider">
+<div class="flexslider progression-studios-slider nf-xd-featured">
     <ul class="slides">
         @foreach($featured_videos as $video)
-            <li class="progression_studios_animate_left">
-                <div class="progression-studios-slider-image-background" style="background-image:url({{ optional($video->video)->poster }});">
-                    <div class="progression-studios-slider-display-table">
-                        <div class="progression-studios-slider-vertical-align">
-                            <div class="container">
-                                <div class="progression-studios-slider-caption-width">
-                                    <div class="progression-studios-slider-caption-align">
-                                        <h2><a href="/">{{ optional($video->video)->title }}</a></h2>
-                                        <ul class="slider-video-post-meta-list">
-                                            <li class="slider-video-post-meta-cat"><ul><li><a href="#"> {!! $video->video->genres[0]->name !!} </a></li></ul></li>
-                                            <li class="slider-video-post-meta-year">{{ optional(optional($video->video)->release_date)->format('Y') }}</li>
-                                            <li class="slider-video-post-meta-rating"><span>{{ optional($video->video)->film_rating }}</span></li>
-                                        </ul>
-                                        <div class="clearfix"></div>
-                                        <?php  $read_more =  "<a href='/browse/'>Read More</a>" ?>
-<div class="progression-studios-slider-excerpt"><?php echo  str_limit(html_entity_decode($video->video->description), $limit = 200, $end = '...') ?>  <?php  if (strlen($video->video->description)  > 200 ) {?>  <a href="{{ route('browse.show',['video' => $video->video->slug ]) }}">Read More</a>  <?php } ?></div>
-                                        <a class="btn btn-slider-pro" data-fancybox href="{{ optional($video->video)->playablePreviewLink() }}"><i class="far fa-play-circle"></i>Play Trailer</a>
-                                        @if($video->video->isBlockedInCurrentRegion())
-                                            <a class="btn btn-slider-pro" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-info-circle"></i>View Details</a>
-                                        @else
-                                            <a class="btn btn-slider-pro"  data-type="buy" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Buy {{ $video->video->currency }}{{ number_format($video->video->converted_buy_price) }} </a>
-                                            <a class="btn btn-slider-pro"   data-type="rent"  href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Rent {{ $video->video->currency }}{{ number_format($video->video->converted_rent_price) }} </a>
-                                        @endif
-                                    </div><!-- close .progression-studios-slider-caption-align -->
-                                </div><!-- close .progression-studios-slider-caption-width -->
-    
-                            </div><!-- close .container -->
-                            
-                        </div><!-- close .progression-studios-slider-vertical-align -->
-                    </div><!-- close .progression-studios-slider-display-table -->
-            
-                    <div class="progression-studios-slider-overlay-gradient"></div>
-                
-                </div><!-- close .progression-studios-slider-image-background -->
+            @php($featuredMovie = $video->video)
+            @if($featuredMovie)
+            <li>
+                <div class="nf-xd-hero">
+                    <div class="nf-xd-hero-art" style="background-image: linear-gradient(0deg, rgba(3,8,12,.88), rgba(3,8,12,0) 65%), url('{{ $featuredMovie->poster }}')">
+                        <div class="nf-xd-hero-overlay">
+                            <h2><a href="{{ route('browse.show', ['video' => $featuredMovie->slug]) }}">{{ $featuredMovie->title }}</a></h2>
+                            <div class="nf-xd-runtime">{{ optional($featuredMovie)->duration ?: '' }}<span class="nf-xd-rule"></span></div>
+                        </div>
+                    </div>
+                    <div class="nf-xd-hero-info">
+                        <div class="nf-xd-hero-copy">
+                            <h3>{{ $featuredMovie->title }}</h3>
+                            <div class="nf-xd-meta">
+                                @if($featuredMovie->genres->count()){{ $featuredMovie->genres->first()->name }}@endif
+                                @if($featuredMovie->release_date) <span class="nf-xd-separator">|</span> {{ optional($featuredMovie->release_date)->format('Y') }} @endif
+                                @if($featuredMovie->film_rating) <span class="nf-xd-separator">|</span> {{ $featuredMovie->film_rating }} @endif
+                            </div>
+                            <div class="nf-xd-stars" aria-hidden="true">★★★★<span>★</span></div>
+                            <p>{{ \Illuminate\Support\Str::limit(strip_tags(html_entity_decode($featuredMovie->description ?? '')), 220) }}</p>
+                            <div class="nf-xd-hero-actions">
+                                <a class="nf-xd-watch" href="{{ route('browse.show', ['video' => $featuredMovie->slug]) }}"><span class="nf-xd-play"><i class="fas fa-play"></i></span> WATCH NOW</a>
+                                <a class="nf-xd-trailer" data-fancybox href="{{ $featuredMovie->playablePreviewLink() }}">Play trailer</a>
+                            </div>
+                            <div class="nf-xd-purchase-actions">
+                                @if(!$featuredMovie->isBlockedInCurrentRegion())
+                                    <a href="{{ route('browse.show', ['video' => $featuredMovie->slug]) }}">Buy {{ $featuredMovie->currency }}{{ number_format($featuredMovie->converted_buy_price) }}</a>
+                                    <a href="{{ route('browse.show', ['video' => $featuredMovie->slug]) }}">Rent {{ $featuredMovie->currency }}{{ number_format($featuredMovie->converted_rent_price) }}</a>
+                                @else
+                                    <a href="{{ route('browse.show', ['video' => $featuredMovie->slug]) }}">View details</a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
+            @endif
         @endforeach
     </ul>
-</div><!-- close .progression-studios-slider - See /js/script.js file for options -->
+</div>
 @endif
+
+<section class="nf-xd-benefits" aria-label="The best Nolly experience">
+    <div class="nf-xd-inner">
+        <h2>THE BEST NOLLY EXPERIENCE</h2>
+        <div class="nf-xd-benefit-grid">
+            <article>
+                <div class="nf-xd-benefit-icon"><i class="fas fa-film"></i><span>★</span></div>
+                <h3>See Filmmakers &amp; Actors</h3>
+                <p>Discover the makers and cast of the biggest blockbusters, and explore the people behind your favourite Nollywood movies.</p>
+                <a href="/browse/a/casts" class="nf-xd-small-button">See More</a>
+            </article>
+            <article>
+                <div class="nf-xd-benefit-icon"><i class="fas fa-desktop"></i><span><i class="fas fa-mobile-alt"></i></span></div>
+                <h3>Watch On Any Device</h3>
+                <p>Enjoy Nollywood stories on your phone, tablet or computer with a flexible viewing experience.</p>
+                <a href="/browse" class="nf-xd-small-button">Learn more</a>
+            </article>
+        </div>
+    </div>
+</section>
 
 <div id="content-pro">
     <div class="container-fluid custom-gutters-pro">
@@ -93,7 +119,7 @@
 
             .nollyflix-continue-card:hover .nollyflix-continue-play {
                 transform: scale(1.08);
-                background: #ef0f1a;
+                background: #ffb900;
             }
 
             .nollyflix-continue-progress {
@@ -110,7 +136,7 @@
                 display: block;
                 height: 100%;
                 min-width: 3px;
-                background: #ef0f1a;
+                background: #ffb900;
             }
 
             .nollyflix-continue-title {
@@ -124,7 +150,7 @@
             }
 
             .nollyflix-continue-title:hover {
-                color: #ef0f1a;
+                color: #ffb900;
                 text-decoration: none;
             }
 
@@ -194,7 +220,7 @@
 
         @if($sections->count())
             @foreach($sections as $section)
-            <h2 class="post-list-heading">{{ $section->name }}<span></span></h2>
+            <h2 class="post-list-heading nf-xd-section-heading">{{ $section->name }}<span></span></h2>
             <div class="progression-studios-elementor-carousel-container mb-5 progression-studios-always-arrows-on">
                 <div id="progression-video-carousel" class="owl-carousel progression-video-carousel progression-carousel-theme">
                     @foreach($section->videos as $video)
@@ -213,6 +239,7 @@
                                     <div class="video-index-border-hover"></div>
                                 </a>
                             </div><!-- close .progression-studios-video-index-container  -->
+                            <div class="nf-xd-card-description"><a href="/browse/{{ $video->slug }}">{{ $video->title }}</a><small>@if($video->genres->count()){{ $video->genres->first()->name }}@endif</small></div>
                             <div class="d-flex position-absolute links-section flex-column  justify-content-center">
                                 <div class="mx-auto buy-rent-links">
                                    @include('partials.links')
@@ -237,7 +264,7 @@
                 padding: 46px 52px;
                 border: 1px solid rgba(255, 255, 255, .08);
                 border-radius: 18px;
-                background: linear-gradient(135deg, rgba(239, 15, 26, .10) 0%, rgba(255, 255, 255, .035) 48%, rgba(0, 0, 0, .16) 100%);
+                background: linear-gradient(135deg, rgba(255, 185, 0, .08) 0%, rgba(255, 255, 255, .035) 48%, rgba(0, 0, 0, .16) 100%);
             }
 
             .nollyflix-about-home:before {
@@ -247,13 +274,13 @@
                 left: 0;
                 width: 86px;
                 height: 3px;
-                background: #ef0f1a;
+                background: #ffb900;
             }
 
             .nollyflix-about-kicker {
                 display: inline-block;
                 margin-bottom: 10px;
-                color: #ef0f1a;
+                color: #ffb900;
                 font-size: 12px;
                 font-weight: 700;
                 letter-spacing: 2px;

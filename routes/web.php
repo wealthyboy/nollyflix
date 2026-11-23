@@ -33,6 +33,7 @@ Route::group(['middleware' => 'admin','prefix' => 'admin'], function(){
     Route::post('category/delete/image','Admin\Category\CategoryController@undo');
 
     Route::resource('rates','Admin\CurrencyRates\CurrencyRatesController',['name'=>'rates']);
+    Route::get('videos/download-live-posters', 'Admin\Videos\VideosController@downloadActivePosters')->name('videos.download-live-posters');
     Route::get('videos/search','Admin\Videos\VideosController@search')->name('search.videos');
     Route::post('videos/metadata', 'Admin\Videos\VideoMetadataController@store')->name('videos.metadata.store');
     Route::post('videos/{video}/toggle-active', 'Admin\Videos\VideosController@toggleActive')->name('videos.toggle-active');

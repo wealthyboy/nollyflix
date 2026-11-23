@@ -53,6 +53,108 @@ class VideosController extends Controller
 
 
     /**
+     * Download only posters for currently active videos (not movie/video files).
+     */
+    public function downloadActivePosters()
+    {
+        abort_unless(User::userHasPermission(2), 403);
+        if (!class_exists(\ZipArchive::class)) {
+            return redirect()->route('videos.index')->withErrors(['download' => 'PHP Zip extension is not installed.']);
+        }
+
+        $temp = tempnam(storage_path('app'), 'nolly-posters-');
+        if ($temp === false) {
+            abort(500, 'Cannot create archive file.');
+        }
+        $zip = new \ZipArchive();
+        if ($zip->open($temp, \ZipArchive::OVERWRITE) !== true) {
+            @unlink($temp);
+            abort(500, 'Cannot open poster archive.');
+        }
+        $manifest = [];
+        $added = 0;
+        try {
+            foreach (Video::active()->orderBy('id')->cursor() as $video) {
+                foreach (['poster', 'tn_poster'] as $field) {
+                    $source = trim((string) $video->{$field});
+                    if ($source === '') {
+                        continue;
+                    }
+                    $binary = $this->readPosterImage($source);
+                    if ($binary === null) {
+                        $manifest[] = "Skipped {$video->id} {$video->title} ({$field}): unavailable or unsafe source";
+                        continue;
+                    }
+                    $type = (new \finfo(FILEINFO_MIME_TYPE))->buffer($binary);
+                    $extension = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'image/gif' => 'gif', 'image/avif' => 'avif'][$type] ?? null;
+                    if (!$extension) {
+                        $manifest[] = "Skipped {$video->id} {$video->title} ({$field}): unrecognized image";
+                        continue;
+                    }
+                    $slug = \Illuminate\Support\Str::slug($video->title) ?: 'video';
+                    $filename = 'posters/'.$video->id.'-'.$slug.'-'.$field.'.'.$extension;
+                    $zip->addFromString($filename, $binary);
+                    $added++;
+                }
+            }
+            $zip->addFromString('README.txt', "NollyFlix active-video posters only.\nIncludes poster and thumbnail poster images.\n".implode("\n", $manifest));
+        } finally {
+            $zip->close();
+        }
+        if ($added === 0) {
+            @unlink($temp);
+            return redirect()->route('videos.index')->withErrors(['download' => 'No active video posters were available for download.']);
+        }
+        return response()->download($temp, 'nollyflix-live-video-posters-'.date('Ymd-His').'.zip')->deleteFileAfterSend(true);
+    }
+
+    private function readPosterImage(string $source): ?string
+    {
+        $parts = parse_url($source);
+        if ($parts === false) {
+            return null;
+        }
+        $scheme = strtolower($parts['scheme'] ?? '');
+        // Local absolute/relative public image paths only; never read arbitrary filesystem paths.
+        if ($scheme === '') {
+            $relative = ltrim(rawurldecode((string) ($parts['path'] ?? '')), '/');
+            $public = realpath(public_path());
+            $file = realpath(public_path($relative));
+            if (!$file || !$public || !str_starts_with($file, $public.DIRECTORY_SEPARATOR) || !is_file($file) || filesize($file) > 8 * 1024 * 1024) {
+                return null;
+            }
+            return file_get_contents($file) ?: null;
+        }
+        if ($scheme !== 'https' || !isset($parts['host']) || isset($parts['user']) || isset($parts['pass']) || isset($parts['port'])) {
+            return null;
+        }
+        $host = $parts['host'];
+        $ips = gethostbynamel($host);
+        if (!$ips) {
+            return null;
+        }
+        foreach ($ips as $ip) {
+            if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+                return null;
+            }
+        }
+        try {
+            $response = \Illuminate\Support\Facades\Http::withOptions([
+                'allow_redirects' => false,
+                'verify' => true,
+                'connect_timeout' => 4,
+            ])->timeout(12)->get($source);
+            if (!$response->successful()) {
+                return null;
+            }
+            $body = $response->body();
+            return strlen($body) <= 8 * 1024 * 1024 ? $body : null;
+        } catch (\Throwable $e) {
+            return null;
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * return \Illuminate\Http\Response

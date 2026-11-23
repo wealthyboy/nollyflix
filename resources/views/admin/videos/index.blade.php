@@ -9,6 +9,10 @@
                     <i class="material-icons">refresh</i>
                     Refresh
                 </a>
+                <a href="{{ route('videos.download-live-posters') }}" title="Download poster and thumbnail images for active videos only" class="btn btn-warning btn-simple btn-xs">
+                    <i class="material-icons">file_download</i>
+                    Download Live Posters
+                </a>
                 <a href="{{ route('videos.create') }}" rel="tooltip" title="Add New" class="btn btn-primary btn-simple btn-xs">
                     <i class="material-icons">add</i>
                     Add Video

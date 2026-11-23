@@ -1,0 +1,56 @@
+/* NollyFlix XD homepage visual refresh. View scoped: no controller, model or route changes. */
+:root {--nf-xd-yellow:#ffb900; --nf-xd-black:#060c11;--nf-xd-grey:#a2a8ad}
+body {background:#060b10;color:#f8f9fa}
+#masthead-pro {background:rgba(4,8,12,.94)!important;box-shadow:none!important;border-bottom:1px solid rgba(255,255,255,.08)}
+#masthead-pro .header-container {max-width:1510px;margin:0 auto}
+#site-navigation-pro .sf-menu > li > a {font-weight:700!important;font-size:13px!important;color:#fff!important}
+#site-navigation-pro .sf-menu > li > a:hover,#mobile-navigation-pro a:hover {color:var(--nf-xd-yellow)!important}
+#masthead-pro .login-btn {background:#fff!important;color:#060b10!important;border:0!important;font-weight:700!important}
+#content-pro {background:#060b10}
+.nf-xd-featured {background:#060b10!important;margin:0!important;border:0!important;box-shadow:none!important}
+.nf-xd-featured .slides > li {background:#060b10!important}
+.nf-xd-hero {display:grid;grid-template-columns:minmax(0, 66%) minmax(0, 34%);min-height:510px;max-height:690px;overflow:hidden;background:#050a0e}
+.nf-xd-hero-art {position:relative;background-size:cover;background-position:center;min-height:510px}
+.nf-xd-hero-overlay {position:absolute;bottom:15%;left:10.5%;right:5%}
+.nf-xd-hero-overlay h2 {margin:0;max-width:560px;font-size:clamp(40px,5.3vw,76px);line-height:1.05;font-weight:800;text-transform:uppercase;text-shadow:0 3px 15px rgba(0,0,0,.5)}
+.nf-xd-hero-overlay h2 a {color:#fff;text-decoration:none}
+.nf-xd-runtime {margin-top:12px;font-size:13px;font-weight:600;display:flex;gap:16px;align-items:center}
+.nf-xd-rule {display:inline-block;width:110px;height:2px;background:var(--nf-xd-yellow)}
+.nf-xd-hero-info {display:flex;align-items:center;padding:42px clamp(22px,3vw,52px)}
+.nf-xd-hero-copy {max-width:390px}
+.nf-xd-hero-copy h3 {font-weight:800;color:#fff;text-transform:uppercase;font-size:clamp(24px,2vw,33px);line-height:1.1;margin:0 0 9px}
+.nf-xd-meta {color:#8c949d;font-size:12px;line-height:1.6}
+.nf-xd-separator {padding:0 6px}
+.nf-xd-stars {color:var(--nf-xd-yellow);font-size:22px;letter-spacing:2px;margin:12px 0 20px}
+.nf-xd-stars span {color:#747c85}
+.nf-xd-hero-copy p {font-size:14px;color:#d4d6d9;line-height:1.9;margin:0 0 22px;max-width:340px}
+.nf-xd-hero-actions {display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.nf-xd-watch {color:#fff!important;display:inline-flex;gap:12px;align-items:center;text-decoration:none!important;font-weight:800;font-size:14px}
+.nf-xd-play {width:43px;height:43px;border:3px solid var(--nf-xd-yellow);color:var(--nf-xd-yellow);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;padding-left:3px}
+.nf-xd-trailer {color:#c4c9cc!important;font-size:12px;text-decoration:underline}
+.nf-xd-purchase-actions {display:flex;gap:16px;flex-wrap:wrap;margin-top:21px}
+.nf-xd-purchase-actions a {color:#e5e7e9!important;font-size:12px}
+.nf-xd-benefits {background:#0b1015;padding:68px 24px 76px}
+.nf-xd-inner {max-width:1100px;margin:0 auto}
+.nf-xd-benefits h2 {color:#fff;text-align:center;font-size:clamp(24px,2.8vw,36px);font-weight:800;margin:0 0 42px}
+.nf-xd-benefit-grid {display:grid;grid-template-columns:1fr 1fr}
+.nf-xd-benefit-grid article {text-align:center;padding:20px 65px 26px}
+.nf-xd-benefit-grid article + article {border-left:1px solid #50555a}
+.nf-xd-benefit-icon {position:relative;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:49px;height:76px;margin-bottom:18px}
+.nf-xd-benefit-icon span {position:absolute;bottom:5px;right:-16px;color:var(--nf-xd-yellow);font-size:25px}
+.nf-xd-benefit-grid h3 {color:#fff;font-size:17px;font-weight:800;margin:0 0 12px}
+.nf-xd-benefit-grid p {color:#aeb3b9;line-height:1.6;font-size:12px;max-width:340px;margin:0 auto 18px}
+.nf-xd-small-button {display:inline-flex;justify-content:center;align-items:center;background:var(--nf-xd-yellow);color:#090b0e!important;border-radius:2px;font-size:12px;font-weight:800;padding:9px 23px;text-decoration:none!important}
+.nf-xd-small-button:hover {background:#ffd25c}
+#content-pro .custom-gutters-pro {padding-left:clamp(24px,6vw,100px)!important;padding-right:clamp(24px,6vw,100px)!important}
+#content-pro .post-list-heading {font-weight:800;color:white;font-size:clamp(23px,2.7vw,34px);margin-bottom:20px}
+#content-pro .post-list-heading span {background:var(--nf-xd-yellow)!important}
+#content-pro .progression-studios-video-feaured-image {overflow:hidden;background:#141b22}
+#content-pro .progression-studios-video-feaured-image img {transition:transform .25s ease}
+#content-pro .item:hover .progression-studios-video-feaured-image img {transform:scale(1.035)}
+.nf-xd-card-description {padding:12px 0 8px;display:flex;flex-direction:column;gap:4px;min-height:58px}
+.nf-xd-card-description a {color:white!important;font-size:16px;font-weight:700;line-height:1.2}
+.nf-xd-card-description small {color:#868e96;font-size:12px}
+#content-pro .nollyflix-about-home {border-radius:0}
+@media(max-width:1024px){.nf-xd-hero{min-height:440px}.nf-xd-hero-art{min-height:440px}.nf-xd-benefit-grid article{padding-left:30px;padding-right:30px}}
+@media(max-width:767px){.nf-xd-hero{display:flex;flex-direction:column;max-height:none}.nf-xd-hero-art{min-height:390px}.nf-xd-hero-overlay{left:6%;bottom:10%}.nf-xd-hero-overlay h2{font-size:44px}.nf-xd-hero-info{padding:28px 6% 35px}.nf-xd-hero-copy{max-width:100%}.nf-xd-benefits{padding:42px 20px}.nf-xd-benefit-grid{grid-template-columns:1fr}.nf-xd-benefit-grid article{padding:22px 10px}.nf-xd-benefit-grid article + article{border-left:0;border-top:1px solid #50555a}.nf-xd-benefits h2{margin-bottom:16px}}
