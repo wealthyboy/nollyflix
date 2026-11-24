@@ -4,6 +4,8 @@
 
 @include('includes.searching')
 
+{{-- NollyFlix XD local UI skin is loaded through the shared page styles. --}}
+
 <section class="section-content">
 
 @if ($featured_videos->count())
@@ -199,6 +201,7 @@
                 <div id="progression-video-carousel" class="owl-carousel progression-video-carousel progression-carousel-theme">
                     @foreach($section->videos as $video)
                         <div class="item">
+                            @php($cardGenre = optional($video->genres->first())->name ?: 'Nollywood')
                             <div class="progression-studios-video-index-container">
                                 <a href="/browse/{{ $video->slug }}">
                                     <div class="progression-studios-video-feaured-image"><img src="{{ $video->tn_poster }}" alt="{{ $video->title }}"></div>
@@ -213,6 +216,10 @@
                                     <div class="video-index-border-hover"></div>
                                 </a>
                             </div><!-- close .progression-studios-video-index-container  -->
+                            <a class="nollyflix-card-details" href="/browse/{{ $video->slug }}" aria-label="View {{ $video->title }}">
+                                <span class="nollyflix-card-title">{{ $video->title }}</span>
+                                <span class="nollyflix-card-genre">{{ $cardGenre }}</span>
+                            </a>
                             <div class="d-flex position-absolute links-section flex-column  justify-content-center">
                                 <div class="mx-auto buy-rent-links">
                                    @include('partials.links')

@@ -67,6 +67,7 @@
 
 
         <div class="header-user-profile prfLBtn {{ auth()->check() ? 'd-none' : '' }}" id="header-user-profile">
+            <a href="/register" class="btn nollyflix-signup-btn">Sign up</a>
             <a href="/login" class="btn p-1 login-btn rounded-0 pr-3"  id=""><i class="fas fa-sign-in-alt"></i>Login </a>
         </div>
 

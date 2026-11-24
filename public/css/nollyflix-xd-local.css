@@ -1,0 +1,120 @@
+/* NollyFlix XD-inspired homepage local UI, additive style pass. */
+:root { --nolly-gold:#ffb50b; --nolly-dark:#060b10; --nolly-soft:#0c1117; --nolly-text:#f6f7f8; }
+html, body { background:var(--nolly-dark); }
+#masthead-pro { min-height:64px; background:rgba(5,9,13,.98)!important; border-bottom:1px solid rgba(255,255,255,.09); }
+#masthead-pro .header-container { display:flex!important; align-items:center; min-height:64px; max-width:1460px; padding:0 26px; margin:auto; }
+#masthead-pro h1 { float:none!important; flex:0 0 auto; border:0!important; }
+#masthead-pro h1 img { display:block; width:148px!important; height:auto!important; max-height:40px; margin:0!important; }
+#masthead-pro #site-navigation-pro { float:none!important; margin-left:34px; }
+#masthead-pro #site-navigation-pro .sf-menu { display:flex; align-items:center; }
+#masthead-pro #site-navigation-pro .sf-menu > li > a { padding:25px 14px!important; font-size:12px!important; font-weight:700!important; letter-spacing:0!important; background:transparent!important; }
+#masthead-pro #site-navigation-pro a, #masthead-pro .sf-menu a { color:#f8f8f8; }
+#masthead-pro #site-navigation-pro a:hover, #masthead-pro .sf-menu .current-menu-item > a { color:var(--nolly-gold)!important; }
+#masthead-pro #progression-studios-header-search-icon { float:none!important; order:3; margin:0 15px 0 auto!important; }
+#masthead-pro #progression-studios-header-search-icon .fa-search { margin:0!important; font-size:15px!important; }
+#masthead-pro .header-user-profile { float:none!important; order:4; display:flex; align-items:center; }
+#masthead-pro .prfDrpdwn { align-self:stretch; position:relative; }
+#masthead-pro .prfDrpdwn #header-user-profile-menu { top:100%!important; right:0!important; transform:none!important; }
+#masthead-pro .prfDrpdwn.active #header-user-profile-menu { animation:none!important; transform:none!important; }
+#masthead-pro .login-btn, #masthead-pro .nollyflix-signup-btn, #masthead-pro .btn-header-pro { display:inline-flex; align-items:center; justify-content:center; min-height:32px; margin:0 0 0 10px!important; padding:8px 16px!important; border:0!important; border-radius:3px!important; font-size:12px!important; font-weight:700!important; line-height:1!important; }
+#masthead-pro .nollyflix-signup-btn { background:var(--nolly-gold)!important; color:#080a0d!important; }
+#masthead-pro .login-btn { background:#fff!important; color:#080a0d!important; }
+#masthead-pro .login-btn i { display:none; }
+#masthead-pro #progression-studios-header-search-icon a:hover { color:var(--nolly-gold)!important; }
+.section-content { background:var(--nolly-dark); color:var(--nolly-text); }
+/* Keep the existing flexslider and its original JS. Restyle presentation only. */
+.section-content .progression-studios-slider { background:#060a0f; }
+.section-content .progression-studios-slider .slides > li { background:#060a0f; }
+.section-content .progression-studios-slider-image-background { position:relative; min-height:530px; background-size:67% auto!important; background-position:left center!important; background-repeat:no-repeat!important; background-color:#060a0f!important; }
+.section-content .progression-studios-slider-image-background:before { content:""; position:absolute; z-index:0; inset:0 33% 0 0; background:linear-gradient(90deg,rgba(0,0,0,.10),rgba(0,0,0,.02) 65%,#060a0f 100%); pointer-events:none; }
+.section-content .progression-studios-slider .progression-studios-slider-overlay-gradient { background:transparent!important; }
+.section-content .progression-studios-slider .progression-studios-slider-display-table { position:relative; z-index:1; }
+.section-content .progression-studios-slider .progression-studios-slider-caption-width { width:32%!important; max-width:520px!important; margin-left:auto!important; padding:48px 20px 48px 0!important; }
+.section-content .progression-studios-slider-caption-align { text-align:left!important; }
+.section-content .progression-studios-slider-caption-align h2 { font-weight:800!important; letter-spacing:.025em; line-height:1.1; text-transform:uppercase; }
+.section-content .slider-video-post-meta-list { color:#aeb2b8; }
+.section-content .slider-video-post-meta-rating, .section-content .slider-video-post-meta-rating span { color:var(--nolly-gold)!important; }
+.section-content .progression-studios-slider-excerpt { color:#e4e6e9; font-size:15px; line-height:1.75; }
+.section-content .btn-slider-pro { background:transparent!important; color:#fff!important; border:1px solid rgba(255,255,255,.3)!important; border-radius:3px!important; font-weight:700!important; margin:7px 6px 0 0!important; padding:11px 14px!important; }
+.section-content .btn-slider-pro:hover { color:#090b0e!important; background:var(--nolly-gold)!important; border-color:var(--nolly-gold)!important; }
+.section-content .btn-slider-pro i { color:var(--nolly-gold)!important; }
+.section-content .btn-slider-pro:hover i { color:#090b0e!important; }
+.section-content .flex-control-paging li a.flex-active, .section-content .flex-control-paging li a:hover, .section-content .flex-direction-nav a:hover { background:var(--nolly-gold)!important; }
+#content-pro { background:var(--nolly-dark)!important; }
+#content-pro .container-fluid.custom-gutters-pro { max-width:1500px; margin:auto; }
+#content-pro .post-list-heading { color:#fff; font-weight:800!important; letter-spacing:-.02em; margin:28px 0 22px; }
+#content-pro .post-list-heading span { background:var(--nolly-gold)!important; }
+#content-pro .progression-studios-video-index-container { background:#0b1016; border-radius:12px; overflow:hidden; }
+#content-pro .progression-studios-video-feaured-image { border-radius:12px; }
+#content-pro .progression-studios-video-feaured-image img { width:100%; display:block; border-radius:12px; object-fit:cover; }
+#content-pro .progression-video-carousel .item { color:#eee; }
+#content-pro .progression-video-carousel .item { position:relative; padding-bottom:8px; }
+/* XD-style catalogue cards: the poster is the visual focus and its details stay readable below it. */
+#content-pro .progression-video-carousel .progression-studios-video-index-container { transition:transform .2s ease, box-shadow .2s ease; }
+#content-pro .progression-video-carousel .item:hover .progression-studios-video-index-container { transform:translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,.32); }
+#content-pro .nollyflix-card-details { display:block; min-height:48px; padding:12px 1px 0; color:#fff!important; text-decoration:none!important; overflow:hidden; }
+#content-pro .nollyflix-card-title { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:16px; font-weight:700; line-height:1.25; letter-spacing:-.01em; }
+#content-pro .nollyflix-card-genre { display:block; margin-top:4px; overflow:hidden; color:rgba(255,255,255,.60); font-size:12px; font-weight:500; line-height:1.2; text-overflow:ellipsis; white-space:nowrap; }
+#content-pro .nollyflix-card-details:hover .nollyflix-card-title, #content-pro .nollyflix-card-details:hover .nollyflix-card-genre { color:var(--nolly-gold)!important; }
+#content-pro .progression-video-carousel .progression-video-index-content, #content-pro .progression-video-carousel .links-section { display:none!important; }
+#content-pro .progression-video-carousel .owl-nav button:hover, #content-pro .progression-video-carousel .owl-nav a:hover { color:var(--nolly-gold)!important; }
+#content-pro .video-index-border-hover { border:0!important; }
+#content-pro .nollyflix-continue-play { border-color:var(--nolly-gold)!important; color:var(--nolly-gold)!important; }
+#content-pro .nollyflix-continue-card:hover .nollyflix-continue-play { background:var(--nolly-gold)!important; color:#080b10!important; }
+#content-pro .nollyflix-continue-progress span { background:var(--nolly-gold)!important; }
+#content-pro .nollyflix-continue-title:hover { color:var(--nolly-gold)!important; }
+#content-pro .nollyflix-about-home { background:linear-gradient(135deg,rgba(255,181,11,.09),rgba(255,255,255,.025) 48%,rgba(0,0,0,.12))!important; border-radius:0!important; }
+#content-pro .nollyflix-about-home:before { background:var(--nolly-gold)!important; }
+#content-pro .nollyflix-about-kicker { color:var(--nolly-gold)!important; }
+#footer-pro { background:#05090d!important; }
+#footer-pro a:hover { color:var(--nolly-gold)!important; }
+/* One gold action colour across browsing, film details and payment choices. */
+#masthead-pro .nollyflix-signup-btn,
+#masthead-pro .login-btn,
+.btn-primary,
+[aria-label="Choose currency"] .btn-danger,
+.purchase-btn-icon,
+.purchase-btn-icon.p-4 {
+ background:var(--nolly-gold)!important;
+ border-color:var(--nolly-gold)!important;
+ color:#080a0d!important;
+}
+#masthead-pro .nollyflix-signup-btn:hover,
+#masthead-pro .login-btn:hover,
+.btn-primary:hover,
+[aria-label="Choose currency"] .btn-danger:hover,
+.purchase-btn-icon:hover,
+.purchase-btn-icon.p-4:hover {
+ background:#ffd05b!important;
+ border-color:#ffd05b!important;
+ color:#080a0d!important;
+}
+.purchase-btn-icon svg,
+.purchase-btn-icon i,
+#masthead-pro .nollyflix-signup-btn i,
+#masthead-pro .login-btn i {
+ color:#080a0d!important;
+ fill:#080a0d!important;
+}
+@media(max-width:991px) {
+ #masthead-pro .header-container { min-height:60px; padding:0 18px; }
+ #masthead-pro h1 img { width:132px!important; }
+ #masthead-pro #site-navigation-pro { margin-left:18px; }
+ #masthead-pro #site-navigation-pro .sf-menu > li > a { padding-left:9px!important; padding-right:9px!important; }
+ .section-content .progression-studios-slider-image-background { background-size:cover!important; background-position:center!important; min-height:520px; }
+ .section-content .progression-studios-slider-image-background:before { inset:0; background:linear-gradient(90deg,rgba(3,7,10,.65),rgba(3,7,10,.85)); }
+ .section-content .progression-studios-slider .progression-studios-slider-caption-width { width:100%!important; max-width:580px!important; margin-left:0!important; padding:55px 20px!important; }
+}
+@media(max-width:600px) {
+ #masthead-pro { min-height:58px; }
+ #masthead-pro .header-container { min-height:58px; padding:0 14px; }
+ #masthead-pro h1 img { width:120px!important; }
+ #masthead-pro .nollyflix-signup-btn { display:none!important; }
+ .section-content .progression-studios-slider-image-background { min-height:500px; }
+ .section-content .progression-studios-slider .progression-studios-slider-caption-width { padding:48px 12px!important; }
+ .section-content .progression-studios-slider-caption-align h2 { font-size:28px!important; }
+ .section-content .btn-slider-pro { font-size:12px!important; padding:9px 10px!important; }
+ #content-pro .post-list-heading { font-size:23px!important; }
+ #content-pro .nollyflix-card-title { font-size:14px; }
+ #content-pro .nollyflix-card-genre { font-size:11px; }
+}

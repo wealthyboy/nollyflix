@@ -144,7 +144,7 @@
          </div>
          <div class="col-lg-4 mb-5">
             <div class="mt-3" id="">
-               @if($blocked)
+               @if($blocked ?? $video->isBlockedInCurrentRegion())
                   <div class="alert alert-warning p-4 rounded mb-4" role="alert">
                      <strong class="d-block mb-2">This movie is not available in your region.</strong>
                      <div>You can still watch the preview and view the movie details.</div>

@@ -185,19 +185,19 @@ $( ".owl-next").html('<i class="fas fa-arrow-right"></i>');
 		    },
 		    // Standard laptop / desktop
 		    1250: {
-		        items:5,
+		        items:6,
 		    },
 		    // 15-inch / wide laptop screens: keep poster width close to the 13-inch layout
 		    1500: {
-		        items:6,
+		        items:7,
 		    },
 		    // Full-HD / iMac-style wide screens
 		    1850: {
-		        items:7,
+		        items:8,
 		    },
 		    // 2K / large iMac displays
 		    2300: {
-		        items:8,
+		        items:9,
 		    }
 		}
 	});
