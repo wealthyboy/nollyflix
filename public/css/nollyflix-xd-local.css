@@ -118,3 +118,77 @@ html, body { background:var(--nolly-dark); }
  #content-pro .nollyflix-card-title { font-size:14px; }
  #content-pro .nollyflix-card-genre { font-size:11px; }
 }
+
+
+/* Mobile header alignment — logo left, menu and account actions right. */
+@media (max-width: 991px) {
+  #masthead-pro .header-container {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    width: 100%;
+    min-height: 64px;
+    padding: 0 18px !important;
+    box-sizing: border-box;
+  }
+
+  #masthead-pro .header-container > h1 {
+    flex: 0 1 auto !important;
+    min-width: 0;
+    margin: 0 auto 0 0 !important;
+    padding: 0 !important;
+    line-height: 1;
+  }
+  #masthead-pro .header-container > h1 img {
+    display: block;
+    width: min(34vw, 140px) !important;
+    max-height: 38px !important;
+    height: auto !important;
+    margin: 0 !important;
+    object-fit: contain;
+  }
+  #masthead-pro #site-navigation-pro { display: none !important; }
+  #masthead-pro #mobile-bars-icon-pro {
+    display: flex !important;
+    flex: 0 0 40px;
+    order: 2 !important;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px 0 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  #masthead-pro .header-user-profile {
+    flex: 0 0 auto;
+    order: 3 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center !important;
+    align-self: center;
+  }
+  #masthead-pro .prfLBtn .login-btn {
+    margin: 0 !important;
+    padding: 10px 14px !important;
+    min-height: 38px;
+    white-space: nowrap;
+  }
+  #masthead-pro #progression-studios-header-search-icon {
+    order: 1 !important;
+    margin: 0 10px 0 0 !important;
+  }
+  #masthead-pro .header-container > .clearfix { display: none !important; }
+}
+
+@media (max-width: 380px) {
+  #masthead-pro .header-container { padding: 0 12px !important; }
+  #masthead-pro .header-container > h1 img { width: min(32vw, 118px) !important; }
+  #masthead-pro #mobile-bars-icon-pro { margin-right: 6px !important; flex-basis: 36px; }
+  #masthead-pro .prfLBtn .login-btn { padding: 9px 12px !important; }
+}
