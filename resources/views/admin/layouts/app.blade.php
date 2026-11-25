@@ -48,7 +48,7 @@
         </a>
 
         <a href="{{ route('admin_home') }}" class="simple-text logo-normal">
-            <img src="https://nollyflix.tv/images/logo/NF00.png" width="140" height="30" />
+            <img src="{{ asset('images/logo/NF00.png') }}" width="140" height="30" />
         </a>
     </div>
 

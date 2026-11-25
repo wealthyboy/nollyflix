@@ -1,0 +1,71 @@
+/* NollyFlix XD homepage recreation — scoped to its homepage sections. */
+.nolly-xd-hero-slider {margin:0!important; background:#03090e!important; border:0!important; overflow:hidden;}
+.nolly-xd-hero-slider .slides>li.nolly-xd-slide {background:#03090e!important; padding:0!important;}
+.nolly-xd-slide-inner {display:flex; flex-wrap:nowrap; height: min(54vw, 590px); min-height:490px; position:relative;}
+.nolly-xd-featured-image {position:relative; width:66.7%; flex:0 0 66.7%; background-size:cover; background-position:center center; background-color:#111;}
+.nolly-xd-image-shade {position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.80),rgba(0,0,0,.06) 62%),linear-gradient(90deg,transparent 68%,rgba(0,0,0,.22));}
+.nolly-xd-image-title {position:absolute; left:9%; bottom:21%; z-index:1; max-width:72%; color:#fff;}
+.nolly-xd-image-title h2 {font-size:clamp(30px,3.5vw,52px)!important; line-height:1.05!important; max-width:430px; text-transform:uppercase; font-weight:800!important; margin:0 0 8px!important; color:#fff!important;}
+.nolly-xd-image-title>span {display:inline-block; vertical-align:middle; font-size:13px; font-weight:600;}
+.nolly-xd-title-rule {height:2px; width:100px; background:#ffb50b; margin-left:14px;}
+.nolly-xd-featured-details {width:33.3%; flex:0 0 33.3%; position:relative; background:#03090e; padding:8% 4% 20px 3%; color:#fff;}
+.nolly-xd-details-copy h2 {font-size:clamp(20px,2vw,29px); font-weight:700!important; line-height:1.15!important; text-transform:uppercase; margin:0 0 8px;}
+.nolly-xd-details-copy h2 a {color:#fff!important;}
+.nolly-xd-details-copy h2 a:hover {color:#ffb50b!important;}
+.nolly-xd-meta {font-size:12px; color:#999;}
+.nolly-xd-stars {font-size:18px; letter-spacing:3px; color:#ffb50b; margin:8px 0 14px;}
+.nolly-xd-details-copy p {font-size:13px; line-height:1.85; color:#eee; max-width:350px; margin-bottom:14px;}
+.nolly-xd-watch {display:inline-flex; align-items:center; gap:10px; color:#fff!important; font-weight:800; font-size:13px; text-decoration:none!important;}
+.nolly-xd-watch:hover {color:#ffb50b!important;}
+.nolly-xd-play-icon {width:40px; height:40px; border:3px solid #ffb50b; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#ffb50b; font-size:13px;}
+.nolly-xd-next {position:absolute; left:-17%; right:8%; bottom:7%; display:flex; align-items:end; justify-content:flex-end; gap:15px; z-index:5; pointer-events:none;}
+.nolly-xd-next>* {pointer-events:auto;}
+.nolly-xd-slide-counter {margin-right:auto; color:#fff; font-size:25px; white-space:nowrap; font-weight:800;}
+.nolly-xd-slide-counter small {font-size:12px; font-weight:400;}
+.nolly-xd-next-card {width:195px; height:115px; display:block; position:relative; overflow:hidden; flex:0 0 195px;}
+.nolly-xd-next-card img {width:100%;height:100%;object-fit:cover;}
+.nolly-xd-next-card:after {content:'';position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.75));}
+.nolly-xd-next-card strong {position:absolute; bottom:10px; right:10px; z-index:1; color:#fff; font-size:14px; font-weight:500; max-width:92%; text-align:right;}
+.nolly-xd-next-arrow {color:#ffb50b; font-size:40px; line-height:1;}
+.nolly-xd-hero-slider .flex-control-nav {bottom:6%!important; left:6%!important; width:auto!important; z-index:8;}
+.nolly-xd-hero-slider .flex-control-paging li a {background:#586063!important; box-shadow:none!important; width:10px!important; height:10px!important;}
+.nolly-xd-hero-slider .flex-control-paging li a.flex-active {background:#ffb50b!important;}
+.nolly-xd-hero-slider .flex-direction-nav {display:none;}
+.nolly-xd-experience {background:#080d12; padding:62px 6% 70px; text-align:center; margin:0 -15px 55px;}
+.nolly-xd-experience>h2 {font-weight:800!important; font-size:clamp(23px,2.7vw,34px); margin:0 0 42px; color:#fff;}
+.nolly-xd-experience-grid {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); max-width:1020px; margin:auto;}
+.nolly-xd-experience-grid article {padding:12px 14% 6px; text-align:center;}
+.nolly-xd-experience-grid article+article {border-left:1px solid rgba(255,255,255,.25);}
+.nolly-xd-feature-icon {height:72px; position:relative; display:inline-flex; align-items:center; justify-content:center; font-size:48px; color:white; margin-bottom:5px;}
+.nolly-xd-mini-star,.nolly-xd-mini-phone {position:absolute; right:-15px; bottom:4px; font-size:22px; color:#ffb50b;}
+.nolly-xd-experience-grid h3 {font-size:17px; font-weight:800; color:#fff;}
+.nolly-xd-experience-grid p {font-size:12px; color:#b7bcc1; max-width:350px; margin:14px auto 18px; line-height:1.7;}
+.nolly-xd-feature-btn {display:inline-block; background:#ffb50b; color:#080a0d!important; padding:10px 24px; border-radius:3px; font-size:12px; font-weight:800; text-decoration:none!important;}
+.nolly-xd-feature-btn:hover {background:#ffd15f;}
+.nolly-xd-hero-slider + #content-pro {background:#060b10;}
+.nolly-xd-experience~.post-list-heading {font-size:25px!important;}
+@media(max-width:991px) {
+ .nolly-xd-slide-inner {height:auto; min-height:0; flex-direction:column;}
+ .nolly-xd-featured-image {width:100%; flex:none; height:390px;}
+ .nolly-xd-image-title {bottom:14%;}
+ .nolly-xd-featured-details {width:100%; flex:none; padding:28px 6% 125px;}
+ .nolly-xd-next {left:6%; right:6%; bottom:15px;}
+ .nolly-xd-next-card {width:135px;height:80px;flex-basis:135px;}
+ .nolly-xd-slide-counter {font-size:18px;}
+ .nolly-xd-hero-slider .flex-control-nav {top:345px!important;bottom:auto!important;}
+ .nolly-xd-experience {margin:0 -15px 35px; padding:45px 5% 50px;}
+}
+@media(max-width:600px) {
+ .nolly-xd-featured-image {height:310px;}
+ .nolly-xd-image-title {left:6%; bottom:14%;}
+ .nolly-xd-image-title h2 {font-size:30px!important;}
+ .nolly-xd-featured-details {padding:26px 6% 112px;}
+ .nolly-xd-next-card {width:118px;height:72px; flex-basis:118px;}
+ .nolly-xd-next-arrow {font-size:27px;}
+ .nolly-xd-hero-slider .flex-control-nav {top:280px!important;left:5%!important;}
+ .nolly-xd-experience-grid {grid-template-columns:1fr; gap:28px;}
+ .nolly-xd-experience-grid article {padding:8px 5% 20px;}
+ .nolly-xd-experience-grid article+article {border-left:0;border-top:1px solid rgba(255,255,255,.15);padding-top:30px;}
+}
+
+#content-pro .nollyflix-continue-play,#content-pro .nollyflix-continue-progress span {background-color:#ffb50b!important;}

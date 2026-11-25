@@ -1,5 +1,9 @@
 @extends('layouts.access')
 
+@section('page-css')
+<link rel="stylesheet" href="{{ asset('css/nollyflix-xd-homepage-v2.css') }}?v=1">
+@endsection
+
 @section('content')
 
 @include('includes.searching')
@@ -9,47 +13,54 @@
 <section class="section-content">
 
 @if ($featured_videos->count())
-<div class="flexslider progression-studios-slider">
+<div class="flexslider progression-studios-slider nolly-xd-hero-slider">
     <ul class="slides">
-        @foreach($featured_videos as $video)
-            <li class="progression_studios_animate_left">
-                <div class="progression-studios-slider-image-background" style="background-image:url({{ optional($video->video)->poster }});">
-                    <div class="progression-studios-slider-display-table">
-                        <div class="progression-studios-slider-vertical-align">
-                            <div class="container">
-                                <div class="progression-studios-slider-caption-width">
-                                    <div class="progression-studios-slider-caption-align">
-                                        <h2><a href="/">{{ optional($video->video)->title }}</a></h2>
-                                        <ul class="slider-video-post-meta-list">
-                                            <li class="slider-video-post-meta-cat"><ul><li><a href="#"> {!! $video->video->genres[0]->name !!} </a></li></ul></li>
-                                            <li class="slider-video-post-meta-year">{{ optional(optional($video->video)->release_date)->format('Y') }}</li>
-                                            <li class="slider-video-post-meta-rating"><span>{{ optional($video->video)->film_rating }}</span></li>
-                                        </ul>
-                                        <div class="clearfix"></div>
-                                        <?php  $read_more =  "<a href='/browse/'>Read More</a>" ?>
-<div class="progression-studios-slider-excerpt"><?php echo  str_limit(html_entity_decode($video->video->description), $limit = 200, $end = '...') ?>  <?php  if (strlen($video->video->description)  > 200 ) {?>  <a href="{{ route('browse.show',['video' => $video->video->slug ]) }}">Read More</a>  <?php } ?></div>
-                                        <a class="btn btn-slider-pro" data-fancybox href="{{ optional($video->video)->playablePreviewLink() }}"><i class="far fa-play-circle"></i>Play Trailer</a>
-                                        @if($video->video->isBlockedInCurrentRegion())
-                                            <a class="btn btn-slider-pro" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-info-circle"></i>View Details</a>
-                                        @else
-                                            <a class="btn btn-slider-pro"  data-type="buy" href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Buy {{ $video->video->currency }}{{ number_format($video->video->converted_buy_price) }} </a>
-                                            <a class="btn btn-slider-pro"   data-type="rent"  href="{{ route('browse.show',['video' => $video->video->slug ]) }}"><i class="fas fa-shopping-cart"></i>Rent {{ $video->video->currency }}{{ number_format($video->video->converted_rent_price) }} </a>
-                                        @endif
-                                    </div><!-- close .progression-studios-slider-caption-align -->
-                                </div><!-- close .progression-studios-slider-caption-width -->
-    
-                            </div><!-- close .container -->
-                            
-                        </div><!-- close .progression-studios-slider-vertical-align -->
-                    </div><!-- close .progression-studios-slider-display-table -->
-            
-                    <div class="progression-studios-slider-overlay-gradient"></div>
-                
-                </div><!-- close .progression-studios-slider-image-background -->
-            </li>
+        @foreach($featured_videos as $featured)
+            @php
+                $heroMovie = $featured->video;
+                $heroGenre = $heroMovie ? optional($heroMovie->genres->first())->name : null;
+                $heroNext = $featured_videos->values()->get(($loop->index + 1) % $featured_videos->count());
+                $heroNextMovie = $heroNext ? $heroNext->video : null;
+            @endphp
+            @if($heroMovie)
+                <li class="nolly-xd-slide">
+                    <div class="nolly-xd-slide-inner">
+                    <div class="nolly-xd-featured-image" style="background-image:url('{{ $heroMovie->poster }}')">
+                        <div class="nolly-xd-image-shade"></div>
+                        <div class="nolly-xd-image-title">
+                            <h2>{{ $heroMovie->title }}</h2>
+                            @if($heroMovie->length ?? null)<span>{{ $heroMovie->length }} min.</span>@endif
+                            <span class="nolly-xd-title-rule"></span>
+                        </div>
+                    </div>
+                    <div class="nolly-xd-featured-details">
+                        <div class="nolly-xd-details-copy">
+                            <h2><a href="{{ route('browse.show',['video' => $heroMovie->slug]) }}">{{ $heroMovie->title }}</a></h2>
+                            <div class="nolly-xd-meta">
+                                <span>{{ $heroGenre ?: 'Nollywood' }}</span>
+                                @if($heroMovie->film_rating)<span> · {{ $heroMovie->film_rating }}</span>@endif
+                            </div>
+                            <div class="nolly-xd-stars" aria-hidden="true">★★★★★</div>
+                            <p>{{ \Illuminate\Support\Str::limit(strip_tags(html_entity_decode($heroMovie->description ?? '')), 195) }}</p>
+                            <a class="nolly-xd-watch" href="{{ route('browse.show',['video' => $heroMovie->slug]) }}"><span class="nolly-xd-play-icon"><i class="fas fa-play"></i></span> WATCH NOW</a>
+                        </div>
+                        @if($heroNextMovie && $featured_videos->count() > 1)
+                        <div class="nolly-xd-next">
+                            <span class="nolly-xd-slide-counter">{{ sprintf('%02d', $loop->iteration) }} <small>/ {{ sprintf('%02d', $featured_videos->count()) }}</small></span>
+                            <a href="{{ route('browse.show',['video' => $heroNextMovie->slug]) }}" class="nolly-xd-next-card" aria-label="View {{ $heroNextMovie->title }}">
+                                <img src="{{ $heroNextMovie->tn_poster ?: $heroNextMovie->poster }}" alt="{{ $heroNextMovie->title }}">
+                                <strong>{{ $heroNextMovie->title }}</strong>
+                            </a>
+                            <span class="nolly-xd-next-arrow" aria-hidden="true">→</span>
+                        </div>
+                        @endif
+                    </div>
+                    </div>
+                </li>
+            @endif
         @endforeach
     </ul>
-</div><!-- close .progression-studios-slider - See /js/script.js file for options -->
+</div>
 @endif
 
 <div id="content-pro">
@@ -175,6 +186,7 @@
                                 }
                             }
                         @endphp
+                        @if($continueVideo)
                         <div class="item">
                             <div class="progression-studios-video-index-container nollyflix-continue-card">
                                 <a href="{{ route('watch', ['video' => $continueVideo->slug]) }}" aria-label="Continue watching {{ $continueVideo->title }}">
@@ -188,11 +200,30 @@
                             <a class="nollyflix-continue-title" href="{{ route('watch', ['video' => $continueVideo->slug]) }}">{{ $continueVideo->title }}</a>
                             <div class="nollyflix-continue-subtitle">{{ $continueEpisodeLabel ?: 'Resume movie' }}</div>
                         </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
         </div>
         @endif
+
+        <section class="nolly-xd-experience" aria-labelledby="nolly-experience-heading">
+            <h2 id="nolly-experience-heading">THE BEST NOLLY EXPERIENCE</h2>
+            <div class="nolly-xd-experience-grid">
+                <article>
+                    <div class="nolly-xd-feature-icon"><i class="fas fa-film"></i><i class="fas fa-star nolly-xd-mini-star"></i></div>
+                    <h3>See Filmmakers &amp; Actors</h3>
+                    <p>Home to the makers and cast of Nollywood blockbusters. Discover actors, filmmakers and the stories behind your favourite films.</p>
+                    <a href="/browse/a/casts" class="nolly-xd-feature-btn">See More</a>
+                </article>
+                <article>
+                    <div class="nolly-xd-feature-icon"><i class="fas fa-desktop"></i><i class="fas fa-mobile-alt nolly-xd-mini-phone"></i></div>
+                    <h3>Watch On Any Device</h3>
+                    <p>Enjoy Nollywood stories across your phone, tablet or computer. Your favourite films, wherever you are.</p>
+                    <a href="{{ route('login') }}" class="nolly-xd-feature-btn">Learn More</a>
+                </article>
+            </div>
+        </section>
 
         @if($sections->count())
             @foreach($sections as $section)
