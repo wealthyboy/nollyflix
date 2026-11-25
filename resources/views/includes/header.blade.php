@@ -119,7 +119,6 @@
     <nav id="mobile-navigation-pro">
         <ul id="mobile-menu-pro">
             <li class="normal-item-pro"><a href="/">Home</a></li>
-            <li class="normal-item-pro"><a href="/browse">Movies</a></li>
             @foreach ($featuredMenuCategories as $menuSlug => $menuLabel)
                 <li class="normal-item-pro"><a href="{{ url('browse/category/'.$featuredMenuSlugs[$menuSlug]) }}">{{ $menuLabel }}</a></li>
             @endforeach
