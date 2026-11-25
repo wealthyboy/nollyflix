@@ -1,0 +1,24 @@
+/* Gold buttons in Buy/Rent guest authentication modal; no Vue or checkout changes. */
+#apModal .modal-body-pro form button.btn,
+#apModal .modal-body-pro form button[type="submit"] {
+  background:#ffb50b!important;
+  border:2px solid #ffb50b!important;
+  color:#080a0d!important;
+  font-weight:700!important;
+  box-shadow:none!important;
+  border-radius:5px!important;
+  min-height:46px;
+  padding:10px 28px!important;
+}
+#apModal .modal-body-pro form button.btn:hover,
+#apModal .modal-body-pro form button.btn:focus-visible,
+#apModal .modal-body-pro form button[type="submit"]:hover,
+#apModal .modal-body-pro form button[type="submit"]:focus-visible {
+  background:#ffd15b!important;
+  border-color:#ffd15b!important;
+  color:#080a0d!important;
+}
+#apModal .modal-body-pro form button:disabled{opacity:.62;cursor:not-allowed}
+#apModal .modal-body-pro form input.form-control:focus{border-color:#ffb50b!important;box-shadow:0 0 0 3px rgba(255,181,11,.12)!important}
+#apModal .modal-body-pro form a.not-a-member-pro span,
+#apModal .modal-body-pro form .aligncenter p a{color:#ffb50b!important}

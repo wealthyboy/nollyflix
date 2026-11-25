@@ -1,0 +1,35 @@
+/* XD-inspired login presentation — no authentication logic changes. */
+.nfx-login-page{min-height:calc(100vh - 84px);background:#050a0e;color:#f6f7fa;font-family:Lato,Arial,sans-serif;}
+.nfx-login-shell{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(410px,.95fr);min-height:720px;max-width:1600px;margin:0 auto;}
+.nfx-login-intro{position:relative;display:flex;align-items:flex-end;min-height:720px;background:#090e14 url('/images/banners/Bgnollyn01.jpg') center/cover no-repeat;isolation:isolate;}
+.nfx-login-intro:before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(1,5,8,.94) 0%,rgba(1,5,8,.52) 55%,rgba(1,5,8,.25) 100%);z-index:-1;}
+.nfx-login-intro-inner{position:relative;padding:70px clamp(28px,5vw,86px) 85px;max-width:670px;}
+.nfx-login-eyebrow{display:flex;gap:10px;align-items:center;max-width:340px;font-size:11px;line-height:1.5;letter-spacing:.16em;color:#ffbd23;font-weight:700;}
+.nfx-login-eyebrow span{height:2px;width:28px;flex:0 0 28px;background:#ffb50b;}
+.nfx-login-intro h1{margin:24px 0 15px;font-size:clamp(42px,4.1vw,70px);line-height:1.06;letter-spacing:-.025em;font-family:'Fira Sans Condensed',Arial,sans-serif;font-weight:700;color:#fff;}
+.nfx-login-intro h1 span{color:#ffb50b;}
+.nfx-login-intro p{max-width:460px;font-size:16px;line-height:1.75;color:#e1e3e7;margin:0;}
+.nfx-login-intro-line{margin-top:36px;width:76px;height:3px;background:#ffb50b;}
+.nfx-login-panel{display:flex;align-items:center;justify-content:center;padding:65px clamp(24px,4.3vw,78px);background:#060b10;border-left:1px solid rgba(255,255,255,.06);}
+.nfx-login-form-wrap{width:100%;max-width:455px;}
+.nfx-login-kicker{font-size:12px;font-weight:700;letter-spacing:.22em;color:#ffb50b;margin-bottom:12px;}
+.nfx-login-form-wrap h2{font-family:'Fira Sans Condensed',Arial,sans-serif;font-size:clamp(36px,3vw,48px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 10px;}
+.nfx-login-subheading{font-size:15px;color:#a6acb3;margin:0 0 34px;line-height:1.55;}
+.nfx-login-form .form-group{margin-bottom:22px;}
+.nfx-login-form .form-group label{display:block;font-size:13px;color:#e9eaec;font-weight:700;margin-bottom:9px;}
+.nfx-login-form .form-control{width:100%;height:54px;padding:12px 16px;background:#0c141c!important;border:1px solid #29333e!important;border-radius:5px!important;font-size:15px!important;color:#fff!important;box-shadow:none!important;}
+.nfx-login-form .form-control::placeholder{color:#87919b;opacity:1;}
+.nfx-login-form .form-control:focus{border-color:#ffb50b!important;box-shadow:0 0 0 3px rgba(255,181,11,.12)!important;}
+.nfx-login-form .form-control.is-invalid{border-color:#dc5960!important;}
+.nfx-login-form .invalid-feedback{display:block;color:#ff9097;font-size:12px;padding-top:5px;}
+.nfx-login-help-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 30px;flex-wrap:wrap;}
+.nfx-login-help-row .checkbox-remember-pro{display:flex;gap:9px;align-items:center;color:#aeb6be;margin:0;font-size:13px;}
+.nfx-login-help-row .checkbox-remember-pro label{margin:0;cursor:pointer;}
+.nfx-login-help-row input[type=checkbox]{accent-color:#ffb50b;margin:0;}
+.nfx-login-help-row a,.nfx-login-signup a{color:#ffb50b!important;text-decoration:none;font-weight:700;}
+.nfx-login-help-row a:hover,.nfx-login-signup a:hover{color:#ffd15b!important;text-decoration:underline;}
+.nfx-login-submit,.nfx-login-submit.btn{display:block;width:100%;min-height:54px;padding:12px 20px!important;background:#ffb50b!important;border:2px solid #ffb50b!important;border-radius:4px!important;color:#080a0d!important;font-family:'Fira Sans Condensed',Arial,sans-serif;font-weight:700!important;font-size:17px!important;line-height:1.4;box-shadow:none!important;}
+.nfx-login-submit:hover,.nfx-login-submit:focus{background:#ffd15b!important;border-color:#ffd15b!important;color:#080a0d!important;}
+.nfx-login-signup{margin-top:28px;text-align:center;font-size:14px;color:#aeb6be;}
+@media(max-width:920px){.nfx-login-shell{grid-template-columns:1fr;min-height:0;}.nfx-login-intro{min-height:265px;align-items:flex-end;background-position:center 42%;}.nfx-login-intro-inner{padding:54px 26px 32px;}.nfx-login-intro h1{font-size:37px;margin:13px 0 8px;}.nfx-login-intro p{font-size:14px;}.nfx-login-intro-line{display:none;}.nfx-login-panel{padding:45px 22px 65px;}.nfx-login-form-wrap{max-width:510px;}}
+@media(max-width:480px){.nfx-login-intro{min-height:215px;}.nfx-login-intro-inner{padding:36px 20px 26px;}.nfx-login-intro h1{font-size:32px;}.nfx-login-eyebrow{font-size:9px;}.nfx-login-panel{padding:35px 20px 52px;}.nfx-login-form-wrap h2{font-size:35px;}.nfx-login-subheading{margin-bottom:26px;}.nfx-login-form .form-control{height:50px;}.nfx-login-help-row{font-size:12px;}}

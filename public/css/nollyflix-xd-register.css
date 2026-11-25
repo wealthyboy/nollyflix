@@ -1,0 +1,31 @@
+/* NollyFlix XD-inspired registration. Visual changes only. */
+.nfx-register-page{min-height:calc(100vh - 84px);background:#050a0e;color:#f6f7fa;font-family:Lato,Arial,sans-serif}
+.nfx-register-shell{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(410px,.95fr);max-width:1600px;min-height:760px;margin:0 auto}
+.nfx-register-intro{position:relative;display:flex;align-items:flex-end;min-height:760px;background:#090e14 url('/images/banners/Bgnollyn01.jpg') center/cover no-repeat;isolation:isolate}
+.nfx-register-intro:before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(1,5,8,.94),rgba(1,5,8,.52) 55%,rgba(1,5,8,.25));z-index:-1}
+.nfx-register-intro-inner{padding:70px clamp(28px,5vw,86px) 85px;max-width:680px}
+.nfx-register-eyebrow{display:flex;gap:10px;align-items:center;font-size:11px;line-height:1.5;letter-spacing:.16em;color:#ffbd23;font-weight:700;max-width:350px}
+.nfx-register-eyebrow span{display:block;width:28px;flex:0 0 28px;height:2px;background:#ffb50b}
+.nfx-register-intro h1{font-family:'Fira Sans Condensed',Arial,sans-serif;font-size:clamp(42px,4.1vw,70px);font-weight:700;color:#fff;line-height:1.06;letter-spacing:-.025em;margin:24px 0 15px}
+.nfx-register-intro h1 span{color:#ffb50b}
+.nfx-register-intro p{font-size:16px;line-height:1.75;color:#e1e3e7;max-width:460px;margin:0}
+.nfx-register-intro-line{margin-top:36px;width:76px;height:3px;background:#ffb50b}
+.nfx-register-panel{display:flex;align-items:center;justify-content:center;padding:52px clamp(24px,4.3vw,78px);background:#060b10;border-left:1px solid rgba(255,255,255,.06)}
+.nfx-register-form-wrap{width:100%;max-width:455px}
+.nfx-register-kicker{color:#ffb50b;font-size:12px;font-weight:700;letter-spacing:.22em;margin-bottom:12px}
+.nfx-register-form-wrap h2{font-family:'Fira Sans Condensed',Arial,sans-serif;font-size:clamp(36px,3vw,48px);font-weight:700;line-height:1.2;color:#fff;margin:0 0 10px}
+.nfx-register-subheading{color:#a6acb3;font-size:15px;line-height:1.55;margin:0 0 28px}
+.nfx-register-form .form-group{margin-bottom:17px}
+.nfx-register-form .form-group label{display:block;font-size:13px;color:#e9eaec;font-weight:700;margin-bottom:8px}
+.nfx-register-form .form-control{width:100%;height:51px;padding:11px 16px;background:#0c141c!important;border:1px solid #29333e!important;border-radius:5px!important;font-size:15px!important;color:#fff!important;box-shadow:none!important}
+.nfx-register-form .form-control::placeholder{color:#87919b;opacity:1}
+.nfx-register-form .form-control:focus{border-color:#ffb50b!important;box-shadow:0 0 0 3px rgba(255,181,11,.12)!important}
+.nfx-register-form .form-control.is-invalid{border-color:#dc5960!important}
+.nfx-register-form .invalid-feedback{display:block;color:#ff9097;font-size:12px;padding-top:5px}
+.nfx-register-form .nfx-register-submit,.nfx-register-form .nfx-register-submit.btn{display:block;width:100%;min-height:54px;margin-top:25px;padding:12px 20px!important;background:#ffb50b!important;border:2px solid #ffb50b!important;border-radius:4px!important;color:#080a0d!important;font-family:'Fira Sans Condensed',Arial,sans-serif;font-size:17px!important;font-weight:700!important;line-height:1.4;box-shadow:none!important;cursor:pointer}
+.nfx-register-form .nfx-register-submit:hover,.nfx-register-form .nfx-register-submit:focus-visible{background:#ffd15b!important;border-color:#ffd15b!important;color:#080a0d!important}
+.nfx-register-signin{text-align:center;color:#aeb6be;font-size:14px;margin-top:27px}
+.nfx-register-signin a{color:#ffb50b!important;font-weight:700;text-decoration:none}
+.nfx-register-signin a:hover{color:#ffd15b!important;text-decoration:underline}
+@media(max-width:920px){.nfx-register-shell{grid-template-columns:1fr;min-height:0}.nfx-register-intro{min-height:265px;align-items:flex-end;background-position:center 42%}.nfx-register-intro-inner{padding:54px 26px 32px}.nfx-register-intro h1{font-size:37px;margin:13px 0 8px}.nfx-register-intro p{font-size:14px}.nfx-register-intro-line{display:none}.nfx-register-panel{padding:45px 22px 65px}.nfx-register-form-wrap{max-width:510px}}
+@media(max-width:480px){.nfx-register-intro{min-height:215px}.nfx-register-intro-inner{padding:36px 20px 26px}.nfx-register-intro h1{font-size:32px}.nfx-register-eyebrow{font-size:9px}.nfx-register-panel{padding:35px 20px 52px}.nfx-register-form-wrap h2{font-size:35px}.nfx-register-subheading{margin-bottom:26px}.nfx-register-form .form-control{height:50px}}
