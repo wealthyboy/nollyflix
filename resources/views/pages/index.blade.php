@@ -21,10 +21,15 @@
 	    @include('includes.header',['allow_search' => true])
 	  	<section>
       @include('includes.searching')
-      <section class="section-content">  
-          <div class="container">
+      <section class="section-content nolly-xd-information">  
+          <div class="container nolly-xd-page-wrap">
+              <header class="nolly-xd-page-hero nolly-xd-page-hero--compact">
+                <span class="nolly-xd-eyebrow">NOLLYFLIX</span>
+                <h1>{{ $information->name }}</h1>
+                <span class="nolly-xd-accent-line" aria-hidden="true"></span>
+              </header>
               <div class="row justifiy-content-center">        
-                <div id="content" class="col-md-12  mb-5">
+                <div id="content" class="col-md-12 mb-5 nolly-xd-page-content">
                   <p><?php echo  html_entity_decode($information->description);  ?></p> 
                 </div>
               <div class="margin-top-35"></div>

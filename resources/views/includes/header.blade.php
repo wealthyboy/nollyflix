@@ -1,9 +1,11 @@
 <header id="masthead-pro" class="sticky-header {{  isset($mobile)  ? 'd-none': '' }}"><!-- Remove sticky-header class to remove sticky header -->
     <div class="header-container">
-        <h1><a href="/"><img src="{{ asset('images/logo/NF00.png') }}" alt="Nolly Flix Logo"></a></h1>
+        <h1><a href="/"><img src="{{ $system_settings->logo_path() }}" alt="Nolly Flix Logo"></a></h1>
 
         <nav id="site-navigation-pro">
             <ul class="sf-menu">
+                <li class="normal-item-pro"><a href="/">Home</a></li>
+                <li class="normal-item-pro"><a href="/browse">Movies</a></li>
                 @foreach( $global_categories   as  $category)
                     <li class="normal-item-pro ">
                         <a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
@@ -95,6 +97,8 @@
     
     <nav id="mobile-navigation-pro">
         <ul id="mobile-menu-pro">
+            <li class="normal-item-pro"><a href="/">Home</a></li>
+            <li class="normal-item-pro"><a href="/browse">Movies</a></li>
             @foreach( $global_categories   as  $category)
                 <li class="normal-item-pro">
                     <a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>

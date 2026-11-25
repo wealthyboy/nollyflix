@@ -1,0 +1,23 @@
+NOLLYFLIX COMBINED PATCH — 25 November 2026
+
+This patch MERGES the registration/login-matching patch with the XD remaining-pages patch.
+It contains the auth/register view (which the previous remaining-pages patch did NOT contain).
+
+Install to the Laravel PROJECT ROOT (directory with artisan), preserving paths.
+
+AFTER MERGE, verify the following file contains both the words Sign Up and
+NOLLYFLIX-REGISTER-UI-PATCH-20261125:
+  resources/views/auth/register.blade.php
+If that marker is missing, the ZIP was not applied to your project.
+
+Then in the project root run:
+  php artisan view:clear
+  php artisan cache:clear
+
+Hard-refresh localhost/nollyflix.test/register (Cmd+Shift+R on Mac).
+
+Expected visible change: button text is Sign Up (NOT Submit).
+If still Submit, check the Laravel document root and local watcher merge destination.
+Do not extract into an extra nested folder; paths begin at resources/ and public/.
+
+No database changes, route changes, or migrations are included.

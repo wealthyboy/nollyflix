@@ -1,0 +1,55 @@
+/* NollyFlix Adobe XD interior-page visual treatment. Additive styling only; no business logic changes. */
+:root { --nfx-ink:#060b10; --nfx-panel:#0b1117; --nfx-gold:#ffb50b; --nfx-muted:#929ba4; }
+.nolly-xd-page-wrap { max-width:1500px!important; margin-inline:auto!important; padding:36px 30px 80px!important; }
+.nolly-xd-page-hero { position:relative; padding:40px 0 38px; margin-bottom:38px; border-bottom:1px solid rgba(255,255,255,.08); }
+.nolly-xd-page-hero--compact { padding:20px 0 30px; margin-bottom:26px; }
+.nolly-xd-eyebrow { display:block; color:var(--nfx-gold); font-size:12px; font-weight:800; letter-spacing:.22em; margin-bottom:13px; }
+.nolly-xd-page-hero h1 { font-size:clamp(32px,4.3vw,57px); letter-spacing:-.035em; line-height:1.12; font-weight:800; text-transform:uppercase; color:#fff; margin:0 0 12px; }
+.nolly-xd-page-hero p { color:#a7afb8; font-size:15px; line-height:1.7; margin:0; max-width:690px; }
+.nolly-xd-accent-line { display:block; width:85px; height:3px; background:var(--nfx-gold); margin-top:22px; }
+.nolly-xd-people-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:30px 22px; }
+.nolly-xd-person { display:block; color:#fff!important; text-decoration:none!important; min-width:0; }
+.nolly-xd-person-image { aspect-ratio:3/4; overflow:hidden; background:#121a22; border-radius:3px; }
+.nolly-xd-person-image img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .25s ease; }
+.nolly-xd-person:hover img { transform:scale(1.045); }
+.nolly-xd-person h2 { font-size:16px; font-weight:700; line-height:1.35; margin:12px 0 5px; color:#fff; }
+.nolly-xd-person span { font-size:12px; color:var(--nfx-muted); }
+.nolly-xd-person:hover span { color:var(--nfx-gold); }
+.nolly-xd-person span i { margin-left:5px; font-size:10px; }
+.nolly-xd-empty { background:#111920; border:1px solid #29323a; border-radius:6px; color:#adb4ba; padding:50px; text-align:center; }
+.nolly-xd-movie-item { padding-bottom:12px; min-width:0; }
+.nolly-xd-movie-item .nollyflix-card-details { display:block!important; position:relative; z-index:3; margin-top:10px; min-height:48px; color:#fff; text-decoration:none; }
+.nolly-xd-movie-item .nollyflix-card-title { color:#fff; font-size:15px; font-weight:700; }
+.nolly-xd-movie-item .nollyflix-card-genre { color:var(--nfx-muted); font-size:12px; }
+.nolly-xd-movie-item .nollyflix-card-details:hover .nollyflix-card-title { color:var(--nfx-gold)!important; }
+.nolly-xd-movie-item .links-section { display:none!important; }
+.nolly-xd-film-hero { min-height:clamp(320px,44vw,640px)!important; background-position:center 25%!important; background-size:cover!important; position:relative; }
+.nolly-xd-film-hero:after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,#060b10,rgba(6,11,16,0) 65%); pointer-events:none; }
+.nolly-xd-film-hero .video-page-title-play-button { z-index:2; }
+.nolly-xd-film-details { background:var(--nfx-ink)!important; }
+.nolly-xd-film-details > .container { max-width:1380px; padding-top:38px; }
+.nolly-xd-film-heading { color:#fff!important; text-transform:uppercase; font-weight:800!important; letter-spacing:-.028em; font-size:clamp(30px,3.5vw,48px)!important; }
+.nolly-xd-film-details #video-post-meta-list { color:#aab0b7; }
+.nolly-xd-film-details #vayvo-video-post-content { color:#c6cbd0; font-size:15px; line-height:1.85; }
+.nolly-xd-film-details .content-sidebar-short-description { color:#c4ccd3; }
+.nolly-xd-film-details .content-sidebar-short-description a { color:var(--nfx-gold)!important; }
+.nolly-xd-information .nolly-xd-page-content { background:var(--nfx-panel); border:1px solid rgba(255,255,255,.07); border-radius:5px; padding:40px 44px; line-height:1.85; color:#d4d8dc; }
+.nolly-xd-information .nolly-xd-page-content h1,.nolly-xd-information .nolly-xd-page-content h2,.nolly-xd-information .nolly-xd-page-content h3 { color:#fff; }
+.nolly-xd-information .nolly-xd-page-content a { color:var(--nfx-gold); }
+.nolly-xd-home-catalogue .post-list-heading { font-size:clamp(23px,2.2vw,35px)!important; }
+#footer-pro .footer-links { display:flex; gap:12px 25px; justify-content:center; flex-wrap:wrap; }
+#footer-pro .footer-links li a { font-size:12px; color:#9fa7ae; }
+#footer-pro .footer-links li a:hover { color:var(--nfx-gold); }
+@media(max-width:1199px) { .nolly-xd-people-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media(max-width:767px) {
+ .nolly-xd-page-wrap { padding:20px 17px 50px!important; }
+ .nolly-xd-page-hero { padding:24px 0; margin-bottom:25px; }
+ .nolly-xd-page-hero h1 { font-size:31px; overflow-wrap:anywhere; }
+ .nolly-xd-people-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 14px; }
+ .nolly-xd-person h2 { font-size:14px; }
+ .nolly-xd-information .nolly-xd-page-content { padding:23px 20px; }
+ .nolly-xd-film-hero { min-height:310px!important; }
+ .nolly-xd-film-details > .container { padding-top:20px; }
+ #footer-pro .footer-links { gap:10px 16px; }
+}
+@media(prefers-reduced-motion:reduce){.nolly-xd-person-image img { transition:none; }}

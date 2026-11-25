@@ -1,4 +1,4 @@
-<div id="video-page-title-pro" style="background-image:url({{ $video->poster }});">
+<div class="nolly-xd-film-hero" id="video-page-title-pro" style="background-image:url({{ $video->poster }});">
    @if(!empty($video->preview_link))
    <a class="video-page-title-play-button" data-trailer-trigger href="{{ $video->preview_link }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-play"></i><span>Watch Trailer</span></a>
    @endif
@@ -85,7 +85,7 @@
    </div>
 </div>
 @endif
-<div id="content-pro">
+<div id="content-pro" class="nolly-xd-film-details">
    <div class="container custom-gutters-pro">
 
       
@@ -93,7 +93,7 @@
 
          <div class="col-lg-8">
             <div id="">
-               <h1 class="video-post-heading-title">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
+               <h1 class="video-post-heading-title nolly-xd-film-heading">{{ optional($video)->title }} <span class="ml-2 resolution">{{ optional($video)->resolution }}</span></h1>
                <div class="clearfix"></div>
                @php
                   $seasonCount = $video->episodes->pluck('season_number')->filter()->unique()->count();
@@ -144,7 +144,7 @@
          </div>
          <div class="col-lg-4 mb-5">
             <div class="mt-3" id="">
-               @if($blocked ?? $video->isBlockedInCurrentRegion())
+               @if($blocked)
                   <div class="alert alert-warning p-4 rounded mb-4" role="alert">
                      <strong class="d-block mb-2">This movie is not available in your region.</strong>
                      <div>You can still watch the preview and view the movie details.</div>

@@ -8,7 +8,13 @@
 <section class="section-content">
    <div id="content-pro">
 			
-        <div class="container-fluid custom-gutters-pro"> 
+        <div class="container-fluid custom-gutters-pro nolly-xd-page-wrap">
+            <header class="nolly-xd-page-hero nolly-xd-page-hero--compact">
+                <span class="nolly-xd-eyebrow">DISCOVER NOLLYWOOD</span>
+                <h1>{{ $genre->name }}</h1>
+                <p>Find something new to watch.</p>
+                <span class="nolly-xd-accent-line" aria-hidden="true"></span>
+            </header> 
         
             <div style="height:35px;"></div>
 
@@ -20,7 +26,7 @@
                 @foreach($genre->videos as $video)
  
 
-                <div class="col item col-6 col-md-6 col-lg-3 mt-3">
+                <div class="col item col-6 col-md-6 col-lg-3 mt-3 nolly-xd-movie-item">
                     <div class="progression-studios-video-index-container">
                         <a href="/browse/{{ $video->slug }}">
 
@@ -44,6 +50,10 @@
                             
                         </a>
                     </div><!-- close .progression-studios-video-index-container -->
+                    <a class="nollyflix-card-details" href="/browse/{{ $video->slug }}" aria-label="View {{ $video->title }}">
+                        <span class="nollyflix-card-title">{{ $video->title }}</span>
+                        <span class="nollyflix-card-genre">{{ $genre->name }}</span>
+                    </a>
                     <div class="d-flex position-absolute links-section flex-column  justify-content-center ">
                         <div class="mx-auto buy-rent-links">
                            @include('partials.links')
