@@ -5,7 +5,6 @@
         <nav id="site-navigation-pro">
             <ul class="sf-menu">
                 <li class="normal-item-pro"><a href="/">Home</a></li>
-                <li class="normal-item-pro"><a href="/browse">Movies</a></li>
                 {{-- Featured category links displayed in a consistent order. --}}
                 @php
                     $featuredMenuCategories = [
