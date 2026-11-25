@@ -6,10 +6,31 @@
             <ul class="sf-menu">
                 <li class="normal-item-pro"><a href="/">Home</a></li>
                 <li class="normal-item-pro"><a href="/browse">Movies</a></li>
-                @foreach( $global_categories   as  $category)
-                    <li class="normal-item-pro ">
-                        <a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
-                    </li>
+                {{-- Featured category links displayed in a consistent order. --}}
+                @php
+                    $featuredMenuCategories = [
+                        'tv-series' => 'TV Series',
+                        'nollywood-oldies' => 'Nollywood Oldies',
+                        'in-cinemas-now' => 'In Cinemas Now',
+                    ];
+                    $featuredMenuSlugs = [];
+                    foreach ($featuredMenuCategories as $defaultSlug => $label) {
+                        $foundCategory = $global_categories->first(function ($category) use ($defaultSlug, $label) {
+                            return \Illuminate\Support\Str::slug($category->name) === $defaultSlug
+                                || \Illuminate\Support\Str::slug($category->slug) === $defaultSlug
+                                || strcasecmp(trim($category->name), $label) === 0;
+                        });
+                        $featuredMenuSlugs[$defaultSlug] = $foundCategory ? $foundCategory->slug : $defaultSlug;
+                    }
+                @endphp
+                @foreach ($featuredMenuCategories as $menuSlug => $menuLabel)
+                    <li class="normal-item-pro"><a href="{{ url('browse/category/'.$featuredMenuSlugs[$menuSlug]) }}">{{ $menuLabel }}</a></li>
+                @endforeach
+                @foreach ($global_categories as $category)
+                    @if (!in_array(\Illuminate\Support\Str::slug($category->name), array_keys($featuredMenuCategories), true)
+                        && !in_array(\Illuminate\Support\Str::slug($category->slug), array_keys($featuredMenuCategories), true))
+                        <li class="normal-item-pro"><a href="{{ url('browse/category/'.$category->slug) }}">{{ $category->name }}</a></li>
+                    @endif
                 @endforeach
                 <li class="normal-item-pro">
                     <a href="/browse/a/casts">Actors/Actress</a>
@@ -99,10 +120,14 @@
         <ul id="mobile-menu-pro">
             <li class="normal-item-pro"><a href="/">Home</a></li>
             <li class="normal-item-pro"><a href="/browse">Movies</a></li>
-            @foreach( $global_categories   as  $category)
-                <li class="normal-item-pro">
-                    <a href="/browse/category/{{ $category->slug }}">{{ $category->name }}</a>
-                </li>
+            @foreach ($featuredMenuCategories as $menuSlug => $menuLabel)
+                <li class="normal-item-pro"><a href="{{ url('browse/category/'.$featuredMenuSlugs[$menuSlug]) }}">{{ $menuLabel }}</a></li>
+            @endforeach
+            @foreach ($global_categories as $category)
+                @if (!in_array(\Illuminate\Support\Str::slug($category->name), array_keys($featuredMenuCategories), true)
+                    && !in_array(\Illuminate\Support\Str::slug($category->slug), array_keys($featuredMenuCategories), true))
+                    <li class="normal-item-pro"><a href="{{ url('browse/category/'.$category->slug) }}">{{ $category->name }}</a></li>
+                @endif
             @endforeach
             <li class="normal-item-pro">
                 <a href="/browse/a/casts">Actors/Actress</a>

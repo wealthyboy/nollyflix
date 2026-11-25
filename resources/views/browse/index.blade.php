@@ -338,4 +338,24 @@
 
 
 @include('includes.search')
+
+{{-- Remove outdated homepage tagline, including when populated by a dynamic banner. --}}
+<script>
+(function () {
+    function removeOldTagline() {
+        var content = document.querySelector('.section-content');
+        if (!content) return;
+        content.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,div').forEach(function (node) {
+            if (node.children.length === 0 && node.textContent.trim().replace(/\s+/g, ' ').toUpperCase() === 'THE BEST NOLLY EXPERIENCE') {
+                node.remove();
+            }
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', removeOldTagline);
+    } else {
+        removeOldTagline();
+    }
+})();
+</script>
 @endsection

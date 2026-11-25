@@ -1,0 +1,1 @@
+NollyFlix patch: Navigation links TV Series, Nollywood Oldies, In Cinemas Now on desktop/mobile, and remove exact legacy homepage tagline if rendered as text. Category links use existing /browse/category/{slug} routes; corresponding categories must exist in admin to resolve. Run php artisan view:clear after merge.
