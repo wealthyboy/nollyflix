@@ -171,7 +171,7 @@ class HttpsLocationTest extends TestCase
         Http::fake(['*' => Http::response([], 503)]);
         $request = Request::create('/api/browse', 'GET', [], [], [], ['REMOTE_ADDR' => '8.8.8.8']);
         $pricing = (new RequestCurrencyResolver())->resolve($request);
-        $this->assertSame('NG', $pricing['country_code']);
+        $this->assertNull($pricing['country_code']);
         $this->assertSame('NGN', $pricing['currency_code']);
         Http::assertSentCount(1);
     }

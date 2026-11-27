@@ -30,14 +30,18 @@ class RequestCurrencyResolver
             }
         }
 
-        $countryCode = $countryCode ?: 'NG';
+        // A pricing default is not evidence of the visitor's location.
+        // Keep unknown countries unknown so Africa exclusions cannot mistake
+        // a failed lookup for a confirmed Nigerian visitor.
+        $countryCode = $countryCode ?: null;
         $isNigeria = $countryCode === 'NG';
+        $useNaira = ! $countryCode || $isNigeria;
 
         return [
             'country_code' => $countryCode,
             'country_name' => $countryName ?: ($isNigeria ? 'Nigeria' : null),
-            'currency_code' => $isNigeria ? 'NGN' : 'USD',
-            'currency_symbol' => $isNigeria ? '₦' : '$',
+            'currency_code' => $useNaira ? 'NGN' : 'USD',
+            'currency_symbol' => $useNaira ? '₦' : '$',
         ];
     }
 

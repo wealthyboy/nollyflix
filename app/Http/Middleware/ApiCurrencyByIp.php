@@ -23,9 +23,9 @@ class ApiCurrencyByIp
         $request->attributes->set('currency_symbol', $pricing['currency_symbol']);
 
         $continent = config('continents.country_to_continent.'.$pricing['country_code']);
-        if ($continent) {
-            $request->attributes->set('continent_code', $continent);
-        }
+        // Cache unknown regions too; do not infer geography from pricing
+        // defaults or perform a second, potentially conflicting lookup.
+        $request->attributes->set('continent_code', $continent);
 
         return $next($request);
     }

@@ -8,7 +8,7 @@ use App\Http\Helper;
 use App\Traits\FormatPrice;
 use Carbon\Carbon;
 use App\Traits\ColumnFillable;
-use Stevebauman\Location\Location;
+use App\Services\RequestCurrencyResolver;
 
 
 
@@ -341,19 +341,10 @@ class Video extends Model
             return $request->attributes->get('continent_code');
         }
 
-        $continentCode = null;
-
-        try {
-            $position = (new Location())->get($request->ip());
-            $countryCode = strtoupper((string) optional($position)->countryCode);
-
-            if ($countryCode) {
-                $continentCode = static::countryToContinent()[$countryCode] ?? null;
-            }
-        } catch (\Throwable $exception) {
-            // If geo lookup is unavailable, keep the catalogue available instead
-            // of accidentally blocking every title.
-        }
+        // Use the same country source as storefront and API requests,
+        // including Cloudflare country headers on HLS routes.
+        $country = app(RequestCurrencyResolver::class)->resolve($request)['country_code'];
+        $continentCode = config('continents.country_to_continent.'.$country);
 
         $request->attributes->set('continent_code', $continentCode);
 
